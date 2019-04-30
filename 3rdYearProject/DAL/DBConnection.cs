@@ -11,8 +11,7 @@ namespace DAL
 {
     public class DBConnection
     {
-        public class DatabaseConnection
-        {
+        
             public class DataHandler
             {
                 private string connectionString;
@@ -70,10 +69,6 @@ namespace DAL
                         command = new SqlCommand(storedProcedureName, connection);
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.Add("@username", dataToInsert[0]);
-                        command.Parameters.Add("@password", dataToInsert[1]);
-
-
                         command.ExecuteNonQuery();
                     }
                     catch (Exception)
@@ -101,8 +96,7 @@ namespace DAL
                         command = new SqlCommand(storedProcedureName, connection);
                         command.CommandType = CommandType.StoredProcedure;
 
-                        command.Parameters.Add("@username", dataToInsert[0]);
-                        command.Parameters.Add("@password", dataToInsert[1]);
+                     
 
 
                         command.ExecuteNonQuery();
@@ -119,5 +113,5 @@ namespace DAL
                 }
             }
         }
-    }
+   
 }
