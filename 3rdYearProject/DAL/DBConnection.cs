@@ -27,9 +27,10 @@ namespace DAL
                 }
 
 
-                public DataTable SelectAllUsers(string queryString)
+                public DataTable SelectAllUsers()
                 {
-                    string qoute = queryString;
+
+                    string qoute = "Select * from Accounts";
                     try
                     {
                         if (connection.State != ConnectionState.Open)
@@ -56,61 +57,7 @@ namespace DAL
                     return table;
                 }
 
-                public void InsertUser(ArrayList dataToInsert)
-                {
-                    string storedProcedureName = "InsertUser";
-                    try
-                    {
-                        if (connection.State != ConnectionState.Open)
-                        {
-                            connection.Open();
-                        }
-
-                        command = new SqlCommand(storedProcedureName, connection);
-                        command.CommandType = CommandType.StoredProcedure;
-
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-
-
-                public void DeleteUser(ArrayList dataToInsert)
-                {
-                    string storedProcedureName = "DeleteUser";
-                    try
-                    {
-                        if (connection.State != ConnectionState.Open)
-                        {
-                            connection.Open();
-                        }
-
-                        command = new SqlCommand(storedProcedureName, connection);
-                        command.CommandType = CommandType.StoredProcedure;
-
-                     
-
-
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
+                
             }
         }
    
