@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts.cs" />
     <Compile Include="CustomExceptions.cs" />
     <Compile Include="FileHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
