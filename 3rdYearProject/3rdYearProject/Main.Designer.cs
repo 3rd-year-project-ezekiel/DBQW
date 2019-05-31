@@ -28,98 +28,100 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.selectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMenu = new System.Windows.Forms.MenuStrip();
+            this.mnuSelect = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuInsert = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuData = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDatabase = new System.Windows.Forms.Label();
             this.cmbDatabaseList = new System.Windows.Forms.ComboBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cblEntities = new System.Windows.Forms.CheckedListBox();
+            this.txtDisplay = new System.Windows.Forms.TextBox();
             this.btnExecute = new System.Windows.Forms.Button();
             this.btnPreview = new System.Windows.Forms.Button();
             this.btnInsertIntoDB = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.lnklblAdd = new System.Windows.Forms.LinkLabel();
-            this.lnklblRemove = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel7 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel8 = new System.Windows.Forms.LinkLabel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.menuStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
+            this.tcClause = new System.Windows.Forms.TabControl();
+            this.tpJoin = new System.Windows.Forms.TabPage();
+            this.lnklblRemoveJoin = new System.Windows.Forms.LinkLabel();
+            this.lnklblAddJoin = new System.Windows.Forms.LinkLabel();
+            this.tpWhere = new System.Windows.Forms.TabPage();
+            this.lnklblRemoveWhere = new System.Windows.Forms.LinkLabel();
+            this.lnklblAddWhere = new System.Windows.Forms.LinkLabel();
+            this.tpGroupBy = new System.Windows.Forms.TabPage();
+            this.lnklblRemoveGroupBy = new System.Windows.Forms.LinkLabel();
+            this.lnklblAddGroupBy = new System.Windows.Forms.LinkLabel();
+            this.tbOrderBy = new System.Windows.Forms.TabPage();
+            this.lnklblRemoveOrderBy = new System.Windows.Forms.LinkLabel();
+            this.lnklblAddOrderBy = new System.Windows.Forms.LinkLabel();
+            this.tbHaving = new System.Windows.Forms.TabPage();
+            this.lnklblRemoveHaving = new System.Windows.Forms.LinkLabel();
+            this.lnklblAddHaving = new System.Windows.Forms.LinkLabel();
+            this.cmbTables = new System.Windows.Forms.ComboBox();
+            this.lblTables = new System.Windows.Forms.Label();
+            this.mmuProgrammability = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMenu.SuspendLayout();
+            this.tcClause.SuspendLayout();
+            this.tpJoin.SuspendLayout();
+            this.tpWhere.SuspendLayout();
+            this.tpGroupBy.SuspendLayout();
+            this.tbOrderBy.SuspendLayout();
+            this.tbHaving.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // mnuMenu
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectToolStripMenuItem,
-            this.insertToolStripMenuItem,
-            this.deleteToolStripMenuItem,
-            this.updateToolStripMenuItem,
-            this.dataToolStripMenuItem,
-            this.logoutToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mnuMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mnuMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuSelect,
+            this.mnuInsert,
+            this.mnuDelete,
+            this.mnuUpdate,
+            this.mmuProgrammability,
+            this.mnuData,
+            this.mnuLogout});
+            this.mnuMenu.Location = new System.Drawing.Point(0, 0);
+            this.mnuMenu.Name = "mnuMenu";
+            this.mnuMenu.Size = new System.Drawing.Size(800, 28);
+            this.mnuMenu.TabIndex = 0;
+            this.mnuMenu.Text = "menuStrip1";
             // 
-            // selectToolStripMenuItem
+            // mnuSelect
             // 
-            this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
-            this.selectToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
-            this.selectToolStripMenuItem.Text = "Select";
+            this.mnuSelect.Name = "mnuSelect";
+            this.mnuSelect.Size = new System.Drawing.Size(61, 24);
+            this.mnuSelect.Text = "Select";
             // 
-            // insertToolStripMenuItem
+            // mnuInsert
             // 
-            this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            this.insertToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
-            this.insertToolStripMenuItem.Text = "Insert";
+            this.mnuInsert.Name = "mnuInsert";
+            this.mnuInsert.Size = new System.Drawing.Size(57, 24);
+            this.mnuInsert.Text = "Insert";
             // 
-            // deleteToolStripMenuItem
+            // mnuDelete
             // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
-            this.deleteToolStripMenuItem.Text = "Delete";
+            this.mnuDelete.Name = "mnuDelete";
+            this.mnuDelete.Size = new System.Drawing.Size(65, 24);
+            this.mnuDelete.Text = "Delete";
             // 
-            // updateToolStripMenuItem
+            // mnuUpdate
             // 
-            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
-            this.updateToolStripMenuItem.Text = "Update";
+            this.mnuUpdate.Name = "mnuUpdate";
+            this.mnuUpdate.Size = new System.Drawing.Size(70, 24);
+            this.mnuUpdate.Text = "Update";
             // 
-            // dataToolStripMenuItem
+            // mnuData
             // 
-            this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
-            this.dataToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.dataToolStripMenuItem.Text = "Data";
+            this.mnuData.Name = "mnuData";
+            this.mnuData.Size = new System.Drawing.Size(53, 24);
+            this.mnuData.Text = "Data";
             // 
-            // logoutToolStripMenuItem
+            // mnuLogout
             // 
-            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
-            this.logoutToolStripMenuItem.Text = "Logout";
+            this.mnuLogout.Name = "mnuLogout";
+            this.mnuLogout.Size = new System.Drawing.Size(68, 24);
+            this.mnuLogout.Text = "Logout";
             // 
             // lblDatabase
             // 
@@ -138,25 +140,25 @@
             this.cmbDatabaseList.Size = new System.Drawing.Size(121, 24);
             this.cmbDatabaseList.TabIndex = 2;
             // 
-            // checkedListBox1
+            // cblEntities
             // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(15, 109);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(197, 140);
-            this.checkedListBox1.TabIndex = 3;
+            this.cblEntities.FormattingEnabled = true;
+            this.cblEntities.Location = new System.Drawing.Point(15, 109);
+            this.cblEntities.Name = "cblEntities";
+            this.cblEntities.Size = new System.Drawing.Size(197, 140);
+            this.cblEntities.TabIndex = 3;
             // 
-            // textBox1
+            // txtDisplay
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 309);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(758, 129);
-            this.textBox1.TabIndex = 4;
+            this.txtDisplay.Location = new System.Drawing.Point(15, 309);
+            this.txtDisplay.Multiline = true;
+            this.txtDisplay.Name = "txtDisplay";
+            this.txtDisplay.Size = new System.Drawing.Size(758, 129);
+            this.txtDisplay.TabIndex = 4;
             // 
             // btnExecute
             // 
-            this.btnExecute.Location = new System.Drawing.Point(50, 255);
+            this.btnExecute.Location = new System.Drawing.Point(16, 280);
             this.btnExecute.Name = "btnExecute";
             this.btnExecute.Size = new System.Drawing.Size(75, 23);
             this.btnExecute.TabIndex = 5;
@@ -165,7 +167,7 @@
             // 
             // btnPreview
             // 
-            this.btnPreview.Location = new System.Drawing.Point(134, 255);
+            this.btnPreview.Location = new System.Drawing.Point(100, 280);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(75, 23);
             this.btnPreview.TabIndex = 6;
@@ -174,199 +176,205 @@
             // 
             // btnInsertIntoDB
             // 
-            this.btnInsertIntoDB.Location = new System.Drawing.Point(215, 255);
+            this.btnInsertIntoDB.Location = new System.Drawing.Point(181, 280);
             this.btnInsertIntoDB.Name = "btnInsertIntoDB";
             this.btnInsertIntoDB.Size = new System.Drawing.Size(146, 23);
             this.btnInsertIntoDB.TabIndex = 7;
             this.btnInsertIntoDB.Text = "Insert into database";
             this.btnInsertIntoDB.UseVisualStyleBackColor = true;
             // 
-            // tabControl1
+            // tcClause
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Location = new System.Drawing.Point(264, 45);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(509, 204);
-            this.tabControl1.TabIndex = 8;
+            this.tcClause.Controls.Add(this.tpJoin);
+            this.tcClause.Controls.Add(this.tpWhere);
+            this.tcClause.Controls.Add(this.tpGroupBy);
+            this.tcClause.Controls.Add(this.tbOrderBy);
+            this.tcClause.Controls.Add(this.tbHaving);
+            this.tcClause.Location = new System.Drawing.Point(264, 45);
+            this.tcClause.Name = "tcClause";
+            this.tcClause.SelectedIndex = 0;
+            this.tcClause.Size = new System.Drawing.Size(509, 204);
+            this.tcClause.TabIndex = 8;
             // 
-            // tabPage1
+            // tpJoin
             // 
-            this.tabPage1.Controls.Add(this.lnklblRemove);
-            this.tabPage1.Controls.Add(this.lnklblAdd);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(501, 138);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Joins";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tpJoin.Controls.Add(this.lnklblRemoveJoin);
+            this.tpJoin.Controls.Add(this.lnklblAddJoin);
+            this.tpJoin.Location = new System.Drawing.Point(4, 25);
+            this.tpJoin.Name = "tpJoin";
+            this.tpJoin.Padding = new System.Windows.Forms.Padding(3);
+            this.tpJoin.Size = new System.Drawing.Size(501, 175);
+            this.tpJoin.TabIndex = 0;
+            this.tpJoin.Text = "Joins";
+            this.tpJoin.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // lnklblRemoveJoin
             // 
-            this.tabPage2.Controls.Add(this.linkLabel1);
-            this.tabPage2.Controls.Add(this.linkLabel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(501, 138);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Where";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.lnklblRemoveJoin.AutoSize = true;
+            this.lnklblRemoveJoin.Location = new System.Drawing.Point(7, 46);
+            this.lnklblRemoveJoin.Name = "lnklblRemoveJoin";
+            this.lnklblRemoveJoin.Size = new System.Drawing.Size(60, 17);
+            this.lnklblRemoveJoin.TabIndex = 1;
+            this.lnklblRemoveJoin.TabStop = true;
+            this.lnklblRemoveJoin.Text = "Remove";
             // 
-            // tabPage3
+            // lnklblAddJoin
             // 
-            this.tabPage3.Controls.Add(this.linkLabel3);
-            this.tabPage3.Controls.Add(this.linkLabel4);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(501, 138);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Group By";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.lnklblAddJoin.AutoSize = true;
+            this.lnklblAddJoin.Location = new System.Drawing.Point(7, 17);
+            this.lnklblAddJoin.Name = "lnklblAddJoin";
+            this.lnklblAddJoin.Size = new System.Drawing.Size(33, 17);
+            this.lnklblAddJoin.TabIndex = 0;
+            this.lnklblAddJoin.TabStop = true;
+            this.lnklblAddJoin.Text = "Add";
             // 
-            // tabPage4
+            // tpWhere
             // 
-            this.tabPage4.Controls.Add(this.linkLabel5);
-            this.tabPage4.Controls.Add(this.linkLabel6);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(501, 175);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Order By";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.tpWhere.Controls.Add(this.lnklblRemoveWhere);
+            this.tpWhere.Controls.Add(this.lnklblAddWhere);
+            this.tpWhere.Location = new System.Drawing.Point(4, 25);
+            this.tpWhere.Name = "tpWhere";
+            this.tpWhere.Padding = new System.Windows.Forms.Padding(3);
+            this.tpWhere.Size = new System.Drawing.Size(501, 175);
+            this.tpWhere.TabIndex = 1;
+            this.tpWhere.Text = "Where";
+            this.tpWhere.UseVisualStyleBackColor = true;
             // 
-            // tabPage5
+            // lnklblRemoveWhere
             // 
-            this.tabPage5.Controls.Add(this.linkLabel7);
-            this.tabPage5.Controls.Add(this.linkLabel8);
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(501, 175);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Having";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.lnklblRemoveWhere.AutoSize = true;
+            this.lnklblRemoveWhere.Location = new System.Drawing.Point(15, 41);
+            this.lnklblRemoveWhere.Name = "lnklblRemoveWhere";
+            this.lnklblRemoveWhere.Size = new System.Drawing.Size(60, 17);
+            this.lnklblRemoveWhere.TabIndex = 3;
+            this.lnklblRemoveWhere.TabStop = true;
+            this.lnklblRemoveWhere.Text = "Remove";
             // 
-            // lnklblAdd
+            // lnklblAddWhere
             // 
-            this.lnklblAdd.AutoSize = true;
-            this.lnklblAdd.Location = new System.Drawing.Point(7, 17);
-            this.lnklblAdd.Name = "lnklblAdd";
-            this.lnklblAdd.Size = new System.Drawing.Size(33, 17);
-            this.lnklblAdd.TabIndex = 0;
-            this.lnklblAdd.TabStop = true;
-            this.lnklblAdd.Text = "Add";
+            this.lnklblAddWhere.AutoSize = true;
+            this.lnklblAddWhere.Location = new System.Drawing.Point(15, 12);
+            this.lnklblAddWhere.Name = "lnklblAddWhere";
+            this.lnklblAddWhere.Size = new System.Drawing.Size(33, 17);
+            this.lnklblAddWhere.TabIndex = 2;
+            this.lnklblAddWhere.TabStop = true;
+            this.lnklblAddWhere.Text = "Add";
             // 
-            // lnklblRemove
+            // tpGroupBy
             // 
-            this.lnklblRemove.AutoSize = true;
-            this.lnklblRemove.Location = new System.Drawing.Point(7, 46);
-            this.lnklblRemove.Name = "lnklblRemove";
-            this.lnklblRemove.Size = new System.Drawing.Size(60, 17);
-            this.lnklblRemove.TabIndex = 1;
-            this.lnklblRemove.TabStop = true;
-            this.lnklblRemove.Text = "Remove";
+            this.tpGroupBy.Controls.Add(this.lnklblRemoveGroupBy);
+            this.tpGroupBy.Controls.Add(this.lnklblAddGroupBy);
+            this.tpGroupBy.Location = new System.Drawing.Point(4, 25);
+            this.tpGroupBy.Name = "tpGroupBy";
+            this.tpGroupBy.Size = new System.Drawing.Size(501, 175);
+            this.tpGroupBy.TabIndex = 2;
+            this.tpGroupBy.Text = "Group By";
+            this.tpGroupBy.UseVisualStyleBackColor = true;
             // 
-            // linkLabel1
+            // lnklblRemoveGroupBy
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(15, 41);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(60, 17);
-            this.linkLabel1.TabIndex = 3;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Remove";
+            this.lnklblRemoveGroupBy.AutoSize = true;
+            this.lnklblRemoveGroupBy.Location = new System.Drawing.Point(12, 41);
+            this.lnklblRemoveGroupBy.Name = "lnklblRemoveGroupBy";
+            this.lnklblRemoveGroupBy.Size = new System.Drawing.Size(60, 17);
+            this.lnklblRemoveGroupBy.TabIndex = 3;
+            this.lnklblRemoveGroupBy.TabStop = true;
+            this.lnklblRemoveGroupBy.Text = "Remove";
             // 
-            // linkLabel2
+            // lnklblAddGroupBy
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(15, 12);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(33, 17);
-            this.linkLabel2.TabIndex = 2;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Add";
+            this.lnklblAddGroupBy.AutoSize = true;
+            this.lnklblAddGroupBy.Location = new System.Drawing.Point(12, 12);
+            this.lnklblAddGroupBy.Name = "lnklblAddGroupBy";
+            this.lnklblAddGroupBy.Size = new System.Drawing.Size(33, 17);
+            this.lnklblAddGroupBy.TabIndex = 2;
+            this.lnklblAddGroupBy.TabStop = true;
+            this.lnklblAddGroupBy.Text = "Add";
             // 
-            // linkLabel3
+            // tbOrderBy
             // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Location = new System.Drawing.Point(12, 41);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(60, 17);
-            this.linkLabel3.TabIndex = 3;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Remove";
+            this.tbOrderBy.Controls.Add(this.lnklblRemoveOrderBy);
+            this.tbOrderBy.Controls.Add(this.lnklblAddOrderBy);
+            this.tbOrderBy.Location = new System.Drawing.Point(4, 25);
+            this.tbOrderBy.Name = "tbOrderBy";
+            this.tbOrderBy.Size = new System.Drawing.Size(501, 175);
+            this.tbOrderBy.TabIndex = 3;
+            this.tbOrderBy.Text = "Order By";
+            this.tbOrderBy.UseVisualStyleBackColor = true;
             // 
-            // linkLabel4
+            // lnklblRemoveOrderBy
             // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Location = new System.Drawing.Point(12, 12);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(33, 17);
-            this.linkLabel4.TabIndex = 2;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "Add";
+            this.lnklblRemoveOrderBy.AutoSize = true;
+            this.lnklblRemoveOrderBy.Location = new System.Drawing.Point(17, 43);
+            this.lnklblRemoveOrderBy.Name = "lnklblRemoveOrderBy";
+            this.lnklblRemoveOrderBy.Size = new System.Drawing.Size(60, 17);
+            this.lnklblRemoveOrderBy.TabIndex = 3;
+            this.lnklblRemoveOrderBy.TabStop = true;
+            this.lnklblRemoveOrderBy.Text = "Remove";
             // 
-            // linkLabel5
+            // lnklblAddOrderBy
             // 
-            this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Location = new System.Drawing.Point(17, 43);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(60, 17);
-            this.linkLabel5.TabIndex = 3;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "Remove";
+            this.lnklblAddOrderBy.AutoSize = true;
+            this.lnklblAddOrderBy.Location = new System.Drawing.Point(17, 14);
+            this.lnklblAddOrderBy.Name = "lnklblAddOrderBy";
+            this.lnklblAddOrderBy.Size = new System.Drawing.Size(33, 17);
+            this.lnklblAddOrderBy.TabIndex = 2;
+            this.lnklblAddOrderBy.TabStop = true;
+            this.lnklblAddOrderBy.Text = "Add";
             // 
-            // linkLabel6
+            // tbHaving
             // 
-            this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Location = new System.Drawing.Point(17, 14);
-            this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(33, 17);
-            this.linkLabel6.TabIndex = 2;
-            this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "Add";
+            this.tbHaving.Controls.Add(this.lnklblRemoveHaving);
+            this.tbHaving.Controls.Add(this.lnklblAddHaving);
+            this.tbHaving.Location = new System.Drawing.Point(4, 25);
+            this.tbHaving.Name = "tbHaving";
+            this.tbHaving.Size = new System.Drawing.Size(501, 175);
+            this.tbHaving.TabIndex = 4;
+            this.tbHaving.Text = "Having";
+            this.tbHaving.UseVisualStyleBackColor = true;
             // 
-            // linkLabel7
+            // lnklblRemoveHaving
             // 
-            this.linkLabel7.AutoSize = true;
-            this.linkLabel7.Location = new System.Drawing.Point(13, 40);
-            this.linkLabel7.Name = "linkLabel7";
-            this.linkLabel7.Size = new System.Drawing.Size(60, 17);
-            this.linkLabel7.TabIndex = 3;
-            this.linkLabel7.TabStop = true;
-            this.linkLabel7.Text = "Remove";
+            this.lnklblRemoveHaving.AutoSize = true;
+            this.lnklblRemoveHaving.Location = new System.Drawing.Point(13, 40);
+            this.lnklblRemoveHaving.Name = "lnklblRemoveHaving";
+            this.lnklblRemoveHaving.Size = new System.Drawing.Size(60, 17);
+            this.lnklblRemoveHaving.TabIndex = 3;
+            this.lnklblRemoveHaving.TabStop = true;
+            this.lnklblRemoveHaving.Text = "Remove";
             // 
-            // linkLabel8
+            // lnklblAddHaving
             // 
-            this.linkLabel8.AutoSize = true;
-            this.linkLabel8.Location = new System.Drawing.Point(13, 11);
-            this.linkLabel8.Name = "linkLabel8";
-            this.linkLabel8.Size = new System.Drawing.Size(33, 17);
-            this.linkLabel8.TabIndex = 2;
-            this.linkLabel8.TabStop = true;
-            this.linkLabel8.Text = "Add";
+            this.lnklblAddHaving.AutoSize = true;
+            this.lnklblAddHaving.Location = new System.Drawing.Point(13, 11);
+            this.lnklblAddHaving.Name = "lnklblAddHaving";
+            this.lnklblAddHaving.Size = new System.Drawing.Size(33, 17);
+            this.lnklblAddHaving.TabIndex = 2;
+            this.lnklblAddHaving.TabStop = true;
+            this.lnklblAddHaving.Text = "Add";
             // 
-            // comboBox1
+            // cmbTables
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(88, 79);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 9;
+            this.cmbTables.FormattingEnabled = true;
+            this.cmbTables.Location = new System.Drawing.Point(88, 79);
+            this.cmbTables.Name = "cmbTables";
+            this.cmbTables.Size = new System.Drawing.Size(121, 24);
+            this.cmbTables.TabIndex = 9;
             // 
-            // label1
+            // lblTables
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 17);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Tables";
+            this.lblTables.AutoSize = true;
+            this.lblTables.Location = new System.Drawing.Point(13, 82);
+            this.lblTables.Name = "lblTables";
+            this.lblTables.Size = new System.Drawing.Size(51, 17);
+            this.lblTables.TabIndex = 10;
+            this.lblTables.Text = "Tables";
+            // 
+            // mmuProgrammability
+            // 
+            this.mmuProgrammability.Name = "mmuProgrammability";
+            this.mmuProgrammability.Size = new System.Drawing.Size(132, 24);
+            this.mmuProgrammability.Text = "Programmability";
             // 
             // Main
             // 
@@ -375,33 +383,33 @@
             this.BackgroundImage = global::_3rdYearProject.Properties.Resources.Option1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.lblTables);
+            this.Controls.Add(this.cmbTables);
+            this.Controls.Add(this.tcClause);
             this.Controls.Add(this.btnInsertIntoDB);
             this.Controls.Add(this.btnPreview);
             this.Controls.Add(this.btnExecute);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.txtDisplay);
+            this.Controls.Add(this.cblEntities);
             this.Controls.Add(this.cmbDatabaseList);
             this.Controls.Add(this.lblDatabase);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.mnuMenu);
+            this.MainMenuStrip = this.mnuMenu;
             this.Name = "Main";
             this.Text = "main";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            this.tabPage5.PerformLayout();
+            this.mnuMenu.ResumeLayout(false);
+            this.mnuMenu.PerformLayout();
+            this.tcClause.ResumeLayout(false);
+            this.tpJoin.ResumeLayout(false);
+            this.tpJoin.PerformLayout();
+            this.tpWhere.ResumeLayout(false);
+            this.tpWhere.PerformLayout();
+            this.tpGroupBy.ResumeLayout(false);
+            this.tpGroupBy.PerformLayout();
+            this.tbOrderBy.ResumeLayout(false);
+            this.tbOrderBy.PerformLayout();
+            this.tbHaving.ResumeLayout(false);
+            this.tbHaving.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -409,37 +417,38 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem selectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem insertToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip mnuMenu;
+        private System.Windows.Forms.ToolStripMenuItem mnuSelect;
+        private System.Windows.Forms.ToolStripMenuItem mnuInsert;
+        private System.Windows.Forms.ToolStripMenuItem mnuDelete;
+        private System.Windows.Forms.ToolStripMenuItem mnuUpdate;
+        private System.Windows.Forms.ToolStripMenuItem mnuData;
+        private System.Windows.Forms.ToolStripMenuItem mnuLogout;
         private System.Windows.Forms.Label lblDatabase;
         private System.Windows.Forms.ComboBox cmbDatabaseList;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckedListBox cblEntities;
+        private System.Windows.Forms.TextBox txtDisplay;
         private System.Windows.Forms.Button btnExecute;
         private System.Windows.Forms.Button btnPreview;
         private System.Windows.Forms.Button btnInsertIntoDB;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.LinkLabel lnklblRemove;
-        private System.Windows.Forms.LinkLabel lnklblAdd;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel3;
-        private System.Windows.Forms.LinkLabel linkLabel4;
-        private System.Windows.Forms.LinkLabel linkLabel5;
-        private System.Windows.Forms.LinkLabel linkLabel6;
-        private System.Windows.Forms.LinkLabel linkLabel7;
-        private System.Windows.Forms.LinkLabel linkLabel8;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabControl tcClause;
+        private System.Windows.Forms.TabPage tpJoin;
+        private System.Windows.Forms.TabPage tpWhere;
+        private System.Windows.Forms.TabPage tpGroupBy;
+        private System.Windows.Forms.TabPage tbOrderBy;
+        private System.Windows.Forms.TabPage tbHaving;
+        private System.Windows.Forms.LinkLabel lnklblRemoveJoin;
+        private System.Windows.Forms.LinkLabel lnklblAddJoin;
+        private System.Windows.Forms.LinkLabel lnklblRemoveWhere;
+        private System.Windows.Forms.LinkLabel lnklblAddWhere;
+        private System.Windows.Forms.LinkLabel lnklblRemoveGroupBy;
+        private System.Windows.Forms.LinkLabel lnklblAddGroupBy;
+        private System.Windows.Forms.LinkLabel lnklblRemoveOrderBy;
+        private System.Windows.Forms.LinkLabel lnklblAddOrderBy;
+        private System.Windows.Forms.LinkLabel lnklblRemoveHaving;
+        private System.Windows.Forms.LinkLabel lnklblAddHaving;
+        private System.Windows.Forms.ComboBox cmbTables;
+        private System.Windows.Forms.Label lblTables;
+        private System.Windows.Forms.ToolStripMenuItem mmuProgrammability;
     }
 }
