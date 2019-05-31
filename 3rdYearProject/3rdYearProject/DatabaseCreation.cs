@@ -21,16 +21,16 @@ namespace _3rdYearProject
         {
             InitializeComponent();
         }
-        
+
         public frmDatabaseCreation(string connectionStringParam)
         {
             InitializeComponent();
             connectionString = connectionStringParam;
         }
-        
+
         private void FrmDatabaseCreation_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void BtnCreate_Click(object sender, EventArgs e)
@@ -44,29 +44,53 @@ namespace _3rdYearProject
             creationDetails.Add(size);
             creationDetails.Add(logName);
 
-            database.CreateDatabase(creationDetails, connectionString);
+            bool validated = Validation(creationDetails);
 
-            MessageBox.Show("Database have been created", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (validated==true)
+            {
+                MessageBox.Show("Please provide all details to the text boxes","Warning!",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                return;
+            }
+            else
+            {
+                database.CreateDatabase(creationDetails, connectionString);
+
+                MessageBox.Show("Database have been created", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+
+            
+
+
+        }
+
+        public bool Validation(List<string> checkList)
+        {
+            bool empty = false;
+            foreach (string item in checkList)
+            {
+                if (item.ToString()=="")
+                {
+                    empty = true;
+                }
+            }
+
+            return empty;
         }
 
         private void BtnFilePath_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.Description = "Custom Description";
+
+            if (fbd.ShowDialog() == DialogResult.OK)
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-
-                    
-                   
-                }
+                string sSelectedPath = fbd.SelectedPath;
+                txtFile.Text = sSelectedPath;
             }
+
+
         }
     }
 }
