@@ -40,7 +40,11 @@
             this.txtLogName = new System.Windows.Forms.TextBox();
             this.btnCreate = new System.Windows.Forms.Button();
             this.btnFilePath = new System.Windows.Forms.Button();
+            this.TopNavPnl = new System.Windows.Forms.Panel();
+            this.btnNavMin = new System.Windows.Forms.Button();
+            this.btnNavClose = new System.Windows.Forms.Button();
             this.pnlDatabase.SuspendLayout();
+            this.TopNavPnl.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlDatabase
@@ -57,7 +61,7 @@
             this.pnlDatabase.Controls.Add(this.lblFilePath);
             this.pnlDatabase.Controls.Add(this.lblName);
             this.pnlDatabase.Controls.Add(this.lblHead);
-            this.pnlDatabase.Location = new System.Drawing.Point(65, 78);
+            this.pnlDatabase.Location = new System.Drawing.Point(224, 72);
             this.pnlDatabase.Name = "pnlDatabase";
             this.pnlDatabase.Size = new System.Drawing.Size(510, 360);
             this.pnlDatabase.TabIndex = 0;
@@ -159,6 +163,42 @@
             this.btnFilePath.UseVisualStyleBackColor = true;
             this.btnFilePath.Click += new System.EventHandler(this.BtnFilePath_Click);
             // 
+            // TopNavPnl
+            // 
+            this.TopNavPnl.BackColor = System.Drawing.Color.Crimson;
+            this.TopNavPnl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.TopNavPnl.Controls.Add(this.btnNavMin);
+            this.TopNavPnl.Controls.Add(this.btnNavClose);
+            this.TopNavPnl.Location = new System.Drawing.Point(0, 0);
+            this.TopNavPnl.Name = "TopNavPnl";
+            this.TopNavPnl.Size = new System.Drawing.Size(905, 38);
+            this.TopNavPnl.TabIndex = 9;
+            // 
+            // btnNavMin
+            // 
+            this.btnNavMin.BackColor = System.Drawing.Color.Crimson;
+            this.btnNavMin.FlatAppearance.BorderSize = 0;
+            this.btnNavMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavMin.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnNavMin.Location = new System.Drawing.Point(842, 3);
+            this.btnNavMin.Name = "btnNavMin";
+            this.btnNavMin.Size = new System.Drawing.Size(26, 23);
+            this.btnNavMin.TabIndex = 1;
+            this.btnNavMin.Text = "_";
+            this.btnNavMin.UseVisualStyleBackColor = false;
+            // 
+            // btnNavClose
+            // 
+            this.btnNavClose.BackColor = System.Drawing.Color.Crimson;
+            this.btnNavClose.FlatAppearance.BorderSize = 0;
+            this.btnNavClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNavClose.Location = new System.Drawing.Point(874, 3);
+            this.btnNavClose.Name = "btnNavClose";
+            this.btnNavClose.Size = new System.Drawing.Size(28, 23);
+            this.btnNavClose.TabIndex = 0;
+            this.btnNavClose.Text = "X";
+            this.btnNavClose.UseVisualStyleBackColor = false;
+            // 
             // frmDatabaseCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -166,6 +206,7 @@
             this.BackgroundImage = global::_3rdYearProject.Properties.Resources.Option1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(908, 503);
+            this.Controls.Add(this.TopNavPnl);
             this.Controls.Add(this.pnlDatabase);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmDatabaseCreation";
@@ -173,6 +214,7 @@
             this.Load += new System.EventHandler(this.FrmDatabaseCreation_Load);
             this.pnlDatabase.ResumeLayout(false);
             this.pnlDatabase.PerformLayout();
+            this.TopNavPnl.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -191,5 +233,8 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblHead;
         private System.Windows.Forms.Button btnFilePath;
+        private System.Windows.Forms.Panel TopNavPnl;
+        private System.Windows.Forms.Button btnNavMin;
+        private System.Windows.Forms.Button btnNavClose;
     }
 }
