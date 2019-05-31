@@ -23,8 +23,8 @@ namespace _3rdYearProject
             txtServerName.Text = @"LOCALHOST\SQLEXPRESS";
             authentication[0] = "Windows Authentication";
             authentication[1] = "SQL Server Authentication";
-            dropAuthentication.Items = authentication;
-            dropAuthentication.selectedIndex = 0;
+            dropAuthentication.DataSource = authentication;
+            dropAuthentication.SelectedIndex = 0;
         }
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -52,7 +52,7 @@ namespace _3rdYearProject
 
         private void dropAuthentication_onItemSelected(object sender, EventArgs e)
         {
-            if(dropAuthentication.selectedIndex == 0)
+            if(dropAuthentication.SelectedIndex == 0)
             {
                 txtLogin.ReadOnly = true;
                 txtLogin.BackColor = Color.Black;
@@ -69,13 +69,13 @@ namespace _3rdYearProject
             }
         }
 
-        private void btnConnect_Click(object sender, EventArgs e)
+        private void btnConnect_Click_1(object sender, EventArgs e)
         {
             string username = "";
             string password = "";
             string conType = "";
 
-            if (dropAuthentication.selectedIndex == 1)
+            if (dropAuthentication.SelectedIndex == 1)
             {
                 username = txtLogin.Text;
                 password = txtPassword.Text;
@@ -94,7 +94,7 @@ namespace _3rdYearProject
 
             Accounts accounts = new Accounts(username, password, conType);
             bool verified = accounts.LoginAccount(txtServerName.Text);
-            
+
             if (verified)
             {
                 MessageBox.Show("Login successful!");
@@ -106,7 +106,7 @@ namespace _3rdYearProject
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
         }
