@@ -22,6 +22,23 @@ namespace DAL
             this.connectionString = connectionStringParam;
         }
 
+        public void CreateDatabase(List<string> details)
+        {
+            string query = @"Create DataBase DataFiles ON Primary(Name= " + details[0].ToString() + @", 
+
+                                    FileName  = '" + details[1].ToString() + @".mdf',
+                                    Size = " + details[2].ToString()+@"\"+details[1].ToString() + @"mb,
+                                    MaxSize = UNLIMITED,
+                                    FileGrowth = 10 %
+                                    )
+                                    Log On
+                                    (
+                                        Name=" + details[3].ToString()+@",
+                                        FileName = '"+details[2]+@"/"+details[3].ToString()+@".ldf'
+                                    )";
+
+        }
+
         public bool UserLogin()
         {
             try
