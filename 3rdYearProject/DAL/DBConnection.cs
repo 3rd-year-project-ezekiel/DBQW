@@ -97,20 +97,27 @@ namespace DAL
 
         public void CreateDatabase(List<string> details)
         {
-            string query = @"Create DataBase DataFiles ON Primary(Name= " + details[0].ToString() + @", 
+            string query = "Create DataBase DataFiles ON Primary(Name= " + details[0].ToString() + ", FileName  = '" + details[1].ToString() + @"\" + details[0].ToString() + ".mdf', Size = " + details[2].ToString() + @"mb,MaxSize = UNLIMITED,FileGrowth = 10 %)Log On(Name=" + details[3].ToString() + @",FileName = '" + details[1] + @"\" + details[3].ToString() + @".ldf')";
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
 
-                                    FileName  = '" + details[1].ToString() + @".mdf',
-                                    Size = " + details[2].ToString()+@"\"+details[1].ToString() + @"mb,
-                                    MaxSize = UNLIMITED,
-                                    FileGrowth = 10 %
-                                    )
-                                    Log On
-                                    (
-                                        Name=" + details[3].ToString()+@",
-                                        FileName = '"+details[2]+@"/"+details[3].ToString()+@".ldf'
-                                    )";
-
+                command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
+
 
         public bool UserLogin()
         {
