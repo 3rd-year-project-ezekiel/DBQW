@@ -17,6 +17,9 @@ namespace _3rdYearProject
             InitializeComponent();
         }
 
-       
+        private void mnuInsert_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

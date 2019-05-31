@@ -33,6 +33,7 @@
             this.mnuInsert = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.mmuProgrammability = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuData = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDatabase = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@
             this.lnklblAddHaving = new System.Windows.Forms.LinkLabel();
             this.cmbTables = new System.Windows.Forms.ComboBox();
             this.lblTables = new System.Windows.Forms.Label();
-            this.mmuProgrammability = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMenu.SuspendLayout();
             this.tcClause.SuspendLayout();
             this.tpJoin.SuspendLayout();
@@ -98,6 +98,7 @@
             this.mnuInsert.Name = "mnuInsert";
             this.mnuInsert.Size = new System.Drawing.Size(57, 24);
             this.mnuInsert.Text = "Insert";
+            this.mnuInsert.Click += new System.EventHandler(this.mnuInsert_Click);
             // 
             // mnuDelete
             // 
@@ -110,6 +111,12 @@
             this.mnuUpdate.Name = "mnuUpdate";
             this.mnuUpdate.Size = new System.Drawing.Size(70, 24);
             this.mnuUpdate.Text = "Update";
+            // 
+            // mmuProgrammability
+            // 
+            this.mmuProgrammability.Name = "mmuProgrammability";
+            this.mmuProgrammability.Size = new System.Drawing.Size(132, 24);
+            this.mmuProgrammability.Text = "Programmability";
             // 
             // mnuData
             // 
@@ -369,12 +376,6 @@
             this.lblTables.Size = new System.Drawing.Size(51, 17);
             this.lblTables.TabIndex = 10;
             this.lblTables.Text = "Tables";
-            // 
-            // mmuProgrammability
-            // 
-            this.mmuProgrammability.Name = "mmuProgrammability";
-            this.mmuProgrammability.Size = new System.Drawing.Size(132, 24);
-            this.mmuProgrammability.Text = "Programmability";
             // 
             // Main
             // 
