@@ -17,9 +17,10 @@ namespace DAL
         private SqlDataAdapter adapter;
         private DataTable table;
 
-        public DBConnection(string connectionStringParam)
+        public DBConnection(string connectionStringParam = "default")
         {
-            this.connectionString = connectionStringParam;
+            this.connectionString = ConfigurationManager.ConnectionStrings[connectionStringParam].ConnectionString;
+            this.connection = new SqlConnection(connectionString);
         }
         
         //public DataTable SelectQuery(string[] SearchArray, string[] TableArray, string[] WhereArray, string[] ConnectionArray = NULL)
@@ -128,10 +129,7 @@ namespace DAL
         {
             try
             {
-                using (connection = new SqlConnection(this.connectionString))
-                {
-                    connection.Open();
-                }
+                connection.Open();
             }
             catch (SqlException)
             {
