@@ -99,7 +99,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(156, 54);
+            this.label1.Location = new System.Drawing.Point(52, 169);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 20;
@@ -108,7 +108,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(156, 77);
+            this.label2.Location = new System.Drawing.Point(52, 195);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 13);
             this.label2.TabIndex = 21;
@@ -117,7 +117,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(156, 97);
+            this.label3.Location = new System.Drawing.Point(52, 222);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 13);
             this.label3.TabIndex = 22;
@@ -126,7 +126,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(156, 115);
+            this.label4.Location = new System.Drawing.Point(52, 248);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 23;
@@ -134,36 +134,37 @@
             // 
             // txtServerName
             // 
-            this.txtServerName.Location = new System.Drawing.Point(277, 46);
+            this.txtServerName.Location = new System.Drawing.Point(218, 169);
             this.txtServerName.Name = "txtServerName";
-            this.txtServerName.Size = new System.Drawing.Size(100, 20);
+            this.txtServerName.Size = new System.Drawing.Size(196, 20);
             this.txtServerName.TabIndex = 24;
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(277, 97);
+            this.txtLogin.Location = new System.Drawing.Point(218, 222);
             this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(100, 20);
+            this.txtLogin.Size = new System.Drawing.Size(196, 20);
             this.txtLogin.TabIndex = 25;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(277, 123);
+            this.txtPassword.Location = new System.Drawing.Point(218, 248);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtPassword.Size = new System.Drawing.Size(196, 20);
             this.txtPassword.TabIndex = 26;
             // 
             // dropAuthentication
             // 
             this.dropAuthentication.FormattingEnabled = true;
-            this.dropAuthentication.Location = new System.Drawing.Point(290, 68);
+            this.dropAuthentication.Location = new System.Drawing.Point(218, 195);
             this.dropAuthentication.Name = "dropAuthentication";
-            this.dropAuthentication.Size = new System.Drawing.Size(121, 21);
+            this.dropAuthentication.Size = new System.Drawing.Size(196, 21);
             this.dropAuthentication.TabIndex = 27;
+            this.dropAuthentication.SelectedIndexChanged += new System.EventHandler(this.dropAuthentication_SelectedIndexChanged);
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(32, 206);
+            this.btnConnect.Location = new System.Drawing.Point(78, 309);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(75, 23);
             this.btnConnect.TabIndex = 28;
@@ -173,7 +174,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(256, 206);
+            this.btnCancel.Location = new System.Drawing.Point(302, 309);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 29;

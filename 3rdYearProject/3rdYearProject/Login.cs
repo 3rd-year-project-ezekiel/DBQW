@@ -23,7 +23,7 @@ namespace _3rdYearProject
             txtServerName.Text = @"LOCALHOST\SQLEXPRESS";
             authentication[0] = "Windows Authentication";
             authentication[1] = "SQL Server Authentication";
-            dropAuthentication.DataSource = authentication;
+            dropAuthentication.Items.AddRange(authentication);
             dropAuthentication.SelectedIndex = 0;
         }
 
@@ -48,25 +48,6 @@ namespace _3rdYearProject
         {
             ReleaseCapture();
             SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-        }
-
-        private void dropAuthentication_onItemSelected(object sender, EventArgs e)
-        {
-            if(dropAuthentication.SelectedIndex == 0)
-            {
-                txtLogin.ReadOnly = true;
-                txtLogin.BackColor = Color.Black;
-                txtLogin.Text = "";
-                txtPassword.ReadOnly = true;
-                txtPassword.BackColor = Color.Black;
-                txtPassword.Text = "";
-            } else
-            {
-                txtLogin.ReadOnly = false;
-                txtLogin.BackColor = Color.White;
-                txtPassword.ReadOnly = false;
-                txtPassword.BackColor = Color.White;
-            }
         }
 
         private void btnConnect_Click_1(object sender, EventArgs e)
@@ -109,6 +90,26 @@ namespace _3rdYearProject
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void dropAuthentication_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (dropAuthentication.SelectedIndex == 0)
+            {
+                txtLogin.ReadOnly = true;
+                txtLogin.BackColor = Color.Black;
+                txtLogin.Text = "";
+                txtPassword.ReadOnly = true;
+                txtPassword.BackColor = Color.Black;
+                txtPassword.Text = "";
+            }
+            else
+            {
+                txtLogin.ReadOnly = false;
+                txtLogin.BackColor = Color.White;
+                txtPassword.ReadOnly = false;
+                txtPassword.BackColor = Color.White;
+            }
         }
     }
 }
