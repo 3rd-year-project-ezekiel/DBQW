@@ -69,7 +69,6 @@ namespace DAL
 
                     //This is what I think... If you can tell me if it works
 
-                    for(i = 0, i < TableArray.length, i++)
                     try
                     {
                         if (connection.State != ConnectionState.Open)
