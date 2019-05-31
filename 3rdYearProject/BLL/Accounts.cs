@@ -65,43 +65,32 @@ public class Accounts
             connStrBldr.UserID = this.UserName;
             connStrBldr.Password = this.Password;
         }
-
+        /*
         string ApplicationPath = System.IO.Directory.GetCurrentDirectory();
         string YourPath = Path.GetDirectoryName(ApplicationPath);
-        bool isNew = false;
 
         string path = Path.GetDirectoryName(YourPath) + "\\App.config";
         XmlDocument doc = new XmlDocument();
         doc.Load(path);
-        XmlNodeList list = doc.DocumentElement.SelectNodes("connectionStrings/add[@name='default']");
+        doc.RemoveChild(doc.DocumentElement.SelectSingleNode("connectionStrings/add[@name='default']"));
+        
         XmlNode node;
-        isNew = list.Count == 0;
-        if (isNew)
-        {
-            node = doc.CreateNode(XmlNodeType.Element, "add", null);
-            XmlAttribute attribute = doc.CreateAttribute("name");
-            attribute.Value = "default";
-            node.Attributes.Append(attribute);
 
-            attribute = doc.CreateAttribute("connectionString");
-            attribute.Value = "";
-            node.Attributes.Append(attribute);
+        node = doc.CreateNode(XmlNodeType.Element, "add", null);
+        XmlAttribute attribute = doc.CreateAttribute("name");
+        attribute.Value = "default";
+        node.Attributes.Append(attribute);
 
-            attribute = doc.CreateAttribute("providerName");
-            attribute.Value = "System.Data.SqlClient";
-            node.Attributes.Append(attribute);
-        }
-        else
-        {
-            node = list[0];
-        }
-        string conString = node.Attributes["connectionString"].Value;
-        node.Attributes["connectionString"].Value = connStrBldr.ConnectionString;
-        if (isNew)
-        {
-            doc.DocumentElement.SelectNodes("connectionStrings")[0].AppendChild(node);
-        }
+        attribute = doc.CreateAttribute("connectionString");
+        attribute.Value = connStrBldr.ConnectionString;
+        node.Attributes.Append(attribute);
+
+        attribute = doc.CreateAttribute("providerName");
+        attribute.Value = "System.Data.SqlClient";
+        node.Attributes.Append(attribute);
         doc.Save(path);
+
+        */
 
         DBConnection handler = new DBConnection();
         validUser = handler.UserLogin();
