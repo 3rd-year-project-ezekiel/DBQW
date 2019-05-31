@@ -28,22 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TopNavPnl = new System.Windows.Forms.Panel();
             this.btnNavMin = new System.Windows.Forms.Button();
             this.btnNavClose = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.lblServerName = new ns1.BunifuCustomLabel();
-            this.lblAuthentication = new ns1.BunifuCustomLabel();
-            this.dropAuthentication = new ns1.BunifuDropdown();
-            this.lblLogin = new ns1.BunifuCustomLabel();
-            this.txtLogin = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.txtPassword = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
-            this.lblPassword = new ns1.BunifuCustomLabel();
-            this.btnConnect = new ns1.BunifuFlatButton();
-            this.btnCancel = new ns1.BunifuFlatButton();
-            this.txtServerName = new WindowsFormsControlLibrary1.BunifuCustomTextbox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtServerName = new System.Windows.Forms.TextBox();
+            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.dropAuthentication = new System.Windows.Forms.ComboBox();
+            this.btnConnect = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.TopNavPnl.SuspendLayout();
             this.SuspendLayout();
@@ -97,152 +96,91 @@
             this.btnNavClose.UseVisualStyleBackColor = false;
             this.btnNavClose.Click += new System.EventHandler(this.btnNavClose_Click);
             // 
-            // lblServerName
+            // label1
             // 
-            this.lblServerName.AutoSize = true;
-            this.lblServerName.Location = new System.Drawing.Point(40, 149);
-            this.lblServerName.Name = "lblServerName";
-            this.lblServerName.Size = new System.Drawing.Size(72, 13);
-            this.lblServerName.TabIndex = 10;
-            this.lblServerName.Text = "Server Name:";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(52, 169);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Server Name:";
             // 
-            // lblAuthentication
+            // label2
             // 
-            this.lblAuthentication.AutoSize = true;
-            this.lblAuthentication.Location = new System.Drawing.Point(40, 190);
-            this.lblAuthentication.Name = "lblAuthentication";
-            this.lblAuthentication.Size = new System.Drawing.Size(78, 13);
-            this.lblAuthentication.TabIndex = 12;
-            this.lblAuthentication.Text = "Authentication:";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(52, 195);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 13);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Authentication:";
             // 
-            // dropAuthentication
+            // label3
             // 
-            this.dropAuthentication.BackColor = System.Drawing.Color.Transparent;
-            this.dropAuthentication.BorderRadius = 3;
-            this.dropAuthentication.ForeColor = System.Drawing.Color.Black;
-            this.dropAuthentication.Items = new string[0];
-            this.dropAuthentication.Location = new System.Drawing.Point(194, 190);
-            this.dropAuthentication.Name = "dropAuthentication";
-            this.dropAuthentication.NomalColor = System.Drawing.Color.White;
-            this.dropAuthentication.onHoverColor = System.Drawing.Color.White;
-            this.dropAuthentication.selectedIndex = -1;
-            this.dropAuthentication.Size = new System.Drawing.Size(217, 25);
-            this.dropAuthentication.TabIndex = 11;
-            this.dropAuthentication.onItemSelected += new System.EventHandler(this.dropAuthentication_onItemSelected);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(52, 222);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Login:";
             // 
-            // lblLogin
+            // label4
             // 
-            this.lblLogin.AutoSize = true;
-            this.lblLogin.Location = new System.Drawing.Point(40, 247);
-            this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(36, 13);
-            this.lblLogin.TabIndex = 13;
-            this.lblLogin.Text = "Login:";
-            // 
-            // txtLogin
-            // 
-            this.txtLogin.BorderColor = System.Drawing.Color.SeaShell;
-            this.txtLogin.Location = new System.Drawing.Point(194, 239);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(217, 20);
-            this.txtLogin.TabIndex = 14;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.BorderColor = System.Drawing.Color.Black;
-            this.txtPassword.Location = new System.Drawing.Point(194, 265);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(217, 20);
-            this.txtPassword.TabIndex = 16;
-            // 
-            // lblPassword
-            // 
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(40, 273);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(56, 13);
-            this.lblPassword.TabIndex = 15;
-            this.lblPassword.Text = "Password:";
-            // 
-            // btnConnect
-            // 
-            this.btnConnect.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnConnect.BackColor = System.Drawing.Color.White;
-            this.btnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConnect.BorderRadius = 0;
-            this.btnConnect.ButtonText = "Connect";
-            this.btnConnect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConnect.DisabledColor = System.Drawing.Color.Gray;
-            this.btnConnect.ForeColor = System.Drawing.Color.Black;
-            this.btnConnect.Iconcolor = System.Drawing.Color.Transparent;
-            this.btnConnect.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnConnect.Iconimage")));
-            this.btnConnect.Iconimage_right = null;
-            this.btnConnect.Iconimage_right_Selected = null;
-            this.btnConnect.Iconimage_Selected = null;
-            this.btnConnect.IconMarginLeft = 0;
-            this.btnConnect.IconMarginRight = 0;
-            this.btnConnect.IconRightVisible = true;
-            this.btnConnect.IconRightZoom = 0D;
-            this.btnConnect.IconVisible = true;
-            this.btnConnect.IconZoom = 90D;
-            this.btnConnect.IsTab = false;
-            this.btnConnect.Location = new System.Drawing.Point(31, 312);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Normalcolor = System.Drawing.Color.White;
-            this.btnConnect.OnHovercolor = System.Drawing.Color.White;
-            this.btnConnect.OnHoverTextColor = System.Drawing.Color.Red;
-            this.btnConnect.selected = false;
-            this.btnConnect.Size = new System.Drawing.Size(160, 30);
-            this.btnConnect.TabIndex = 17;
-            this.btnConnect.Text = "Connect";
-            this.btnConnect.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConnect.Textcolor = System.Drawing.Color.Black;
-            this.btnConnect.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnCancel.BackColor = System.Drawing.Color.White;
-            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCancel.BorderRadius = 0;
-            this.btnCancel.ButtonText = "Cancel";
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.DisabledColor = System.Drawing.Color.Gray;
-            this.btnCancel.ForeColor = System.Drawing.Color.Black;
-            this.btnCancel.Iconcolor = System.Drawing.Color.Transparent;
-            this.btnCancel.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnCancel.Iconimage")));
-            this.btnCancel.Iconimage_right = null;
-            this.btnCancel.Iconimage_right_Selected = null;
-            this.btnCancel.Iconimage_Selected = null;
-            this.btnCancel.IconMarginLeft = 0;
-            this.btnCancel.IconMarginRight = 0;
-            this.btnCancel.IconRightVisible = true;
-            this.btnCancel.IconRightZoom = 0D;
-            this.btnCancel.IconVisible = true;
-            this.btnCancel.IconZoom = 90D;
-            this.btnCancel.IsTab = false;
-            this.btnCancel.Location = new System.Drawing.Point(224, 312);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Normalcolor = System.Drawing.Color.White;
-            this.btnCancel.OnHovercolor = System.Drawing.Color.White;
-            this.btnCancel.OnHoverTextColor = System.Drawing.Color.Red;
-            this.btnCancel.selected = false;
-            this.btnCancel.Size = new System.Drawing.Size(160, 30);
-            this.btnCancel.TabIndex = 18;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Textcolor = System.Drawing.Color.Black;
-            this.btnCancel.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(52, 248);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 23;
+            this.label4.Text = "Password:";
             // 
             // txtServerName
             // 
-            this.txtServerName.BorderColor = System.Drawing.Color.Black;
-            this.txtServerName.Location = new System.Drawing.Point(194, 149);
+            this.txtServerName.Location = new System.Drawing.Point(218, 169);
             this.txtServerName.Name = "txtServerName";
-            this.txtServerName.Size = new System.Drawing.Size(217, 20);
-            this.txtServerName.TabIndex = 19;
+            this.txtServerName.Size = new System.Drawing.Size(196, 20);
+            this.txtServerName.TabIndex = 24;
+            // 
+            // txtLogin
+            // 
+            this.txtLogin.Location = new System.Drawing.Point(218, 222);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(196, 20);
+            this.txtLogin.TabIndex = 25;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(218, 248);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(196, 20);
+            this.txtPassword.TabIndex = 26;
+            // 
+            // dropAuthentication
+            // 
+            this.dropAuthentication.FormattingEnabled = true;
+            this.dropAuthentication.Location = new System.Drawing.Point(218, 195);
+            this.dropAuthentication.Name = "dropAuthentication";
+            this.dropAuthentication.Size = new System.Drawing.Size(196, 21);
+            this.dropAuthentication.TabIndex = 27;
+            this.dropAuthentication.SelectedIndexChanged += new System.EventHandler(this.dropAuthentication_SelectedIndexChanged);
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.Location = new System.Drawing.Point(78, 309);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(75, 23);
+            this.btnConnect.TabIndex = 28;
+            this.btnConnect.Text = "Connect";
+            this.btnConnect.UseVisualStyleBackColor = true;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click_1);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(302, 309);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 29;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
             // 
             // Login
             // 
@@ -252,16 +190,16 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(500, 372);
             this.ControlBox = false;
-            this.Controls.Add(this.txtServerName);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConnect);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.txtLogin);
-            this.Controls.Add(this.lblLogin);
-            this.Controls.Add(this.lblAuthentication);
             this.Controls.Add(this.dropAuthentication);
-            this.Controls.Add(this.lblServerName);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtLogin);
+            this.Controls.Add(this.txtServerName);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.TopNavPnl);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -283,16 +221,16 @@
         private System.Windows.Forms.Button btnNavMin;
         private System.Windows.Forms.Button btnNavClose;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private ns1.BunifuCustomLabel lblServerName;
-        private ns1.BunifuCustomLabel lblAuthentication;
-        private ns1.BunifuDropdown dropAuthentication;
-        private ns1.BunifuCustomLabel lblLogin;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtLogin;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtPassword;
-        private ns1.BunifuCustomLabel lblPassword;
-        private ns1.BunifuFlatButton btnConnect;
-        private ns1.BunifuFlatButton btnCancel;
-        private WindowsFormsControlLibrary1.BunifuCustomTextbox txtServerName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtServerName;
+        private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.ComboBox dropAuthentication;
+        private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 
