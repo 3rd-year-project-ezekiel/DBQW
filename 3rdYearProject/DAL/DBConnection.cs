@@ -135,6 +135,10 @@ namespace DAL
             {
                 return false;
             }
+            finally
+            {
+                connection.Close(); // always close
+            }
             return true;
         }
     }
