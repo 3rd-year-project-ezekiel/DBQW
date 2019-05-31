@@ -95,6 +95,11 @@ namespace DAL
         //            return table;
         //        }
 
+        public void SelectQuery()
+        {
+
+        }
+
         public void CreateDatabase(List<string> details)
         {
             string query = "Create DataBase DataFiles ON Primary(Name= " + details[0].ToString() + ", FileName  = '" + details[1].ToString() + @"\" + details[0].ToString() + ".mdf', Size = " + details[2].ToString() + @"mb,MaxSize = UNLIMITED,FileGrowth = 10 %)Log On(Name=" + details[3].ToString() + @",FileName = '" + details[1] + @"\" + details[3].ToString() + @".ldf')";
