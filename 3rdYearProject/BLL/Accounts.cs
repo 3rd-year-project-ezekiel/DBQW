@@ -43,10 +43,25 @@ public class Accounts
     #endregion
 
     #region Methods
-    public bool LoginAccount(string connectionString)
+    public bool LoginAccount(string serverName)
     {
         bool validUser = true;
         DBConnection handler = new DBConnection();
+
+        var connStrBldr = new System.Data.SqlClient.SqlConnectionStringBuilder();
+        connStrBldr.DataSource = txtServerName.Text;
+        connStrBldr.InitialCatalog = "";
+
+        if (dropAuthentication.selectedIndex == 0)
+        {
+            connStrBldr.IntegratedSecurity = true;
+        }
+        else
+        {
+            connStrBldr.IntegratedSecurity = false;
+            connStrBldr.UserID = accounts.UserName;
+            connStrBldr.Password = accounts.Password;
+        }
 
         return validUser;
     }

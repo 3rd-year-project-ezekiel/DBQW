@@ -71,12 +71,14 @@ namespace _3rdYearProject
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            Accounts accounts = new Accounts();
+            string username;
+            string password;
+            string conType;
             if (dropAuthentication.selectedIndex == 1)
             {
-                accounts.UserName = txtLogin.Text;
-                accounts.Password = txtPassword.Text;
-                accounts.ConnectionType = "SQL Server Authentication";
+                username = txtLogin.Text;
+                password = txtPassword.Text;
+                conType = "SQL Server Authentication";
 
                 if (string.IsNullOrWhiteSpace(txtLogin.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
                 {
@@ -86,7 +88,7 @@ namespace _3rdYearProject
             }
             else
             {
-                accounts.ConnectionType = "Windows Authentication";
+                conType = "Windows Authentication";
             }
 
             var connStrBldr = new System.Data.SqlClient.SqlConnectionStringBuilder();
