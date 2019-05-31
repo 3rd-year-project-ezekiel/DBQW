@@ -42,9 +42,10 @@ public class Accounts
     {
        
         DBConnection handler = new DBConnection();
-        DataTable dataRaw = handler.AllUsers();
+        //DataTable dataRaw = handler.AllUsers();
+        DataTable dataRaw = new DataTable();
 
-        foreach(DataRow dataItem in dataRaw.Rows)
+        foreach (DataRow dataItem in dataRaw.Rows)
         {
 
             if ((dataItem["TableUserName"].ToString() == UserInput.UserName) && (dataItem["TablePassword"].ToString() == UserInput.Password))

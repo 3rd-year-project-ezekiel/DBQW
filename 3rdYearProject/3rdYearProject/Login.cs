@@ -38,7 +38,7 @@ namespace _3rdYearProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var Login = new Account
+            //var Login = new Account
             // Form2 form2 = new Form2();
             // form2.Show();
         }
