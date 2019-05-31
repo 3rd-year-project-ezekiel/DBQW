@@ -94,38 +94,8 @@ namespace _3rdYearProject
 
             Accounts accounts = new Accounts(username, password, conType);
             bool verified = accounts.LoginAccount(txtServerName.Text);
-
-            var connStrBldr = new System.Data.SqlClient.SqlConnectionStringBuilder();
-            connStrBldr.DataSource = txtServerName.Text;
-            connStrBldr.InitialCatalog = "";
-
-            if (dropAuthentication.selectedIndex == 0)
-            {
-                connStrBldr.IntegratedSecurity = true;
-            }
-            else
-            {
-                connStrBldr.IntegratedSecurity = false;
-                connStrBldr.UserID = accounts.UserName;
-                connStrBldr.Password = accounts.Password;
-            }
-
-            bool validUser = true;
-
-            try
-            {
-                using (SqlConnection con = new SqlConnection(connStrBldr.ToString()))
-                {
-                    con.Open();
-                    //do your lookup on login here
-                }
-            }
-            catch (SqlException) // An exception will be caught if invalid credentials were used.
-            {
-                validUser = false;
-            }
-
-            if (validUser)
+            
+            if (verified)
             {
                 MessageBox.Show("Login successful!");
 

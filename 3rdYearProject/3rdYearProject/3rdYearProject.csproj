@@ -99,5 +99,11 @@
   <ItemGroup>
     <None Include="Resources\Option11.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{149390cc-612d-4eb0-b393-614c02eadc7b}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

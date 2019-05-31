@@ -19,7 +19,20 @@ namespace DAL
 
         public DBConnection(string connectionStringParam)
         {
-                
+            this.connectionString = connectionStringParam;
+        }
+
+        public bool UserLogin()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(this.connectionString);
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

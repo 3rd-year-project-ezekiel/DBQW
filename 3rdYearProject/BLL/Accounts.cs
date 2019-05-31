@@ -62,7 +62,8 @@ public class Accounts
             connStrBldr.Password = this.Password;
         }
 
-        DBConnection handler = new DBConnection();
+        DBConnection handler = new DBConnection(connStrBldr.ToString());
+        validUser = handler.UserLogin();
 
         return validUser;
     }
