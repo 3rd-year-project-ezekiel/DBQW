@@ -22,7 +22,7 @@ namespace DAL
             this.connectionString = connectionStringParam;
         }
         
-        public DataTable SelectQuery(array SearchArray, array TableArray, array WhereArray, array ConnectionArray = NULL)
+        public DataTable SelectQuery(string[] SearchArray, string[] TableArray, string[] WhereArray, string[] ConnectionArray = NULL)
                 {
 
                     string query = "SELECT ";
