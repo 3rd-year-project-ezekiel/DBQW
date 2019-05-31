@@ -11,9 +11,9 @@ using System.Runtime.InteropServices;
 
 namespace _3rdYearProject
 {
-    public partial class Form2 : Form
+    public partial class Main : Form
     {
-        public Form2()
+        public Main()
         {
             InitializeComponent();
         }
