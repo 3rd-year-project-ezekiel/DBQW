@@ -51,7 +51,7 @@ public class Accounts
         connStrBldr.DataSource = serverName;
         connStrBldr.InitialCatalog = "";
 
-        if (this.ConnectionType == "SQL Server Authentication")
+        if (this.ConnectionType == "Windows Authentication")
         {
             connStrBldr.IntegratedSecurity = true;
         }

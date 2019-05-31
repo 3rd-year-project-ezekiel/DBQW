@@ -128,7 +128,10 @@ namespace DAL
         {
             try
             {
-                connection = new SqlConnection(this.connectionString);
+                using (connection = new SqlConnection(this.connectionString))
+                {
+                    connection.Open();
+                }
             }
             catch (SqlException)
             {
