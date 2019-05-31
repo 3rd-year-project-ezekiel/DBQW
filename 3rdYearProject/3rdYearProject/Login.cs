@@ -71,9 +71,10 @@ namespace _3rdYearProject
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            string username;
-            string password;
-            string conType;
+            string username = "";
+            string password = "";
+            string conType = "";
+
             if (dropAuthentication.selectedIndex == 1)
             {
                 username = txtLogin.Text;
@@ -90,6 +91,9 @@ namespace _3rdYearProject
             {
                 conType = "Windows Authentication";
             }
+
+            Accounts accounts = new Accounts(username, password, conType);
+            bool verified = accounts.LoginAccount(txtServerName.Text);
 
             var connStrBldr = new System.Data.SqlClient.SqlConnectionStringBuilder();
             connStrBldr.DataSource = txtServerName.Text;

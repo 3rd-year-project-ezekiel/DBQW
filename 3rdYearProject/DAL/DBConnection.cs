@@ -11,18 +11,15 @@ namespace DAL
 {
     public class DBConnection
     {
-        public class DataHandler
-        {
-            private string connectionString;
-            private SqlConnection connection;
-            private SqlCommand command;
-            private SqlDataAdapter adapter;
-            private DataTable table;
+        private string connectionString;
+        private SqlConnection connection;
+        private SqlCommand command;
+        private SqlDataAdapter adapter;
+        private DataTable table;
 
-            public DataHandler(string connectionStringParam)
-            {
+        public DBConnection(string connectionStringParam)
+        {
                 
-            }
         }
     }
 }

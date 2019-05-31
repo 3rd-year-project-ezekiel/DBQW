@@ -46,22 +46,23 @@ public class Accounts
     public bool LoginAccount(string serverName)
     {
         bool validUser = true;
-        DBConnection handler = new DBConnection();
-
+        
         var connStrBldr = new System.Data.SqlClient.SqlConnectionStringBuilder();
-        connStrBldr.DataSource = txtServerName.Text;
+        connStrBldr.DataSource = serverName;
         connStrBldr.InitialCatalog = "";
 
-        if (dropAuthentication.selectedIndex == 0)
+        if (this.ConnectionType == "SQL Server Authentication")
         {
             connStrBldr.IntegratedSecurity = true;
         }
         else
         {
             connStrBldr.IntegratedSecurity = false;
-            connStrBldr.UserID = accounts.UserName;
-            connStrBldr.Password = accounts.Password;
+            connStrBldr.UserID = this.UserName;
+            connStrBldr.Password = this.Password;
         }
+
+        DBConnection handler = new DBConnection();
 
         return validUser;
     }
