@@ -26,7 +26,7 @@ namespace DAL
         {
             try
             {
-                SqlConnection con = new SqlConnection(this.connectionString);
+                connection = new SqlConnection(this.connectionString);
             }
             catch (SqlException)
             {
