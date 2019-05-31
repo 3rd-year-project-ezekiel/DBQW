@@ -22,7 +22,7 @@ namespace DAL
             this.connectionString = connectionStringParam;
         }
         
-        public DataTable SelectQuery(SearchArray, TableArray, WhereArray, ConnectionArray = NULL)
+        public DataTable SelectQuery(string[] SearchArray, string[] TableArray, string[] WhereArray, string[] ConnectionArray = NULL)
                 {
 
                     string query = "SELECT ";
@@ -69,7 +69,6 @@ namespace DAL
 
                     //This is what I think... If you can tell me if it works
 
-                    for(i = 0, i < TableArray.length, i++)
                     try
                     {
                         if (connection.State != ConnectionState.Open)
