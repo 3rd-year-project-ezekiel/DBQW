@@ -12,11 +12,11 @@ using System.Data.SqlClient;
 
 namespace _3rdYearProject
 {
-    public partial class Login : Form
+    public partial class frmLogin : Form
     {
         string[] authentication = new string[2];
         
-        public Login()
+        public frmLogin()
         {
             InitializeComponent();
             txtServerName.Text = @"LOCALHOST\SQLEXPRESS";
@@ -78,7 +78,11 @@ namespace _3rdYearProject
             if (verified)
             {
                 MessageBox.Show("Login successful!");
-
+                frmMain MainForm = new frmMain();
+                Form.ActiveForm.Hide();
+                MainForm.Show();
+                
+                
             }
             else
             {

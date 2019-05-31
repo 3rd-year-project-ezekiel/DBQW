@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace _3rdYearProject
 {
-    public partial class Main : Form
+    public partial class frmMain : Form
     {
-        public Main()
+        public frmMain()
         {
             InitializeComponent();
         }
@@ -20,6 +20,11 @@ namespace _3rdYearProject
         private void mnuInsert_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             // lstDisplay.DataSource;
         }
     }
 }

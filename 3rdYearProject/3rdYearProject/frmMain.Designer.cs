@@ -1,6 +1,6 @@
 ﻿namespace _3rdYearProject
 {
-    partial class Main
+    partial class frmMain
     {
         /// <summary>
         /// Required designer variable.
@@ -39,7 +39,6 @@
             this.lblDatabase = new System.Windows.Forms.Label();
             this.cmbDatabaseList = new System.Windows.Forms.ComboBox();
             this.cblEntities = new System.Windows.Forms.CheckedListBox();
-            this.txtDisplay = new System.Windows.Forms.TextBox();
             this.btnExecute = new System.Windows.Forms.Button();
             this.btnPreview = new System.Windows.Forms.Button();
             this.btnInsertIntoDB = new System.Windows.Forms.Button();
@@ -61,6 +60,7 @@
             this.lnklblAddHaving = new System.Windows.Forms.LinkLabel();
             this.cmbTables = new System.Windows.Forms.ComboBox();
             this.lblTables = new System.Windows.Forms.Label();
+            this.lstDisplay = new System.Windows.Forms.ListBox();
             this.mnuMenu.SuspendLayout();
             this.tcClause.SuspendLayout();
             this.tpJoin.SuspendLayout();
@@ -146,6 +146,7 @@
             this.cmbDatabaseList.Name = "cmbDatabaseList";
             this.cmbDatabaseList.Size = new System.Drawing.Size(121, 24);
             this.cmbDatabaseList.TabIndex = 2;
+            this.cmbDatabaseList.SelectedIndexChanged += new System.EventHandler(this.cmbDatabaseList_SelectedIndexChanged);
             // 
             // cblEntities
             // 
@@ -154,14 +155,6 @@
             this.cblEntities.Name = "cblEntities";
             this.cblEntities.Size = new System.Drawing.Size(197, 140);
             this.cblEntities.TabIndex = 3;
-            // 
-            // txtDisplay
-            // 
-            this.txtDisplay.Location = new System.Drawing.Point(15, 309);
-            this.txtDisplay.Multiline = true;
-            this.txtDisplay.Name = "txtDisplay";
-            this.txtDisplay.Size = new System.Drawing.Size(758, 129);
-            this.txtDisplay.TabIndex = 4;
             // 
             // btnExecute
             // 
@@ -377,26 +370,35 @@
             this.lblTables.TabIndex = 10;
             this.lblTables.Text = "Tables";
             // 
-            // Main
+            // lstDisplay
+            // 
+            this.lstDisplay.FormattingEnabled = true;
+            this.lstDisplay.ItemHeight = 16;
+            this.lstDisplay.Location = new System.Drawing.Point(16, 309);
+            this.lstDisplay.Name = "lstDisplay";
+            this.lstDisplay.Size = new System.Drawing.Size(757, 212);
+            this.lstDisplay.TabIndex = 11;
+            // 
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_3rdYearProject.Properties.Resources.Option1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 530);
+            this.Controls.Add(this.lstDisplay);
             this.Controls.Add(this.lblTables);
             this.Controls.Add(this.cmbTables);
             this.Controls.Add(this.tcClause);
             this.Controls.Add(this.btnInsertIntoDB);
             this.Controls.Add(this.btnPreview);
             this.Controls.Add(this.btnExecute);
-            this.Controls.Add(this.txtDisplay);
             this.Controls.Add(this.cblEntities);
             this.Controls.Add(this.cmbDatabaseList);
             this.Controls.Add(this.lblDatabase);
             this.Controls.Add(this.mnuMenu);
             this.MainMenuStrip = this.mnuMenu;
-            this.Name = "Main";
+            this.Name = "frmMain";
             this.Text = "main";
             this.mnuMenu.ResumeLayout(false);
             this.mnuMenu.PerformLayout();
@@ -428,7 +430,6 @@
         private System.Windows.Forms.Label lblDatabase;
         private System.Windows.Forms.ComboBox cmbDatabaseList;
         private System.Windows.Forms.CheckedListBox cblEntities;
-        private System.Windows.Forms.TextBox txtDisplay;
         private System.Windows.Forms.Button btnExecute;
         private System.Windows.Forms.Button btnPreview;
         private System.Windows.Forms.Button btnInsertIntoDB;
@@ -451,5 +452,6 @@
         private System.Windows.Forms.ComboBox cmbTables;
         private System.Windows.Forms.Label lblTables;
         private System.Windows.Forms.ToolStripMenuItem mmuProgrammability;
+        private System.Windows.Forms.ListBox lstDisplay;
     }
 }
