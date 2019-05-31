@@ -23,6 +23,11 @@ public class Accounts
         this.connectionType = connectionType;
     }
 
+    public Accounts()
+    {
+        
+    }
+
     #endregion
 
     #region properties
@@ -38,29 +43,12 @@ public class Accounts
     #endregion
 
     #region Methods
-    public bool SelectAllAccounts(Accounts UserInput)
+    public bool LoginAccount(string connectionString)
     {
-       
+        bool validUser = true;
         DBConnection handler = new DBConnection();
-        //DataTable dataRaw = handler.AllUsers();
-        DataTable dataRaw = new DataTable();
 
-        foreach (DataRow dataItem in dataRaw.Rows)
-        {
-
-            if ((dataItem["TableUserName"].ToString() == UserInput.UserName) && (dataItem["TablePassword"].ToString() == UserInput.Password))
-            {
-                return true;
-            }
-
-        }
-
-        return false;
-    }
-
-    public void InsertAccount()
-    {
-        
+        return validUser;
     }
 
     #endregion
