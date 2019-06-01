@@ -64,14 +64,14 @@
             // 
             this.mnuMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mnuMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuProgramability,
             this.mnuSelect,
             this.mnuInsert,
             this.mnuDelete,
             this.mnuUpdate,
-            this.mnuData,
-            this.mnuLogout,
             this.mnuCreate,
-            this.mnuProgramability});
+            this.mnuData,
+            this.mnuLogout});
             this.mnuMenu.Location = new System.Drawing.Point(0, 0);
             this.mnuMenu.Name = "mnuMenu";
             this.mnuMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -173,17 +173,17 @@
             this.btnExecute.Location = new System.Drawing.Point(15, 367);
             this.btnExecute.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExecute.Name = "btnExecute";
-            this.btnExecute.Size = new System.Drawing.Size(75, 23);
+            this.btnExecute.Size = new System.Drawing.Size(75, 32);
             this.btnExecute.TabIndex = 5;
             this.btnExecute.Text = "Execute";
             this.btnExecute.UseVisualStyleBackColor = true;
             // 
             // btnInsertIntoDB
             // 
-            this.btnInsertIntoDB.Location = new System.Drawing.Point(95, 367);
+            this.btnInsertIntoDB.Location = new System.Drawing.Point(88, 367);
             this.btnInsertIntoDB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnInsertIntoDB.Name = "btnInsertIntoDB";
-            this.btnInsertIntoDB.Size = new System.Drawing.Size(147, 23);
+            this.btnInsertIntoDB.Size = new System.Drawing.Size(147, 32);
             this.btnInsertIntoDB.TabIndex = 7;
             this.btnInsertIntoDB.Text = "Insert into database";
             this.btnInsertIntoDB.UseVisualStyleBackColor = true;
