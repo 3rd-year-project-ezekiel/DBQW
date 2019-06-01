@@ -76,17 +76,17 @@ namespace _3rdYearProject
 
         private void mnuSelect_Click(object sender, EventArgs e)
         {
-            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
+            
         }
 
         private void mnuDelete_Click(object sender, EventArgs e)
         {
-            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
+            
         }
 
         private void mnuUpdate_Click(object sender, EventArgs e)
         {
-            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
+            
         }
 
         private void cblEntities_SelectedIndexChanged_1(object sender, EventArgs e)
