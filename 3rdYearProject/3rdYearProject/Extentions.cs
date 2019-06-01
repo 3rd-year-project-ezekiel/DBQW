@@ -14,7 +14,7 @@ namespace _3rdYearProject
         {
             switch (QueryCommand)
             {
-                case "USE DATABASE":
+                case "USE DATABASE": // for when a database is selected
                     {
                         try
                         {
@@ -30,6 +30,36 @@ namespace _3rdYearProject
                             theQueryList.Add("go");
                         }
 
+                    }break;
+
+                case "INSERT":
+                    {
+                        if (false)//"Procudure")
+                        {
+
+                        }
+                        else
+                        {
+                            if (theQueryList.Count<3)
+                            {
+                                string[] queryInfo = QueryData.Split('#');
+                                theQueryList.Add("INSERT INTO " + queryInfo[0]);
+                            }
+                            else
+                            {
+                                switch (theQueryList[2])// checks to see if there is somthing else like a delete of update
+                                {
+                                    case null:
+                                        {
+
+                                        }
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
                     }break;
 
                 default:
