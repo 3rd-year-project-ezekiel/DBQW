@@ -100,6 +100,28 @@ namespace _3rdYearProject
             }
         }
 
+        private void DatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDatabaseCreation databaseCreation = new frmDatabaseCreation();
+            this.Hide();
+            databaseCreation.Show();
+        }
+
+        private void TableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (cmbDatabaseList.SelectedItem.ToString()=="")
+            {
+                MessageBox.Show("Please select an database","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else
+            {
+                string databaseName = cmbDatabaseList.SelectedItem.ToString();
+                frmTableCreation tableCreation = new frmTableCreation();
+                this.Hide();
+                tableCreation.Show();
+            }
+        }
+
         private void mnuInsert_Click(object sender, EventArgs e)
         {
             lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);

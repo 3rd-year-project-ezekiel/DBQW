@@ -60,6 +60,9 @@
             this.lstDisplay = new System.Windows.Forms.ListBox();
             this.cblEntities = new System.Windows.Forms.CheckedListBox();
             this.btnRemove = new System.Windows.Forms.Button();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMenu.SuspendLayout();
             this.tcClause.SuspendLayout();
             this.tpJoin.SuspendLayout();
@@ -78,7 +81,8 @@
             this.mnuDelete,
             this.mnuUpdate,
             this.mnuData,
-            this.mnuLogout});
+            this.mnuLogout,
+            this.createToolStripMenuItem});
             this.mnuMenu.Location = new System.Drawing.Point(0, 0);
             this.mnuMenu.Name = "mnuMenu";
             this.mnuMenu.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -402,6 +406,29 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.databaseToolStripMenuItem,
+            this.tableToolStripMenuItem});
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.createToolStripMenuItem.Text = "Create";
+            // 
+            // databaseToolStripMenuItem
+            // 
+            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.databaseToolStripMenuItem.Text = "Database";
+            this.databaseToolStripMenuItem.Click += new System.EventHandler(this.DatabaseToolStripMenuItem_Click);
+            // 
+            // tableToolStripMenuItem
+            // 
+            this.tableToolStripMenuItem.Name = "tableToolStripMenuItem";
+            this.tableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tableToolStripMenuItem.Text = "Table";
+            this.tableToolStripMenuItem.Click += new System.EventHandler(this.TableToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -476,5 +503,8 @@
         private System.Windows.Forms.ListBox lstDisplay;
         private System.Windows.Forms.CheckedListBox cblEntities;
         private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tableToolStripMenuItem;
     }
 }

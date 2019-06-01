@@ -48,8 +48,8 @@ namespace _3rdYearProject
                 database.CreateDatabase(creationDetails);
 
                 MessageBox.Show("Database have been created", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                string dbName = txtDBName.Text;
-                frmTableCreation tableCreation = new frmTableCreation(dbName);
+             
+                frmTableCreation tableCreation = new frmTableCreation(databaseName);
                 this.Hide();
                 tableCreation.Show();
             }

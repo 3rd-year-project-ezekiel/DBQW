@@ -103,7 +103,7 @@ namespace DAL
 
         public void CreateDatabase(List<string> details)
         {
-            string query = "Create DataBase DataFiles ON Primary(Name= " + details[0].ToString() + ", FileName  = '" + details[1].ToString() + @"\" + details[0].ToString() + ".mdf', Size = " + details[2].ToString() + @"mb,MaxSize = UNLIMITED,FileGrowth = 10 %)Log On(Name=" + details[3].ToString() + @",FileName = '" + details[1] + @"\" + details[3].ToString() + @".ldf')";
+            string query = "Create DataBase " + details[0].ToString() + " ON Primary(Name= " + details[0].ToString() + ", FileName  = '" + details[1].ToString() + @"\" + details[0].ToString() + ".mdf', Size = " + details[2].ToString() + @"mb,MaxSize = UNLIMITED,FileGrowth = 10 %)Log On(Name=" + details[3].ToString() + @",FileName = '" + details[1] + @"\" + details[3].ToString() + @".ldf')";
             try
             {
                 if (connection.State != ConnectionState.Open)
@@ -129,8 +129,8 @@ namespace DAL
             int count = 0;
             int listLength = tableDetails.Count;
             StringBuilder query = new StringBuilder();
-            query.Append("use " + databaseName);
-            query.Append("Create Table " + tableName);
+            query.Append("use " + databaseName +" ");
+            query.Append("Create Table " + tableName+" ");
             query.Append("(");
             foreach (string item in tableDetails)
             {
@@ -144,6 +144,25 @@ namespace DAL
                 }
             }
             query.Append(")");
+
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+
+                command = new SqlCommand(query.ToString(), connection);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
 
         }
 

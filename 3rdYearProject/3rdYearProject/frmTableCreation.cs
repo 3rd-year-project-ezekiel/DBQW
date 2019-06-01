@@ -95,7 +95,7 @@ namespace _3rdYearProject
             lblForeignTable.Hide();
             txtForeignColName.Hide();
             txtForeignTable.Hide();
-
+            cbxType.Text = "Select DataType";
             cbxType.Items.Add("Char(10)");
             cbxType.Items.Add("VarChar(50)");
             cbxType.Items.Add("Text");
@@ -177,6 +177,7 @@ namespace _3rdYearProject
             lblForeignTable.Hide();
             txtForeignColName.Hide();
             txtForeignTable.Hide();
+            cbxType.Text = "Select DataType";
         }
 
         private void CbIdentity_CheckedChanged(object sender, EventArgs e)
@@ -241,6 +242,15 @@ namespace _3rdYearProject
 
             table.AddTable(tableColumns, databaseName, tableName);
 
+            MessageBox.Show("Table Created", "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ClearTable();
+            ResetFormForColumns();
+        }
+
+        public void ClearTable()
+        {
+            txtTableName.Clear();
+            lstColumns.Items.Clear();
         }
 
         private void BtnProceed_Click(object sender, EventArgs e)

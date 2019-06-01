@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TopNavPnl = new System.Windows.Forms.Panel();
-            this.btnNavMin = new System.Windows.Forms.Button();
-            this.btnNavClose = new System.Windows.Forms.Button();
             this.pnlColumns = new System.Windows.Forms.Panel();
             this.btnCreateTable = new System.Windows.Forms.Button();
             this.txtTableName = new System.Windows.Forms.TextBox();
@@ -63,49 +60,13 @@
             this.txtIncrementStartValue = new System.Windows.Forms.TextBox();
             this.txtIncrementValue = new System.Windows.Forms.TextBox();
             this.lblIndeityHeading = new System.Windows.Forms.Label();
-            this.TopNavPnl.SuspendLayout();
             this.pnlColumns.SuspendLayout();
             this.pnlColumnDetails.SuspendLayout();
             this.SuspendLayout();
             // 
-            // TopNavPnl
-            // 
-            this.TopNavPnl.BackColor = System.Drawing.Color.Crimson;
-            this.TopNavPnl.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.TopNavPnl.Controls.Add(this.btnNavMin);
-            this.TopNavPnl.Controls.Add(this.btnNavClose);
-            this.TopNavPnl.Location = new System.Drawing.Point(0, 0);
-            this.TopNavPnl.Name = "TopNavPnl";
-            this.TopNavPnl.Size = new System.Drawing.Size(1104, 38);
-            this.TopNavPnl.TabIndex = 9;
-            // 
-            // btnNavMin
-            // 
-            this.btnNavMin.BackColor = System.Drawing.Color.Crimson;
-            this.btnNavMin.FlatAppearance.BorderSize = 0;
-            this.btnNavMin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNavMin.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnNavMin.Location = new System.Drawing.Point(1037, 10);
-            this.btnNavMin.Name = "btnNavMin";
-            this.btnNavMin.Size = new System.Drawing.Size(26, 23);
-            this.btnNavMin.TabIndex = 1;
-            this.btnNavMin.Text = "_";
-            this.btnNavMin.UseVisualStyleBackColor = false;
-            // 
-            // btnNavClose
-            // 
-            this.btnNavClose.BackColor = System.Drawing.Color.Crimson;
-            this.btnNavClose.FlatAppearance.BorderSize = 0;
-            this.btnNavClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNavClose.Location = new System.Drawing.Point(1069, 10);
-            this.btnNavClose.Name = "btnNavClose";
-            this.btnNavClose.Size = new System.Drawing.Size(28, 23);
-            this.btnNavClose.TabIndex = 0;
-            this.btnNavClose.Text = "X";
-            this.btnNavClose.UseVisualStyleBackColor = false;
-            // 
             // pnlColumns
             // 
+            this.pnlColumns.Controls.Add(this.btnProceed);
             this.pnlColumns.Controls.Add(this.btnCreateTable);
             this.pnlColumns.Controls.Add(this.txtTableName);
             this.pnlColumns.Controls.Add(this.label4);
@@ -115,7 +76,7 @@
             this.pnlColumns.Controls.Add(this.lstColumns);
             this.pnlColumns.Location = new System.Drawing.Point(82, 102);
             this.pnlColumns.Name = "pnlColumns";
-            this.pnlColumns.Size = new System.Drawing.Size(373, 493);
+            this.pnlColumns.Size = new System.Drawing.Size(373, 553);
             this.pnlColumns.TabIndex = 10;
             // 
             // btnCreateTable
@@ -205,7 +166,7 @@
             this.pnlColumnDetails.Controls.Add(this.lblColType);
             this.pnlColumnDetails.Controls.Add(this.txtColName);
             this.pnlColumnDetails.Controls.Add(this.lblColumnDetails);
-            this.pnlColumnDetails.Location = new System.Drawing.Point(550, 102);
+            this.pnlColumnDetails.Location = new System.Drawing.Point(503, 102);
             this.pnlColumnDetails.Name = "pnlColumnDetails";
             this.pnlColumnDetails.Size = new System.Drawing.Size(502, 621);
             this.pnlColumnDetails.TabIndex = 11;
@@ -360,12 +321,14 @@
             // 
             // btnProceed
             // 
-            this.btnProceed.Location = new System.Drawing.Point(469, 690);
+            this.btnProceed.BackColor = System.Drawing.Color.Crimson;
+            this.btnProceed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProceed.Location = new System.Drawing.Point(128, 504);
             this.btnProceed.Name = "btnProceed";
-            this.btnProceed.Size = new System.Drawing.Size(75, 23);
+            this.btnProceed.Size = new System.Drawing.Size(91, 33);
             this.btnProceed.TabIndex = 12;
-            this.btnProceed.Text = "Proceed";
-            this.btnProceed.UseVisualStyleBackColor = true;
+            this.btnProceed.Text = "Main Menu";
+            this.btnProceed.UseVisualStyleBackColor = false;
             this.btnProceed.Click += new System.EventHandler(this.BtnProceed_Click);
             // 
             // cbIdentity
@@ -427,17 +390,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_3rdYearProject.Properties.Resources.Option1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1109, 735);
-            this.Controls.Add(this.btnProceed);
+            this.ClientSize = new System.Drawing.Size(1039, 735);
             this.Controls.Add(this.lblMainHeading);
             this.Controls.Add(this.pnlColumnDetails);
             this.Controls.Add(this.pnlColumns);
-            this.Controls.Add(this.TopNavPnl);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTableCreation";
             this.Text = "TableCreation";
             this.Load += new System.EventHandler(this.FrmTableCreation_Load);
-            this.TopNavPnl.ResumeLayout(false);
             this.pnlColumns.ResumeLayout(false);
             this.pnlColumns.PerformLayout();
             this.pnlColumnDetails.ResumeLayout(false);
@@ -448,10 +407,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel TopNavPnl;
-        private System.Windows.Forms.Button btnNavMin;
-        private System.Windows.Forms.Button btnNavClose;
         private System.Windows.Forms.Panel pnlColumns;
         private System.Windows.Forms.TextBox txtTableName;
         private System.Windows.Forms.Label label4;
