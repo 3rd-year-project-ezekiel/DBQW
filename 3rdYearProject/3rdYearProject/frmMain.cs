@@ -42,6 +42,7 @@ namespace _3rdYearProject
 
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Will di checkbox hierachial maak met tables en columns
             tableItem = cmbTables.SelectedIndex;
             if (cblEntities.Items.Contains(tables[tableItem].TableNames.ToString()))
             {
