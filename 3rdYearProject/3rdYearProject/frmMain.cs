@@ -15,7 +15,9 @@ namespace _3rdYearProject
         List<Databases> databases;
         List<Tables> tables;
         List<Columns> columns;
+        List<string> SqlQueryList;
         int databaseItem = 0, tableItem = 0;
+        
         public frmMain()
         {
             InitializeComponent();
@@ -38,6 +40,10 @@ namespace _3rdYearProject
             {
                 cmbTables.Items.Add(dataItem.TableNames);
             }
+
+            SqlQueryList = (List<string>)lstDisplay.DataSource;
+            lstDisplay.DataSource =  SqlQueryList.SqlQueryBuilderAlgorithm("USE DATABASE", databases[databaseItem].NameOfDatabase.ToString());
+             
         }
 
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
@@ -70,17 +76,17 @@ namespace _3rdYearProject
 
         private void mnuSelect_Click(object sender, EventArgs e)
         {
-            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
+            
         }
 
         private void mnuDelete_Click(object sender, EventArgs e)
         {
-            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
+            
         }
 
         private void mnuUpdate_Click(object sender, EventArgs e)
         {
-            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
+            
         }
 
         private void cblEntities_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -124,7 +130,9 @@ namespace _3rdYearProject
 
         private void mnuInsert_Click(object sender, EventArgs e)
         {
-            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
+            SqlQueryList = (List<string>)lstDisplay.DataSource;
+            lstDisplay.DataSource = SqlQueryList.SqlQueryBuilderAlgorithm("INSERT", tables[tableItem].TableNames.ToString()+"#"+"sweet");
+
         }
     }
 }
