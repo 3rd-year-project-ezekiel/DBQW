@@ -44,6 +44,7 @@ namespace _3rdYearProject
                             {
                                 string[] queryInfo = QueryData.Split('#');
                                 theQueryList.Add("INSERT INTO " + queryInfo[0]);
+                                theQueryList.Add("VALUE(" + queryInfo[1] + ")");
                             }
                             else
                             {

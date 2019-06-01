@@ -108,7 +108,10 @@ namespace _3rdYearProject
 
         private void mnuInsert_Click(object sender, EventArgs e)
         {
-            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
+            SqlQueryList = (List<string>)lstDisplay.DataSource;
+            lstDisplay.DataSource = SqlQueryList.SqlQueryBuilderAlgorithm("INSERT", tables[tableItem].TableNames.ToString()+
+                                           "#"+"sweet");
+
         }
     }
 }
