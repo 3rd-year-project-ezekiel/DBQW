@@ -12,9 +12,6 @@ public class Databases
     private int initialSize;
     private string logName;
 
-   
-
-
     public Databases()
     {
 
@@ -26,6 +23,11 @@ public class Databases
         FilePath = filePathParam;
         InitialSize = initSizeParam;
         LogName = logNameParam;
+    }
+
+    public Databases(string dbNameParam)
+    {
+        NameOfDatabase = dbNameParam;
     }
 
     public string LogName
@@ -54,11 +56,26 @@ public class Databases
         set { nameOfDatbase = value; }
     }
 
-    public void CreateDatabase(List<String> creationDetails,string connectionstring)
+    public void CreateDatabase(List<String> creationDetails)
     {
-        DBConnection handler = new DBConnection(connectionstring);
+        DBConnection handler = new DBConnection();
         handler.CreateDatabase(creationDetails);
 
+    }
+
+    public List<Databases> GetDatabases()
+    {
+        List<Databases> databases = new List<Databases>();
+        List<string> raw = new List<string>();
+        DBConnection handler = new DBConnection();
+        raw = handler.GetDatabases();
+
+        foreach(string dbItem in raw)
+        {
+            databases.Add(new Databases(dbItem.ToString()));
+        }
+
+        return databases;
     }
 
 }

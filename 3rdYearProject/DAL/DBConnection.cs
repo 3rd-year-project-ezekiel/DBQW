@@ -124,6 +124,37 @@ namespace DAL
             }
         }
 
+        public List<string> GetDatabases()
+        {
+            List<string> databases = new List<string>();
+            string query = "SELECT * FROM sys.databases";
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+                command = new SqlCommand(query, connection);
+                using (IDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        databases.Add(dr[0].ToString());
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return databases;
+        }
+
 
         public bool UserLogin()
         {

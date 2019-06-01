@@ -14,17 +14,10 @@ namespace _3rdYearProject
     {
         Databases database = new Databases();
         private List<string> creationDetails = new List<string>();
-        private string connectionString;
         string filePath = string.Empty;
         public frmDatabaseCreation()
         {
             InitializeComponent();
-        }
-
-        public frmDatabaseCreation(string connectionStringParam)
-        {
-            InitializeComponent();
-            connectionString = connectionStringParam;
         }
 
         private void FrmDatabaseCreation_Load(object sender, EventArgs e)
@@ -52,7 +45,7 @@ namespace _3rdYearProject
             }
             else
             {
-                database.CreateDatabase(creationDetails, connectionString);
+                database.CreateDatabase(creationDetails);
 
                 MessageBox.Show("Database have been created", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
