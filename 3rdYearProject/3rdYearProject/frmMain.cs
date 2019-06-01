@@ -15,7 +15,9 @@ namespace _3rdYearProject
         List<Databases> databases;
         List<Tables> tables;
         List<Columns> columns;
+        List<string> SqlQueryList;
         int databaseItem = 0, tableItem = 0;
+        
         public frmMain()
         {
             InitializeComponent();
@@ -38,6 +40,10 @@ namespace _3rdYearProject
             {
                 cmbTables.Items.Add(dataItem.TableNames);
             }
+
+            SqlQueryList = (List<string>)lstDisplay.DataSource;
+            SqlQueryList.SqlQueryBuilderAlgorithm("USE DATABASE", databases[databaseItem].NameOfDatabase.ToString());
+            lstDisplay.DataSource = SqlQueryList;
         }
 
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)

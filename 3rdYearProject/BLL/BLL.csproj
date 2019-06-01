@@ -45,7 +45,6 @@
     <Compile Include="Accounts.cs" />
     <Compile Include="Columns.cs" />
     <Compile Include="Databases.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="Logs.cs" />
     <Compile Include="Programmability.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
