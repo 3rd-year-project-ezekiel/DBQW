@@ -35,10 +35,10 @@
             this.mnuUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuData = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
-            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.programabilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCreate = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSubDatabase = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSubTable = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuProgramability = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDatabase = new System.Windows.Forms.Label();
             this.cmbDatabaseList = new System.Windows.Forms.ComboBox();
             this.btnExecute = new System.Windows.Forms.Button();
@@ -48,16 +48,16 @@
             this.lstDisplay = new System.Windows.Forms.ListBox();
             this.cblEntities = new System.Windows.Forms.CheckedListBox();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.joinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.whereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupByToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.orderByToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.havingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlSubMenu = new System.Windows.Forms.Panel();
+            this.mnuSubMenu = new System.Windows.Forms.MenuStrip();
+            this.mnuJoin = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuWhere = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuGroupBy = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuOrderBy = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuHaving = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMenu.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.pnlSubMenu.SuspendLayout();
+            this.mnuSubMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnuMenu
@@ -70,8 +70,8 @@
             this.mnuUpdate,
             this.mnuData,
             this.mnuLogout,
-            this.createToolStripMenuItem,
-            this.programabilityToolStripMenuItem});
+            this.mnuCreate,
+            this.mnuProgramability});
             this.mnuMenu.Location = new System.Drawing.Point(0, 0);
             this.mnuMenu.Name = "mnuMenu";
             this.mnuMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -120,34 +120,34 @@
             this.mnuLogout.Text = "Logout";
             this.mnuLogout.Click += new System.EventHandler(this.mnuLogout_Click);
             // 
-            // createToolStripMenuItem
+            // mnuCreate
             // 
-            this.createToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.databaseToolStripMenuItem,
-            this.tableToolStripMenuItem});
-            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
-            this.createToolStripMenuItem.Text = "Create";
+            this.mnuCreate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuSubDatabase,
+            this.mnuSubTable});
+            this.mnuCreate.Name = "mnuCreate";
+            this.mnuCreate.Size = new System.Drawing.Size(64, 24);
+            this.mnuCreate.Text = "Create";
             // 
-            // databaseToolStripMenuItem
+            // mnuSubDatabase
             // 
-            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
-            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
-            this.databaseToolStripMenuItem.Text = "Database";
-            this.databaseToolStripMenuItem.Click += new System.EventHandler(this.DatabaseToolStripMenuItem_Click);
+            this.mnuSubDatabase.Name = "mnuSubDatabase";
+            this.mnuSubDatabase.Size = new System.Drawing.Size(216, 26);
+            this.mnuSubDatabase.Text = "Database";
+            this.mnuSubDatabase.Click += new System.EventHandler(this.DatabaseToolStripMenuItem_Click);
             // 
-            // tableToolStripMenuItem
+            // mnuSubTable
             // 
-            this.tableToolStripMenuItem.Name = "tableToolStripMenuItem";
-            this.tableToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
-            this.tableToolStripMenuItem.Text = "Table";
-            this.tableToolStripMenuItem.Click += new System.EventHandler(this.TableToolStripMenuItem_Click);
+            this.mnuSubTable.Name = "mnuSubTable";
+            this.mnuSubTable.Size = new System.Drawing.Size(216, 26);
+            this.mnuSubTable.Text = "Table";
+            this.mnuSubTable.Click += new System.EventHandler(this.TableToolStripMenuItem_Click);
             // 
-            // programabilityToolStripMenuItem
+            // mnuProgramability
             // 
-            this.programabilityToolStripMenuItem.Name = "programabilityToolStripMenuItem";
-            this.programabilityToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
-            this.programabilityToolStripMenuItem.Text = "Programmability";
+            this.mnuProgramability.Name = "mnuProgramability";
+            this.mnuProgramability.Size = new System.Drawing.Size(132, 24);
+            this.mnuProgramability.Text = "Programmability";
             // 
             // lblDatabase
             // 
@@ -238,58 +238,58 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
-            // panel1
+            // pnlSubMenu
             // 
-            this.panel1.Controls.Add(this.menuStrip1);
-            this.panel1.Location = new System.Drawing.Point(350, 42);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(604, 294);
-            this.panel1.TabIndex = 15;
+            this.pnlSubMenu.Controls.Add(this.mnuSubMenu);
+            this.pnlSubMenu.Location = new System.Drawing.Point(350, 42);
+            this.pnlSubMenu.Name = "pnlSubMenu";
+            this.pnlSubMenu.Size = new System.Drawing.Size(604, 294);
+            this.pnlSubMenu.TabIndex = 15;
             // 
-            // menuStrip1
+            // mnuSubMenu
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.joinsToolStripMenuItem,
-            this.whereToolStripMenuItem,
-            this.groupByToolStripMenuItem,
-            this.orderByToolStripMenuItem,
-            this.havingToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(604, 28);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mnuSubMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.mnuSubMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuJoin,
+            this.mnuWhere,
+            this.mnuGroupBy,
+            this.mnuOrderBy,
+            this.mnuHaving});
+            this.mnuSubMenu.Location = new System.Drawing.Point(0, 0);
+            this.mnuSubMenu.Name = "mnuSubMenu";
+            this.mnuSubMenu.Size = new System.Drawing.Size(604, 28);
+            this.mnuSubMenu.TabIndex = 0;
+            this.mnuSubMenu.Text = "menuStrip1";
             // 
-            // joinsToolStripMenuItem
+            // mnuJoin
             // 
-            this.joinsToolStripMenuItem.Name = "joinsToolStripMenuItem";
-            this.joinsToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.joinsToolStripMenuItem.Text = "Joins";
+            this.mnuJoin.Name = "mnuJoin";
+            this.mnuJoin.Size = new System.Drawing.Size(53, 24);
+            this.mnuJoin.Text = "Joins";
             // 
-            // whereToolStripMenuItem
+            // mnuWhere
             // 
-            this.whereToolStripMenuItem.Name = "whereToolStripMenuItem";
-            this.whereToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
-            this.whereToolStripMenuItem.Text = "Where";
+            this.mnuWhere.Name = "mnuWhere";
+            this.mnuWhere.Size = new System.Drawing.Size(64, 24);
+            this.mnuWhere.Text = "Where";
             // 
-            // groupByToolStripMenuItem
+            // mnuGroupBy
             // 
-            this.groupByToolStripMenuItem.Name = "groupByToolStripMenuItem";
-            this.groupByToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
-            this.groupByToolStripMenuItem.Text = "Group By";
+            this.mnuGroupBy.Name = "mnuGroupBy";
+            this.mnuGroupBy.Size = new System.Drawing.Size(82, 24);
+            this.mnuGroupBy.Text = "Group By";
             // 
-            // orderByToolStripMenuItem
+            // mnuOrderBy
             // 
-            this.orderByToolStripMenuItem.Name = "orderByToolStripMenuItem";
-            this.orderByToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
-            this.orderByToolStripMenuItem.Text = "Order By";
+            this.mnuOrderBy.Name = "mnuOrderBy";
+            this.mnuOrderBy.Size = new System.Drawing.Size(79, 24);
+            this.mnuOrderBy.Text = "Order By";
             // 
-            // havingToolStripMenuItem
+            // mnuHaving
             // 
-            this.havingToolStripMenuItem.Name = "havingToolStripMenuItem";
-            this.havingToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
-            this.havingToolStripMenuItem.Text = "Having";
+            this.mnuHaving.Name = "mnuHaving";
+            this.mnuHaving.Size = new System.Drawing.Size(68, 24);
+            this.mnuHaving.Text = "Having";
             // 
             // frmMain
             // 
@@ -298,7 +298,7 @@
             this.BackgroundImage = global::_3rdYearProject.Properties.Resources.Option1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(984, 622);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlSubMenu);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.cblEntities);
             this.Controls.Add(this.lstDisplay);
@@ -315,10 +315,10 @@
             this.Text = "main";
             this.mnuMenu.ResumeLayout(false);
             this.mnuMenu.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.pnlSubMenu.ResumeLayout(false);
+            this.pnlSubMenu.PerformLayout();
+            this.mnuSubMenu.ResumeLayout(false);
+            this.mnuSubMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,16 +342,16 @@
         private System.Windows.Forms.ListBox lstDisplay;
         private System.Windows.Forms.CheckedListBox cblEntities;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tableToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem programabilityToolStripMenuItem;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem joinsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem whereToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem groupByToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem orderByToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem havingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuCreate;
+        private System.Windows.Forms.ToolStripMenuItem mnuSubDatabase;
+        private System.Windows.Forms.ToolStripMenuItem mnuSubTable;
+        private System.Windows.Forms.ToolStripMenuItem mnuProgramability;
+        private System.Windows.Forms.Panel pnlSubMenu;
+        private System.Windows.Forms.MenuStrip mnuSubMenu;
+        private System.Windows.Forms.ToolStripMenuItem mnuJoin;
+        private System.Windows.Forms.ToolStripMenuItem mnuWhere;
+        private System.Windows.Forms.ToolStripMenuItem mnuGroupBy;
+        private System.Windows.Forms.ToolStripMenuItem mnuOrderBy;
+        private System.Windows.Forms.ToolStripMenuItem mnuHaving;
     }
 }
