@@ -155,6 +155,38 @@ namespace DAL
             return databases;
         }
 
+        public List<string> GetTables(string databaseName)
+        {
+            List<string> tables = new List<string>();
+            string query = string.Format("USE {0} SELECT TABLE_NAME FROM information_schema.tables", databaseName);
+            DataSet ds = new DataSet();
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+                command = new SqlCommand(query, connection);
+                using (IDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        tables.Add(dr[0].ToString());
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return tables;
+        }
+
 
         public bool UserLogin()
         {
@@ -168,7 +200,7 @@ namespace DAL
             }
             finally
             {
-                connection.Close(); // always close
+                connection.Close();
             }
             return true;
         }
