@@ -65,32 +65,12 @@ public class Accounts
             connStrBldr.UserID = this.UserName;
             connStrBldr.Password = this.Password;
         }
-        /*
-        string ApplicationPath = System.IO.Directory.GetCurrentDirectory();
-        string YourPath = Path.GetDirectoryName(ApplicationPath);
 
-        string path = Path.GetDirectoryName(YourPath) + "\\App.config";
-        XmlDocument doc = new XmlDocument();
-        doc.Load(path);
-        doc.RemoveChild(doc.DocumentElement.SelectSingleNode("connectionStrings/add[@name='default']"));
-        
-        XmlNode node;
-
-        node = doc.CreateNode(XmlNodeType.Element, "add", null);
-        XmlAttribute attribute = doc.CreateAttribute("name");
-        attribute.Value = "default";
-        node.Attributes.Append(attribute);
-
-        attribute = doc.CreateAttribute("connectionString");
-        attribute.Value = connStrBldr.ConnectionString;
-        node.Attributes.Append(attribute);
-
-        attribute = doc.CreateAttribute("providerName");
-        attribute.Value = "System.Data.SqlClient";
-        node.Attributes.Append(attribute);
-        doc.Save(path);
-
-        */
+        var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+        var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
+        connectionStringsSection.ConnectionStrings["default"].ConnectionString = connStrBldr.ToString(); ;
+        config.Save();
+        ConfigurationManager.RefreshSection("connectionStrings");
 
         DBConnection handler = new DBConnection();
         validUser = handler.UserLogin();
