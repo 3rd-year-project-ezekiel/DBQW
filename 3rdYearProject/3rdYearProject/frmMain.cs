@@ -76,17 +76,17 @@ namespace _3rdYearProject
 
         private void mnuSelect_Click(object sender, EventArgs e)
         {
-            
+            MenuStripColour(mnuSelect);
         }
 
         private void mnuDelete_Click(object sender, EventArgs e)
         {
-            
+            MenuStripColour(mnuDelete);
         }
 
         private void mnuUpdate_Click(object sender, EventArgs e)
         {
-            
+            MenuStripColour(mnuUpdate);
         }
 
         private void cblEntities_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -130,9 +130,20 @@ namespace _3rdYearProject
 
         private void mnuInsert_Click(object sender, EventArgs e)
         {
+            MenuStripColour(mnuInsert);
+            //mnuInsert.BackColor = Color.Blue;
             SqlQueryList = (List<string>)lstDisplay.DataSource;
-            lstDisplay.DataSource = SqlQueryList.SqlQueryBuilderAlgorithm("INSERT", tables[tableItem].TableNames.ToString()+"#"+"sweet");
+            //lstDisplay.DataSource = SqlQueryList.SqlQueryBuilderAlgorithm("INSERT", tables[tableItem].TableNames.ToString()+"#"+"sweet");
 
+        }
+
+        public void MenuStripColour(ToolStripMenuItem SelectedItem)
+        {
+            mnuSelect.BackColor = Color.Transparent;
+            mnuInsert.BackColor = Color.Transparent;
+            mnuDelete.BackColor = Color.Transparent;
+            mnuUpdate.BackColor = Color.Transparent;
+            SelectedItem.BackColor = Color.Blue;
         }
     }
 }

@@ -35,6 +35,9 @@
             this.mnuUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuData = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
+            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDatabase = new System.Windows.Forms.Label();
             this.cmbDatabaseList = new System.Windows.Forms.ComboBox();
             this.btnExecute = new System.Windows.Forms.Button();
@@ -60,9 +63,7 @@
             this.lstDisplay = new System.Windows.Forms.ListBox();
             this.cblEntities = new System.Windows.Forms.CheckedListBox();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.programabilityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMenu.SuspendLayout();
             this.tcClause.SuspendLayout();
             this.tpJoin.SuspendLayout();
@@ -82,91 +83,114 @@
             this.mnuUpdate,
             this.mnuData,
             this.mnuLogout,
-            this.createToolStripMenuItem});
+            this.createToolStripMenuItem,
+            this.programabilityToolStripMenuItem});
             this.mnuMenu.Location = new System.Drawing.Point(0, 0);
             this.mnuMenu.Name = "mnuMenu";
-            this.mnuMenu.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.mnuMenu.Size = new System.Drawing.Size(738, 24);
+            this.mnuMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.mnuMenu.Size = new System.Drawing.Size(984, 28);
             this.mnuMenu.TabIndex = 0;
             this.mnuMenu.Text = "menuStrip1";
             // 
             // mnuSelect
             // 
             this.mnuSelect.Name = "mnuSelect";
-            this.mnuSelect.Size = new System.Drawing.Size(50, 20);
+            this.mnuSelect.Size = new System.Drawing.Size(61, 24);
             this.mnuSelect.Text = "Select";
             this.mnuSelect.Click += new System.EventHandler(this.mnuSelect_Click);
             // 
             // mnuInsert
             // 
             this.mnuInsert.Name = "mnuInsert";
-            this.mnuInsert.Size = new System.Drawing.Size(48, 20);
+            this.mnuInsert.Size = new System.Drawing.Size(57, 24);
             this.mnuInsert.Text = "Insert";
             this.mnuInsert.Click += new System.EventHandler(this.mnuInsert_Click);
             // 
             // mnuDelete
             // 
             this.mnuDelete.Name = "mnuDelete";
-            this.mnuDelete.Size = new System.Drawing.Size(52, 20);
+            this.mnuDelete.Size = new System.Drawing.Size(65, 24);
             this.mnuDelete.Text = "Delete";
             this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // mnuUpdate
             // 
             this.mnuUpdate.Name = "mnuUpdate";
-            this.mnuUpdate.Size = new System.Drawing.Size(57, 20);
+            this.mnuUpdate.Size = new System.Drawing.Size(70, 24);
             this.mnuUpdate.Text = "Update";
             this.mnuUpdate.Click += new System.EventHandler(this.mnuUpdate_Click);
             // 
             // mnuData
             // 
             this.mnuData.Name = "mnuData";
-            this.mnuData.Size = new System.Drawing.Size(43, 20);
+            this.mnuData.Size = new System.Drawing.Size(53, 24);
             this.mnuData.Text = "Data";
             // 
             // mnuLogout
             // 
             this.mnuLogout.Name = "mnuLogout";
-            this.mnuLogout.Size = new System.Drawing.Size(57, 20);
+            this.mnuLogout.Size = new System.Drawing.Size(68, 24);
             this.mnuLogout.Text = "Logout";
             this.mnuLogout.Click += new System.EventHandler(this.mnuLogout_Click);
+            // 
+            // createToolStripMenuItem
+            // 
+            this.createToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.databaseToolStripMenuItem,
+            this.tableToolStripMenuItem});
+            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.createToolStripMenuItem.Text = "Create";
+            // 
+            // databaseToolStripMenuItem
+            // 
+            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.databaseToolStripMenuItem.Text = "Database";
+            this.databaseToolStripMenuItem.Click += new System.EventHandler(this.DatabaseToolStripMenuItem_Click);
+            // 
+            // tableToolStripMenuItem
+            // 
+            this.tableToolStripMenuItem.Name = "tableToolStripMenuItem";
+            this.tableToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
+            this.tableToolStripMenuItem.Text = "Table";
+            this.tableToolStripMenuItem.Click += new System.EventHandler(this.TableToolStripMenuItem_Click);
             // 
             // lblDatabase
             // 
             this.lblDatabase.AutoSize = true;
-            this.lblDatabase.Location = new System.Drawing.Point(9, 37);
-            this.lblDatabase.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDatabase.Location = new System.Drawing.Point(12, 46);
             this.lblDatabase.Name = "lblDatabase";
-            this.lblDatabase.Size = new System.Drawing.Size(53, 13);
+            this.lblDatabase.Size = new System.Drawing.Size(69, 17);
             this.lblDatabase.TabIndex = 1;
             this.lblDatabase.Text = "Database";
             // 
             // cmbDatabaseList
             // 
             this.cmbDatabaseList.FormattingEnabled = true;
-            this.cmbDatabaseList.Location = new System.Drawing.Point(66, 34);
-            this.cmbDatabaseList.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbDatabaseList.Location = new System.Drawing.Point(88, 42);
+            this.cmbDatabaseList.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbDatabaseList.Name = "cmbDatabaseList";
-            this.cmbDatabaseList.Size = new System.Drawing.Size(158, 21);
+            this.cmbDatabaseList.Size = new System.Drawing.Size(209, 24);
             this.cmbDatabaseList.TabIndex = 2;
             this.cmbDatabaseList.SelectedIndexChanged += new System.EventHandler(this.cmbDatabaseList_SelectedIndexChanged);
             // 
             // btnExecute
             // 
-            this.btnExecute.Location = new System.Drawing.Point(11, 298);
-            this.btnExecute.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExecute.Location = new System.Drawing.Point(15, 367);
+            this.btnExecute.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExecute.Name = "btnExecute";
-            this.btnExecute.Size = new System.Drawing.Size(56, 19);
+            this.btnExecute.Size = new System.Drawing.Size(75, 23);
             this.btnExecute.TabIndex = 5;
             this.btnExecute.Text = "Execute";
             this.btnExecute.UseVisualStyleBackColor = true;
             // 
             // btnInsertIntoDB
             // 
-            this.btnInsertIntoDB.Location = new System.Drawing.Point(71, 298);
-            this.btnInsertIntoDB.Margin = new System.Windows.Forms.Padding(2);
+            this.btnInsertIntoDB.Location = new System.Drawing.Point(95, 367);
+            this.btnInsertIntoDB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnInsertIntoDB.Name = "btnInsertIntoDB";
-            this.btnInsertIntoDB.Size = new System.Drawing.Size(110, 19);
+            this.btnInsertIntoDB.Size = new System.Drawing.Size(147, 23);
             this.btnInsertIntoDB.TabIndex = 7;
             this.btnInsertIntoDB.Text = "Insert into database";
             this.btnInsertIntoDB.UseVisualStyleBackColor = true;
@@ -178,22 +202,22 @@
             this.tcClause.Controls.Add(this.tpGroupBy);
             this.tcClause.Controls.Add(this.tbOrderBy);
             this.tcClause.Controls.Add(this.tbHaving);
-            this.tcClause.Location = new System.Drawing.Point(273, 34);
-            this.tcClause.Margin = new System.Windows.Forms.Padding(2);
+            this.tcClause.Location = new System.Drawing.Point(364, 42);
+            this.tcClause.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tcClause.Name = "tcClause";
             this.tcClause.SelectedIndex = 0;
-            this.tcClause.Size = new System.Drawing.Size(454, 255);
+            this.tcClause.Size = new System.Drawing.Size(605, 314);
             this.tcClause.TabIndex = 8;
             // 
             // tpJoin
             // 
             this.tpJoin.Controls.Add(this.lnklblRemoveJoin);
             this.tpJoin.Controls.Add(this.lnklblAddJoin);
-            this.tpJoin.Location = new System.Drawing.Point(4, 22);
-            this.tpJoin.Margin = new System.Windows.Forms.Padding(2);
+            this.tpJoin.Location = new System.Drawing.Point(4, 25);
+            this.tpJoin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpJoin.Name = "tpJoin";
-            this.tpJoin.Padding = new System.Windows.Forms.Padding(2);
-            this.tpJoin.Size = new System.Drawing.Size(446, 229);
+            this.tpJoin.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tpJoin.Size = new System.Drawing.Size(597, 285);
             this.tpJoin.TabIndex = 0;
             this.tpJoin.Text = "Joins";
             this.tpJoin.UseVisualStyleBackColor = true;
@@ -201,10 +225,9 @@
             // lnklblRemoveJoin
             // 
             this.lnklblRemoveJoin.AutoSize = true;
-            this.lnklblRemoveJoin.Location = new System.Drawing.Point(5, 37);
-            this.lnklblRemoveJoin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblRemoveJoin.Location = new System.Drawing.Point(7, 46);
             this.lnklblRemoveJoin.Name = "lnklblRemoveJoin";
-            this.lnklblRemoveJoin.Size = new System.Drawing.Size(47, 13);
+            this.lnklblRemoveJoin.Size = new System.Drawing.Size(60, 17);
             this.lnklblRemoveJoin.TabIndex = 1;
             this.lnklblRemoveJoin.TabStop = true;
             this.lnklblRemoveJoin.Text = "Remove";
@@ -212,10 +235,9 @@
             // lnklblAddJoin
             // 
             this.lnklblAddJoin.AutoSize = true;
-            this.lnklblAddJoin.Location = new System.Drawing.Point(5, 14);
-            this.lnklblAddJoin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblAddJoin.Location = new System.Drawing.Point(7, 17);
             this.lnklblAddJoin.Name = "lnklblAddJoin";
-            this.lnklblAddJoin.Size = new System.Drawing.Size(26, 13);
+            this.lnklblAddJoin.Size = new System.Drawing.Size(33, 17);
             this.lnklblAddJoin.TabIndex = 0;
             this.lnklblAddJoin.TabStop = true;
             this.lnklblAddJoin.Text = "Add";
@@ -224,11 +246,11 @@
             // 
             this.tpWhere.Controls.Add(this.lnklblRemoveWhere);
             this.tpWhere.Controls.Add(this.lnklblAddWhere);
-            this.tpWhere.Location = new System.Drawing.Point(4, 22);
-            this.tpWhere.Margin = new System.Windows.Forms.Padding(2);
+            this.tpWhere.Location = new System.Drawing.Point(4, 25);
+            this.tpWhere.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpWhere.Name = "tpWhere";
-            this.tpWhere.Padding = new System.Windows.Forms.Padding(2);
-            this.tpWhere.Size = new System.Drawing.Size(446, 229);
+            this.tpWhere.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tpWhere.Size = new System.Drawing.Size(597, 285);
             this.tpWhere.TabIndex = 1;
             this.tpWhere.Text = "Where";
             this.tpWhere.UseVisualStyleBackColor = true;
@@ -236,10 +258,9 @@
             // lnklblRemoveWhere
             // 
             this.lnklblRemoveWhere.AutoSize = true;
-            this.lnklblRemoveWhere.Location = new System.Drawing.Point(11, 33);
-            this.lnklblRemoveWhere.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblRemoveWhere.Location = new System.Drawing.Point(15, 41);
             this.lnklblRemoveWhere.Name = "lnklblRemoveWhere";
-            this.lnklblRemoveWhere.Size = new System.Drawing.Size(47, 13);
+            this.lnklblRemoveWhere.Size = new System.Drawing.Size(60, 17);
             this.lnklblRemoveWhere.TabIndex = 3;
             this.lnklblRemoveWhere.TabStop = true;
             this.lnklblRemoveWhere.Text = "Remove";
@@ -247,10 +268,9 @@
             // lnklblAddWhere
             // 
             this.lnklblAddWhere.AutoSize = true;
-            this.lnklblAddWhere.Location = new System.Drawing.Point(11, 10);
-            this.lnklblAddWhere.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblAddWhere.Location = new System.Drawing.Point(15, 12);
             this.lnklblAddWhere.Name = "lnklblAddWhere";
-            this.lnklblAddWhere.Size = new System.Drawing.Size(26, 13);
+            this.lnklblAddWhere.Size = new System.Drawing.Size(33, 17);
             this.lnklblAddWhere.TabIndex = 2;
             this.lnklblAddWhere.TabStop = true;
             this.lnklblAddWhere.Text = "Add";
@@ -259,10 +279,10 @@
             // 
             this.tpGroupBy.Controls.Add(this.lnklblRemoveGroupBy);
             this.tpGroupBy.Controls.Add(this.lnklblAddGroupBy);
-            this.tpGroupBy.Location = new System.Drawing.Point(4, 22);
-            this.tpGroupBy.Margin = new System.Windows.Forms.Padding(2);
+            this.tpGroupBy.Location = new System.Drawing.Point(4, 25);
+            this.tpGroupBy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tpGroupBy.Name = "tpGroupBy";
-            this.tpGroupBy.Size = new System.Drawing.Size(446, 229);
+            this.tpGroupBy.Size = new System.Drawing.Size(597, 285);
             this.tpGroupBy.TabIndex = 2;
             this.tpGroupBy.Text = "Group By";
             this.tpGroupBy.UseVisualStyleBackColor = true;
@@ -270,10 +290,9 @@
             // lnklblRemoveGroupBy
             // 
             this.lnklblRemoveGroupBy.AutoSize = true;
-            this.lnklblRemoveGroupBy.Location = new System.Drawing.Point(9, 33);
-            this.lnklblRemoveGroupBy.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblRemoveGroupBy.Location = new System.Drawing.Point(12, 41);
             this.lnklblRemoveGroupBy.Name = "lnklblRemoveGroupBy";
-            this.lnklblRemoveGroupBy.Size = new System.Drawing.Size(47, 13);
+            this.lnklblRemoveGroupBy.Size = new System.Drawing.Size(60, 17);
             this.lnklblRemoveGroupBy.TabIndex = 3;
             this.lnklblRemoveGroupBy.TabStop = true;
             this.lnklblRemoveGroupBy.Text = "Remove";
@@ -281,10 +300,9 @@
             // lnklblAddGroupBy
             // 
             this.lnklblAddGroupBy.AutoSize = true;
-            this.lnklblAddGroupBy.Location = new System.Drawing.Point(9, 10);
-            this.lnklblAddGroupBy.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblAddGroupBy.Location = new System.Drawing.Point(12, 12);
             this.lnklblAddGroupBy.Name = "lnklblAddGroupBy";
-            this.lnklblAddGroupBy.Size = new System.Drawing.Size(26, 13);
+            this.lnklblAddGroupBy.Size = new System.Drawing.Size(33, 17);
             this.lnklblAddGroupBy.TabIndex = 2;
             this.lnklblAddGroupBy.TabStop = true;
             this.lnklblAddGroupBy.Text = "Add";
@@ -293,10 +311,10 @@
             // 
             this.tbOrderBy.Controls.Add(this.lnklblRemoveOrderBy);
             this.tbOrderBy.Controls.Add(this.lnklblAddOrderBy);
-            this.tbOrderBy.Location = new System.Drawing.Point(4, 22);
-            this.tbOrderBy.Margin = new System.Windows.Forms.Padding(2);
+            this.tbOrderBy.Location = new System.Drawing.Point(4, 25);
+            this.tbOrderBy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbOrderBy.Name = "tbOrderBy";
-            this.tbOrderBy.Size = new System.Drawing.Size(446, 229);
+            this.tbOrderBy.Size = new System.Drawing.Size(597, 285);
             this.tbOrderBy.TabIndex = 3;
             this.tbOrderBy.Text = "Order By";
             this.tbOrderBy.UseVisualStyleBackColor = true;
@@ -304,10 +322,9 @@
             // lnklblRemoveOrderBy
             // 
             this.lnklblRemoveOrderBy.AutoSize = true;
-            this.lnklblRemoveOrderBy.Location = new System.Drawing.Point(13, 35);
-            this.lnklblRemoveOrderBy.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblRemoveOrderBy.Location = new System.Drawing.Point(17, 43);
             this.lnklblRemoveOrderBy.Name = "lnklblRemoveOrderBy";
-            this.lnklblRemoveOrderBy.Size = new System.Drawing.Size(47, 13);
+            this.lnklblRemoveOrderBy.Size = new System.Drawing.Size(60, 17);
             this.lnklblRemoveOrderBy.TabIndex = 3;
             this.lnklblRemoveOrderBy.TabStop = true;
             this.lnklblRemoveOrderBy.Text = "Remove";
@@ -315,10 +332,9 @@
             // lnklblAddOrderBy
             // 
             this.lnklblAddOrderBy.AutoSize = true;
-            this.lnklblAddOrderBy.Location = new System.Drawing.Point(13, 11);
-            this.lnklblAddOrderBy.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblAddOrderBy.Location = new System.Drawing.Point(17, 14);
             this.lnklblAddOrderBy.Name = "lnklblAddOrderBy";
-            this.lnklblAddOrderBy.Size = new System.Drawing.Size(26, 13);
+            this.lnklblAddOrderBy.Size = new System.Drawing.Size(33, 17);
             this.lnklblAddOrderBy.TabIndex = 2;
             this.lnklblAddOrderBy.TabStop = true;
             this.lnklblAddOrderBy.Text = "Add";
@@ -327,10 +343,10 @@
             // 
             this.tbHaving.Controls.Add(this.lnklblRemoveHaving);
             this.tbHaving.Controls.Add(this.lnklblAddHaving);
-            this.tbHaving.Location = new System.Drawing.Point(4, 22);
-            this.tbHaving.Margin = new System.Windows.Forms.Padding(2);
+            this.tbHaving.Location = new System.Drawing.Point(4, 25);
+            this.tbHaving.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbHaving.Name = "tbHaving";
-            this.tbHaving.Size = new System.Drawing.Size(446, 229);
+            this.tbHaving.Size = new System.Drawing.Size(597, 285);
             this.tbHaving.TabIndex = 4;
             this.tbHaving.Text = "Having";
             this.tbHaving.UseVisualStyleBackColor = true;
@@ -338,10 +354,9 @@
             // lnklblRemoveHaving
             // 
             this.lnklblRemoveHaving.AutoSize = true;
-            this.lnklblRemoveHaving.Location = new System.Drawing.Point(10, 32);
-            this.lnklblRemoveHaving.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblRemoveHaving.Location = new System.Drawing.Point(13, 39);
             this.lnklblRemoveHaving.Name = "lnklblRemoveHaving";
-            this.lnklblRemoveHaving.Size = new System.Drawing.Size(47, 13);
+            this.lnklblRemoveHaving.Size = new System.Drawing.Size(60, 17);
             this.lnklblRemoveHaving.TabIndex = 3;
             this.lnklblRemoveHaving.TabStop = true;
             this.lnklblRemoveHaving.Text = "Remove";
@@ -349,10 +364,9 @@
             // lnklblAddHaving
             // 
             this.lnklblAddHaving.AutoSize = true;
-            this.lnklblAddHaving.Location = new System.Drawing.Point(10, 9);
-            this.lnklblAddHaving.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lnklblAddHaving.Location = new System.Drawing.Point(13, 11);
             this.lnklblAddHaving.Name = "lnklblAddHaving";
-            this.lnklblAddHaving.Size = new System.Drawing.Size(26, 13);
+            this.lnklblAddHaving.Size = new System.Drawing.Size(33, 17);
             this.lnklblAddHaving.TabIndex = 2;
             this.lnklblAddHaving.TabStop = true;
             this.lnklblAddHaving.Text = "Add";
@@ -360,82 +374,66 @@
             // cmbTables
             // 
             this.cmbTables.FormattingEnabled = true;
-            this.cmbTables.Location = new System.Drawing.Point(66, 64);
-            this.cmbTables.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbTables.Location = new System.Drawing.Point(88, 79);
+            this.cmbTables.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTables.Name = "cmbTables";
-            this.cmbTables.Size = new System.Drawing.Size(158, 21);
+            this.cmbTables.Size = new System.Drawing.Size(209, 24);
             this.cmbTables.TabIndex = 9;
             this.cmbTables.SelectedIndexChanged += new System.EventHandler(this.cmbTables_SelectedIndexChanged);
             // 
             // lblTables
             // 
             this.lblTables.AutoSize = true;
-            this.lblTables.Location = new System.Drawing.Point(10, 67);
-            this.lblTables.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTables.Location = new System.Drawing.Point(13, 82);
             this.lblTables.Name = "lblTables";
-            this.lblTables.Size = new System.Drawing.Size(39, 13);
+            this.lblTables.Size = new System.Drawing.Size(51, 17);
             this.lblTables.TabIndex = 10;
             this.lblTables.Text = "Tables";
             // 
             // lstDisplay
             // 
             this.lstDisplay.FormattingEnabled = true;
-            this.lstDisplay.Location = new System.Drawing.Point(11, 321);
-            this.lstDisplay.Margin = new System.Windows.Forms.Padding(2);
+            this.lstDisplay.ItemHeight = 16;
+            this.lstDisplay.Location = new System.Drawing.Point(15, 395);
+            this.lstDisplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lstDisplay.Name = "lstDisplay";
-            this.lstDisplay.Size = new System.Drawing.Size(716, 173);
+            this.lstDisplay.Size = new System.Drawing.Size(953, 212);
             this.lstDisplay.TabIndex = 11;
             // 
             // cblEntities
             // 
             this.cblEntities.FormattingEnabled = true;
-            this.cblEntities.Location = new System.Drawing.Point(11, 90);
+            this.cblEntities.Location = new System.Drawing.Point(15, 111);
+            this.cblEntities.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cblEntities.Name = "cblEntities";
-            this.cblEntities.Size = new System.Drawing.Size(170, 184);
+            this.cblEntities.Size = new System.Drawing.Size(225, 225);
             this.cblEntities.TabIndex = 13;
             this.cblEntities.SelectedIndexChanged += new System.EventHandler(this.cblEntities_SelectedIndexChanged_1);
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(186, 93);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRemove.Location = new System.Drawing.Point(248, 114);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(56, 19);
+            this.btnRemove.Size = new System.Drawing.Size(75, 23);
             this.btnRemove.TabIndex = 14;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
-            // createToolStripMenuItem
+            // programabilityToolStripMenuItem
             // 
-            this.createToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.databaseToolStripMenuItem,
-            this.tableToolStripMenuItem});
-            this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
-            this.createToolStripMenuItem.Text = "Create";
-            // 
-            // databaseToolStripMenuItem
-            // 
-            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
-            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.databaseToolStripMenuItem.Text = "Database";
-            this.databaseToolStripMenuItem.Click += new System.EventHandler(this.DatabaseToolStripMenuItem_Click);
-            // 
-            // tableToolStripMenuItem
-            // 
-            this.tableToolStripMenuItem.Name = "tableToolStripMenuItem";
-            this.tableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.tableToolStripMenuItem.Text = "Table";
-            this.tableToolStripMenuItem.Click += new System.EventHandler(this.TableToolStripMenuItem_Click);
+            this.programabilityToolStripMenuItem.Name = "programabilityToolStripMenuItem";
+            this.programabilityToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.programabilityToolStripMenuItem.Text = "Programmability";
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_3rdYearProject.Properties.Resources.Option1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(738, 505);
+            this.ClientSize = new System.Drawing.Size(984, 622);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.cblEntities);
             this.Controls.Add(this.lstDisplay);
@@ -448,7 +446,7 @@
             this.Controls.Add(this.lblDatabase);
             this.Controls.Add(this.mnuMenu);
             this.MainMenuStrip = this.mnuMenu;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmMain";
             this.Text = "main";
             this.mnuMenu.ResumeLayout(false);
@@ -506,5 +504,6 @@
         private System.Windows.Forms.ToolStripMenuItem createToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem programabilityToolStripMenuItem;
     }
 }
