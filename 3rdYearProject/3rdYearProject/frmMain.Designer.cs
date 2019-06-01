@@ -33,13 +33,11 @@
             this.mnuInsert = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpdate = new System.Windows.Forms.ToolStripMenuItem();
-            this.mmuProgrammability = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuData = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDatabase = new System.Windows.Forms.Label();
             this.cmbDatabaseList = new System.Windows.Forms.ComboBox();
             this.btnExecute = new System.Windows.Forms.Button();
-            this.btnPreview = new System.Windows.Forms.Button();
             this.btnInsertIntoDB = new System.Windows.Forms.Button();
             this.tcClause = new System.Windows.Forms.TabControl();
             this.tpJoin = new System.Windows.Forms.TabPage();
@@ -60,7 +58,7 @@
             this.cmbTables = new System.Windows.Forms.ComboBox();
             this.lblTables = new System.Windows.Forms.Label();
             this.lstDisplay = new System.Windows.Forms.ListBox();
-            this.cblEntities = new System.Windows.Forms.ListBox();
+            this.cblEntities = new System.Windows.Forms.CheckedListBox();
             this.mnuMenu.SuspendLayout();
             this.tcClause.SuspendLayout();
             this.tpJoin.SuspendLayout();
@@ -78,7 +76,6 @@
             this.mnuInsert,
             this.mnuDelete,
             this.mnuUpdate,
-            this.mmuProgrammability,
             this.mnuData,
             this.mnuLogout});
             this.mnuMenu.Location = new System.Drawing.Point(0, 0);
@@ -93,6 +90,7 @@
             this.mnuSelect.Name = "mnuSelect";
             this.mnuSelect.Size = new System.Drawing.Size(50, 20);
             this.mnuSelect.Text = "Select";
+            this.mnuSelect.Click += new System.EventHandler(this.mnuSelect_Click);
             // 
             // mnuInsert
             // 
@@ -106,18 +104,14 @@
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(52, 20);
             this.mnuDelete.Text = "Delete";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // mnuUpdate
             // 
             this.mnuUpdate.Name = "mnuUpdate";
             this.mnuUpdate.Size = new System.Drawing.Size(57, 20);
             this.mnuUpdate.Text = "Update";
-            // 
-            // mmuProgrammability
-            // 
-            this.mmuProgrammability.Name = "mmuProgrammability";
-            this.mmuProgrammability.Size = new System.Drawing.Size(108, 20);
-            this.mmuProgrammability.Text = "Programmability";
+            this.mnuUpdate.Click += new System.EventHandler(this.mnuUpdate_Click);
             // 
             // mnuData
             // 
@@ -130,6 +124,7 @@
             this.mnuLogout.Name = "mnuLogout";
             this.mnuLogout.Size = new System.Drawing.Size(57, 20);
             this.mnuLogout.Text = "Logout";
+            this.mnuLogout.Click += new System.EventHandler(this.mnuLogout_Click);
             // 
             // lblDatabase
             // 
@@ -161,19 +156,9 @@
             this.btnExecute.Text = "Execute";
             this.btnExecute.UseVisualStyleBackColor = true;
             // 
-            // btnPreview
-            // 
-            this.btnPreview.Location = new System.Drawing.Point(74, 298);
-            this.btnPreview.Margin = new System.Windows.Forms.Padding(2);
-            this.btnPreview.Name = "btnPreview";
-            this.btnPreview.Size = new System.Drawing.Size(56, 19);
-            this.btnPreview.TabIndex = 6;
-            this.btnPreview.Text = "Preview";
-            this.btnPreview.UseVisualStyleBackColor = true;
-            // 
             // btnInsertIntoDB
             // 
-            this.btnInsertIntoDB.Location = new System.Drawing.Point(135, 298);
+            this.btnInsertIntoDB.Location = new System.Drawing.Point(71, 298);
             this.btnInsertIntoDB.Margin = new System.Windows.Forms.Padding(2);
             this.btnInsertIntoDB.Name = "btnInsertIntoDB";
             this.btnInsertIntoDB.Size = new System.Drawing.Size(110, 19);
@@ -238,7 +223,7 @@
             this.tpWhere.Margin = new System.Windows.Forms.Padding(2);
             this.tpWhere.Name = "tpWhere";
             this.tpWhere.Padding = new System.Windows.Forms.Padding(2);
-            this.tpWhere.Size = new System.Drawing.Size(374, 140);
+            this.tpWhere.Size = new System.Drawing.Size(446, 229);
             this.tpWhere.TabIndex = 1;
             this.tpWhere.Text = "Where";
             this.tpWhere.UseVisualStyleBackColor = true;
@@ -272,7 +257,7 @@
             this.tpGroupBy.Location = new System.Drawing.Point(4, 22);
             this.tpGroupBy.Margin = new System.Windows.Forms.Padding(2);
             this.tpGroupBy.Name = "tpGroupBy";
-            this.tpGroupBy.Size = new System.Drawing.Size(374, 140);
+            this.tpGroupBy.Size = new System.Drawing.Size(446, 229);
             this.tpGroupBy.TabIndex = 2;
             this.tpGroupBy.Text = "Group By";
             this.tpGroupBy.UseVisualStyleBackColor = true;
@@ -306,7 +291,7 @@
             this.tbOrderBy.Location = new System.Drawing.Point(4, 22);
             this.tbOrderBy.Margin = new System.Windows.Forms.Padding(2);
             this.tbOrderBy.Name = "tbOrderBy";
-            this.tbOrderBy.Size = new System.Drawing.Size(374, 140);
+            this.tbOrderBy.Size = new System.Drawing.Size(446, 229);
             this.tbOrderBy.TabIndex = 3;
             this.tbOrderBy.Text = "Order By";
             this.tbOrderBy.UseVisualStyleBackColor = true;
@@ -340,7 +325,7 @@
             this.tbHaving.Location = new System.Drawing.Point(4, 22);
             this.tbHaving.Margin = new System.Windows.Forms.Padding(2);
             this.tbHaving.Name = "tbHaving";
-            this.tbHaving.Size = new System.Drawing.Size(374, 140);
+            this.tbHaving.Size = new System.Drawing.Size(446, 229);
             this.tbHaving.TabIndex = 4;
             this.tbHaving.Text = "Having";
             this.tbHaving.UseVisualStyleBackColor = true;
@@ -399,11 +384,11 @@
             // cblEntities
             // 
             this.cblEntities.FormattingEnabled = true;
-            this.cblEntities.Location = new System.Drawing.Point(13, 90);
+            this.cblEntities.Location = new System.Drawing.Point(11, 90);
             this.cblEntities.Name = "cblEntities";
-            this.cblEntities.Size = new System.Drawing.Size(211, 199);
-            this.cblEntities.TabIndex = 12;
-            this.cblEntities.SelectedIndexChanged += new System.EventHandler(this.cblEntities_SelectedIndexChanged);
+            this.cblEntities.Size = new System.Drawing.Size(213, 184);
+            this.cblEntities.TabIndex = 13;
+            this.cblEntities.SelectedIndexChanged += new System.EventHandler(this.cblEntities_SelectedIndexChanged_1);
             // 
             // frmMain
             // 
@@ -418,7 +403,6 @@
             this.Controls.Add(this.cmbTables);
             this.Controls.Add(this.tcClause);
             this.Controls.Add(this.btnInsertIntoDB);
-            this.Controls.Add(this.btnPreview);
             this.Controls.Add(this.btnExecute);
             this.Controls.Add(this.cmbDatabaseList);
             this.Controls.Add(this.lblDatabase);
@@ -457,7 +441,6 @@
         private System.Windows.Forms.Label lblDatabase;
         private System.Windows.Forms.ComboBox cmbDatabaseList;
         private System.Windows.Forms.Button btnExecute;
-        private System.Windows.Forms.Button btnPreview;
         private System.Windows.Forms.Button btnInsertIntoDB;
         private System.Windows.Forms.TabControl tcClause;
         private System.Windows.Forms.TabPage tpJoin;
@@ -477,8 +460,7 @@
         private System.Windows.Forms.LinkLabel lnklblAddHaving;
         private System.Windows.Forms.ComboBox cmbTables;
         private System.Windows.Forms.Label lblTables;
-        private System.Windows.Forms.ToolStripMenuItem mmuProgrammability;
         private System.Windows.Forms.ListBox lstDisplay;
-        private System.Windows.Forms.ListBox cblEntities;
+        private System.Windows.Forms.CheckedListBox cblEntities;
     }
 }

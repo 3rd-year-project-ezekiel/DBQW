@@ -14,6 +14,7 @@ namespace _3rdYearProject
     {
         List<Databases> databases;
         List<Tables> tables;
+        int databaseItem = 0, tableItem = 0;
         public frmMain()
         {
             InitializeComponent();
@@ -25,15 +26,13 @@ namespace _3rdYearProject
             }
         }
 
-        private void mnuInsert_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cmbDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cmbTables.Items.Clear();
+            cblEntities.Items.Clear();
             Tables table = new Tables();
-            tables = table.GetTables(databases[cmbDatabaseList.SelectedIndex].NameOfDatabase.ToString());
+            databaseItem = cmbDatabaseList.SelectedIndex;
+            tables = table.GetTables(databases[databaseItem].NameOfDatabase.ToString());
             foreach (Tables dataItem in tables)
             {
                 cmbTables.Items.Add(dataItem.TableNames);
@@ -42,7 +41,8 @@ namespace _3rdYearProject
 
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cblEntities.Items.Contains(tables[cmbTables.SelectedIndex].TableNames.ToString()))
+            tableItem = cmbTables.SelectedIndex;
+            if (cblEntities.Items.Contains(tables[tableItem].TableNames.ToString()))
             {
                 MessageBox.Show("Cant add the same Column");
             }
@@ -52,16 +52,36 @@ namespace _3rdYearProject
             }
         }
 
-        private void cblEntities_SelectedIndexChanged(object sender, EventArgs e)
+        private void mnuLogout_Click(object sender, EventArgs e)
         {
-            ListBox.SelectedObjectCollection selectedItems = new ListBox.SelectedObjectCollection(cblEntities);
-            selectedItems = cblEntities.SelectedItems;
+            frmLogin login = new frmLogin();
+            this.Hide();
+            login.Show();
+        }
 
-            if (cblEntities.SelectedIndex != -1)
-            {
-                for (int i = selectedItems.Count - 1; i >= 0; i--)
-                    cblEntities.Items.Remove(selectedItems[i]);
-            }
+        private void mnuSelect_Click(object sender, EventArgs e)
+        {
+            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
+        }
+
+        private void mnuDelete_Click(object sender, EventArgs e)
+        {
+            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
+        }
+
+        private void mnuUpdate_Click(object sender, EventArgs e)
+        {
+            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
+        }
+
+        private void cblEntities_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuInsert_Click(object sender, EventArgs e)
+        {
+            lstDisplay.Items.Add("USE " + databases[databaseItem].NameOfDatabase);
         }
     }
 }
