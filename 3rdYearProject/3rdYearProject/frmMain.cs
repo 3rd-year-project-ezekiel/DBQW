@@ -14,6 +14,7 @@ namespace _3rdYearProject
     {
         List<Databases> databases;
         List<Tables> tables;
+        List<Columns> columns;
         int databaseItem = 0, tableItem = 0;
         public frmMain()
         {
@@ -50,6 +51,13 @@ namespace _3rdYearProject
             {
                 cblEntities.Items.Add(tables[cmbTables.SelectedIndex].TableNames.ToString());
             }
+
+            Columns column = new Columns();
+            columns = column.GetColumns(databases[databaseItem].NameOfDatabase.ToString(), tables[cmbTables.SelectedIndex].TableNames.ToString());
+            foreach (Columns dataItem in columns)
+            {
+                cblEntities.Items.Add(dataItem.ColumnName);
+            }
         }
 
         private void mnuLogout_Click(object sender, EventArgs e)
@@ -76,7 +84,19 @@ namespace _3rdYearProject
 
         private void cblEntities_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            
+        }
 
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            ListBox.SelectedObjectCollection selectedItems = new ListBox.SelectedObjectCollection(cblEntities);
+            selectedItems = cblEntities.SelectedItems;
+
+            if (cblEntities.SelectedIndex != -1)
+            {
+                for (int i = selectedItems.Count - 1; i >= 0; i--)
+                    cblEntities.Items.Remove(selectedItems[i]);
+            }
         }
 
         private void mnuInsert_Click(object sender, EventArgs e)

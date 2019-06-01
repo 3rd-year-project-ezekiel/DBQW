@@ -187,6 +187,38 @@ namespace DAL
             return tables;
         }
 
+        public List<string> GetColumns(string databaseName, string tableName)
+        {
+            List<string> tables = new List<string>();
+            string query = string.Format("use {0} SELECT column_name FROM information_schema.columns WHERE table_name = '{1}'",databaseName ,tableName);
+            DataSet ds = new DataSet();
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+                command = new SqlCommand(query, connection);
+                using (IDataReader dr = command.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        tables.Add(dr[0].ToString());
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return tables;
+        }
+
 
         public bool UserLogin()
         {

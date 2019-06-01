@@ -59,6 +59,7 @@
             this.lblTables = new System.Windows.Forms.Label();
             this.lstDisplay = new System.Windows.Forms.ListBox();
             this.cblEntities = new System.Windows.Forms.CheckedListBox();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.mnuMenu.SuspendLayout();
             this.tcClause.SuspendLayout();
             this.tpJoin.SuspendLayout();
@@ -386,9 +387,20 @@
             this.cblEntities.FormattingEnabled = true;
             this.cblEntities.Location = new System.Drawing.Point(11, 90);
             this.cblEntities.Name = "cblEntities";
-            this.cblEntities.Size = new System.Drawing.Size(213, 184);
+            this.cblEntities.Size = new System.Drawing.Size(170, 184);
             this.cblEntities.TabIndex = 13;
             this.cblEntities.SelectedIndexChanged += new System.EventHandler(this.cblEntities_SelectedIndexChanged_1);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(186, 93);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(56, 19);
+            this.btnRemove.TabIndex = 14;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // frmMain
             // 
@@ -397,6 +409,7 @@
             this.BackgroundImage = global::_3rdYearProject.Properties.Resources.Option1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(738, 505);
+            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.cblEntities);
             this.Controls.Add(this.lstDisplay);
             this.Controls.Add(this.lblTables);
@@ -462,5 +475,6 @@
         private System.Windows.Forms.Label lblTables;
         private System.Windows.Forms.ListBox lstDisplay;
         private System.Windows.Forms.CheckedListBox cblEntities;
+        private System.Windows.Forms.Button btnRemove;
     }
 }
