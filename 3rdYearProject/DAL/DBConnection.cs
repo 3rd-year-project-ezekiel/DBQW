@@ -124,6 +124,29 @@ namespace DAL
             }
         }
 
+        public void CreateTable(List<String> tableDetails,string databaseName,string tableName)
+        {
+            int count = 0;
+            int listLength = tableDetails.Count;
+            StringBuilder query = new StringBuilder();
+            query.Append("use " + databaseName);
+            query.Append("Create Table " + tableName);
+            query.Append("(");
+            foreach (string item in tableDetails)
+            {
+                if (count<listLength)
+                {
+                    query.Append(item.ToString()+",");
+                }
+                else if (count==listLength)
+                {
+                    query.Append(item.ToString());
+                }
+            }
+            query.Append(")");
+
+        }
+
         public List<string> GetDatabases()
         {
             List<string> databases = new List<string>();

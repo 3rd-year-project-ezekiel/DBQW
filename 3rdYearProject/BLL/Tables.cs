@@ -35,4 +35,13 @@ public class Tables
 
         return tables;
     }
+
+
+    public void AddTable(List<string> tableDetails,string databaseName,string tableName)
+    {
+        DBConnection connection = new DBConnection();
+
+        connection.CreateTable(tableDetails, databaseName, tableName);
+
+    }
 }
