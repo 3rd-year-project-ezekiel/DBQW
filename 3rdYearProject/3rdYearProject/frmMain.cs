@@ -42,8 +42,8 @@ namespace _3rdYearProject
             }
 
             SqlQueryList = (List<string>)lstDisplay.DataSource;
-            SqlQueryList.SqlQueryBuilderAlgorithm("USE DATABASE", databases[databaseItem].NameOfDatabase.ToString());
-            lstDisplay.DataSource = SqlQueryList;
+            lstDisplay.DataSource =  SqlQueryList.SqlQueryBuilderAlgorithm("USE DATABASE", databases[databaseItem].NameOfDatabase.ToString());
+             
         }
 
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)

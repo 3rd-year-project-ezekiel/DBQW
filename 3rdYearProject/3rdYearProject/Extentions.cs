@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace _3rdYearProject
 {
@@ -11,18 +12,22 @@ namespace _3rdYearProject
         // QueryData is the data that is sent through, like table name or all the entities
         public static List<string> SqlQueryBuilderAlgorithm(this List<string> theQueryList,string QueryCommand, string QueryData)
         {
-            switch (QueryData)
+            switch (QueryCommand)
             {
                 case "USE DATABASE":
                     {
-                        if (theQueryList.Count == 0)
+                        try
                         {
-                            theQueryList.Add("USE DATABASE " + QueryData);
+                            if (theQueryList.Count != 0)
+                            {
+                                theQueryList[0] = "USE DATABASE " + QueryData;
+                            }
                         }
-                        else
+                        catch (Exception)
                         {
-
-                            theQueryList[0] = "USE DATABASE " + QueryData;
+                            theQueryList = new List<string>();
+                            theQueryList.Add("USE DATABASE " + QueryData);
+                            theQueryList.Add("go");
                         }
 
                     }break;
