@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,83 +22,110 @@ namespace DAL
             this.connectionString = ConfigurationManager.ConnectionStrings[connectionStringParam].ConnectionString;
             this.connection = new SqlConnection(connectionString);
         }
-        
-        //public DataTable SelectQuery(string[] SearchArray, string[] TableArray, string[] WhereArray, string[] ConnectionArray = NULL)
-        //        {
 
-        //            //string query = "SELECT ";
-
-        //            //for(i = 0, i < SearchArray.length, i++) {
-        //            //    query = query + SearchArray[i];
-        //            //    if(i != SearchArray.length-1) {
-        //            //        query = query + ", ";
-        //            //    }
-        //            //} //SearchArray must contain the string variables of all things that must be searched
-
-        //            //query = query + " FROM ";
-
-        //            //for(i = 0, i < TableArray.length, i++) {
-        //            //    query = query + TableArray[i];
-        //            //    if(i != TableArray.length-1) {
-        //            //        query = query + ", ";
-        //            //    }
-        //            //} //TableArray must contain the tables that we are selecting from
-
-        //            //query = query + " WHERE "
-
-        //            //if(ConnectionArray != NULL) {
-        //            //    for(i = 0, i < ConnectionArray.length, i++) {
-        //            //    query = query + ConnectionArray[i] + " AND ";
-        //            //}//ConnectionArray contains the connection for the tablesArray
-        //            //}
-
-        //            //for(i = 0, i < WhereArray.length, i++) {
-        //            //    query = query + WhereArray[i];
-        //            //    if(i != WhereArray.length-1) {
-        //            //        query = query + " AND ";
-        //            //    }
-        //            //}// WhereArray contains the where clauses at the end of the select
-
-        //            //Example of running it
-
-        //            // Search Array : ENum, EName, ESurname, PRating, PPrice
-        //            // Table Array : EMP, PROJ
-        //            // Where Array : PRating = "Important", PPrice < 50000
-        //            // Connection Array: EMP.ENum = PROJ.ENum
-
-        //            // Output predicted: SELECT ENum, EName, ESurname, PRating, PPrice FROM EMP, PROJ WHERE EMP.ENum = PROJ. ENum AND PRating = "Important" AND PPrice < 50000
-
-        //            //This is what I think... If you can tell me if it works
-
-        //            try
-        //            {
-        //                if (connection.State != ConnectionState.Open)
-        //                {
-        //                    connection.Open();
-        //                }
-
-        //                command = new SqlCommand(query, connection);
-        //                adapter = new SqlDataAdapter(command);
-
-        //                table = new DataTable();
-        //                adapter.Fill(table);
-        //            }
-        //            catch (Exception)
-        //            {
-
-        //                throw;
-        //            }
-        //            finally
-        //            {
-        //                connection.Close();
-        //            }
-
-        //            return table;
-        //        }
-
-        public void SelectQuery()
+        public DataTable SelectQuery(string query)
         {
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
 
+                command = new SqlCommand(query, connection);
+                adapter = new SqlDataAdapter(command);
+
+                table = new DataTable();
+                adapter.Fill(table);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return table;
+        }
+
+        public void InsertQuery(string table, List<string> data)
+        {
+            string query = "INSERT ";
+
+            foreach (var item in data)
+            {
+                query = query + item;
+            }
+
+            query = query + " FROM " + table;
+
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+
+                command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void DeleteQuery(string table, string ID)
+        {
+            string query = "DELETE FROM " + table + " WHERE " + ID;
+
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+
+                command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        public void UpdateQuery(string query)
+        {
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+
+                command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         public void CreateDatabase(List<string> details)
@@ -124,21 +151,21 @@ namespace DAL
             }
         }
 
-        public void CreateTable(List<String> tableDetails,string databaseName,string tableName)
+        public void CreateTable(List<String> tableDetails, string databaseName, string tableName)
         {
             int count = 0;
             int listLength = tableDetails.Count;
             StringBuilder query = new StringBuilder();
-            query.Append("use " + databaseName +" ");
-            query.Append("Create Table " + tableName+" ");
+            query.Append("use " + databaseName + " ");
+            query.Append("Create Table " + tableName + " ");
             query.Append("(");
             foreach (string item in tableDetails)
             {
-                if (count<listLength)
+                if (count < listLength)
                 {
-                    query.Append(item.ToString()+",");
+                    query.Append(item.ToString() + ",");
                 }
-                else if (count==listLength)
+                else if (count == listLength)
                 {
                     query.Append(item.ToString());
                 }
@@ -232,7 +259,7 @@ namespace DAL
         public List<string> GetColumns(string databaseName, string tableName)
         {
             List<string> tables = new List<string>();
-            string query = string.Format("use {0} SELECT column_name FROM information_schema.columns WHERE table_name = '{1}'",databaseName ,tableName);
+            string query = string.Format("use {0} SELECT column_name FROM information_schema.columns WHERE table_name = '{1}'", databaseName, tableName);
             DataSet ds = new DataSet();
             try
             {
