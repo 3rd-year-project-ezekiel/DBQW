@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.mnuMenu = new System.Windows.Forms.MenuStrip();
+            this.mnuProgramability = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSelect = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInsert = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpdate = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuData = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCreate = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSubDatabase = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSubTable = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuProgramability = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuData = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuLogout = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDatabase = new System.Windows.Forms.Label();
             this.cmbDatabaseList = new System.Windows.Forms.ComboBox();
             this.btnExecute = new System.Windows.Forms.Button();
@@ -46,7 +46,6 @@
             this.cmbTables = new System.Windows.Forms.ComboBox();
             this.lblTables = new System.Windows.Forms.Label();
             this.lstDisplay = new System.Windows.Forms.ListBox();
-            this.cblEntities = new System.Windows.Forms.CheckedListBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.pnlSubMenu = new System.Windows.Forms.Panel();
             this.mnuSubMenu = new System.Windows.Forms.MenuStrip();
@@ -55,6 +54,7 @@
             this.mnuGroupBy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOrderBy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuHaving = new System.Windows.Forms.ToolStripMenuItem();
+            this.tvEntities = new System.Windows.Forms.TreeView();
             this.mnuMenu.SuspendLayout();
             this.pnlSubMenu.SuspendLayout();
             this.mnuSubMenu.SuspendLayout();
@@ -78,6 +78,12 @@
             this.mnuMenu.Size = new System.Drawing.Size(984, 28);
             this.mnuMenu.TabIndex = 0;
             this.mnuMenu.Text = "menuStrip1";
+            // 
+            // mnuProgramability
+            // 
+            this.mnuProgramability.Name = "mnuProgramability";
+            this.mnuProgramability.Size = new System.Drawing.Size(132, 24);
+            this.mnuProgramability.Text = "Programmability";
             // 
             // mnuSelect
             // 
@@ -107,19 +113,6 @@
             this.mnuUpdate.Text = "Update";
             this.mnuUpdate.Click += new System.EventHandler(this.mnuUpdate_Click);
             // 
-            // mnuData
-            // 
-            this.mnuData.Name = "mnuData";
-            this.mnuData.Size = new System.Drawing.Size(53, 24);
-            this.mnuData.Text = "Data";
-            // 
-            // mnuLogout
-            // 
-            this.mnuLogout.Name = "mnuLogout";
-            this.mnuLogout.Size = new System.Drawing.Size(68, 24);
-            this.mnuLogout.Text = "Logout";
-            this.mnuLogout.Click += new System.EventHandler(this.mnuLogout_Click);
-            // 
             // mnuCreate
             // 
             this.mnuCreate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -132,22 +125,29 @@
             // mnuSubDatabase
             // 
             this.mnuSubDatabase.Name = "mnuSubDatabase";
-            this.mnuSubDatabase.Size = new System.Drawing.Size(216, 26);
+            this.mnuSubDatabase.Size = new System.Drawing.Size(147, 26);
             this.mnuSubDatabase.Text = "Database";
             this.mnuSubDatabase.Click += new System.EventHandler(this.DatabaseToolStripMenuItem_Click);
             // 
             // mnuSubTable
             // 
             this.mnuSubTable.Name = "mnuSubTable";
-            this.mnuSubTable.Size = new System.Drawing.Size(216, 26);
+            this.mnuSubTable.Size = new System.Drawing.Size(147, 26);
             this.mnuSubTable.Text = "Table";
             this.mnuSubTable.Click += new System.EventHandler(this.TableToolStripMenuItem_Click);
             // 
-            // mnuProgramability
+            // mnuData
             // 
-            this.mnuProgramability.Name = "mnuProgramability";
-            this.mnuProgramability.Size = new System.Drawing.Size(132, 24);
-            this.mnuProgramability.Text = "Programmability";
+            this.mnuData.Name = "mnuData";
+            this.mnuData.Size = new System.Drawing.Size(53, 24);
+            this.mnuData.Text = "Data";
+            // 
+            // mnuLogout
+            // 
+            this.mnuLogout.Name = "mnuLogout";
+            this.mnuLogout.Size = new System.Drawing.Size(68, 24);
+            this.mnuLogout.Text = "Logout";
+            this.mnuLogout.Click += new System.EventHandler(this.mnuLogout_Click);
             // 
             // lblDatabase
             // 
@@ -217,16 +217,6 @@
             this.lstDisplay.Size = new System.Drawing.Size(953, 212);
             this.lstDisplay.TabIndex = 11;
             // 
-            // cblEntities
-            // 
-            this.cblEntities.FormattingEnabled = true;
-            this.cblEntities.Location = new System.Drawing.Point(15, 111);
-            this.cblEntities.Margin = new System.Windows.Forms.Padding(4);
-            this.cblEntities.Name = "cblEntities";
-            this.cblEntities.Size = new System.Drawing.Size(225, 225);
-            this.cblEntities.TabIndex = 13;
-            this.cblEntities.SelectedIndexChanged += new System.EventHandler(this.cblEntities_SelectedIndexChanged_1);
-            // 
             // btnRemove
             // 
             this.btnRemove.Location = new System.Drawing.Point(248, 114);
@@ -291,6 +281,13 @@
             this.mnuHaving.Size = new System.Drawing.Size(68, 24);
             this.mnuHaving.Text = "Having";
             // 
+            // tvEntities
+            // 
+            this.tvEntities.Location = new System.Drawing.Point(16, 126);
+            this.tvEntities.Name = "tvEntities";
+            this.tvEntities.Size = new System.Drawing.Size(219, 210);
+            this.tvEntities.TabIndex = 16;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -298,9 +295,9 @@
             this.BackgroundImage = global::_3rdYearProject.Properties.Resources.Option1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(984, 622);
+            this.Controls.Add(this.tvEntities);
             this.Controls.Add(this.pnlSubMenu);
             this.Controls.Add(this.btnRemove);
-            this.Controls.Add(this.cblEntities);
             this.Controls.Add(this.lstDisplay);
             this.Controls.Add(this.lblTables);
             this.Controls.Add(this.cmbTables);
@@ -340,7 +337,6 @@
         private System.Windows.Forms.ComboBox cmbTables;
         private System.Windows.Forms.Label lblTables;
         private System.Windows.Forms.ListBox lstDisplay;
-        private System.Windows.Forms.CheckedListBox cblEntities;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ToolStripMenuItem mnuCreate;
         private System.Windows.Forms.ToolStripMenuItem mnuSubDatabase;
@@ -353,5 +349,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuGroupBy;
         private System.Windows.Forms.ToolStripMenuItem mnuOrderBy;
         private System.Windows.Forms.ToolStripMenuItem mnuHaving;
+        private System.Windows.Forms.TreeView tvEntities;
     }
 }

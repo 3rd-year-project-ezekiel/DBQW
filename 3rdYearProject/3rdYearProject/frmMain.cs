@@ -21,6 +21,7 @@ namespace _3rdYearProject
         public frmMain()
         {
             InitializeComponent();
+            tvEntities.CheckBoxes = true;
             Databases database = new Databases();
             databases = database.GetDatabases();
             foreach(Databases dataItem in databases)
@@ -32,7 +33,7 @@ namespace _3rdYearProject
         private void cmbDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbTables.Items.Clear();
-            cblEntities.Items.Clear();
+            tvEntities.Nodes.Clear();
             Tables table = new Tables();
             databaseItem = cmbDatabaseList.SelectedIndex;
             tables = table.GetTables(databases[databaseItem].NameOfDatabase.ToString());
@@ -46,25 +47,43 @@ namespace _3rdYearProject
              
         }
 
+        int count = 0;
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Will di checkbox hierachial maak met tables en columns
+            TreeNode[] nodes = null;
             tableItem = cmbTables.SelectedIndex;
-            if (cblEntities.Items.Contains(tables[tableItem].TableNames.ToString()))
+            if(count > 0)
             {
-                MessageBox.Show("Cant add the same Column");
+                foreach (Tables dataItem in tables)
+                {
+                    nodes = tvEntities.Nodes.Find(dataItem.TableNames, true);
+                }
+                if (nodes != null)
+                {
+                    MessageBox.Show("Cant add the same Column");
+                }
+                else
+                {
+                    tvEntities.Nodes.Add(tables[cmbTables.SelectedIndex].TableNames);
+                    Columns column = new Columns();
+                    columns = column.GetColumns(databases[databaseItem].NameOfDatabase.ToString(), tables[cmbTables.SelectedIndex].TableNames.ToString());
+                    foreach (Columns dataItem in columns)
+                    {
+                        tvEntities.Nodes[tableItem].Nodes.Add(dataItem.ColumnName);
+                    }
+                }
             }
             else
             {
-                cblEntities.Items.Add(tables[cmbTables.SelectedIndex].TableNames.ToString());
+                tvEntities.Nodes.Add(tables[cmbTables.SelectedIndex].TableNames);
+                Columns column = new Columns();
+                columns = column.GetColumns(databases[databaseItem].NameOfDatabase.ToString(), tables[cmbTables.SelectedIndex].TableNames.ToString());
+                foreach (Columns dataItem in columns)
+                {
+                    tvEntities.Nodes[tableItem].Nodes.Add(dataItem.ColumnName);
+                }
             }
-
-            Columns column = new Columns();
-            columns = column.GetColumns(databases[databaseItem].NameOfDatabase.ToString(), tables[cmbTables.SelectedIndex].TableNames.ToString());
-            foreach (Columns dataItem in columns)
-            {
-                cblEntities.Items.Add(dataItem.ColumnName);
-            }
+            count++;
         }
 
         private void mnuLogout_Click(object sender, EventArgs e)
@@ -91,19 +110,12 @@ namespace _3rdYearProject
 
         private void cblEntities_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            
+            // bruuuuuuuuuuuuu
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            ListBox.SelectedObjectCollection selectedItems = new ListBox.SelectedObjectCollection(cblEntities);
-            selectedItems = cblEntities.SelectedItems;
-
-            if (cblEntities.SelectedIndex != -1)
-            {
-                for (int i = selectedItems.Count - 1; i >= 0; i--)
-                    cblEntities.Items.Remove(selectedItems[i]);
-            }
+            TreeNode[] nodes = tvEntities.Nodes.Find(tvEntities.SelectedNode.ToString(), true);
         }
 
         private void DatabaseToolStripMenuItem_Click(object sender, EventArgs e)
