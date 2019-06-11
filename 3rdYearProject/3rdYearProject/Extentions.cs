@@ -63,6 +63,70 @@ namespace _3rdYearProject
                         }
                     }break;
 
+                case "DELETE":
+                    {
+                        if (false)//"Procudure")
+                        {
+
+                        }
+                        else
+                        {
+                            if (theQueryList.Count < 3)
+                            {
+                                string[] queryInfo = QueryData.Split('#');
+                                theQueryList.Add("INSERT INTO " + queryInfo[0]);
+                                theQueryList.Add("VALUE(" + queryInfo[1] + ")");
+                            }
+                            else
+                            {
+                                switch (theQueryList[2])// checks to see if there is somthing else like a delete of update
+                                {
+                                    case null:
+                                        {
+
+                                        }
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                    break;
+
+                case "UPDATE":
+                    {
+                        if (false)//"Procudure")
+                        {
+
+                        }
+                        else
+                        {
+                            if (theQueryList.Count < 3)
+                            {
+                                string[] queryInfo = QueryData.Split('#');
+                                theQueryList.Add("INSERT INTO " + queryInfo[0]);
+                                theQueryList.Add("VALUE(" + queryInfo[1] + ")");
+                            }
+                            else
+                            {
+                                switch (theQueryList[2])// checks to see if there is somthing else like a delete of update
+                                {
+                                    case null:
+                                        {
+
+                                        }
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                    break;
+
                 default:
                     break;
             }
