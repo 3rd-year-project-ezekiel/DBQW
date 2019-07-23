@@ -149,6 +149,11 @@ namespace _3rdYearProject
 
         }
 
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
         public void MenuStripColour(ToolStripMenuItem SelectedItem)
         {
             mnuSelect.BackColor = Color.Transparent;
