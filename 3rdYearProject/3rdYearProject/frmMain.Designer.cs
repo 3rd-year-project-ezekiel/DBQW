@@ -47,17 +47,16 @@
             this.lblTables = new System.Windows.Forms.Label();
             this.lstDisplay = new System.Windows.Forms.ListBox();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.pnlSubMenu = new System.Windows.Forms.Panel();
-            this.mnuSubMenu = new System.Windows.Forms.MenuStrip();
-            this.mnuJoin = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuWhere = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuGroupBy = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuOrderBy = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuHaving = new System.Windows.Forms.ToolStripMenuItem();
             this.tvEntities = new System.Windows.Forms.TreeView();
+            this.tbcExstra = new System.Windows.Forms.TabControl();
+            this.tpWhere = new System.Windows.Forms.TabPage();
+            this.tpOrderBy = new System.Windows.Forms.TabPage();
+            this.tpGroupBy = new System.Windows.Forms.TabPage();
+            this.tpHaving = new System.Windows.Forms.TabPage();
+            this.tpJoins = new System.Windows.Forms.TabPage();
+            this.tpValues = new System.Windows.Forms.TabPage();
             this.mnuMenu.SuspendLayout();
-            this.pnlSubMenu.SuspendLayout();
-            this.mnuSubMenu.SuspendLayout();
+            this.tbcExstra.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnuMenu
@@ -75,7 +74,7 @@
             this.mnuMenu.Location = new System.Drawing.Point(0, 0);
             this.mnuMenu.Name = "mnuMenu";
             this.mnuMenu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.mnuMenu.Size = new System.Drawing.Size(984, 28);
+            this.mnuMenu.Size = new System.Drawing.Size(1010, 28);
             this.mnuMenu.TabIndex = 0;
             this.mnuMenu.Text = "menuStrip1";
             // 
@@ -219,67 +218,14 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(248, 114);
+            this.btnRemove.Location = new System.Drawing.Point(241, 126);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.Size = new System.Drawing.Size(75, 33);
             this.btnRemove.TabIndex = 14;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
-            // pnlSubMenu
-            // 
-            this.pnlSubMenu.Controls.Add(this.mnuSubMenu);
-            this.pnlSubMenu.Location = new System.Drawing.Point(350, 42);
-            this.pnlSubMenu.Name = "pnlSubMenu";
-            this.pnlSubMenu.Size = new System.Drawing.Size(604, 294);
-            this.pnlSubMenu.TabIndex = 15;
-            // 
-            // mnuSubMenu
-            // 
-            this.mnuSubMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.mnuSubMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuJoin,
-            this.mnuWhere,
-            this.mnuGroupBy,
-            this.mnuOrderBy,
-            this.mnuHaving});
-            this.mnuSubMenu.Location = new System.Drawing.Point(0, 0);
-            this.mnuSubMenu.Name = "mnuSubMenu";
-            this.mnuSubMenu.Size = new System.Drawing.Size(604, 28);
-            this.mnuSubMenu.TabIndex = 0;
-            this.mnuSubMenu.Text = "menuStrip1";
-            // 
-            // mnuJoin
-            // 
-            this.mnuJoin.Name = "mnuJoin";
-            this.mnuJoin.Size = new System.Drawing.Size(53, 24);
-            this.mnuJoin.Text = "Joins";
-            // 
-            // mnuWhere
-            // 
-            this.mnuWhere.Name = "mnuWhere";
-            this.mnuWhere.Size = new System.Drawing.Size(64, 24);
-            this.mnuWhere.Text = "Where";
-            // 
-            // mnuGroupBy
-            // 
-            this.mnuGroupBy.Name = "mnuGroupBy";
-            this.mnuGroupBy.Size = new System.Drawing.Size(82, 24);
-            this.mnuGroupBy.Text = "Group By";
-            // 
-            // mnuOrderBy
-            // 
-            this.mnuOrderBy.Name = "mnuOrderBy";
-            this.mnuOrderBy.Size = new System.Drawing.Size(79, 24);
-            this.mnuOrderBy.Text = "Order By";
-            // 
-            // mnuHaving
-            // 
-            this.mnuHaving.Name = "mnuHaving";
-            this.mnuHaving.Size = new System.Drawing.Size(68, 24);
-            this.mnuHaving.Text = "Having";
             // 
             // tvEntities
             // 
@@ -288,15 +234,85 @@
             this.tvEntities.Size = new System.Drawing.Size(219, 210);
             this.tvEntities.TabIndex = 16;
             // 
+            // tbcExstra
+            // 
+            this.tbcExstra.Controls.Add(this.tpValues);
+            this.tbcExstra.Controls.Add(this.tpWhere);
+            this.tbcExstra.Controls.Add(this.tpOrderBy);
+            this.tbcExstra.Controls.Add(this.tpGroupBy);
+            this.tbcExstra.Controls.Add(this.tpHaving);
+            this.tbcExstra.Controls.Add(this.tpJoins);
+            this.tbcExstra.Location = new System.Drawing.Point(344, 42);
+            this.tbcExstra.Name = "tbcExstra";
+            this.tbcExstra.SelectedIndex = 0;
+            this.tbcExstra.Size = new System.Drawing.Size(624, 294);
+            this.tbcExstra.TabIndex = 17;
+            // 
+            // tpWhere
+            // 
+            this.tpWhere.Location = new System.Drawing.Point(4, 25);
+            this.tpWhere.Name = "tpWhere";
+            this.tpWhere.Padding = new System.Windows.Forms.Padding(3);
+            this.tpWhere.Size = new System.Drawing.Size(616, 265);
+            this.tpWhere.TabIndex = 0;
+            this.tpWhere.Text = "Where";
+            this.tpWhere.UseVisualStyleBackColor = true;
+            // 
+            // tpOrderBy
+            // 
+            this.tpOrderBy.Location = new System.Drawing.Point(4, 25);
+            this.tpOrderBy.Name = "tpOrderBy";
+            this.tpOrderBy.Padding = new System.Windows.Forms.Padding(3);
+            this.tpOrderBy.Size = new System.Drawing.Size(616, 265);
+            this.tpOrderBy.TabIndex = 1;
+            this.tpOrderBy.Text = "Order By";
+            this.tpOrderBy.UseVisualStyleBackColor = true;
+            // 
+            // tpGroupBy
+            // 
+            this.tpGroupBy.Location = new System.Drawing.Point(4, 25);
+            this.tpGroupBy.Name = "tpGroupBy";
+            this.tpGroupBy.Size = new System.Drawing.Size(616, 265);
+            this.tpGroupBy.TabIndex = 2;
+            this.tpGroupBy.Text = "Group By";
+            this.tpGroupBy.UseVisualStyleBackColor = true;
+            // 
+            // tpHaving
+            // 
+            this.tpHaving.Location = new System.Drawing.Point(4, 25);
+            this.tpHaving.Name = "tpHaving";
+            this.tpHaving.Size = new System.Drawing.Size(616, 265);
+            this.tpHaving.TabIndex = 3;
+            this.tpHaving.Text = "Having";
+            this.tpHaving.UseVisualStyleBackColor = true;
+            // 
+            // tpJoins
+            // 
+            this.tpJoins.Location = new System.Drawing.Point(4, 25);
+            this.tpJoins.Name = "tpJoins";
+            this.tpJoins.Size = new System.Drawing.Size(616, 265);
+            this.tpJoins.TabIndex = 4;
+            this.tpJoins.Text = "Joins";
+            this.tpJoins.UseVisualStyleBackColor = true;
+            // 
+            // tpValues
+            // 
+            this.tpValues.Location = new System.Drawing.Point(4, 25);
+            this.tpValues.Name = "tpValues";
+            this.tpValues.Size = new System.Drawing.Size(616, 265);
+            this.tpValues.TabIndex = 5;
+            this.tpValues.Text = "Values";
+            this.tpValues.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_3rdYearProject.Properties.Resources.Option1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(984, 622);
+            this.ClientSize = new System.Drawing.Size(1010, 622);
+            this.Controls.Add(this.tbcExstra);
             this.Controls.Add(this.tvEntities);
-            this.Controls.Add(this.pnlSubMenu);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.lstDisplay);
             this.Controls.Add(this.lblTables);
@@ -312,10 +328,7 @@
             this.Text = "main";
             this.mnuMenu.ResumeLayout(false);
             this.mnuMenu.PerformLayout();
-            this.pnlSubMenu.ResumeLayout(false);
-            this.pnlSubMenu.PerformLayout();
-            this.mnuSubMenu.ResumeLayout(false);
-            this.mnuSubMenu.PerformLayout();
+            this.tbcExstra.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,13 +355,13 @@
         private System.Windows.Forms.ToolStripMenuItem mnuSubDatabase;
         private System.Windows.Forms.ToolStripMenuItem mnuSubTable;
         private System.Windows.Forms.ToolStripMenuItem mnuProgramability;
-        private System.Windows.Forms.Panel pnlSubMenu;
-        private System.Windows.Forms.MenuStrip mnuSubMenu;
-        private System.Windows.Forms.ToolStripMenuItem mnuJoin;
-        private System.Windows.Forms.ToolStripMenuItem mnuWhere;
-        private System.Windows.Forms.ToolStripMenuItem mnuGroupBy;
-        private System.Windows.Forms.ToolStripMenuItem mnuOrderBy;
-        private System.Windows.Forms.ToolStripMenuItem mnuHaving;
         private System.Windows.Forms.TreeView tvEntities;
+        private System.Windows.Forms.TabControl tbcExstra;
+        private System.Windows.Forms.TabPage tpWhere;
+        private System.Windows.Forms.TabPage tpOrderBy;
+        private System.Windows.Forms.TabPage tpGroupBy;
+        private System.Windows.Forms.TabPage tpHaving;
+        private System.Windows.Forms.TabPage tpJoins;
+        private System.Windows.Forms.TabPage tpValues;
     }
 }
