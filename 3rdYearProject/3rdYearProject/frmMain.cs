@@ -14,9 +14,9 @@ namespace _3rdYearProject
     {
         List<Databases> databases;
         List<Tables> tables;
+        List<Tables> selectedTables = new List<Tables>();
         List<Columns> columns;
         List<string> SqlQueryList;
-        int databaseItem = 0, tableItem = 0;
         
         public frmMain()
         {
@@ -24,66 +24,62 @@ namespace _3rdYearProject
             tvEntities.CheckBoxes = true;
             Databases database = new Databases();
             databases = database.GetDatabases();
-            foreach(Databases dataItem in databases)
-            {
-                cmbDatabaseList.Items.Add(dataItem.NameOfDatabase);
-            }
+            cmbDatabaseList.SelectedIndexChanged -= cmbDatabaseList_SelectedIndexChanged;
+            cmbDatabaseList.DataSource = databases;
+            cmbDatabaseList.DisplayMember = "NameOfDatabase";
+            cmbDatabaseList.ValueMember = "NameOfDatabase";
+            cmbDatabaseList.SelectedIndex = -1;
+            cmbDatabaseList.SelectedIndexChanged += cmbDatabaseList_SelectedIndexChanged;
         }
 
         private void cmbDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbTables.Items.Clear();
             tvEntities.Nodes.Clear();
             Tables table = new Tables();
-            databaseItem = cmbDatabaseList.SelectedIndex;
-            tables = table.GetTables(databases[databaseItem].NameOfDatabase.ToString());
-            foreach (Tables dataItem in tables)
-            {
-                cmbTables.Items.Add(dataItem.TableNames);
-            }
+            tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
+            cmbTables.SelectedIndexChanged -= cmbTables_SelectedIndexChanged;
+            cmbTables.DataSource = tables;
+            cmbTables.DisplayMember = "tableNames";
+            cmbTables.ValueMember = "tableNames";
+            cmbTables.SelectedIndex = -1;
+            cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
 
             SqlQueryList = (List<string>)lstDisplay.DataSource;
-            lstDisplay.DataSource =  SqlQueryList.SqlQueryBuilderAlgorithm("USE DATABASE", databases[databaseItem].NameOfDatabase.ToString());
+            lstDisplay.DataSource =  SqlQueryList.SqlQueryBuilderAlgorithm("USE DATABASE", cmbDatabaseList.SelectedValue.ToString());
              
         }
 
-        int count = 0;
+        int item = 0;
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TreeNode[] nodes = null;
-            tableItem = cmbTables.SelectedIndex;
-            if(count > 0)
+            bool found = false;
+            Tables newTable = (Tables)cmbTables.SelectedItem;
+            if(item != 0)
             {
-                foreach (Tables dataItem in tables)
+                foreach(Tables sItem in selectedTables)
                 {
-                    nodes = tvEntities.Nodes.Find(dataItem.TableNames, true);
-                }
-                if (nodes != null)
-                {
-                    MessageBox.Show("Cant add the same Column");
-                }
-                else
-                {
-                    tvEntities.Nodes.Add(tables[cmbTables.SelectedIndex].TableNames);
-                    Columns column = new Columns();
-                    columns = column.GetColumns(databases[databaseItem].NameOfDatabase.ToString(), tables[cmbTables.SelectedIndex].TableNames.ToString());
-                    foreach (Columns dataItem in columns)
+                    if (sItem.TableNames == newTable.TableNames)
                     {
-                        tvEntities.Nodes[tableItem].Nodes.Add(dataItem.ColumnName);
+                        found = true;
                     }
                 }
-            }
-            else
-            {
-                tvEntities.Nodes.Add(tables[cmbTables.SelectedIndex].TableNames);
-                Columns column = new Columns();
-                columns = column.GetColumns(databases[databaseItem].NameOfDatabase.ToString(), tables[cmbTables.SelectedIndex].TableNames.ToString());
-                foreach (Columns dataItem in columns)
+                if (found == true)
                 {
-                    tvEntities.Nodes[tableItem].Nodes.Add(dataItem.ColumnName);
+                    MessageBox.Show("Cant add the same Column", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            count++;
+            if (found == false)
+            {
+                selectedTables.Add(new Tables(newTable.TableNames));
+                tvEntities.Nodes.Add(newTable.TableNames);
+                Columns column = new Columns();
+                columns = column.GetColumns(cmbDatabaseList.SelectedValue.ToString(), newTable.TableNames.ToString());
+                foreach (Columns dataItem in columns)
+                {
+                    tvEntities.Nodes[item].Nodes.Add(dataItem.ColumnName);
+                }
+                item++;
+            }
         }
 
         private void mnuLogout_Click(object sender, EventArgs e)
