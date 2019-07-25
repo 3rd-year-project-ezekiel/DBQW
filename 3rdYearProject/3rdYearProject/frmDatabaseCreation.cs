@@ -87,5 +87,12 @@ namespace _3rdYearProject
 
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmMain frmMain = new frmMain();
+            frmMain.Show();
+            this.Hide();
+        }
     }
 }

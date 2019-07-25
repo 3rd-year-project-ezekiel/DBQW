@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlColumns = new System.Windows.Forms.Panel();
+            this.btnProceed = new System.Windows.Forms.Button();
             this.btnCreateTable = new System.Windows.Forms.Button();
             this.txtTableName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -37,6 +38,12 @@
             this.btnRemoveColumn = new System.Windows.Forms.Button();
             this.lstColumns = new System.Windows.Forms.ListBox();
             this.pnlColumnDetails = new System.Windows.Forms.Panel();
+            this.lblIndeityHeading = new System.Windows.Forms.Label();
+            this.txtIncrementValue = new System.Windows.Forms.TextBox();
+            this.txtIncrementStartValue = new System.Windows.Forms.TextBox();
+            this.lblIncrement = new System.Windows.Forms.Label();
+            this.lblStartValue = new System.Windows.Forms.Label();
+            this.cbIdentity = new System.Windows.Forms.CheckBox();
             this.txtForeignTable = new System.Windows.Forms.TextBox();
             this.lblForeignTable = new System.Windows.Forms.Label();
             this.lblForeignHeading = new System.Windows.Forms.Label();
@@ -53,13 +60,7 @@
             this.txtColName = new System.Windows.Forms.TextBox();
             this.lblColumnDetails = new System.Windows.Forms.Label();
             this.lblMainHeading = new System.Windows.Forms.Label();
-            this.btnProceed = new System.Windows.Forms.Button();
-            this.cbIdentity = new System.Windows.Forms.CheckBox();
-            this.lblStartValue = new System.Windows.Forms.Label();
-            this.lblIncrement = new System.Windows.Forms.Label();
-            this.txtIncrementStartValue = new System.Windows.Forms.TextBox();
-            this.txtIncrementValue = new System.Windows.Forms.TextBox();
-            this.lblIndeityHeading = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlColumns.SuspendLayout();
             this.pnlColumnDetails.SuspendLayout();
             this.SuspendLayout();
@@ -74,16 +75,31 @@
             this.pnlColumns.Controls.Add(this.lblColumnsHeading);
             this.pnlColumns.Controls.Add(this.btnRemoveColumn);
             this.pnlColumns.Controls.Add(this.lstColumns);
-            this.pnlColumns.Location = new System.Drawing.Point(82, 102);
+            this.pnlColumns.Location = new System.Drawing.Point(109, 126);
+            this.pnlColumns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlColumns.Name = "pnlColumns";
-            this.pnlColumns.Size = new System.Drawing.Size(373, 553);
+            this.pnlColumns.Size = new System.Drawing.Size(497, 681);
             this.pnlColumns.TabIndex = 10;
+            // 
+            // btnProceed
+            // 
+            this.btnProceed.BackColor = System.Drawing.Color.Crimson;
+            this.btnProceed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProceed.Location = new System.Drawing.Point(171, 620);
+            this.btnProceed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnProceed.Name = "btnProceed";
+            this.btnProceed.Size = new System.Drawing.Size(121, 41);
+            this.btnProceed.TabIndex = 12;
+            this.btnProceed.Text = "Main Menu";
+            this.btnProceed.UseVisualStyleBackColor = false;
+            this.btnProceed.Click += new System.EventHandler(this.BtnProceed_Click);
             // 
             // btnCreateTable
             // 
-            this.btnCreateTable.Location = new System.Drawing.Point(117, 460);
+            this.btnCreateTable.Location = new System.Drawing.Point(156, 566);
+            this.btnCreateTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreateTable.Name = "btnCreateTable";
-            this.btnCreateTable.Size = new System.Drawing.Size(110, 23);
+            this.btnCreateTable.Size = new System.Drawing.Size(147, 28);
             this.btnCreateTable.TabIndex = 13;
             this.btnCreateTable.Text = "Create Table";
             this.btnCreateTable.UseVisualStyleBackColor = true;
@@ -91,17 +107,19 @@
             // 
             // txtTableName
             // 
-            this.txtTableName.Location = new System.Drawing.Point(152, 68);
+            this.txtTableName.Location = new System.Drawing.Point(203, 84);
+            this.txtTableName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTableName.Name = "txtTableName";
-            this.txtTableName.Size = new System.Drawing.Size(100, 20);
+            this.txtTableName.Size = new System.Drawing.Size(132, 22);
             this.txtTableName.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(78, 71);
+            this.label4.Location = new System.Drawing.Point(104, 87);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 13);
+            this.label4.Size = new System.Drawing.Size(89, 17);
             this.label4.TabIndex = 4;
             this.label4.Text = "Table Name:";
             // 
@@ -109,9 +127,10 @@
             // 
             this.lblHeading.AutoSize = true;
             this.lblHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeading.Location = new System.Drawing.Point(113, 15);
+            this.lblHeading.Location = new System.Drawing.Point(151, 18);
+            this.lblHeading.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHeading.Name = "lblHeading";
-            this.lblHeading.Size = new System.Drawing.Size(114, 20);
+            this.lblHeading.Size = new System.Drawing.Size(139, 25);
             this.lblHeading.TabIndex = 3;
             this.lblHeading.Text = "Table Details";
             // 
@@ -119,17 +138,19 @@
             // 
             this.lblColumnsHeading.AutoSize = true;
             this.lblColumnsHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnsHeading.Location = new System.Drawing.Point(148, 121);
+            this.lblColumnsHeading.Location = new System.Drawing.Point(197, 149);
+            this.lblColumnsHeading.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnsHeading.Name = "lblColumnsHeading";
-            this.lblColumnsHeading.Size = new System.Drawing.Size(71, 20);
+            this.lblColumnsHeading.Size = new System.Drawing.Size(90, 25);
             this.lblColumnsHeading.TabIndex = 2;
             this.lblColumnsHeading.Text = "Columns";
             // 
             // btnRemoveColumn
             // 
-            this.btnRemoveColumn.Location = new System.Drawing.Point(117, 424);
+            this.btnRemoveColumn.Location = new System.Drawing.Point(156, 522);
+            this.btnRemoveColumn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRemoveColumn.Name = "btnRemoveColumn";
-            this.btnRemoveColumn.Size = new System.Drawing.Size(110, 23);
+            this.btnRemoveColumn.Size = new System.Drawing.Size(147, 28);
             this.btnRemoveColumn.TabIndex = 1;
             this.btnRemoveColumn.Text = "Remove Column";
             this.btnRemoveColumn.UseVisualStyleBackColor = true;
@@ -138,9 +159,11 @@
             // lstColumns
             // 
             this.lstColumns.FormattingEnabled = true;
-            this.lstColumns.Location = new System.Drawing.Point(35, 154);
+            this.lstColumns.ItemHeight = 16;
+            this.lstColumns.Location = new System.Drawing.Point(47, 190);
+            this.lstColumns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lstColumns.Name = "lstColumns";
-            this.lstColumns.Size = new System.Drawing.Size(313, 264);
+            this.lstColumns.Size = new System.Drawing.Size(416, 324);
             this.lstColumns.TabIndex = 0;
             // 
             // pnlColumnDetails
@@ -166,24 +189,86 @@
             this.pnlColumnDetails.Controls.Add(this.lblColType);
             this.pnlColumnDetails.Controls.Add(this.txtColName);
             this.pnlColumnDetails.Controls.Add(this.lblColumnDetails);
-            this.pnlColumnDetails.Location = new System.Drawing.Point(503, 102);
+            this.pnlColumnDetails.Location = new System.Drawing.Point(671, 126);
+            this.pnlColumnDetails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlColumnDetails.Name = "pnlColumnDetails";
-            this.pnlColumnDetails.Size = new System.Drawing.Size(502, 621);
+            this.pnlColumnDetails.Size = new System.Drawing.Size(669, 764);
             this.pnlColumnDetails.TabIndex = 11;
+            // 
+            // lblIndeityHeading
+            // 
+            this.lblIndeityHeading.AutoSize = true;
+            this.lblIndeityHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIndeityHeading.Location = new System.Drawing.Point(252, 411);
+            this.lblIndeityHeading.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIndeityHeading.Name = "lblIndeityHeading";
+            this.lblIndeityHeading.Size = new System.Drawing.Size(144, 24);
+            this.lblIndeityHeading.TabIndex = 21;
+            this.lblIndeityHeading.Text = "Idnetity Details";
+            // 
+            // txtIncrementValue
+            // 
+            this.txtIncrementValue.Location = new System.Drawing.Point(341, 526);
+            this.txtIncrementValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIncrementValue.Name = "txtIncrementValue";
+            this.txtIncrementValue.Size = new System.Drawing.Size(132, 22);
+            this.txtIncrementValue.TabIndex = 20;
+            // 
+            // txtIncrementStartValue
+            // 
+            this.txtIncrementStartValue.Location = new System.Drawing.Point(341, 459);
+            this.txtIncrementStartValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIncrementStartValue.Name = "txtIncrementStartValue";
+            this.txtIncrementStartValue.Size = new System.Drawing.Size(132, 22);
+            this.txtIncrementStartValue.TabIndex = 19;
+            // 
+            // lblIncrement
+            // 
+            this.lblIncrement.AutoSize = true;
+            this.lblIncrement.Location = new System.Drawing.Point(228, 526);
+            this.lblIncrement.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIncrement.Name = "lblIncrement";
+            this.lblIncrement.Size = new System.Drawing.Size(94, 17);
+            this.lblIncrement.TabIndex = 18;
+            this.lblIncrement.Text = "Increment By:";
+            // 
+            // lblStartValue
+            // 
+            this.lblStartValue.AutoSize = true;
+            this.lblStartValue.Location = new System.Drawing.Point(219, 463);
+            this.lblStartValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStartValue.Name = "lblStartValue";
+            this.lblStartValue.Size = new System.Drawing.Size(114, 17);
+            this.lblStartValue.TabIndex = 17;
+            this.lblStartValue.Text = "Start Identity On:";
+            // 
+            // cbIdentity
+            // 
+            this.cbIdentity.AutoSize = true;
+            this.cbIdentity.Location = new System.Drawing.Point(275, 346);
+            this.cbIdentity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbIdentity.Name = "cbIdentity";
+            this.cbIdentity.Size = new System.Drawing.Size(75, 21);
+            this.cbIdentity.TabIndex = 16;
+            this.cbIdentity.Text = "Identity";
+            this.cbIdentity.UseVisualStyleBackColor = true;
+            this.cbIdentity.CheckedChanged += new System.EventHandler(this.CbIdentity_CheckedChanged);
             // 
             // txtForeignTable
             // 
-            this.txtForeignTable.Location = new System.Drawing.Point(272, 548);
+            this.txtForeignTable.Location = new System.Drawing.Point(363, 674);
+            this.txtForeignTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtForeignTable.Name = "txtForeignTable";
-            this.txtForeignTable.Size = new System.Drawing.Size(100, 20);
+            this.txtForeignTable.Size = new System.Drawing.Size(132, 22);
             this.txtForeignTable.TabIndex = 15;
             // 
             // lblForeignTable
             // 
             this.lblForeignTable.AutoSize = true;
-            this.lblForeignTable.Location = new System.Drawing.Point(129, 551);
+            this.lblForeignTable.Location = new System.Drawing.Point(172, 678);
+            this.lblForeignTable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblForeignTable.Name = "lblForeignTable";
-            this.lblForeignTable.Size = new System.Drawing.Size(121, 13);
+            this.lblForeignTable.Size = new System.Drawing.Size(159, 17);
             this.lblForeignTable.TabIndex = 14;
             this.lblForeignTable.Text = "Reference Table Name ";
             // 
@@ -191,26 +276,29 @@
             // 
             this.lblForeignHeading.AutoSize = true;
             this.lblForeignHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForeignHeading.Location = new System.Drawing.Point(203, 465);
+            this.lblForeignHeading.Location = new System.Drawing.Point(271, 572);
+            this.lblForeignHeading.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblForeignHeading.Name = "lblForeignHeading";
-            this.lblForeignHeading.Size = new System.Drawing.Size(153, 18);
+            this.lblForeignHeading.Size = new System.Drawing.Size(189, 24);
             this.lblForeignHeading.TabIndex = 12;
             this.lblForeignHeading.Text = "Foreign key Details";
             // 
             // lblColName
             // 
             this.lblColName.AutoSize = true;
-            this.lblColName.Location = new System.Drawing.Point(129, 75);
+            this.lblColName.Location = new System.Drawing.Point(172, 92);
+            this.lblColName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColName.Name = "lblColName";
-            this.lblColName.Size = new System.Drawing.Size(76, 13);
+            this.lblColName.Size = new System.Drawing.Size(100, 17);
             this.lblColName.TabIndex = 11;
             this.lblColName.Text = "Column Name:";
             // 
             // btnAAddColumn
             // 
-            this.btnAAddColumn.Location = new System.Drawing.Point(233, 588);
+            this.btnAAddColumn.Location = new System.Drawing.Point(311, 724);
+            this.btnAAddColumn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAAddColumn.Name = "btnAAddColumn";
-            this.btnAAddColumn.Size = new System.Drawing.Size(75, 23);
+            this.btnAAddColumn.Size = new System.Drawing.Size(100, 28);
             this.btnAAddColumn.TabIndex = 10;
             this.btnAAddColumn.Text = "Add Column";
             this.btnAAddColumn.UseVisualStyleBackColor = true;
@@ -219,25 +307,28 @@
             // lblRef
             // 
             this.lblRef.AutoSize = true;
-            this.lblRef.Location = new System.Drawing.Point(114, 504);
+            this.lblRef.Location = new System.Drawing.Point(152, 620);
+            this.lblRef.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRef.Name = "lblRef";
-            this.lblRef.Size = new System.Drawing.Size(129, 13);
+            this.lblRef.Size = new System.Drawing.Size(170, 17);
             this.lblRef.TabIndex = 9;
             this.lblRef.Text = "Reference Column Name ";
             // 
             // txtForeignColName
             // 
-            this.txtForeignColName.Location = new System.Drawing.Point(272, 504);
+            this.txtForeignColName.Location = new System.Drawing.Point(363, 620);
+            this.txtForeignColName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtForeignColName.Name = "txtForeignColName";
-            this.txtForeignColName.Size = new System.Drawing.Size(100, 20);
+            this.txtForeignColName.Size = new System.Drawing.Size(132, 22);
             this.txtForeignColName.TabIndex = 8;
             // 
             // cbForeignKey
             // 
             this.cbForeignKey.AutoSize = true;
-            this.cbForeignKey.Location = new System.Drawing.Point(324, 281);
+            this.cbForeignKey.Location = new System.Drawing.Point(432, 346);
+            this.cbForeignKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbForeignKey.Name = "cbForeignKey";
-            this.cbForeignKey.Size = new System.Drawing.Size(82, 17);
+            this.cbForeignKey.Size = new System.Drawing.Size(106, 21);
             this.cbForeignKey.TabIndex = 7;
             this.cbForeignKey.Text = "Foreign Key";
             this.cbForeignKey.UseVisualStyleBackColor = true;
@@ -246,9 +337,10 @@
             // cbNotNull
             // 
             this.cbNotNull.AutoSize = true;
-            this.cbNotNull.Location = new System.Drawing.Point(324, 229);
+            this.cbNotNull.Location = new System.Drawing.Point(432, 282);
+            this.cbNotNull.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbNotNull.Name = "cbNotNull";
-            this.cbNotNull.Size = new System.Drawing.Size(64, 17);
+            this.cbNotNull.Size = new System.Drawing.Size(80, 21);
             this.cbNotNull.TabIndex = 6;
             this.cbNotNull.Text = "Not Null";
             this.cbNotNull.UseVisualStyleBackColor = true;
@@ -256,9 +348,10 @@
             // cbPrimaryKey
             // 
             this.cbPrimaryKey.AutoSize = true;
-            this.cbPrimaryKey.Location = new System.Drawing.Point(396, 67);
+            this.cbPrimaryKey.Location = new System.Drawing.Point(528, 82);
+            this.cbPrimaryKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbPrimaryKey.Name = "cbPrimaryKey";
-            this.cbPrimaryKey.Size = new System.Drawing.Size(81, 17);
+            this.cbPrimaryKey.Size = new System.Drawing.Size(106, 21);
             this.cbPrimaryKey.TabIndex = 5;
             this.cbPrimaryKey.Text = "Primary Key";
             this.cbPrimaryKey.UseVisualStyleBackColor = true;
@@ -267,9 +360,10 @@
             // cbUnique
             // 
             this.cbUnique.AutoSize = true;
-            this.cbUnique.Location = new System.Drawing.Point(206, 229);
+            this.cbUnique.Location = new System.Drawing.Point(275, 282);
+            this.cbUnique.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbUnique.Name = "cbUnique";
-            this.cbUnique.Size = new System.Drawing.Size(60, 17);
+            this.cbUnique.Size = new System.Drawing.Size(75, 21);
             this.cbUnique.TabIndex = 4;
             this.cbUnique.Text = "Unique";
             this.cbUnique.UseVisualStyleBackColor = true;
@@ -277,35 +371,39 @@
             // cbxType
             // 
             this.cbxType.FormattingEnabled = true;
-            this.cbxType.Location = new System.Drawing.Point(256, 137);
+            this.cbxType.Location = new System.Drawing.Point(341, 169);
+            this.cbxType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxType.Name = "cbxType";
-            this.cbxType.Size = new System.Drawing.Size(100, 21);
+            this.cbxType.Size = new System.Drawing.Size(132, 24);
             this.cbxType.TabIndex = 3;
             this.cbxType.SelectedIndexChanged += new System.EventHandler(this.CbxType_SelectedIndexChanged);
             // 
             // lblColType
             // 
             this.lblColType.AutoSize = true;
-            this.lblColType.Location = new System.Drawing.Point(171, 145);
+            this.lblColType.Location = new System.Drawing.Point(228, 178);
+            this.lblColType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColType.Name = "lblColType";
-            this.lblColType.Size = new System.Drawing.Size(34, 13);
+            this.lblColType.Size = new System.Drawing.Size(44, 17);
             this.lblColType.TabIndex = 2;
             this.lblColType.Text = "Type:";
             // 
             // txtColName
             // 
-            this.txtColName.Location = new System.Drawing.Point(256, 75);
+            this.txtColName.Location = new System.Drawing.Point(341, 92);
+            this.txtColName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtColName.Name = "txtColName";
-            this.txtColName.Size = new System.Drawing.Size(100, 20);
+            this.txtColName.Size = new System.Drawing.Size(132, 22);
             this.txtColName.TabIndex = 1;
             // 
             // lblColumnDetails
             // 
             this.lblColumnDetails.AutoSize = true;
             this.lblColumnDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColumnDetails.Location = new System.Drawing.Point(188, 11);
+            this.lblColumnDetails.Location = new System.Drawing.Point(251, 14);
+            this.lblColumnDetails.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblColumnDetails.Name = "lblColumnDetails";
-            this.lblColumnDetails.Size = new System.Drawing.Size(150, 24);
+            this.lblColumnDetails.Size = new System.Drawing.Size(190, 29);
             this.lblColumnDetails.TabIndex = 0;
             this.lblColumnDetails.Text = "Column Details";
             // 
@@ -313,87 +411,35 @@
             // 
             this.lblMainHeading.AutoSize = true;
             this.lblMainHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMainHeading.Location = new System.Drawing.Point(403, 54);
+            this.lblMainHeading.Location = new System.Drawing.Point(537, 66);
+            this.lblMainHeading.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMainHeading.Name = "lblMainHeading";
-            this.lblMainHeading.Size = new System.Drawing.Size(167, 25);
+            this.lblMainHeading.Size = new System.Drawing.Size(206, 31);
             this.lblMainHeading.TabIndex = 2;
             this.lblMainHeading.Text = "Table Creation";
             // 
-            // btnProceed
+            // button1
             // 
-            this.btnProceed.BackColor = System.Drawing.Color.Crimson;
-            this.btnProceed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProceed.Location = new System.Drawing.Point(128, 504);
-            this.btnProceed.Name = "btnProceed";
-            this.btnProceed.Size = new System.Drawing.Size(91, 33);
-            this.btnProceed.TabIndex = 12;
-            this.btnProceed.Text = "Main Menu";
-            this.btnProceed.UseVisualStyleBackColor = false;
-            this.btnProceed.Click += new System.EventHandler(this.BtnProceed_Click);
-            // 
-            // cbIdentity
-            // 
-            this.cbIdentity.AutoSize = true;
-            this.cbIdentity.Location = new System.Drawing.Point(206, 281);
-            this.cbIdentity.Name = "cbIdentity";
-            this.cbIdentity.Size = new System.Drawing.Size(60, 17);
-            this.cbIdentity.TabIndex = 16;
-            this.cbIdentity.Text = "Identity";
-            this.cbIdentity.UseVisualStyleBackColor = true;
-            this.cbIdentity.CheckedChanged += new System.EventHandler(this.CbIdentity_CheckedChanged);
-            // 
-            // lblStartValue
-            // 
-            this.lblStartValue.AutoSize = true;
-            this.lblStartValue.Location = new System.Drawing.Point(164, 376);
-            this.lblStartValue.Name = "lblStartValue";
-            this.lblStartValue.Size = new System.Drawing.Size(86, 13);
-            this.lblStartValue.TabIndex = 17;
-            this.lblStartValue.Text = "Start Identity On:";
-            // 
-            // lblIncrement
-            // 
-            this.lblIncrement.AutoSize = true;
-            this.lblIncrement.Location = new System.Drawing.Point(171, 427);
-            this.lblIncrement.Name = "lblIncrement";
-            this.lblIncrement.Size = new System.Drawing.Size(72, 13);
-            this.lblIncrement.TabIndex = 18;
-            this.lblIncrement.Text = "Increment By:";
-            // 
-            // txtIncrementStartValue
-            // 
-            this.txtIncrementStartValue.Location = new System.Drawing.Point(256, 373);
-            this.txtIncrementStartValue.Name = "txtIncrementStartValue";
-            this.txtIncrementStartValue.Size = new System.Drawing.Size(100, 20);
-            this.txtIncrementStartValue.TabIndex = 19;
-            // 
-            // txtIncrementValue
-            // 
-            this.txtIncrementValue.Location = new System.Drawing.Point(256, 427);
-            this.txtIncrementValue.Name = "txtIncrementValue";
-            this.txtIncrementValue.Size = new System.Drawing.Size(100, 20);
-            this.txtIncrementValue.TabIndex = 20;
-            // 
-            // lblIndeityHeading
-            // 
-            this.lblIndeityHeading.AutoSize = true;
-            this.lblIndeityHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIndeityHeading.Location = new System.Drawing.Point(189, 334);
-            this.lblIndeityHeading.Name = "lblIndeityHeading";
-            this.lblIndeityHeading.Size = new System.Drawing.Size(118, 18);
-            this.lblIndeityHeading.TabIndex = 21;
-            this.lblIndeityHeading.Text = "Idnetity Details";
+            this.button1.Location = new System.Drawing.Point(12, 841);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 49);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Back";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmTableCreation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::_3rdYearProject.Properties.Resources.Option1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1039, 735);
+            this.ClientSize = new System.Drawing.Size(1385, 905);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.lblMainHeading);
             this.Controls.Add(this.pnlColumnDetails);
             this.Controls.Add(this.pnlColumns);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmTableCreation";
             this.Text = "TableCreation";
             this.Load += new System.EventHandler(this.FrmTableCreation_Load);
@@ -439,5 +485,6 @@
         private System.Windows.Forms.Label lblStartValue;
         private System.Windows.Forms.CheckBox cbIdentity;
         private System.Windows.Forms.Label lblIndeityHeading;
+        private System.Windows.Forms.Button button1;
     }
 }
