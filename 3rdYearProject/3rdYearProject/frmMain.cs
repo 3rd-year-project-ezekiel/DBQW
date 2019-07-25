@@ -124,17 +124,19 @@ namespace _3rdYearProject
 
         private void TableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (cmbDatabaseList.SelectedItem.ToString()=="")
-            {
-                MessageBox.Show("Please select an database","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            }
-            else
-            {
-                string databaseName = cmbDatabaseList.SelectedItem.ToString();
+            // remeber to fix
+
+            //if (cmbDatabaseList.SelectedItem.ToString()=="")
+            //{
+            //    MessageBox.Show("Please select an database","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            //}
+            //else
+            //{
+            //    string databaseName = cmbDatabaseList.SelectedItem.ToString();
                 frmTableCreation tableCreation = new frmTableCreation();
                 this.Hide();
                 tableCreation.Show();
-            }
+           // }
         }
 
         private void mnuInsert_Click(object sender, EventArgs e)
