@@ -12,12 +12,8 @@ namespace _3rdYearProject
         // QueryData is the data that is sent through, like table name or all the entities
         public static List<string> SqlQueryBuilderAlgorithm(this List<string> theQueryList, string QueryCommand, string QueryData = "")
         {
-            if (theQueryList.Count <= 0)
-            {
-                MessageBox.Show("Select a database  and table");
-            }
-            else
-            {
+            
+            
                 switch (QueryCommand)
                 {
                     case "USE DATABASE": // for when a database is selected
@@ -140,7 +136,7 @@ namespace _3rdYearProject
                 }
 
 
-            }
+            
                 return theQueryList;
             }
         

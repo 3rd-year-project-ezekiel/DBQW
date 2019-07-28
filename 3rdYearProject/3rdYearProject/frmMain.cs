@@ -142,9 +142,8 @@ namespace _3rdYearProject
         private void mnuInsert_Click(object sender, EventArgs e)
         {
             MenuStripColour(mnuInsert);
-            //mnuInsert.BackColor = Color.Blue;
             SqlQueryList = (List<string>)lstDisplay.DataSource;
-            //lstDisplay.DataSource = SqlQueryList.SqlQueryBuilderAlgorithm("INSERT", tables[tableItem].TableNames.ToString()+"#"+"sweet");
+            lstDisplay.DataSource = SqlQueryList.SqlQueryBuilderAlgorithm("INSERT");
 
         }
 
