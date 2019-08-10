@@ -8,16 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
 
 namespace _3rdYearProject
 {
     public partial class frmMain : Form
     {
+        SQLBuilder sqlBuilderClass = new SQLBuilder();
+
         List<Databases> databases;
         List<Tables> tables;
         List<Tables> selectedTables = new List<Tables>();
         List<Columns> columns;
-        List<string> SqlQueryList;
+        //List<string> SqlQueryList;
         List<string> selectedColumns = new List<string>();
         List<string> selectedListofColumns = new List<string>();
         List<string> conditionList = new List<string>();
@@ -68,19 +71,45 @@ namespace _3rdYearProject
 
         private void cmbDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            tvEntities.Nodes.Clear();
-            Tables table = new Tables();
-            tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
-            cmbTables.SelectedIndexChanged -= cmbTables_SelectedIndexChanged;
-            cmbTables.DataSource = tables;
-            cmbTables.DisplayMember = "tableNames";
-            cmbTables.ValueMember = "tableNames";
-            cmbTables.SelectedIndex = -1;
-            cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
-            cmbTables.Enabled = true;
-            SqlQueryList = (List<string>)lstDisplay.DataSource;
-            lstDisplay.DataSource =  SqlQueryList.SqlQueryBuilderAlgorithm("USE DATABASE", cmbDatabaseList.SelectedValue.ToString());
-             
+            if (lstDisplay.DataSource != null)
+            {
+                if (MessageBox.Show("Are you sure you want to replace the Database, doing so will erase the Query", " warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    tvEntities.Nodes.Clear();
+                    Tables table = new Tables();
+                    tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
+                    cmbTables.SelectedIndexChanged -= cmbTables_SelectedIndexChanged;
+                    cmbTables.DataSource = tables;
+                    cmbTables.DisplayMember = "tableNames";
+                    cmbTables.ValueMember = "tableNames";
+                    cmbTables.SelectedIndex = -1;
+                    cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
+                    cmbTables.Enabled = true;
+                    lstDisplay.DataSource = null;
+                    lstDisplay.DataSource = sqlBuilderClass.InsertDatabase(cmbDatabaseList.SelectedValue.ToString());
+                }
+                else
+                {
+                    // enter previos database name
+                }
+            }
+            else
+            {
+                tvEntities.Nodes.Clear();
+                Tables table = new Tables();
+                tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
+                cmbTables.SelectedIndexChanged -= cmbTables_SelectedIndexChanged;
+                cmbTables.DataSource = tables;
+                cmbTables.DisplayMember = "tableNames";
+                cmbTables.ValueMember = "tableNames";
+                cmbTables.SelectedIndex = -1;
+                cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
+                cmbTables.Enabled = true;
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.InsertDatabase(cmbDatabaseList.SelectedValue.ToString());
+            }
+            
+
         }
 
         int item = 0;
@@ -230,6 +259,7 @@ namespace _3rdYearProject
             //lstDisplay.DataSource = SqlQueryList.SqlQueryBuilderAlgorithm("INSERT");
             RemoveUnneccassary();
             AddTabsForInsert();
+            lstDisplay.DataSource = sqlBuilderClass.InsertDatabase("jan");
            
 
         }
