@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -85,6 +86,7 @@ namespace _3rdYearProject
         int item = 0;
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             tvEntities.Enabled = true;
             btnAddsSource.Enabled = true;
             btnRemove.Enabled = true;
@@ -156,9 +158,16 @@ namespace _3rdYearProject
         private void btnRemove_Click(object sender, EventArgs e)
         {
             //TreeNode[] nodes = tvEntities.Nodes.Find(tvEntities.SelectedNode.ToString(), true);
-
+            ArrayList keysToDelete = new ArrayList();
             foreach (TreeNode item in tvEntities.Nodes)
             {
+                if (item.Checked == true || (item.GetNodeCount(true)) == 0)
+                {
+                    item.Remove();
+
+                    columnDictionary.Remove(item.Text.ToString());
+                }
+                else { 
                 foreach (TreeNode treeNode in item.Nodes)
                 {
                     try
@@ -166,24 +175,27 @@ namespace _3rdYearProject
                         if (treeNode.Checked != false)
                         {
 
-                            treeNode.Remove();
+                            keysToDelete.Add(treeNode);
                         }
                     }
                     catch (NullReferenceException)
                     {
 
-
                     }
-                   
-                    
+
+                    foreach (TreeNode nodeName in keysToDelete)
+                    {
+                        tvEntities.Nodes.Remove(nodeName);
+                    }
+                }
                 }
 
-                if (item.Checked==true || (item.GetNodeCount(true))==0)
-                {
-                    item.Remove();
+            }
 
-                    columnDictionary.Remove(item.Text.ToString());
-                }
+            if (tvEntities.Nodes.Count==0)
+            {
+                tvEntities.Nodes.Clear();
+                item = 0;
             }
         }
 
@@ -239,6 +251,8 @@ namespace _3rdYearProject
         private void BtnAddsSource_Click(object sender, EventArgs e)
         {
             tbcExstra.Enabled = true;
+            columnDictionary.Clear();
+            selectedColumns.Clear();
             foreach (TreeNode item in tvEntities.Nodes)
             {
                
@@ -262,6 +276,7 @@ namespace _3rdYearProject
                 }
               
             }
+            ClearDataSources();
             selectedListofColumns.Clear();
             foreach (KeyValuePair<string,List<string>> item in columnDictionary)
             {
@@ -270,17 +285,31 @@ namespace _3rdYearProject
                 {
                     selectedListofColumns.Add(stringItem);
                 }
-
+                
                 cmbTableJoinTarget.Items.Add(item.Key);
                 cmbSourceTableJoin.Items.Add(item.Key);
                 cmbInsertTable.Items.Add(item.Key);
             }
+            
             //for Column Names,(Basic SQL CODE ex.Select)
             cmbWhereColName.DataSource = selectedListofColumns;
             cmbHavingCol.DataSource = selectedListofColumns;
             cmbOrderColumns.DataSource = selectedListofColumns;
             cmbGroupByColum.DataSource = selectedListofColumns;
             cmbSetCol.DataSource = selectedListofColumns;
+        }
+
+        public void ClearDataSources()
+        {
+
+            cmbWhereColName.DataSource = null;
+            cmbHavingCol.DataSource = null;
+            cmbOrderColumns.DataSource = null;
+            cmbGroupByColum.DataSource = null;
+            cmbSetCol.DataSource = null;
+            cmbTableJoinTarget.Items.Clear();
+            cmbSourceTableJoin.Items.Clear();
+            cmbInsertTable.Items.Clear();
         }
 
         private void CmbSourceTableJoin_SelectedIndexChanged(object sender, EventArgs e)
