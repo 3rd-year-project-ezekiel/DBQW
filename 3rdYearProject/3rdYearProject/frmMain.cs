@@ -86,7 +86,7 @@ namespace _3rdYearProject
                     cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
                     cmbTables.Enabled = true;
                     lstDisplay.DataSource = null;
-                    lstDisplay.DataSource = sqlBuilderClass.InsertDatabase(cmbDatabaseList.SelectedValue.ToString());
+                    lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
                 }
                 else
                 {
@@ -106,7 +106,7 @@ namespace _3rdYearProject
                 cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
                 cmbTables.Enabled = true;
                 lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.InsertDatabase(cmbDatabaseList.SelectedValue.ToString());
+                lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
             }
             
 
@@ -252,6 +252,7 @@ namespace _3rdYearProject
            // }
         }
 
+        // Insert Menu
         private void mnuInsert_Click(object sender, EventArgs e)
         {
             MenuStripColour(mnuInsert);
@@ -259,7 +260,8 @@ namespace _3rdYearProject
             //lstDisplay.DataSource = SqlQueryList.SqlQueryBuilderAlgorithm("INSERT");
             RemoveUnneccassary();
             AddTabsForInsert();
-            lstDisplay.DataSource = sqlBuilderClass.InsertDatabase("jan");
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.InsertBaseBuilder(cmbTables.SelectedText);
            
 
         }

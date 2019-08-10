@@ -20,7 +20,8 @@ namespace BLL
         #endregion
 
         #region Methods
-        public List<string> InsertDatabase(string dataBaseName)
+        // Database add + change
+        public List<string> DatabaseBaseBuilder(string dataBaseName)
         {
             if (sqlBuilderLIst.Count == 0)
             { sqlBuilderLIst.Add("USE " + dataBaseName); sqlBuilderLIst.Add("GO"); }
@@ -31,6 +32,45 @@ namespace BLL
                     sqlBuilderLIst.Add("USE " + dataBaseName);
                     sqlBuilderLIst.Add("GO");
             }
+            return sqlBuilderLIst;
+        }
+
+        // Insert base + table + changes to them
+        public List<string> InsertBaseBuilder(string tableName = "")
+        {
+
+            try
+            {
+                if (sqlBuilderLIst[2][0] == 'P')
+                {
+                    sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
+                    if (sqlBuilderLIst.Count > 5)
+                        sqlBuilderLIst.RemoveRange(6, (sqlBuilderLIst.Count - 6));
+
+                    sqlBuilderLIst.Add("INSERT INTO ");
+                    if (tableName != "")
+                        sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
+                    sqlBuilderLIst.Add("VALUES ");
+                    sqlBuilderLIst.Add("END");
+
+                }
+                else
+                {
+                    sqlBuilderLIst[sqlBuilderLIst.Count] = "";
+                }
+            }
+            catch (Exception)
+            {
+                if (sqlBuilderLIst.Count > 2)
+                    sqlBuilderLIst.RemoveRange(2, (sqlBuilderLIst.Count - 2));
+
+                sqlBuilderLIst.Add("INSERT INTO ");
+                if (tableName != "")
+                    sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
+                sqlBuilderLIst.Add("VALUES ");
+
+            }
+           
             return sqlBuilderLIst;
         }
 
