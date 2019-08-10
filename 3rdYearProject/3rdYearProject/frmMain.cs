@@ -634,7 +634,7 @@ namespace _3rdYearProject
             try
             {
                 string columnName = cmbSetCol.SelectedItem.ToString();
-                string condition = "";
+                string condition = "=";
                 string value = txtSetValues.Text.ToString();
                 if (value == "")
                 {
