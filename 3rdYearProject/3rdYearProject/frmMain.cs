@@ -154,6 +154,17 @@ namespace _3rdYearProject
             this.Hide();
             login.Show();
         }
+        #region Base Menu Strips ( Insert, Update, Delete, Select, Programability)
+        // Programability Menu Strip
+        private void mnuProgramability_Click(object sender, EventArgs e)
+        {
+           //MenuStripColour(mnuSelect);
+           // RemoveUnneccassary();
+            //AddTabsForSelect();
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.programmabilityBaseBuilder();
+            
+        }
 
         // Select Menu strip
         private void mnuSelect_Click(object sender, EventArgs e)
@@ -195,6 +206,8 @@ namespace _3rdYearProject
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.InsertBaseBuilder(cmbTables.SelectedText);
         }
+
+        #endregion
 
         private void cblEntities_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -738,5 +751,7 @@ namespace _3rdYearProject
                 throw;
             }
         }
+
+        
     }
 }

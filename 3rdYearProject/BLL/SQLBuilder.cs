@@ -35,13 +35,65 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
+        #region programmability
+        // programmability base add and remove
+        public List<string> programmabilityBaseBuilder()
+        {
+
+            try
+            {
+                if ((sqlBuilderLIst[2])[0] == 'C')
+                {
+                    sqlBuilderLIst.RemoveRange(2, 4);
+                    sqlBuilderLIst.RemoveRange(sqlBuilderLIst.Count - 1, 1);
+                }
+                else
+                {
+                    sqlBuilderLIst[sqlBuilderLIst.Count] = "";
+                }
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    List<string> tempList = new List<string>();
+
+                    for (int i = 2; i < sqlBuilderLIst.Count; i++)
+                    {
+                        tempList.Add(sqlBuilderLIst[i]);
+                    }
+                    sqlBuilderLIst.RemoveRange(2, sqlBuilderLIst.Count - 2);
+                    sqlBuilderLIst.Add("CREATE PROCEDURE ");
+                    sqlBuilderLIst.Add("()");
+                    sqlBuilderLIst.Add("AS");
+                    sqlBuilderLIst.Add("BEGIN");
+                    sqlBuilderLIst.AddRange(tempList);
+                    
+                }
+                catch (Exception)
+                {
+                    sqlBuilderLIst.Add("CREATE PROCEDURE ");
+                    sqlBuilderLIst.Add("()");
+                    sqlBuilderLIst.Add("AS");
+                    sqlBuilderLIst.Add("BEGIN");
+                }
+                sqlBuilderLIst.Add("END");
+
+            }
+
+            return sqlBuilderLIst;
+        }
+
+        #endregion
+
+        #region Insert
         // Insert base + table + changes to them
         public List<string> InsertBaseBuilder(string tableName = "")
         {
 
             try
             {
-                if (sqlBuilderLIst[2][0] == 'P')
+                if ((sqlBuilderLIst[2])[0] == 'C')
                 {
                     sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
                     if (sqlBuilderLIst.Count > 5)
@@ -74,13 +126,16 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
+        #endregion
+
+        #region Delete
         // Delete base + table + changes to them
         public List<string> DeleteBaseBuilder(string tableName = "")
         {
 
             try
             {
-                if (sqlBuilderLIst[2][0] == 'P')
+                if ((sqlBuilderLIst[2])[0] == 'C')
                 {
                     sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
                     if (sqlBuilderLIst.Count > 5)
@@ -111,13 +166,16 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
+        #endregion
+
+        #region Update
         // Update base + table + changes to them
         public List<string> UpdateBaseBuilder(string tableName = "")
         {
 
             try
             {
-                if (sqlBuilderLIst[2][0] == 'P')
+                if ((sqlBuilderLIst[2])[0] == 'C')
                 {
                     sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
                     if (sqlBuilderLIst.Count > 5)
@@ -150,13 +208,16 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
+        #endregion
+
+        #region Select
         // Select base + table + changes to them
         public List<string> SelectBaseBuilder(string tableName = "")
         {
 
             try
             {
-                if (sqlBuilderLIst[2][0] == 'P')
+                if ((sqlBuilderLIst[2])[0] == 'C')
                 {
                     sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
                     if (sqlBuilderLIst.Count > 5)
@@ -188,6 +249,10 @@ namespace BLL
 
             return sqlBuilderLIst;
         }
+
+        #endregion
+
+
         #endregion
     }
 
