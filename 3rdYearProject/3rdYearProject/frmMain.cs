@@ -20,7 +20,6 @@ namespace _3rdYearProject
         List<Tables> tables;
         List<Tables> selectedTables = new List<Tables>();
         List<Columns> columns;
-        //List<string> SqlQueryList;
         List<string> selectedColumns = new List<string>();
         List<string> selectedListofColumns = new List<string>();
         List<string> conditionList = new List<string>();
@@ -156,26 +155,45 @@ namespace _3rdYearProject
             login.Show();
         }
 
+        // Select Menu strip
         private void mnuSelect_Click(object sender, EventArgs e)
         {
             MenuStripColour(mnuSelect);
             RemoveUnneccassary();
             AddTabsForSelect();
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
         }
 
+        // Delete Menu Strip
         private void mnuDelete_Click(object sender, EventArgs e)
         {
             MenuStripColour(mnuDelete);
             RemoveUnneccassary();
             AddTabsForDelete();
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.DeleteBaseBuilder(cmbTables.SelectedText);
 
         }
 
+        // Update Menu Strip
         private void mnuUpdate_Click(object sender, EventArgs e)
         {
             MenuStripColour(mnuUpdate);
             RemoveUnneccassary();
             AddTabsForUpdate();
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.UpdateBaseBuilder(cmbTables.SelectedText);
+        }
+
+        // Insert Menu
+        private void mnuInsert_Click(object sender, EventArgs e)
+        {
+            MenuStripColour(mnuInsert);
+            RemoveUnneccassary();
+            AddTabsForInsert();
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.InsertBaseBuilder(cmbTables.SelectedText);
         }
 
         private void cblEntities_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -252,19 +270,7 @@ namespace _3rdYearProject
            // }
         }
 
-        // Insert Menu
-        private void mnuInsert_Click(object sender, EventArgs e)
-        {
-            MenuStripColour(mnuInsert);
-            //SqlQueryList = (List<string>)lstDisplay.DataSource;
-            //lstDisplay.DataSource = SqlQueryList.SqlQueryBuilderAlgorithm("INSERT");
-            RemoveUnneccassary();
-            AddTabsForInsert();
-            lstDisplay.DataSource = null;
-            lstDisplay.DataSource = sqlBuilderClass.InsertBaseBuilder(cmbTables.SelectedText);
-           
-
-        }
+       
 
         private void frmMain_Load(object sender, EventArgs e)
         {
