@@ -46,6 +46,8 @@ namespace _3rdYearProject
             AddTabsForSelect();
             DisableComponenets();
             MenuStripColour(mnuSelect);
+            mnuProgramability.BackColor = Color.Transparent;
+            
         }
 
        public void DisableComponenets()
@@ -55,6 +57,12 @@ namespace _3rdYearProject
             tvEntities.Enabled = false;
             btnAddsSource.Enabled = false;
             btnRemove.Enabled = false;
+
+            mnuProgramability.Enabled = false;
+            mnuSelect.Enabled = false;
+            mnuInsert.Enabled = false;
+            mnuDelete.Enabled = false;
+            mnuUpdate.Enabled = false;
 
         }
 
@@ -107,7 +115,12 @@ namespace _3rdYearProject
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
             }
-            
+
+            mnuProgramability.Enabled = true;
+            mnuInsert.Enabled = true;
+            mnuSelect.Enabled = true;
+            mnuDelete.Enabled = true;
+            mnuUpdate.Enabled = true;
 
         }
 
@@ -158,8 +171,9 @@ namespace _3rdYearProject
         // Programability Menu Strip
         private void mnuProgramability_Click(object sender, EventArgs e)
         {
-           //MenuStripColour(mnuSelect);
-           // RemoveUnneccassary();
+            if (mnuProgramability.BackColor == Color.Transparent)
+            mnuProgramability.BackColor = Color.LightSeaGreen; else mnuProgramability.BackColor = Color.Transparent;
+            // RemoveUnneccassary();
             //AddTabsForSelect();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.programmabilityBaseBuilder();
@@ -296,7 +310,7 @@ namespace _3rdYearProject
             mnuInsert.BackColor = Color.Transparent;
             mnuDelete.BackColor = Color.Transparent;
             mnuUpdate.BackColor = Color.Transparent;
-            SelectedItem.BackColor = Color.Blue;
+            SelectedItem.BackColor = Color.LightBlue;
         }
 
         private void BtnAddsSource_Click(object sender, EventArgs e)
