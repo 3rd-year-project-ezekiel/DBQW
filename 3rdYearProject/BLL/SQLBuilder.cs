@@ -19,7 +19,7 @@ namespace BLL
 
         #endregion
 
-        #region Methods
+        #region Algorithm
         // Database add + change
         public List<string> DatabaseBaseBuilder(string dataBaseName)
         {
@@ -128,7 +128,18 @@ namespace BLL
 
         public List<string> InsertValue(string Column, string value)
         {
+            try
+            {
+                if ((sqlBuilderLIst[2])[0] == 'C')
+                {
+                     
+                }
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
             
 
             return sqlBuilderLIst;
@@ -260,6 +271,47 @@ namespace BLL
 
         #endregion
 
+        #region Support Methods
+
+        private List<String> SplitValuesOrColumns(string input)
+        {
+
+            return sqlBuilderLIst;
+        }
+
+        public List<string> WhereClauseBuilder(string whereClause)
+        {
+            int index = 0;
+            // Checks to see if there is a where already
+            for (index = 3; index < sqlBuilderLIst.Count; index++)
+            {
+                if ((sqlBuilderLIst[index])[0] == 'W')
+                {
+                    string tempHolder = sqlBuilderLIst[index];
+                    sqlBuilderLIst[index] = tempHolder + "AND" + whereClause;
+                    return sqlBuilderLIst;
+                }
+            }
+
+            if ((sqlBuilderLIst[2])[0] == 'C')
+            {
+                sqlBuilderLIst[sqlBuilderLIst.Count - 1] = "WHERE" + whereClause;
+                sqlBuilderLIst.Add("END");
+            }
+            else
+            {
+                sqlBuilderLIst.Add("WHERE" + whereClause);
+            }
+
+            
+            return sqlBuilderLIst;
+
+            
+
+            return sqlBuilderLIst;
+        }
+
+        #endregion
 
         #endregion
     }

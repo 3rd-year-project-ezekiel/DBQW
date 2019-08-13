@@ -448,6 +448,9 @@ namespace _3rdYearProject
 
         #endregion
 
+        // Validation needs to be added here
+        // validation to detrimine what data type the value should be
+        // Format: Space + column + space + condition + space + value + space
         private void BtnAddWhere_Click(object sender, EventArgs e)
         {
             try
@@ -459,8 +462,10 @@ namespace _3rdYearProject
                 {
                     throw new NullReferenceException();
                 }
-                lstWhereItems.Items.Add(string.Format("{0}{1}{2}", columnName, condition, value));
+                lstWhereItems.Items.Add(string.Format(" {0} {1} {2} ", columnName, condition, value));
 
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.WhereClauseBuilder(" "+columnName + " " + condition + " " + value+" ");
                 txtWhereValues.Clear();
                 
             }
