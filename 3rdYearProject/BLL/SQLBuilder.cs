@@ -126,6 +126,14 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
+        public List<string> InsertValue(string Column, string value)
+        {
+
+            
+
+            return sqlBuilderLIst;
+        }
+
         #endregion
 
         #region Delete
