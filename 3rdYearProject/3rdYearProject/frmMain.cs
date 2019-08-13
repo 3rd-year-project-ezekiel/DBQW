@@ -450,7 +450,7 @@ namespace _3rdYearProject
 
         // Validation needs to be added here
         // validation to detrimine what data type the value should be
-        // Format: Space + column + space + condition + space + value + space
+        
         private void BtnAddWhere_Click(object sender, EventArgs e)
         {
             try
@@ -462,10 +462,10 @@ namespace _3rdYearProject
                 {
                     throw new NullReferenceException();
                 }
-                lstWhereItems.Items.Add(string.Format(" {0} {1} {2} ", columnName, condition, value));
+                lstWhereItems.Items.Add(string.Format("{0} {1} {2}", columnName, condition, value));
 
                 lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.WhereClauseBuilder(" "+columnName + " " + condition + " " + value+" ");
+                lstDisplay.DataSource = sqlBuilderClass.WhereClauseBuilder(columnName + " " + condition + " " + value);
                 txtWhereValues.Clear();
                 
             }
@@ -483,6 +483,9 @@ namespace _3rdYearProject
             try
             {
                 int selectedIndex = lstWhereItems.SelectedIndex;
+                // removes from the query
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.WhereClauseRemover((string)lstWhereItems.SelectedItem);
 
                 lstWhereItems.Items.RemoveAt(selectedIndex);
                 MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -585,7 +588,11 @@ namespace _3rdYearProject
                     throw new NullReferenceException();
                 }
 
-                lstHavingItems.Items.Add(string.Format("{0}{1}{2}", columnName, condition, value));
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.HavingClauseBuilder(columnName + " " + condition + " " + value);
+
+                lstHavingItems.Items.Add(string.Format("{0} {1} {2}", columnName, condition, value));
+
             }
             catch (NullReferenceException)
             {
@@ -600,6 +607,10 @@ namespace _3rdYearProject
             try
             {
                 int selectedIndex = lstHavingItems.SelectedIndex;
+
+                // removes from the query
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.HavingClauseRemover((string)lstHavingItems.SelectedItem);
 
                 lstHavingItems.Items.RemoveAt(selectedIndex);
                 MessageBox.Show( "Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);

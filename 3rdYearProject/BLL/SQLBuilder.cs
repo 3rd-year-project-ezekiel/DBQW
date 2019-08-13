@@ -271,19 +271,12 @@ namespace BLL
 
         #endregion
 
-        #region Support Methods
-
-        private List<String> SplitValuesOrColumns(string input)
-        {
-
-            return sqlBuilderLIst;
-        }
-
+        #region Where
         public List<string> WhereClauseBuilder(string whereClause)
         {
-            int index = 0;
+            whereClause = "(" + whereClause + ")";
             // Checks to see if there is a where already
-            for (index = 3; index < sqlBuilderLIst.Count; index++)
+            for (int index = 3; index < sqlBuilderLIst.Count; index++)
             {
                 if ((sqlBuilderLIst[index])[0] == 'W')
                 {
@@ -303,13 +296,133 @@ namespace BLL
                 sqlBuilderLIst.Add("WHERE" + whereClause);
             }
 
-            
+
             return sqlBuilderLIst;
 
-            
+        }
+
+        public List<string> WhereClauseRemover(string whereClause)
+        {
+            // Finds Where's position
+            for (int index = 3; index < sqlBuilderLIst.Count; index++)
+            {
+                if ((sqlBuilderLIst[index])[0] == 'W')
+                {
+                    string[] temp = sqlBuilderLIst[index].Split('(');
+                    List<string> tempHolder = temp.ToList();
+                    
+                    for (int i = 1; i < tempHolder.Count; i++)
+                    {
+                        string tempClause = tempHolder[i].Substring(0, tempHolder[i].IndexOf(')'));
+                        if (tempClause == whereClause)
+                        {
+                            tempHolder.RemoveAt(i);
+
+                            if (tempHolder.Count > 1)
+                            {
+                                string holder = "";
+                                foreach (string item in tempHolder)
+                                {
+                                    holder += item+"(";
+                                }
+                                sqlBuilderLIst[index] = holder.Substring(0, holder.LastIndexOf(')') + 1);
+                            }
+                            else
+                            {
+                                sqlBuilderLIst.RemoveAt(index);
+                            }
+
+                            return sqlBuilderLIst;
+                        }
+                    }
+                }
+            }
 
             return sqlBuilderLIst;
         }
+        #endregion
+
+        #region Having
+        public List<string> HavingClauseBuilder(string havingClause)
+        {
+            havingClause = "(" + havingClause + ")";
+            // Checks to see if there is a where already
+            for (int index = 3; index < sqlBuilderLIst.Count; index++)
+            {
+                if ((sqlBuilderLIst[index])[0] == 'H')
+                {
+                    string tempHolder = sqlBuilderLIst[index];
+                    sqlBuilderLIst[index] = tempHolder + "AND" + havingClause;
+                    return sqlBuilderLIst;
+                }
+            }
+
+            if ((sqlBuilderLIst[2])[0] == 'C')
+            {
+                sqlBuilderLIst[sqlBuilderLIst.Count - 1] = "HAVING" + havingClause;
+                sqlBuilderLIst.Add("END");
+            }
+            else
+            {
+                sqlBuilderLIst.Add("HAVING" + havingClause);
+            }
+
+
+            return sqlBuilderLIst;
+
+        }
+
+        public List<string> HavingClauseRemover(string havingClause)
+        {
+            // Finds Where's position
+            for (int index = 3; index < sqlBuilderLIst.Count; index++)
+            {
+                if ((sqlBuilderLIst[index])[0] == 'H')
+                {
+                    string[] temp = sqlBuilderLIst[index].Split('(');
+                    List<string> tempHolder = temp.ToList();
+
+                    for (int i = 1; i < tempHolder.Count; i++)
+                    {
+                        string tempClause = tempHolder[i].Substring(0, tempHolder[i].IndexOf(')'));
+                        if (tempClause == havingClause)
+                        {
+                            tempHolder.RemoveAt(i);
+
+                            if (tempHolder.Count > 1)
+                            {
+                                string holder = "";
+                                foreach (string item in tempHolder)
+                                {
+                                    holder += item + "(";
+                                }
+                                sqlBuilderLIst[index] = holder.Substring(0, holder.LastIndexOf(')') + 1);
+                            }
+                            else
+                            {
+                                sqlBuilderLIst.RemoveAt(index);
+                            }
+
+                            return sqlBuilderLIst;
+                        }
+                    }
+                }
+            }
+
+            return sqlBuilderLIst;
+        }
+        #endregion
+
+
+        #region Support Methods
+
+        private List<String> SplitValuesOrColumns(string input)
+        {
+
+            return sqlBuilderLIst;
+        }
+
+       
 
         #endregion
 
