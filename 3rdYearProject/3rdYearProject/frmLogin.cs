@@ -55,39 +55,43 @@ namespace _3rdYearProject
             string password = "";
             string conType = "";
 
-            if (dropAuthentication.SelectedIndex == 1)
+            if (string.IsNullOrWhiteSpace(txtLogin.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
             {
-                username = txtLogin.Text;
-                password = txtPassword.Text;
-                conType = "SQL Server Authentication";
-
-                if (string.IsNullOrWhiteSpace(txtLogin.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
+                MessageBox.Show("Please provide Username and Password");
+                return;
+            }
+            else
+            {
+                if (dropAuthentication.SelectedIndex == 1)
                 {
-                    MessageBox.Show("Please provide Username and Password");
-                    return;
+                    username = txtLogin.Text;
+                    password = txtPassword.Text;
+                    conType = "SQL Server Authentication";
+
+                }
+                else
+                {
+                    conType = "Windows Authentication";
+                }
+
+                Accounts accounts = new Accounts(username, password, conType);
+                bool verified = accounts.LoginAccount(txtServerName.Text);
+
+                if (verified)
+                {
+                    MessageBox.Show("Login successful!");
+                    frmMain MainForm = new frmMain();
+                    Form.ActiveForm.Hide();
+                    MainForm.Show();
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Login failed!");
                 }
             }
-            else
-            {
-                conType = "Windows Authentication";
-            }
-
-            Accounts accounts = new Accounts(username, password, conType);
-            bool verified = accounts.LoginAccount(txtServerName.Text);
-
-            if (verified)
-            {
-                MessageBox.Show("Login successful!");
-                frmMain MainForm = new frmMain();
-                Form.ActiveForm.Hide();
-                MainForm.Show();
-                
-                
-            }
-            else
-            {
-                MessageBox.Show("Login failed!");
-            }
+            
         }
 
         private void btnCancel_Click_1(object sender, EventArgs e)

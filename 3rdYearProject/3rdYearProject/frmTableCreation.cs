@@ -119,32 +119,49 @@ namespace _3rdYearProject
             string type = cbxType.SelectedItem.ToString();
             string constraints = "";
 
-            if (cbIdentity.Checked)
+            if (colName != "")
             {
-                constraints += " Identity(" + txtIncrementStartValue.Text + "," + txtIncrementValue.Text + ") ";
+                if (type != "")
+                {
+                    if (cbIdentity.Checked)
+                    {
+                        constraints += " Identity(" + txtIncrementStartValue.Text + "," + txtIncrementValue.Text + ") ";
+                    }
+                    if (cbPrimaryKey.Checked)
+                    {
+                        constraints += " Primary Key ";
+                    }
+                    if (cbUnique.Checked)
+                    {
+                        constraints += " Unique ";
+                    }
+                    if (cbNotNull.Checked)
+                    {
+                        constraints += " Not Null ";
+                    }
+
+                    if (cbForeignKey.Checked)
+                    {
+                        constraints += " References " + txtForeignTable.Text + "(" + txtForeignColName.Text + ")";
+                    }
+
+                    tableDetails.Add(string.Format("{0} {1} {2}", colName, type, constraints));
+                    tableColumns.Add(tableDetails[0]);
+
+                    lstColumns.Items.Add(string.Format("{0} {1} {2}", colName, type, constraints));
+                }
+                else
+                {
+                    MessageBox.Show("Please select a Type!", "Empty Type");
+                }                
             }
-            if (cbPrimaryKey.Checked)
+            else
             {
-                constraints += " Primary Key ";
-            }
-            if (cbUnique.Checked)
-            {
-                constraints += " Unique ";
-            }
-            if (cbNotNull.Checked)
-            {
-                constraints += " Not Null ";
+                MessageBox.Show("Please Enter a Column Name!", "Empty Colm Name");
             }
 
-            if (cbForeignKey.Checked)
-            {
-                constraints += " References "+txtForeignTable.Text+"("+txtForeignColName.Text+")";
-            }
+            
 
-            tableDetails.Add(string.Format("{0} {1} {2}",colName,type,constraints));
-            tableColumns.Add(tableDetails[0]);
-
-            lstColumns.Items.Add(string.Format("{0} {1} {2}", colName, type, constraints));
             tableDetails.Clear();
 
             ResetFormForColumns();
