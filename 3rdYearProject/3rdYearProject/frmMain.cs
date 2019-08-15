@@ -187,6 +187,7 @@ namespace _3rdYearProject
             RemoveUnneccassary();
             AddTabsForSelect();
             lstDisplay.DataSource = null;
+            //MessageBox.Show(cmbTables.SelectedItem.ToString());
             lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
         }
 
@@ -240,6 +241,7 @@ namespace _3rdYearProject
                     item.Remove();
 
                     columnDictionary.Remove(item.Text.ToString());
+                    break;
                 }
                 else { 
                 foreach (TreeNode treeNode in item.Nodes)
