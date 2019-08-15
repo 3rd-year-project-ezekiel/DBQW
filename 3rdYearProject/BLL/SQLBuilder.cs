@@ -165,18 +165,18 @@ namespace BLL
                 theColumnList = theColumnList[1].Split(',').ToList();
                 foreach (string item in theColumnList)
                 {
-                    listholder += item;
+                    listholder += ','+item;
                 }
-                sqlBuilderLIst[insertLine] = lineHolder + " (" + Column + "," + listholder;
+                sqlBuilderLIst[insertLine] = lineHolder + " (" + Column + listholder;
 
                 lineHolder = theValueList[0];
                 listholder = "";
                 theValueList = theValueList[1].Split(',').ToList();
                 foreach (string item in theValueList)
                 {
-                    listholder += item;
+                    listholder += ','+item;
                 }
-                sqlBuilderLIst[valueline] = lineHolder + " (" + Column + "," + listholder;
+                sqlBuilderLIst[valueline] = lineHolder + " (" + value + listholder;
             }
 
             return sqlBuilderLIst;
@@ -221,21 +221,10 @@ namespace BLL
 
             if (columnList.Count != 0)
             {
-                sqlBuilderLIst[insertLine] += '('+columnList.ex
+                sqlBuilderLIst[insertLine] += '(' + ListToString(columnList) + ')';
+                sqlBuilderLIst[valueline] += '(' + ListToString(valueList) + ')';
             }
-
-            //for (int i = 0; i < columnList.Count; i++)
-            //{
-            //    if (columnList[i] == Column)
-            //    {
-            //        columnList.RemoveAt(i);
-            //        valueList.RemoveAt(i);
-            //        break;
-            //    }
-            //}
-
-
-
+            
             return sqlBuilderLIst;
         }
         #endregion
@@ -514,18 +503,7 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
-        
-
-       
-
-        #endregion
-
-        #endregion
-    }
-
-    public static class ExtentionClass
-    {
-        private string ListToString(this List<string> theList)
+        private string ListToString(List<string> theList)
         {
             string line = "";
 
@@ -536,6 +514,17 @@ namespace BLL
 
             return line.Substring(0, line.LastIndexOf(','));
         }
+
+
+
+        #endregion
+
+        #endregion
+    }
+
+    public static class ExtentionClass
+    {
+        
     }
 
 

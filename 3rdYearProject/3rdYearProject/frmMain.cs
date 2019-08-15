@@ -696,7 +696,8 @@ namespace _3rdYearProject
                 lstDisplay.DataSource = sqlBuilderClass.InsertValue(columnName, value);
 
                 //lstInsertItems.Items.Add(string.Format("Table:{0} Column:{1} Value:{2}", table,columnName, value));
-                lstInsertItems.Items.Add(string.Format("{1} {2}",columnName, value));
+                //lstInsertItems.Items.Add(string.Format("{1} {2}",columnName, value));
+                lstInsertItems.Items.Add(string.Format(columnName+" "+value));
             }
             catch (NullReferenceException)
             {
