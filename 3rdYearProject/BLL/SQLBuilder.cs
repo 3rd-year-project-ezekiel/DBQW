@@ -128,23 +128,116 @@ namespace BLL
 
         public List<string> InsertValue(string Column, string value)
         {
+
+            int insertLine = 0;
+            int valueline = 0;
+
             try
             {
                 if ((sqlBuilderLIst[2])[0] == 'C')
                 {
-                     
+                    insertLine = 6;
+                    valueline = 7;
+                }
+                else
+                {
+                    sqlBuilderLIst[sqlBuilderLIst.Count] = "";
                 }
             }
             catch (Exception)
             {
+                insertLine = 2;
+                valueline = 3;
 
-                throw;
             }
-            
+
+            List<string> theColumnList = sqlBuilderLIst[insertLine].Split('(').ToList();
+            List<string> theValueList = sqlBuilderLIst[valueline].Split('(').ToList();
+            if (theColumnList.Count == 1)
+            {
+                sqlBuilderLIst[insertLine] += " (" + Column + ")";
+                sqlBuilderLIst[valueline] += " (" + value + ")";
+            }
+            else
+            {
+                string lineHolder = theColumnList[0];
+                string listholder = "";
+                theColumnList = theColumnList[1].Split(',').ToList();
+                foreach (string item in theColumnList)
+                {
+                    listholder += item;
+                }
+                sqlBuilderLIst[insertLine] = lineHolder + " (" + Column + "," + listholder;
+
+                lineHolder = theValueList[0];
+                listholder = "";
+                theValueList = theValueList[1].Split(',').ToList();
+                foreach (string item in theValueList)
+                {
+                    listholder += item;
+                }
+                sqlBuilderLIst[valueline] = lineHolder + " (" + Column + "," + listholder;
+            }
 
             return sqlBuilderLIst;
         }
 
+        public List<string> InsertRemoveValue(string Column, string value)
+        {
+            int insertLine = 0;
+            int valueline = 0;
+
+            try
+            {
+                if ((sqlBuilderLIst[2])[0] == 'C')
+                {
+                    insertLine = 6;
+                    valueline = 7;
+                }
+                else
+                {
+                    sqlBuilderLIst[sqlBuilderLIst.Count] = "";
+                }
+            }
+            catch (Exception)
+            {
+                insertLine = 2;
+                valueline = 3;
+
+            }
+            List<string> theInsertLineList = sqlBuilderLIst[insertLine].Split('(').ToList();
+            List<string> theValueLineList = sqlBuilderLIst[valueline].Split('(').ToList();
+
+            List<string> columnList = theInsertLineList[1].Split(',').ToList();
+            columnList[columnList.Count - 1] = columnList[columnList.Count - 1].Substring(0, columnList[columnList.Count - 1].IndexOf(')'));
+            List<string> valueList = theValueLineList[1].Split(',').ToList();
+            valueList[valueList.Count - 1] = valueList[valueList.Count - 1].Substring(0, valueList[valueList.Count - 1].IndexOf(')'));
+
+            columnList.Remove(Column);
+            valueList.Remove(value);
+
+            sqlBuilderLIst[insertLine] = theInsertLineList[0];
+            sqlBuilderLIst[valueline] = theValueLineList[0];
+
+            if (columnList.Count != 0)
+            {
+                sqlBuilderLIst[insertLine] += '('+columnList.ex
+            }
+
+            //for (int i = 0; i < columnList.Count; i++)
+            //{
+            //    if (columnList[i] == Column)
+            //    {
+            //        columnList.RemoveAt(i);
+            //        valueList.RemoveAt(i);
+            //        break;
+            //    }
+            //}
+
+
+
+            return sqlBuilderLIst;
+        }
         #endregion
 
         #region Delete
@@ -308,8 +401,7 @@ namespace BLL
             {
                 if ((sqlBuilderLIst[index])[0] == 'W')
                 {
-                    string[] temp = sqlBuilderLIst[index].Split('(');
-                    List<string> tempHolder = temp.ToList();
+                    List<string> tempHolder = sqlBuilderLIst[index].Split('(').ToList();
                     
                     for (int i = 1; i < tempHolder.Count; i++)
                     {
@@ -422,11 +514,28 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
+        
+
        
 
         #endregion
 
         #endregion
+    }
+
+    public static class ExtentionClass
+    {
+        private string ListToString(this List<string> theList)
+        {
+            string line = "";
+
+            foreach (string item in theList)
+            {
+                line += item + ",";
+            }
+
+            return line.Substring(0, line.LastIndexOf(','));
+        }
     }
 
 

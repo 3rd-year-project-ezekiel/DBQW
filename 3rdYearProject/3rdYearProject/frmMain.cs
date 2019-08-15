@@ -692,7 +692,11 @@ namespace _3rdYearProject
                     throw new NullReferenceException();
                 }
 
-                lstInsertItems.Items.Add(string.Format("Table:{0} Column:{1} Value:{2}", table,columnName, value));
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.InsertValue(columnName, value);
+
+                //lstInsertItems.Items.Add(string.Format("Table:{0} Column:{1} Value:{2}", table,columnName, value));
+                lstInsertItems.Items.Add(string.Format("{1} {2}",columnName, value));
             }
             catch (NullReferenceException)
             {
@@ -711,6 +715,10 @@ namespace _3rdYearProject
             try
             {
                 int selectedIndex = lstInsertItems.SelectedIndex;
+
+                string[] values = ((string)lstInsertItems.SelectedItem).Split(' ');
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.InsertRemoveValue(values[0], values[1]);
 
                 lstInsertItems.Items.RemoveAt(selectedIndex);
                 MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
