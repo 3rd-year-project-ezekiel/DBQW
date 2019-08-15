@@ -199,9 +199,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(413, 114);
+            this.textBox1.Location = new System.Drawing.Point(291, 114);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.Size = new System.Drawing.Size(222, 22);
             this.textBox1.TabIndex = 30;
             this.textBox1.Text = "LAPTOP-Q6DPUL5L";
             // 
