@@ -55,6 +55,7 @@ namespace _3rdYearProject
             string password = "";
             string conType = "";
 
+            
             if (dropAuthentication.SelectedIndex == 1)
             {
                 username = txtLogin.Text;
@@ -66,10 +67,12 @@ namespace _3rdYearProject
                     MessageBox.Show("Please provide Username and Password");
                     return;
                 }
+
             }
             else
             {
                 conType = "Windows Authentication";
+
             }
 
             Accounts accounts = new Accounts(username, password, conType);
@@ -81,13 +84,14 @@ namespace _3rdYearProject
                 frmMain MainForm = new frmMain();
                 Form.ActiveForm.Hide();
                 MainForm.Show();
-                
-                
+
+
             }
             else
             {
                 MessageBox.Show("Login failed!");
             }
+            
         }
 
         private void btnCancel_Click_1(object sender, EventArgs e)
