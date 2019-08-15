@@ -55,41 +55,41 @@ namespace _3rdYearProject
             string password = "";
             string conType = "";
 
-            if (string.IsNullOrWhiteSpace(txtLogin.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
+            
+            if (dropAuthentication.SelectedIndex == 1)
             {
-                MessageBox.Show("Please provide Username and Password");
-                return;
+                username = txtLogin.Text;
+                password = txtPassword.Text;
+                conType = "SQL Server Authentication";
+
+                if (string.IsNullOrWhiteSpace(txtLogin.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
+                {
+                    MessageBox.Show("Please provide Username and Password");
+                    return;
+                }
+
             }
             else
             {
-                if (dropAuthentication.SelectedIndex == 1)
-                {
-                    username = txtLogin.Text;
-                    password = txtPassword.Text;
-                    conType = "SQL Server Authentication";
+                conType = "Windows Authentication";
 
-                }
-                else
-                {
-                    conType = "Windows Authentication";
-                }
+            }
 
-                Accounts accounts = new Accounts(username, password, conType);
-                bool verified = accounts.LoginAccount(txtServerName.Text);
+            Accounts accounts = new Accounts(username, password, conType);
+            bool verified = accounts.LoginAccount(txtServerName.Text);
 
-                if (verified)
-                {
-                    MessageBox.Show("Login successful!");
-                    frmMain MainForm = new frmMain();
-                    Form.ActiveForm.Hide();
-                    MainForm.Show();
+            if (verified)
+            {
+                MessageBox.Show("Login successful!");
+                frmMain MainForm = new frmMain();
+                Form.ActiveForm.Hide();
+                MainForm.Show();
 
 
-                }
-                else
-                {
-                    MessageBox.Show("Login failed!");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Login failed!");
             }
             
         }
