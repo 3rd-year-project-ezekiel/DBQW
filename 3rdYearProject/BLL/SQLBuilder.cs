@@ -9,38 +9,41 @@ namespace BLL
 {
     public class SQLBuilder
     {
-        #region fields
+        #region Fields
         private List<string> sqlBuilderLIst;
+        // This list will contain the Sql Query while the user builds it
+        // every time the query is modified, sqlBuilderLIst will change and then from there the changes will be distributed
         #endregion
 
-        #region constructor
+        #region Constructor
         public SQLBuilder()
         { sqlBuilderLIst = new List<string>(); }
-
+        // When the class is first called, a new list will be created to hold the new Query
         #endregion
 
         #region Algorithm
+        // This region contains all the functions that will modify the query
 
         #region Database
         // Database add + change
         public List<string> DatabaseBaseBuilder(string dataBaseName)
         {
-            if (sqlBuilderLIst.Count == 0)
-            { sqlBuilderLIst.Add("USE " + dataBaseName); sqlBuilderLIst.Add("GO"); }
+            if (sqlBuilderLIst.Count == 0)      // if no database has been selected
+            { sqlBuilderLIst.Add("USE " + dataBaseName); sqlBuilderLIst.Add("GO"); }   // add a database
             else
-            if (sqlBuilderLIst.Count > 0)
+            if (sqlBuilderLIst.Count > 0)     // if a database was already selected
             {
-                    sqlBuilderLIst.Clear();
-                    sqlBuilderLIst.Add("USE " + dataBaseName);
+                    sqlBuilderLIst.Clear();     // clear query
+                    sqlBuilderLIst.Add("USE " + dataBaseName);    // add new database
                     sqlBuilderLIst.Add("GO");
             }
             return sqlBuilderLIst;
         }
 
         #endregion
-
+        // finish
         #region Procedure
-        // programmability base add and remove
+        // Procedure base add and remove
         public List<string> ProcedureBaseBuilder()
         {
 
@@ -87,6 +90,26 @@ namespace BLL
 
             return sqlBuilderLIst;
         }
+
+        // Add a varible to Procedure
+        public List<string> ProcedureAddVaribles(string varible)
+        {
+            sqlBuilderLIst[3].Replace(')', ',');
+            sqlBuilderLIst[3] += varible + ")";
+            return sqlBuilderLIst;
+        }
+
+        // Remove a Varible From Procedure
+        public List<string> ProcedureRemoveVarible(string varible)
+        {
+            List<string> theList = sqlBuilderLIst[3].Replace(')', ',').Replace('(', ',').Split(',').ToList(); // replaces the brackets with colons then splited on the colons
+            theList.Remove(varible);                                                                          // if there is somthing to remove, the first sighting of the will be removed
+            sqlBuilderLIst[3] = "(" + ListToString(theList) + ")";                                           // adds whats left back to sql
+            return sqlBuilderLIst;
+        }
+        #endregion
+        // finish
+        #region Views
 
         #endregion
 
@@ -717,8 +740,16 @@ namespace BLL
         }
 
         #endregion
-
+        // finish
         #region Joins
+
+        #endregion
+        // finish
+        #region Transactions
+
+        #endregion
+        // finish
+        #region Query Execute
 
         #endregion
 
@@ -750,3 +781,9 @@ namespace BLL
     }
 
 }
+
+// Still to do
+// - Fix form so that table name doesnt randomly dissapear
+// - finish comments and orginize all classes
+// - rework procedures so that when a procuder is unselected, but it has varibels that is bing used, that the whole query is reset(maybe error handling)
+// - finish other methods
