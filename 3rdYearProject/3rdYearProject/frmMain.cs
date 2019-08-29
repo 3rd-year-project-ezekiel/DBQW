@@ -762,7 +762,12 @@ namespace _3rdYearProject
                     throw new NullReferenceException();
                 }
 
-                lstSetitems.Items.Add(string.Format("{0}{1}{2}", columnName, condition, value));
+                string tempValueHolder = string.Format("{0} {1} {2}", columnName, condition, value);
+
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.UpdateSet(tempValueHolder);
+
+                lstSetitems.Items.Add(tempValueHolder);
             }
             catch (NullReferenceException)
             {
@@ -776,6 +781,9 @@ namespace _3rdYearProject
             try
             {
                 int selectedIndex = lstSetitems.SelectedIndex;
+
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.UpdateRemoveSet((string)lstSetitems.SelectedItem);
 
                 lstSetitems.Items.RemoveAt(selectedIndex);
                 MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -285,7 +285,7 @@ namespace BLL
                     sqlBuilderLIst.Add("UPDATE ");
                     if (tableName != "")
                         sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
-                    sqlBuilderLIst.Add("SET ");
+                    sqlBuilderLIst.Add("SET");
                     sqlBuilderLIst.Add("END");
 
                 }
@@ -302,16 +302,92 @@ namespace BLL
                 sqlBuilderLIst.Add("UPDATE ");
                 if (tableName != "")
                     sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
-                sqlBuilderLIst.Add("SET ");
+                sqlBuilderLIst.Add("SET");
 
             }
 
             return sqlBuilderLIst;
         }
 
-        public List<string> UpdateSet() { }
+        public List<string> UpdateSet(string ColumnAndValue)
+        {
 
-        public List<string> UpdateRemoveSet() { }
+
+            int setLine = 0;
+
+            try
+            {
+                if ((sqlBuilderLIst[2])[0] == 'C')
+                {
+                    setLine = 7;
+                }
+                else
+                {
+                    sqlBuilderLIst[sqlBuilderLIst.Count] = "";
+                }
+            }
+            catch (Exception)
+            {
+                setLine = 3;
+
+            }
+
+            char[] test = new char[1] { ' ' };
+            List<string> theList = sqlBuilderLIst[setLine].Split(test,2).ToList();
+            if (theList.Count == 1 || theList[1] == "")
+            {
+                sqlBuilderLIst[setLine] += " " + ColumnAndValue;
+            }
+            else
+            {
+                string lineHolder = theList[0];
+                string listholder = "";
+                theList = theList[1].Split(',').ToList();
+                foreach (string item in theList)
+                {
+                    listholder +=  item + ',';
+                }
+                sqlBuilderLIst[setLine] = lineHolder + " " + listholder + ColumnAndValue;
+            }
+
+            return sqlBuilderLIst;
+        }
+
+        public List<string> UpdateRemoveSet(string ColumnAndValue)
+        {
+            int setLine = 0;
+
+            try
+            {
+                if ((sqlBuilderLIst[2])[0] == 'C')
+                {
+                    setLine = 7;
+                }
+                else
+                {
+                    sqlBuilderLIst[sqlBuilderLIst.Count] = "";
+                }
+            }
+            catch (Exception)
+            {
+                setLine = 3;
+            }
+            char[] test = new char[1] { ' ' };
+            List<string> theList = sqlBuilderLIst[setLine].Split(test, 2).ToList();
+            
+            List<string> valueList = theList[1].Split(',').ToList();
+            valueList.Remove(ColumnAndValue);
+
+            sqlBuilderLIst[setLine] = theList[0];
+
+            if (valueList.Count != 0)
+            {
+                sqlBuilderLIst[setLine] += ' ' + ListToString(valueList) ;
+            }
+
+            return sqlBuilderLIst;
+
+        }
 
         #endregion
 
@@ -395,7 +471,8 @@ namespace BLL
                 if ((sqlBuilderLIst[index])[0] == 'W')
                 {
                     List<string> tempHolder = sqlBuilderLIst[index].Split('(').ToList();
-                    
+
+
                     for (int i = 1; i < tempHolder.Count; i++)
                     {
                         string tempClause = tempHolder[i].Substring(0, tempHolder[i].IndexOf(')'));
