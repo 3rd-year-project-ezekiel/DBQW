@@ -20,6 +20,8 @@ namespace BLL
         #endregion
 
         #region Algorithm
+
+        #region Database
         // Database add + change
         public List<string> DatabaseBaseBuilder(string dataBaseName)
         {
@@ -35,9 +37,11 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
-        #region programmability
+        #endregion
+
+        #region Procedure
         // programmability base add and remove
-        public List<string> programmabilityBaseBuilder()
+        public List<string> ProcedureBaseBuilder()
         {
 
             try
@@ -575,6 +579,148 @@ namespace BLL
         }
         #endregion
 
+        #region Order By
+
+        public List<string> OrderByClauseBuilder(string orderByClause)
+        {
+            // Checks to see if there is a where already
+            for (int index = 3; index < sqlBuilderLIst.Count; index++)
+            {
+                if ((sqlBuilderLIst[index])[0] == 'O')
+                {
+                    string tempHolder = sqlBuilderLIst[index];
+                    sqlBuilderLIst[index] = tempHolder + "," + orderByClause;
+                    return sqlBuilderLIst;
+                }
+            }
+
+            if ((sqlBuilderLIst[2])[0] == 'C')
+            {
+                sqlBuilderLIst[sqlBuilderLIst.Count - 1] = "ORDER BY " + orderByClause;
+                sqlBuilderLIst.Add("END");
+            }
+            else
+            {
+                sqlBuilderLIst.Add("ORDER BY " + orderByClause);
+            }
+
+            return sqlBuilderLIst;
+        }
+
+        public List<string> OrderByClauseRemover(string orderByClause)
+        {
+            for (int index = 3; index < sqlBuilderLIst.Count; index++)
+            {
+                if ((sqlBuilderLIst[index])[0] == 'O')
+                {
+                    char[] test = new char[1] { ' ' };
+                    List<string> tempList = sqlBuilderLIst[index].Split(test, 3).ToList();
+                    List<string> tempHolder = tempList[2].Split(',').ToList();
+
+
+                    for (int i = 0; i < tempHolder.Count; i++)
+                    {
+                        if (tempHolder[i].Equals(orderByClause))
+                        {
+                            tempHolder.RemoveAt(i);
+
+                            if (tempHolder.Count > 0)
+                            {
+                                string holder = tempList[0] + " " + tempList[1] + " ";
+                                foreach (string item in tempHolder)
+                                {
+                                    holder += item + ",";
+                                }
+                                sqlBuilderLIst[index] = holder.Substring(0, holder.LastIndexOf(','));
+                            }
+                            else
+                            {
+                                sqlBuilderLIst.RemoveAt(index);
+                            }
+
+                            return sqlBuilderLIst;
+                        }
+                    }
+                }
+            }
+
+            return sqlBuilderLIst;
+        }
+
+        #endregion
+
+        #region Group By
+        public List<string> GroupByClauseBuilder(string groupByClause)
+        {
+            // Checks to see if there is a group by already
+            for (int index = 3; index < sqlBuilderLIst.Count; index++)
+            {
+                if ((sqlBuilderLIst[index])[0] == 'G')
+                {
+                    string tempHolder = sqlBuilderLIst[index];
+                    sqlBuilderLIst[index] = tempHolder + "," + groupByClause;
+                    return sqlBuilderLIst;
+                }
+            }
+
+            if ((sqlBuilderLIst[2])[0] == 'C')
+            {
+                sqlBuilderLIst[sqlBuilderLIst.Count - 1] = "GROUP BY " + groupByClause;
+                sqlBuilderLIst.Add("END");
+            }
+            else
+            {
+                sqlBuilderLIst.Add("GROUP BY " + groupByClause);
+            }
+
+            return sqlBuilderLIst;
+        }
+
+        public List<string> GroupByClauseRemover(string groupByClause)
+        {
+            for (int index = 3; index < sqlBuilderLIst.Count; index++)
+            {
+                if ((sqlBuilderLIst[index])[0] == 'G')
+                {
+                    char[] test = new char[1] { ' ' };
+                    List<string> tempList = sqlBuilderLIst[index].Split(test, 3).ToList();
+                    List<string> tempHolder = tempList[2].Split(',').ToList();
+
+
+                    for (int i = 0; i < tempHolder.Count; i++)
+                    {
+                        if (tempHolder[i].Equals(groupByClause))
+                        {
+                            tempHolder.RemoveAt(i);
+
+                            if (tempHolder.Count > 0)
+                            {
+                                string holder = tempList[0] + " " + tempList[1] + " ";
+                                foreach (string item in tempHolder)
+                                {
+                                    holder += item + ",";
+                                }
+                                sqlBuilderLIst[index] = holder.Substring(0, holder.LastIndexOf(','));
+                            }
+                            else
+                            {
+                                sqlBuilderLIst.RemoveAt(index);
+                            }
+
+                            return sqlBuilderLIst;
+                        }
+                    }
+                }
+            }
+
+            return sqlBuilderLIst;
+        }
+
+        #endregion
+
+        #region Joins
+
+        #endregion
 
         #region Support Methods
 
@@ -602,11 +748,5 @@ namespace BLL
 
         #endregion
     }
-
-    public static class ExtentionClass
-    {
-        
-    }
-
 
 }

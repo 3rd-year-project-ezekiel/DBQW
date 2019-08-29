@@ -46,7 +46,7 @@ namespace _3rdYearProject
             AddTabsForSelect();
             DisableComponenets();
             MenuStripColour(mnuSelect);
-            mnuProgramability.BackColor = Color.Transparent;
+            mnuProcedure.BackColor = Color.Transparent;
             
         }
 
@@ -58,7 +58,7 @@ namespace _3rdYearProject
             btnAddsSource.Enabled = false;
             btnRemove.Enabled = false;
 
-            mnuProgramability.Enabled = false;
+            mnuProcedure.Enabled = false;
             mnuSelect.Enabled = false;
             mnuInsert.Enabled = false;
             mnuDelete.Enabled = false;
@@ -116,7 +116,7 @@ namespace _3rdYearProject
                 lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
             }
 
-            mnuProgramability.Enabled = true;
+            mnuProcedure.Enabled = true;
             mnuInsert.Enabled = true;
             mnuSelect.Enabled = true;
             mnuDelete.Enabled = true;
@@ -169,14 +169,14 @@ namespace _3rdYearProject
         }
         #region Base Menu Strips ( Insert, Update, Delete, Select, Programability)
         // Programability Menu Strip
-        private void mnuProgramability_Click(object sender, EventArgs e)
+        private void mnuProcedure_Click(object sender, EventArgs e)
         {
-            if (mnuProgramability.BackColor == Color.Transparent)
-            mnuProgramability.BackColor = Color.LightSeaGreen; else mnuProgramability.BackColor = Color.Transparent;
+            if (mnuProcedure.BackColor == Color.Transparent)
+            mnuProcedure.BackColor = Color.LightSeaGreen; else mnuProcedure.BackColor = Color.Transparent;
             // RemoveUnneccassary();
             //AddTabsForSelect();
             lstDisplay.DataSource = null;
-            lstDisplay.DataSource = sqlBuilderClass.programmabilityBaseBuilder();
+            lstDisplay.DataSource = sqlBuilderClass.ProcedureBaseBuilder();
             
         }
 
@@ -452,7 +452,25 @@ namespace _3rdYearProject
 
         // Validation needs to be added here
         // validation to detrimine what data type the value should be
-        
+
+        #region Clauses Tab
+        #region Tab Mechanics
+
+
+        private void CmbInsertTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (KeyValuePair<string, List<string>> item in columnDictionary)
+            {
+                if (cmbInsertTable.SelectedItem.ToString() == item.Key)
+                {
+                    cmbInsertColumns.DataSource = item.Value;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Tab Button Functionality
         private void BtnAddWhere_Click(object sender, EventArgs e)
         {
             try
@@ -504,7 +522,7 @@ namespace _3rdYearProject
             }
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void BtnAddOrderedItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -517,7 +535,12 @@ namespace _3rdYearProject
                     throw new NullReferenceException();
                 }
                 string sortType = cmbOrderType.SelectedItem.ToString();
-                lstOrderedItems.Items.Add(string.Format("{0} {1}", columnName, sortType));
+
+                string valueHolder = string.Format("{0} {1}", columnName, sortType);
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.OrderByClauseBuilder(valueHolder);
+
+                lstOrderedItems.Items.Add(valueHolder);
             }
             catch (NullReferenceException)
             {
@@ -532,6 +555,9 @@ namespace _3rdYearProject
             try
             {
                 int selectedIndex = lstOrderedItems.SelectedIndex;
+
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.OrderByClauseRemover((string)lstOrderedItems.SelectedItem);
 
                 lstOrderedItems.Items.RemoveAt(selectedIndex);
                 MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -551,9 +577,10 @@ namespace _3rdYearProject
         private void BtnGroupBy_Click(object sender, EventArgs e)
         {
             string columnName = cmbGroupByColum.SelectedItem.ToString();
+
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.GroupByClauseBuilder(columnName);
             
-
-
             lstGroupedItems.Items.Add(string.Format("{0}", columnName));
         }
 
@@ -562,6 +589,9 @@ namespace _3rdYearProject
             try
             {
                 int selectedIndex = lstGroupedItems.SelectedIndex;
+
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.GroupByClauseRemover((string)lstGroupedItems.SelectedItem);
 
                 lstGroupedItems.Items.RemoveAt(selectedIndex);
                 MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -739,17 +769,6 @@ namespace _3rdYearProject
             }
         }
 
-        private void CmbInsertTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            foreach (KeyValuePair<string, List<string>> item in columnDictionary)
-            {
-                if (cmbInsertTable.SelectedItem.ToString() == item.Key)
-                {
-                    cmbInsertColumns.DataSource = item.Value;
-                }
-            }
-        }
-
         private void BtnAddSet_Click(object sender, EventArgs e)
         {
             try
@@ -800,7 +819,9 @@ namespace _3rdYearProject
                 throw;
             }
         }
+        #endregion
 
-        
+        #endregion
+
     }
 }
