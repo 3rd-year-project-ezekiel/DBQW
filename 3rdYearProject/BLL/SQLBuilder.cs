@@ -309,6 +309,10 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
+        public List<string> UpdateSet() { }
+
+        public List<string> UpdateRemoveSet() { }
+
         #endregion
 
         #region Select
