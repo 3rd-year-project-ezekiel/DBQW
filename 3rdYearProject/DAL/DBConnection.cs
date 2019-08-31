@@ -11,123 +11,51 @@ namespace DAL
 {
     public class DBConnection
     {
+
+        #region Database Connection and Class Varibles
         private string connectionString;
         private SqlConnection connection;
         private SqlCommand command;
         private SqlDataAdapter adapter;
         private DataTable table;
 
+        // Constructor
         public DBConnection(string connectionStringParam = "default")
         {
             this.connectionString = ConfigurationManager.ConnectionStrings[connectionStringParam].ConnectionString;
             this.connection = new SqlConnection(connectionString);
         }
 
-        public DataTable SelectQuery(string query)
+        // 
+        public bool UserLogin()
         {
             try
             {
-                if (connection.State != ConnectionState.Open)
-                {
-                    connection.Open();
-                }
-
-                command = new SqlCommand(query, connection);
-                adapter = new SqlDataAdapter(command);
-
-                table = new DataTable();
-                adapter.Fill(table);
+                connection.Open();
             }
-            catch (Exception)
+            catch (SqlException)
             {
-
-                throw;
+                return false;
             }
             finally
             {
                 connection.Close();
             }
-
-            return table;
+            return true;
         }
+        #endregion
 
-        public void InsertQuery(string table, List<string> data)
-        {
-            string query = "INSERT ";
+        #region Push Data into Database
 
-            foreach (var item in data)
-            {
-                query = query + item;
-            }
+        //
 
-            query = query + " FROM " + table;
+        // Wikus Please Enter Query database execution here
+        // you will recive a string query, please get the path from this class
+        // please name your method QueryExecution
 
-            try
-            {
-                if (connection.State != ConnectionState.Open)
-                {
-                    connection.Open();
-                }
+        //
 
-                command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-
-        public void DeleteQuery(string table, string ID)
-        {
-            string query = "DELETE FROM " + table + " WHERE " + ID;
-
-            try
-            {
-                if (connection.State != ConnectionState.Open)
-                {
-                    connection.Open();
-                }
-
-                command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-
-        public void UpdateQuery(string query)
-        {
-            try
-            {
-                if (connection.State != ConnectionState.Open)
-                {
-                    connection.Open();
-                }
-
-                command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            finally
-            {
-                connection.Close();
-            }
-        }
-
+        // Method of creating a Database on SqlServer
         public void CreateDatabase(List<string> details)
         {
             string query = "Create DataBase " + details[0].ToString() + " ON Primary(Name= " + details[0].ToString() + ", FileName  = '" + details[1].ToString() + @"\" + details[0].ToString() + ".mdf', Size = " + details[2].ToString() + @"mb,MaxSize = UNLIMITED,FileGrowth = 10 %)Log On(Name=" + details[3].ToString() + @",FileName = '" + details[1] + @"\" + details[3].ToString() + @".ldf')";
@@ -151,13 +79,14 @@ namespace DAL
             }
         }
 
+        // Method of creating Tables on SqlServer
         public void CreateTable(List<String> tableDetails, string databaseName, string tableName)
         {
             int count = 0;
             int listLength = tableDetails.Count;
             StringBuilder query = new StringBuilder();
-            query.Append("use " + databaseName + " ");
-            query.Append("Create Table " + tableName + " ");
+            query.Append("USE " + databaseName + " ");
+            query.Append("CREATE TABLE " + tableName + " ");
             query.Append("(");
             foreach (string item in tableDetails)
             {
@@ -193,6 +122,11 @@ namespace DAL
 
         }
 
+
+        #endregion
+
+        #region Pull Data From Database
+        // Method of getting a List of Databases from SqlServer
         public List<string> GetDatabases()
         {
             List<string> databases = new List<string>();
@@ -224,6 +158,7 @@ namespace DAL
             return databases;
         }
 
+        // Method of getting a list of Tables from specified Database from SqlServer
         public List<string> GetTables(string databaseName)
         {
             List<string> tables = new List<string>();
@@ -256,6 +191,7 @@ namespace DAL
             return tables;
         }
 
+        // Method of getting a list of Coloumns from specified Table from SqlServer
         public List<string> GetColumns(string databaseName, string tableName)
         {
             List<string> tables = new List<string>();
@@ -288,22 +224,8 @@ namespace DAL
             return tables;
         }
 
+        #endregion
 
-        public bool UserLogin()
-        {
-            try
-            {
-                connection.Open();
-            }
-            catch (SqlException)
-            {
-                return false;
-            }
-            finally
-            {
-                connection.Close();
-            }
-            return true;
-        }
+   
     }
 }

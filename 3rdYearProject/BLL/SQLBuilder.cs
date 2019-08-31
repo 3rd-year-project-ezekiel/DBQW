@@ -108,8 +108,45 @@ namespace BLL
             return sqlBuilderLIst;
         }
         #endregion
-        // finish
+
         #region Views
+        public List<string> ViewBaseBuilder(string tableName = "")
+        {
+
+            try
+            {
+                if ((sqlBuilderLIst[2])[0] == 'C')
+                {
+                    sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
+                    if (sqlBuilderLIst.Count > 5)
+                        sqlBuilderLIst.RemoveRange(6, (sqlBuilderLIst.Count - 6));
+
+                    sqlBuilderLIst.Add("SELECT ");
+                    sqlBuilderLIst.Add("FROM ");
+                    if (tableName != "")
+                        sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
+                    sqlBuilderLIst.Add("END");
+
+                }
+                else
+                {
+                    sqlBuilderLIst[sqlBuilderLIst.Count] = "";
+                }
+            }
+            catch (Exception)
+            {
+                if (sqlBuilderLIst.Count > 2)
+                    sqlBuilderLIst.RemoveRange(2, (sqlBuilderLIst.Count - 2));
+
+                sqlBuilderLIst.Add("SELECT ");
+                sqlBuilderLIst.Add("FROM ");
+                if (tableName != "")
+                    sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
+
+            }
+
+            return sqlBuilderLIst;
+        }
 
         #endregion
 
