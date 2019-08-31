@@ -120,6 +120,7 @@ namespace _3rdYearProject
             btnRemove.Enabled = false;
 
             mnuProcedure.Enabled = false;
+            mnuViews.Enabled = false;
             mnuSelect.Enabled = false;
             mnuInsert.Enabled = false;
             mnuDelete.Enabled = false;
@@ -169,6 +170,7 @@ namespace _3rdYearProject
             }
 
             mnuProcedure.Enabled = true;
+            mnuViews.Enabled = true;
             mnuInsert.Enabled = true;
             mnuSelect.Enabled = true;
             mnuDelete.Enabled = true;
@@ -180,8 +182,7 @@ namespace _3rdYearProject
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            btnAddsSource.Enabled = true;
-            btnRemove.Enabled = true;
+            
             bool found = false;
 
             Tables newTable = (Tables)cmbTables.SelectedItem;
@@ -239,6 +240,14 @@ namespace _3rdYearProject
             public int iSelectedImage;
             public int cChildren;
             public IntPtr lParam;
+        }
+
+        // When menu strip(Select,Insert...) is selected, the TreeView, Add and Remove button gets activated
+        public void EnableTreeAndButton()
+        {
+            btnAddsSource.Enabled = true;
+            btnRemove.Enabled = true;
+            tvEntities.Enabled = true;
         }
 
         public void DoubleCheckRemove()     // Checks tree view
@@ -299,15 +308,16 @@ namespace _3rdYearProject
 
                 cmbTableJoinTarget.Items.Add(item.Key);
                 cmbSourceTableJoin.Items.Add(item.Key);
-                cmbInsertTable.Items.Add(item.Key);
             }
 
             //for Column Names,(Basic SQL CODE ex.Select)
+            // all combo boxes recieves the list
             cmbWhereColName.DataSource = selectedListofColumns;
             cmbHavingCol.DataSource = selectedListofColumns;
             cmbOrderColumns.DataSource = selectedListofColumns;
             cmbGroupByColum.DataSource = selectedListofColumns;
             cmbSetCol.DataSource = selectedListofColumns;
+            cmbInsertColumns.DataSource = selectedListofColumns;
         }
         #endregion
 
@@ -336,7 +346,7 @@ namespace _3rdYearProject
             RemoveUnneccassary();
             AddTabsForSelect();
             ClearDataLists();
-            tvEntities.Enabled = true;
+            EnableTreeAndButton();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
         }
@@ -348,6 +358,7 @@ namespace _3rdYearProject
             ClearDataLists();
             RemoveUnneccassary();
             AddTabsForSelect();
+            EnableTreeAndButton();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.ViewBaseBuilder(cmbTables.SelectedText);
         }
@@ -360,6 +371,7 @@ namespace _3rdYearProject
             RemoveUnneccassary();
             AddTabsForDelete();
             ClearDataLists();
+            EnableTreeAndButton();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.DeleteBaseBuilder(cmbTables.SelectedText);
 
@@ -373,6 +385,7 @@ namespace _3rdYearProject
             RemoveUnneccassary();
             AddTabsForUpdate();
             ClearDataLists();
+            EnableTreeAndButton();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.UpdateBaseBuilder(cmbTables.SelectedText);
         }
@@ -384,6 +397,7 @@ namespace _3rdYearProject
             ClearDataLists();
             RemoveUnneccassary();
             AddTabsForInsert();
+            EnableTreeAndButton();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.InsertBaseBuilder(cmbTables.SelectedText);
         }
@@ -510,9 +524,9 @@ namespace _3rdYearProject
             cmbOrderColumns.DataSource = null;
             cmbGroupByColum.DataSource = null;
             cmbSetCol.DataSource = null;
+            cmbInsertColumns.DataSource = null;
             cmbTableJoinTarget.Items.Clear();
             cmbSourceTableJoin.Items.Clear();
-            cmbInsertTable.Items.Clear();
         }
 
         // Clears all the clause lists on the tabs
@@ -560,16 +574,7 @@ namespace _3rdYearProject
             }
         }
 
-        private void CmbInsertTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            foreach (KeyValuePair<string, List<string>> item in columnDictionary)
-            {
-                if (cmbInsertTable.SelectedItem.ToString() == item.Key)
-                {
-                    cmbInsertColumns.DataSource = item.Value;
-                }
-            }
-        }
+        
 
         #endregion
 
@@ -818,7 +823,6 @@ namespace _3rdYearProject
         {
             try
             {
-                string table = cmbInsertTable.SelectedItem.ToString();
                 string columnName = cmbInsertColumns.SelectedItem.ToString();
                 
                 string value = txtInsertValues.Text.ToString();
@@ -829,10 +833,8 @@ namespace _3rdYearProject
 
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.InsertValue(columnName, value);
-
-                //lstInsertItems.Items.Add(string.Format("Table:{0} Column:{1} Value:{2}", table,columnName, value));
-                //lstInsertItems.Items.Add(string.Format("{1} {2}",columnName, value));
-                lstInsertItems.Items.Add(string.Format(columnName+" "+value));
+                
+                lstInsertItems.Items.Add(string.Format("{0} {1}",columnName, value));
             }
             catch (NullReferenceException)
             {
