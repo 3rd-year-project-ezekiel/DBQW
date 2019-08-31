@@ -8,7 +8,9 @@ namespace BLL
 {
     class QueryExceptionHandling
     {
-
-
+        public void heya() { int hey; }
+        public void sam() { heya(); }
     }
+
+    
 }
