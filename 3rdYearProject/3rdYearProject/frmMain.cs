@@ -127,11 +127,59 @@ namespace _3rdYearProject
 
         }
 
+        private void cmbDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstDisplay.DataSource != null)
+            {
+                if (MessageBox.Show("Are you sure you want to replace the Database, doing so will erase the Query", " warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    item = 0;
+                    tvEntities.Nodes.Clear();
+                    Tables table = new Tables();
+                    tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
+                    cmbTables.SelectedIndexChanged -= cmbTables_SelectedIndexChanged;
+                    cmbTables.DataSource = tables;
+                    cmbTables.DisplayMember = "tableNames";
+                    cmbTables.ValueMember = "tableNames";
+                    cmbTables.SelectedIndex = -1;
+                    cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
+                    cmbTables.Enabled = true;
+                    lstDisplay.DataSource = null;
+                    lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
+                }
+                else
+                {
+                    // enter previos database name
+                }
+            }
+            else
+            {
+                tvEntities.Nodes.Clear();
+                Tables table = new Tables();
+                tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
+                cmbTables.SelectedIndexChanged -= cmbTables_SelectedIndexChanged;
+                cmbTables.DataSource = tables;
+                cmbTables.DisplayMember = "tableNames";
+                cmbTables.ValueMember = "tableNames";
+                cmbTables.SelectedIndex = -1;
+                cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
+                cmbTables.Enabled = true;
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
+            }
+
+            mnuProcedure.Enabled = true;
+            mnuInsert.Enabled = true;
+            mnuSelect.Enabled = true;
+            mnuDelete.Enabled = true;
+            mnuUpdate.Enabled = true;
+
+        }
+
         int item = 0;
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            //tvEntities.Enabled = true;
+            
             btnAddsSource.Enabled = true;
             btnRemove.Enabled = true;
             bool found = false;
@@ -209,55 +257,6 @@ namespace _3rdYearProject
                 }
 
             }
-        }
-
-        private void cmbDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lstDisplay.DataSource != null)
-            {
-                if (MessageBox.Show("Are you sure you want to replace the Database, doing so will erase the Query", " warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    item = 0;
-                    tvEntities.Nodes.Clear();
-                    Tables table = new Tables();
-                    tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
-                    cmbTables.SelectedIndexChanged -= cmbTables_SelectedIndexChanged;
-                    cmbTables.DataSource = tables;
-                    cmbTables.DisplayMember = "tableNames";
-                    cmbTables.ValueMember = "tableNames";
-                    cmbTables.SelectedIndex = -1;
-                    cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
-                    cmbTables.Enabled = true;
-                    lstDisplay.DataSource = null;
-                    lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
-                }
-                else
-                {
-                    // enter previos database name
-                }
-            }
-            else
-            {
-                tvEntities.Nodes.Clear();
-                Tables table = new Tables();
-                tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
-                cmbTables.SelectedIndexChanged -= cmbTables_SelectedIndexChanged;
-                cmbTables.DataSource = tables;
-                cmbTables.DisplayMember = "tableNames";
-                cmbTables.ValueMember = "tableNames";
-                cmbTables.SelectedIndex = -1;
-                cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
-                cmbTables.Enabled = true;
-                lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
-            }
-
-            mnuProcedure.Enabled = true;
-            mnuInsert.Enabled = true;
-            mnuSelect.Enabled = true;
-            mnuDelete.Enabled = true;
-            mnuUpdate.Enabled = true;
-
         }
 
         private void BtnAddsSource_Click(object sender, EventArgs e)
