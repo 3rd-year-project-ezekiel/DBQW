@@ -41,7 +41,7 @@ namespace BLL
         }
 
         #endregion
-        // finish
+       
         #region Procedure
         // Procedure base add and remove
         public List<string> ProcedureBaseBuilder()
@@ -49,7 +49,7 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
                 {
                     sqlBuilderLIst.RemoveRange(2, 4);
                     sqlBuilderLIst.RemoveRange(sqlBuilderLIst.Count - 1, 1);
@@ -115,12 +115,12 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
                 {
                     sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
                     if (sqlBuilderLIst.Count > 5)
                         sqlBuilderLIst.RemoveRange(6, (sqlBuilderLIst.Count - 6));
-
+                    sqlBuilderLIst.Add("CREATE VIEW >Enter Name< AS");
                     sqlBuilderLIst.Add("SELECT ");
                     sqlBuilderLIst.Add("FROM ");
                     if (tableName != "")
@@ -137,7 +137,7 @@ namespace BLL
             {
                 if (sqlBuilderLIst.Count > 2)
                     sqlBuilderLIst.RemoveRange(2, (sqlBuilderLIst.Count - 2));
-
+                sqlBuilderLIst.Add("CREATE VIEW >Enter Name< AS");
                 sqlBuilderLIst.Add("SELECT ");
                 sqlBuilderLIst.Add("FROM ");
                 if (tableName != "")
@@ -157,7 +157,7 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
                 {
                     sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
                     if (sqlBuilderLIst.Count > 5)
@@ -198,7 +198,7 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
                 {
                     insertLine = 6;
                     valueline = 7;
@@ -253,7 +253,7 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
                 {
                     insertLine = 6;
                     valueline = 7;
@@ -300,7 +300,7 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
                 {
                     sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
                     if (sqlBuilderLIst.Count > 5)
@@ -340,7 +340,7 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
                 {
                     sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
                     if (sqlBuilderLIst.Count > 5)
@@ -381,7 +381,7 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
                 {
                     setLine = 7;
                 }
@@ -423,7 +423,7 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
                 {
                     setLine = 7;
                 }
@@ -462,7 +462,7 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
                 {
                     sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
                     if (sqlBuilderLIst.Count > 5)
@@ -512,7 +512,7 @@ namespace BLL
                 }
             }
 
-            if ((sqlBuilderLIst[2])[0] == 'C')
+            if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
             {
                 sqlBuilderLIst[sqlBuilderLIst.Count - 1] = "WHERE" + whereClause;
                 sqlBuilderLIst.Add("END");
@@ -583,7 +583,7 @@ namespace BLL
                 }
             }
 
-            if ((sqlBuilderLIst[2])[0] == 'C')
+            if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
             {
                 sqlBuilderLIst[sqlBuilderLIst.Count - 1] = "HAVING" + havingClause;
                 sqlBuilderLIst.Add("END");
@@ -654,7 +654,7 @@ namespace BLL
                 }
             }
 
-            if ((sqlBuilderLIst[2])[0] == 'C')
+            if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
             {
                 sqlBuilderLIst[sqlBuilderLIst.Count - 1] = "ORDER BY " + orderByClause;
                 sqlBuilderLIst.Add("END");
@@ -723,7 +723,7 @@ namespace BLL
                 }
             }
 
-            if ((sqlBuilderLIst[2])[0] == 'C')
+            if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
             {
                 sqlBuilderLIst[sqlBuilderLIst.Count - 1] = "GROUP BY " + groupByClause;
                 sqlBuilderLIst.Add("END");

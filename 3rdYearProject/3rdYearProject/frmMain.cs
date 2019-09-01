@@ -338,6 +338,18 @@ namespace _3rdYearProject
 
         }
 
+        // View Menu Strip
+        private void mnuViews_Click(object sender, EventArgs e)
+        {
+            MenuStripColour(mnuViews);
+            ClearDataLists();
+            RemoveUnneccassary();
+            AddTabsForSelect();
+            EnableTreeAndButton();
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.ViewBaseBuilder(cmbTables.SelectedText);
+        }
+        
         // Select Menu strip
         private void mnuSelect_Click(object sender, EventArgs e)
         {
@@ -349,18 +361,6 @@ namespace _3rdYearProject
             EnableTreeAndButton();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
-        }
-
-        // View Menu Strip
-        private void mnuViews_Click(object sender, EventArgs e)
-        {
-            MenuStripColour(mnuSelect);
-            ClearDataLists();
-            RemoveUnneccassary();
-            AddTabsForSelect();
-            EnableTreeAndButton();
-            lstDisplay.DataSource = null;
-            lstDisplay.DataSource = sqlBuilderClass.ViewBaseBuilder(cmbTables.SelectedText);
         }
 
         // Delete Menu Strip
