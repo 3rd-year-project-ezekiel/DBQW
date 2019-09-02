@@ -120,6 +120,7 @@ namespace _3rdYearProject
             btnRemove.Enabled = false;
 
             mnuProcedure.Enabled = false;
+            mnuViews.Enabled = false;
             mnuSelect.Enabled = false;
             mnuInsert.Enabled = false;
             mnuDelete.Enabled = false;
@@ -127,70 +128,6 @@ namespace _3rdYearProject
 
         }
 
-        int item = 0;
-        private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            tvEntities.Enabled = true;
-            btnAddsSource.Enabled = true;
-            btnRemove.Enabled = true;
-            bool found = false;
-
-            Tables newTable = (Tables)cmbTables.SelectedItem;
-            if (item != 0)
-            {
-                foreach (Tables sItem in selectedTables)
-                {
-                    if (sItem.TableNames == newTable.TableNames)
-                    {
-                        found = true;
-                    }
-                }
-                if (found == true)
-                {
-                    MessageBox.Show("Cant add the same Table", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            if (found == false)
-            {
-                selectedTables.Add(new Tables(newTable.TableNames));
-                tvEntities.Nodes.Add(newTable.TableNames);
-                Columns column = new Columns();
-                columns = column.GetColumns(cmbDatabaseList.SelectedValue.ToString(), newTable.TableNames.ToString());
-                int count = 0; 
-                foreach (Columns dataItem in columns)
-                {
-                    tvEntities.Nodes[item].Nodes.Add(dataItem.ColumnName);
-                    HideCheckBox(tvEntities, tvEntities.Nodes[item].Nodes[count]);
-                    count++;
-                }
-                item++;
-            }
-        }
-        private void HideCheckBox(TreeView tvw, TreeNode node)
-        {
-            TVITEM tvi = new TVITEM();
-            tvi.hItem = node.Handle;
-            tvi.mask = TVIF_STATE;
-            tvi.stateMask = TVIS_STATEIMAGEMASK;
-            tvi.state = 0;
-            SendMessage(tvw.Handle, TVM_SETITEM, IntPtr.Zero, ref tvi);
-        }
-
-        private struct TVITEM
-        {
-            public int mask;
-            public IntPtr hItem;
-            public int state;
-            public int stateMask;
-            [MarshalAs(UnmanagedType.LPTStr)]
-            public string lpszText;
-            public int cchTextMax;
-            public int iImage;
-            public int iSelectedImage;
-            public int cChildren;
-            public IntPtr lParam;
-        }
         private void cmbDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstDisplay.DataSource != null)
@@ -233,11 +170,102 @@ namespace _3rdYearProject
             }
 
             mnuProcedure.Enabled = true;
+            mnuViews.Enabled = true;
             mnuInsert.Enabled = true;
             mnuSelect.Enabled = true;
             mnuDelete.Enabled = true;
             mnuUpdate.Enabled = true;
 
+        }
+
+        int item = 0;
+        private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            
+            bool found = false;
+
+            Tables newTable = (Tables)cmbTables.SelectedItem;
+            if (item != 0)
+            {
+                foreach (Tables sItem in selectedTables)
+                {
+                    if (sItem.TableNames == newTable.TableNames)
+                    {
+                        found = true;
+                    }
+                }
+                if (found == true)
+                {
+                    MessageBox.Show("Cant add the same Table", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            if (found == false)
+            {
+                selectedTables.Add(new Tables(newTable.TableNames));
+                tvEntities.Nodes.Add(newTable.TableNames);
+                Columns column = new Columns();
+                columns = column.GetColumns(cmbDatabaseList.SelectedValue.ToString(), newTable.TableNames.ToString());
+                int count = 0; 
+                foreach (Columns dataItem in columns)
+                {
+                    tvEntities.Nodes[item].Nodes.Add(dataItem.ColumnName);
+                    HideCheckBox(tvEntities, tvEntities.Nodes[item].Nodes[count]);
+                    count++;
+                }
+                item++;
+            }
+        }
+
+        private void HideCheckBox(TreeView tvw, TreeNode node)
+        {
+            TVITEM tvi = new TVITEM();
+            tvi.hItem = node.Handle;
+            tvi.mask = TVIF_STATE;
+            tvi.stateMask = TVIS_STATEIMAGEMASK;
+            tvi.state = 0;
+            SendMessage(tvw.Handle, TVM_SETITEM, IntPtr.Zero, ref tvi);
+        }
+
+        private struct TVITEM
+        {
+            public int mask;
+            public IntPtr hItem;
+            public int state;
+            public int stateMask;
+            [MarshalAs(UnmanagedType.LPTStr)]
+            public string lpszText;
+            public int cchTextMax;
+            public int iImage;
+            public int iSelectedImage;
+            public int cChildren;
+            public IntPtr lParam;
+        }
+
+        // When menu strip(Select,Insert...) is selected, the TreeView, Add and Remove button gets activated
+        public void EnableTreeAndButton()
+        {
+            btnAddsSource.Enabled = true;
+            btnRemove.Enabled = true;
+            tvEntities.Enabled = true;
+        }
+
+        public void DoubleCheckRemove()     // Checks tree view
+        {
+            foreach (TreeNode item in tvEntities.Nodes)
+            {
+                if (item != null)
+                {
+                    if (item.Checked == true)
+                    {
+                        item.Remove();
+
+                        columnDictionary.Remove(item.Text.ToString());
+
+                    }
+                }
+
+            }
         }
 
         private void BtnAddsSource_Click(object sender, EventArgs e)
@@ -267,10 +295,6 @@ namespace _3rdYearProject
                         
                     }
                 }
-
-                
-                
-
             }
             ClearDataSources();
             selectedListofColumns.Clear();
@@ -284,15 +308,16 @@ namespace _3rdYearProject
 
                 cmbTableJoinTarget.Items.Add(item.Key);
                 cmbSourceTableJoin.Items.Add(item.Key);
-                cmbInsertTable.Items.Add(item.Key);
             }
 
             //for Column Names,(Basic SQL CODE ex.Select)
+            // all combo boxes recieves the list
             cmbWhereColName.DataSource = selectedListofColumns;
             cmbHavingCol.DataSource = selectedListofColumns;
             cmbOrderColumns.DataSource = selectedListofColumns;
             cmbGroupByColum.DataSource = selectedListofColumns;
             cmbSetCol.DataSource = selectedListofColumns;
+            cmbInsertColumns.DataSource = selectedListofColumns;
         }
         #endregion
 
@@ -309,39 +334,31 @@ namespace _3rdYearProject
             else mnuProcedure.BackColor = Color.Transparent;
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.ProcedureBaseBuilder();
+            AddTabsForProcedures();
 
         }
-        //Children if Procedure Menu Strip(Select)
-        private void SelectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RemoveUnneccassary();
-            AddTabsForProcedures("Select");
-        }
-        //Children if Procedure Menu Strip(Insert)
-        private void InsertToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RemoveUnneccassary();
-            AddTabsForProcedures("Insert");
-        }
-        //Children if Procedure Menu Strip(Update)
-        private void UpdateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RemoveUnneccassary();
-            AddTabsForProcedures("Update");
-        }
-        //Children if Procedure Menu Strip(Delete)
-        private void DeleteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            RemoveUnneccassary();
-            AddTabsForProcedures("Delete");
-        }
 
+        // View Menu Strip
+        private void mnuViews_Click(object sender, EventArgs e)
+        {
+            MenuStripColour(mnuViews);
+            ClearDataLists();
+            RemoveUnneccassary();
+            AddTabsForSelect();
+            EnableTreeAndButton();
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.ViewBaseBuilder(cmbTables.SelectedText);
+        }
+        
         // Select Menu strip
         private void mnuSelect_Click(object sender, EventArgs e)
         {
             MenuStripColour(mnuSelect);
+            ClearDataLists();
             RemoveUnneccassary();
             AddTabsForSelect();
+            ClearDataLists();
+            EnableTreeAndButton();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
         }
@@ -350,8 +367,11 @@ namespace _3rdYearProject
         private void mnuDelete_Click(object sender, EventArgs e)
         {
             MenuStripColour(mnuDelete);
+            ClearDataLists();
             RemoveUnneccassary();
             AddTabsForDelete();
+            ClearDataLists();
+            EnableTreeAndButton();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.DeleteBaseBuilder(cmbTables.SelectedText);
 
@@ -361,8 +381,11 @@ namespace _3rdYearProject
         private void mnuUpdate_Click(object sender, EventArgs e)
         {
             MenuStripColour(mnuUpdate);
+            ClearDataLists();
             RemoveUnneccassary();
             AddTabsForUpdate();
+            ClearDataLists();
+            EnableTreeAndButton();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.UpdateBaseBuilder(cmbTables.SelectedText);
         }
@@ -371,8 +394,10 @@ namespace _3rdYearProject
         private void mnuInsert_Click(object sender, EventArgs e)
         {
             MenuStripColour(mnuInsert);
+            ClearDataLists();
             RemoveUnneccassary();
             AddTabsForInsert();
+            EnableTreeAndButton();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.InsertBaseBuilder(cmbTables.SelectedText);
         }
@@ -384,6 +409,7 @@ namespace _3rdYearProject
             mnuInsert.BackColor = Color.Transparent;
             mnuDelete.BackColor = Color.Transparent;
             mnuUpdate.BackColor = Color.Transparent;
+            mnuViews.BackColor = Color.Transparent;
             SelectedItem.BackColor = Color.LightBlue;
         }
 
@@ -444,32 +470,21 @@ namespace _3rdYearProject
             tbcExstra.TabPages.Remove(tpVariableManagement);
         }
 
-
-        public void AddTabsForProcedures(string choice)
+        public void AddTabsForProcedures()
         {
-            tbcExstra.TabPages.Add(tpVariableManagement);
-
-            if (choice=="Select")
+            if (mnuProcedure.BackColor != Color.Transparent)
             {
-                AddTabsForSelect();
+                tbcExstra.TabPages.Add(tpVariableManagement);
             }
-            if (choice == "Insert")
+            else
             {
-                AddTabsForInsert();
+                tbcExstra.TabPages.Remove(tpVariableManagement);
             }
-            if (choice == "Update")
-            {
-                AddTabsForUpdate();
-            }
-            if (choice == "Delete")
-            {
-                AddTabsForDelete();
-            }
-
         }
 
         public void AddTabsForSelect()
         {
+            AddTabsForProcedures();
             tbcExstra.TabPages.Add(tpOrderBy);
             tbcExstra.TabPages.Add(tpGroupBy);
             tbcExstra.TabPages.Add(tpJoins);
@@ -479,19 +494,21 @@ namespace _3rdYearProject
         }
         public void AddTabsForInsert()
         {
+            AddTabsForProcedures();
             tbcExstra.TabPages.Remove(tpWhere);
             tbcExstra.TabPages.Add(tpValues);
         }
 
         public void AddTabsForUpdate()
         {
-
+            AddTabsForProcedures();
             tbcExstra.TabPages.Add(tpWhere);
             tbcExstra.TabPages.Add(tpSet);
         }
 
         public void AddTabsForDelete()
         {
+            AddTabsForProcedures();
             tbcExstra.TabPages.Add(tpWhere);
         }
 
@@ -499,6 +516,7 @@ namespace _3rdYearProject
         #endregion
 
         #region Tab Mechanics
+        // Clears all the combo boxes on the tabs
         public void ClearDataSources()
         {
             cmbWhereColName.DataSource = null;
@@ -506,9 +524,22 @@ namespace _3rdYearProject
             cmbOrderColumns.DataSource = null;
             cmbGroupByColum.DataSource = null;
             cmbSetCol.DataSource = null;
+            cmbInsertColumns.DataSource = null;
             cmbTableJoinTarget.Items.Clear();
             cmbSourceTableJoin.Items.Clear();
-            cmbInsertTable.Items.Clear();
+        }
+
+        // Clears all the clause lists on the tabs
+        public void ClearDataLists()
+        {
+            lstGroupedItems.Items.Clear();
+            lstHavingItems.Items.Clear();
+            lstInsertItems.Items.Clear();
+            lstInsertItems.Items.Clear();
+            lstJoinItems.Items.Clear();
+            lstOrderedItems.Items.Clear();
+            lstSetitems.Items.Clear();
+            lstWhereItems.Items.Clear();
         }
 
         public void AddConditions()
@@ -543,16 +574,7 @@ namespace _3rdYearProject
             }
         }
 
-        private void CmbInsertTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            foreach (KeyValuePair<string, List<string>> item in columnDictionary)
-            {
-                if (cmbInsertTable.SelectedItem.ToString() == item.Key)
-                {
-                    cmbInsertColumns.DataSource = item.Value;
-                }
-            }
-        }
+        
 
         #endregion
 
@@ -801,7 +823,6 @@ namespace _3rdYearProject
         {
             try
             {
-                string table = cmbInsertTable.SelectedItem.ToString();
                 string columnName = cmbInsertColumns.SelectedItem.ToString();
                 
                 string value = txtInsertValues.Text.ToString();
@@ -812,10 +833,8 @@ namespace _3rdYearProject
 
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.InsertValue(columnName, value);
-
-                //lstInsertItems.Items.Add(string.Format("Table:{0} Column:{1} Value:{2}", table,columnName, value));
-                //lstInsertItems.Items.Add(string.Format("{1} {2}",columnName, value));
-                lstInsertItems.Items.Add(string.Format(columnName+" "+value));
+                
+                lstInsertItems.Items.Add(string.Format("{0} {1}",columnName, value));
             }
             catch (NullReferenceException)
             {
@@ -905,33 +924,12 @@ namespace _3rdYearProject
                 throw;
             }
         }
+
+
         #endregion
 
         #endregion
 
-
-        #region TreeViewFunctions
-        public void DoubleCheckRemove()
-        {
-            foreach (TreeNode item in tvEntities.Nodes)
-            {
-                if (item != null)
-                {
-                    if (item.Checked == true)
-                    {
-                        item.Remove();
-
-                        columnDictionary.Remove(item.Text.ToString());
-
-                    }
-                }
-
-
-
-
-            }
-        }
-        #endregion
-
+       
     }
 }
