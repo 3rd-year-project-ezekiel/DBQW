@@ -64,16 +64,7 @@ namespace _3rdYearProject
             DisableComponenets();
             MenuStripColour(mnuSelect);
             mnuProcedure.BackColor = Color.Transparent;
-            cbxType.Text = "Select DataType";
-            cbxType.Items.Add("Char(10)");
-            cbxType.Items.Add("VarChar(50)");
-            cbxType.Items.Add("Text");
-            cbxType.Items.Add("NChar(10)");
-            cbxType.Items.Add("Int");
-            cbxType.Items.Add("Money");
-            cbxType.Items.Add("Time");
-            cbxType.Items.Add("Date");
-
+            
         }
         
         private void frmMain_Load(object sender, EventArgs e)
@@ -84,61 +75,6 @@ namespace _3rdYearProject
         #endregion
 
         #region Form Functionality
-        #region TreeViewFunctions
-
-        private void HideCheckBox(TreeView tvw, TreeNode node)
-        {
-            TVITEM tvi = new TVITEM();
-            tvi.hItem = node.Handle;
-            tvi.mask = TVIF_STATE;
-            tvi.stateMask = TVIS_STATEIMAGEMASK;
-            tvi.state = 0;
-            SendMessage(tvw.Handle, TVM_SETITEM, IntPtr.Zero, ref tvi);
-        }
-
-        private struct TVITEM
-        {
-            public int mask;
-            public IntPtr hItem;
-            public int state;
-            public int stateMask;
-            [MarshalAs(UnmanagedType.LPTStr)]
-            public string lpszText;
-            public int cchTextMax;
-            public int iImage;
-            public int iSelectedImage;
-            public int cChildren;
-            public IntPtr lParam;
-        }
-        public void DoubleCheckRemove()
-        {
-            foreach (TreeNode item in tvEntities.Nodes)
-            {
-                if (item != null)
-                {
-                    if (item.Checked == true)
-                    {
-                        item.Remove();
-
-                        columnDictionary.Remove(item.Text.ToString());
-
-                    }
-                }
-
-
-
-
-            }
-        }
-        #endregion
-        private void BtnAddVariable_Click(object sender, EventArgs e)
-        {
-            string variableName = "@" + txtVariable.Text;
-            string dataType = cbxType.SelectedItem.ToString();
-
-            lstVarList.Items.Add(string.Format("{0} {1}", variableName, dataType));
-            
-        }
         private void btnRemove_Click(object sender, EventArgs e)
         {
           
@@ -231,7 +167,30 @@ namespace _3rdYearProject
                 item++;
             }
         }
-       
+        private void HideCheckBox(TreeView tvw, TreeNode node)
+        {
+            TVITEM tvi = new TVITEM();
+            tvi.hItem = node.Handle;
+            tvi.mask = TVIF_STATE;
+            tvi.stateMask = TVIS_STATEIMAGEMASK;
+            tvi.state = 0;
+            SendMessage(tvw.Handle, TVM_SETITEM, IntPtr.Zero, ref tvi);
+        }
+
+        private struct TVITEM
+        {
+            public int mask;
+            public IntPtr hItem;
+            public int state;
+            public int stateMask;
+            [MarshalAs(UnmanagedType.LPTStr)]
+            public string lpszText;
+            public int cchTextMax;
+            public int iImage;
+            public int iSelectedImage;
+            public int cChildren;
+            public IntPtr lParam;
+        }
         private void cmbDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstDisplay.DataSource != null)
@@ -921,28 +880,7 @@ namespace _3rdYearProject
                 MessageBox.Show("No value added.Please add a value", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void BtnRemoveVar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int selectedIndex = lstVarList.SelectedIndex;
 
-
-                lstVarList.Items.RemoveAt(selectedIndex);
-                MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            }
-            catch (ArgumentException)
-            {
-
-                MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
         private void BtnRemoveSetItems_Click(object sender, EventArgs e)
         {
             try
@@ -967,15 +905,33 @@ namespace _3rdYearProject
                 throw;
             }
         }
-
-
-
-
-
         #endregion
 
         #endregion
 
-       
+
+        #region TreeViewFunctions
+        public void DoubleCheckRemove()
+        {
+            foreach (TreeNode item in tvEntities.Nodes)
+            {
+                if (item != null)
+                {
+                    if (item.Checked == true)
+                    {
+                        item.Remove();
+
+                        columnDictionary.Remove(item.Text.ToString());
+
+                    }
+                }
+
+
+
+
+            }
+        }
+        #endregion
+
     }
 }
