@@ -484,32 +484,33 @@ namespace _3rdYearProject
 
         public void AddTabsForSelect()
         {
-            AddTabsForProcedures();
+            tbcExstra.TabPages.Add(tpWhere);
+            tbcExstra.TabPages.Add(tpHaving);
             tbcExstra.TabPages.Add(tpOrderBy);
             tbcExstra.TabPages.Add(tpGroupBy);
             tbcExstra.TabPages.Add(tpJoins);
-            tbcExstra.TabPages.Add(tpWhere);
-            tbcExstra.TabPages.Add(tpHaving);
+            AddTabsForProcedures();
 
         }
+
         public void AddTabsForInsert()
         {
-            AddTabsForProcedures();
-            tbcExstra.TabPages.Remove(tpWhere);
             tbcExstra.TabPages.Add(tpValues);
+            tbcExstra.TabPages.Remove(tpWhere);
+            AddTabsForProcedures();
         }
 
         public void AddTabsForUpdate()
         {
-            AddTabsForProcedures();
-            tbcExstra.TabPages.Add(tpWhere);
             tbcExstra.TabPages.Add(tpSet);
+            tbcExstra.TabPages.Add(tpWhere);
+            AddTabsForProcedures();
         }
 
         public void AddTabsForDelete()
         {
-            AddTabsForProcedures();
             tbcExstra.TabPages.Add(tpWhere);
+            AddTabsForProcedures();
         }
 
 
