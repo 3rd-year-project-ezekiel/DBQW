@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 namespace DAL
 {
     public class DBConnection
@@ -49,6 +50,7 @@ namespace DAL
 
         public void QueryExecution(string query)
         {
+            MessageBox.Show(query);
             try
             {
                 if (connection.State != ConnectionState.Open)
@@ -60,11 +62,14 @@ namespace DAL
             catch (Exception)
             {
                 throw;
+                MessageBox.Show("hey");
             }
             finally
             {
                 connection.Close();
             }
+
+            
         }
 
         // Method of creating a Database on SqlServer

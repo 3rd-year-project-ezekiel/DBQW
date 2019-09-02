@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DAL;
 
 namespace BLL
 {
@@ -70,7 +71,7 @@ namespace BLL
                         tempList.Add(sqlBuilderLIst[i]);
                     }
                     sqlBuilderLIst.RemoveRange(2, sqlBuilderLIst.Count - 2);
-                    sqlBuilderLIst.Add("CREATE PROCEDURE ");
+                    sqlBuilderLIst.Add("CREATE PROCEDURE testtest");
                     sqlBuilderLIst.Add("()");
                     sqlBuilderLIst.Add("AS");
                     sqlBuilderLIst.Add("BEGIN");
@@ -79,7 +80,7 @@ namespace BLL
                 }
                 catch (Exception)
                 {
-                    sqlBuilderLIst.Add("CREATE PROCEDURE ");
+                    sqlBuilderLIst.Add("CREATE PROCEDURE testtest");
                     sqlBuilderLIst.Add("()");
                     sqlBuilderLIst.Add("AS");
                     sqlBuilderLIst.Add("BEGIN");
@@ -468,7 +469,7 @@ namespace BLL
                     if (sqlBuilderLIst.Count > 5)
                         sqlBuilderLIst.RemoveRange(6, (sqlBuilderLIst.Count - 6));
 
-                    sqlBuilderLIst.Add("SELECT ");
+                    sqlBuilderLIst.Add("SELECT *");
                     sqlBuilderLIst.Add("FROM ");
                     if (tableName != "")
                         sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
@@ -787,7 +788,18 @@ namespace BLL
         #endregion
         // finish
         #region Query Execute
+        public void ExecuteQuery()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
 
+            for (int i = 0; i < sqlBuilderLIst.Count(); i++)
+            {
+                stringBuilder.Append(" " + sqlBuilderLIst[i]);
+            }
+
+            DBConnection dataLayer = new DBConnection();
+            dataLayer.QueryExecution(stringBuilder.ToString());
+        }
         #endregion
 
         #region Support Methods
@@ -820,7 +832,6 @@ namespace BLL
 }
 
 // Still to do
-// - Fix Order By in SQL query builder for Select
 // - Fix form so that table name doesnt randomly dissapear
 // - finish comments and orginize all classes
 // - rework procedures so that when a procuder is unselected, but it has varibels that is bing used, that the whole query is reset(maybe error handling)

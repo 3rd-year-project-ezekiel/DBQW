@@ -927,10 +927,14 @@ namespace _3rdYearProject
         }
 
 
-        #endregion
 
         #endregion
 
-       
+        #endregion
+
+        private void btnExecute_Click(object sender, EventArgs e)
+        {
+            sqlBuilderClass.ExecuteQuery();
+        }
     }
 }

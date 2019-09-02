@@ -50,6 +50,7 @@
             this.tvEntities = new System.Windows.Forms.TreeView();
             this.tbcExstra = new System.Windows.Forms.TabControl();
             this.tpValues = new System.Windows.Forms.TabPage();
+            this.lblEqualsUpdate = new System.Windows.Forms.Label();
             this.btnRemoveValues = new System.Windows.Forms.Button();
             this.lblValuesHead = new System.Windows.Forms.Label();
             this.lstInsertItems = new System.Windows.Forms.ListBox();
@@ -135,7 +136,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnAddsSource = new System.Windows.Forms.Button();
-            this.lblEqualsUpdate = new System.Windows.Forms.Label();
             this.btnQueryOutPut = new System.Windows.Forms.Button();
             this.mnuMenu.SuspendLayout();
             this.tbcExstra.SuspendLayout();
@@ -275,6 +275,7 @@
             this.btnExecute.TabIndex = 5;
             this.btnExecute.Text = "Execute";
             this.btnExecute.UseVisualStyleBackColor = true;
+            this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
             // 
             // cmbTables
             // 
@@ -360,6 +361,15 @@
             this.tpValues.TabIndex = 5;
             this.tpValues.Text = "Values";
             this.tpValues.UseVisualStyleBackColor = true;
+            // 
+            // lblEqualsUpdate
+            // 
+            this.lblEqualsUpdate.AutoSize = true;
+            this.lblEqualsUpdate.Location = new System.Drawing.Point(277, 82);
+            this.lblEqualsUpdate.Name = "lblEqualsUpdate";
+            this.lblEqualsUpdate.Size = new System.Drawing.Size(16, 17);
+            this.lblEqualsUpdate.TabIndex = 36;
+            this.lblEqualsUpdate.Text = "=";
             // 
             // btnRemoveValues
             // 
@@ -1305,15 +1315,6 @@
             this.btnAddsSource.Text = "Add";
             this.btnAddsSource.UseVisualStyleBackColor = true;
             this.btnAddsSource.Click += new System.EventHandler(this.BtnAddsSource_Click);
-            // 
-            // lblEqualsUpdate
-            // 
-            this.lblEqualsUpdate.AutoSize = true;
-            this.lblEqualsUpdate.Location = new System.Drawing.Point(277, 82);
-            this.lblEqualsUpdate.Name = "lblEqualsUpdate";
-            this.lblEqualsUpdate.Size = new System.Drawing.Size(16, 17);
-            this.lblEqualsUpdate.TabIndex = 36;
-            this.lblEqualsUpdate.Text = "=";
             // 
             // btnQueryOutPut
             // 
