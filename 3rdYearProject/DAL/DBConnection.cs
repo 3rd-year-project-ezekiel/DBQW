@@ -47,13 +47,25 @@ namespace DAL
 
         #region Push Data into Database
 
-        //
-
-        // Wikus Please Enter Query database execution here
-        // you will recive a string query, please get the path from this class
-        // please name your method QueryExecution
-
-        //
+        public void QueryExecution(string query)
+        {
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+                command = new SqlCommand(query, connection);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
 
         // Method of creating a Database on SqlServer
         public void CreateDatabase(List<string> details)
