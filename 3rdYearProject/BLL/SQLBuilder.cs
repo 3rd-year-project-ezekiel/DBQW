@@ -820,8 +820,9 @@ namespace BLL
 }
 
 // Still to do
-// -Fix Order By in SQL query builder for Select
+// - Fix Order By in SQL query builder for Select
 // - Fix form so that table name doesnt randomly dissapear
 // - finish comments and orginize all classes
 // - rework procedures so that when a procuder is unselected, but it has varibels that is bing used, that the whole query is reset(maybe error handling)
 // - finish other methods
+// 
