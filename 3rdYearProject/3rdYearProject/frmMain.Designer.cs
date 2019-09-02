@@ -30,6 +30,11 @@
         {
             this.mnuMenu = new System.Windows.Forms.MenuStrip();
             this.mnuProcedure = new System.Windows.Forms.ToolStripMenuItem();
+            this.storedProceduresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSelect = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuInsert = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -134,22 +139,17 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cmbSetCol = new System.Windows.Forms.ComboBox();
-            this.btnAddsSource = new System.Windows.Forms.Button();
             this.tpVariableManagement = new System.Windows.Forms.TabPage();
-            this.storedProceduresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.selectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.insertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.cbxType = new System.Windows.Forms.ComboBox();
+            this.txtVariable = new System.Windows.Forms.TextBox();
+            this.btnRemoveVar = new System.Windows.Forms.Button();
             this.lblVariableHead = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lstVarList = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnAddVariable = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.btnAddsSource = new System.Windows.Forms.Button();
             this.mnuMenu.SuspendLayout();
             this.tbcExstra.SuspendLayout();
             this.tpValues.SuspendLayout();
@@ -189,6 +189,45 @@
             this.mnuProcedure.Size = new System.Drawing.Size(78, 20);
             this.mnuProcedure.Text = "Procedures";
             this.mnuProcedure.Click += new System.EventHandler(this.mnuProcedure_Click);
+            // 
+            // storedProceduresToolStripMenuItem
+            // 
+            this.storedProceduresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectToolStripMenuItem,
+            this.insertToolStripMenuItem,
+            this.updateToolStripMenuItem,
+            this.deleteToolStripMenuItem});
+            this.storedProceduresToolStripMenuItem.Name = "storedProceduresToolStripMenuItem";
+            this.storedProceduresToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.storedProceduresToolStripMenuItem.Text = "Stored Procedures";
+            // 
+            // selectToolStripMenuItem
+            // 
+            this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
+            this.selectToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.selectToolStripMenuItem.Text = "Select";
+            this.selectToolStripMenuItem.Click += new System.EventHandler(this.SelectToolStripMenuItem_Click);
+            // 
+            // insertToolStripMenuItem
+            // 
+            this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
+            this.insertToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.insertToolStripMenuItem.Text = "Insert";
+            this.insertToolStripMenuItem.Click += new System.EventHandler(this.InsertToolStripMenuItem_Click);
+            // 
+            // updateToolStripMenuItem
+            // 
+            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.updateToolStripMenuItem.Text = "Update";
+            this.updateToolStripMenuItem.Click += new System.EventHandler(this.UpdateToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // mnuSelect
             // 
@@ -268,7 +307,7 @@
             // 
             this.cmbDatabaseList.FormattingEnabled = true;
             this.cmbDatabaseList.Location = new System.Drawing.Point(66, 34);
-            this.cmbDatabaseList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbDatabaseList.Margin = new System.Windows.Forms.Padding(2);
             this.cmbDatabaseList.Name = "cmbDatabaseList";
             this.cmbDatabaseList.Size = new System.Drawing.Size(158, 21);
             this.cmbDatabaseList.TabIndex = 2;
@@ -277,7 +316,7 @@
             // btnExecute
             // 
             this.btnExecute.Location = new System.Drawing.Point(11, 298);
-            this.btnExecute.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExecute.Margin = new System.Windows.Forms.Padding(2);
             this.btnExecute.Name = "btnExecute";
             this.btnExecute.Size = new System.Drawing.Size(56, 26);
             this.btnExecute.TabIndex = 5;
@@ -287,7 +326,7 @@
             // btnInsertIntoDB
             // 
             this.btnInsertIntoDB.Location = new System.Drawing.Point(66, 298);
-            this.btnInsertIntoDB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInsertIntoDB.Margin = new System.Windows.Forms.Padding(2);
             this.btnInsertIntoDB.Name = "btnInsertIntoDB";
             this.btnInsertIntoDB.Size = new System.Drawing.Size(110, 26);
             this.btnInsertIntoDB.TabIndex = 7;
@@ -298,7 +337,7 @@
             // 
             this.cmbTables.FormattingEnabled = true;
             this.cmbTables.Location = new System.Drawing.Point(66, 64);
-            this.cmbTables.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbTables.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTables.Name = "cmbTables";
             this.cmbTables.Size = new System.Drawing.Size(158, 21);
             this.cmbTables.TabIndex = 9;
@@ -318,7 +357,7 @@
             // 
             this.lstDisplay.FormattingEnabled = true;
             this.lstDisplay.Location = new System.Drawing.Point(11, 321);
-            this.lstDisplay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lstDisplay.Margin = new System.Windows.Forms.Padding(2);
             this.lstDisplay.Name = "lstDisplay";
             this.lstDisplay.Size = new System.Drawing.Size(716, 173);
             this.lstDisplay.TabIndex = 11;
@@ -337,7 +376,7 @@
             // tvEntities
             // 
             this.tvEntities.Location = new System.Drawing.Point(12, 102);
-            this.tvEntities.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tvEntities.Margin = new System.Windows.Forms.Padding(2);
             this.tvEntities.Name = "tvEntities";
             this.tvEntities.Size = new System.Drawing.Size(165, 171);
             this.tvEntities.TabIndex = 16;
@@ -505,7 +544,7 @@
             this.tpWhere.Controls.Add(this.cmbWhereColName);
             this.tpWhere.Location = new System.Drawing.Point(4, 22);
             this.tpWhere.Name = "tpWhere";
-            this.tpWhere.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpWhere.Padding = new System.Windows.Forms.Padding(3);
             this.tpWhere.Size = new System.Drawing.Size(432, 256);
             this.tpWhere.TabIndex = 0;
             this.tpWhere.Text = "Where";
@@ -634,7 +673,7 @@
             this.tpOrderBy.Controls.Add(this.lblOrderHeading);
             this.tpOrderBy.Location = new System.Drawing.Point(4, 22);
             this.tpOrderBy.Name = "tpOrderBy";
-            this.tpOrderBy.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpOrderBy.Padding = new System.Windows.Forms.Padding(3);
             this.tpOrderBy.Size = new System.Drawing.Size(432, 256);
             this.tpOrderBy.TabIndex = 1;
             this.tpOrderBy.Text = "Order By";
@@ -1105,7 +1144,7 @@
             this.tpSet.Controls.Add(this.cmbSetCol);
             this.tpSet.Location = new System.Drawing.Point(4, 22);
             this.tpSet.Name = "tpSet";
-            this.tpSet.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tpSet.Padding = new System.Windows.Forms.Padding(3);
             this.tpSet.Size = new System.Drawing.Size(432, 256);
             this.tpSet.TabIndex = 6;
             this.tpSet.Text = "Set";
@@ -1220,25 +1259,15 @@
             this.cmbSetCol.TabIndex = 24;
             this.cmbSetCol.Text = "Select Column";
             // 
-            // btnAddsSource
-            // 
-            this.btnAddsSource.Location = new System.Drawing.Point(195, 102);
-            this.btnAddsSource.Name = "btnAddsSource";
-            this.btnAddsSource.Size = new System.Drawing.Size(75, 39);
-            this.btnAddsSource.TabIndex = 18;
-            this.btnAddsSource.Text = "Add";
-            this.btnAddsSource.UseVisualStyleBackColor = true;
-            this.btnAddsSource.Click += new System.EventHandler(this.BtnAddsSource_Click);
-            // 
             // tpVariableManagement
             // 
-            this.tpVariableManagement.Controls.Add(this.button1);
-            this.tpVariableManagement.Controls.Add(this.button2);
+            this.tpVariableManagement.Controls.Add(this.cbxType);
+            this.tpVariableManagement.Controls.Add(this.txtVariable);
+            this.tpVariableManagement.Controls.Add(this.btnRemoveVar);
             this.tpVariableManagement.Controls.Add(this.lblVariableHead);
-            this.tpVariableManagement.Controls.Add(this.listBox1);
+            this.tpVariableManagement.Controls.Add(this.lstVarList);
             this.tpVariableManagement.Controls.Add(this.label5);
-            this.tpVariableManagement.Controls.Add(this.button3);
-            this.tpVariableManagement.Controls.Add(this.textBox1);
+            this.tpVariableManagement.Controls.Add(this.btnAddVariable);
             this.tpVariableManagement.Controls.Add(this.label9);
             this.tpVariableManagement.Controls.Add(this.label11);
             this.tpVariableManagement.Location = new System.Drawing.Point(4, 22);
@@ -1249,62 +1278,30 @@
             this.tpVariableManagement.Text = "Variables";
             this.tpVariableManagement.UseVisualStyleBackColor = true;
             // 
-            // storedProceduresToolStripMenuItem
+            // cbxType
             // 
-            this.storedProceduresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectToolStripMenuItem,
-            this.insertToolStripMenuItem,
-            this.updateToolStripMenuItem,
-            this.deleteToolStripMenuItem});
-            this.storedProceduresToolStripMenuItem.Name = "storedProceduresToolStripMenuItem";
-            this.storedProceduresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.storedProceduresToolStripMenuItem.Text = "Stored Procedures";
+            this.cbxType.FormattingEnabled = true;
+            this.cbxType.Location = new System.Drawing.Point(220, 56);
+            this.cbxType.Name = "cbxType";
+            this.cbxType.Size = new System.Drawing.Size(121, 21);
+            this.cbxType.TabIndex = 25;
             // 
-            // selectToolStripMenuItem
+            // txtVariable
             // 
-            this.selectToolStripMenuItem.Name = "selectToolStripMenuItem";
-            this.selectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.selectToolStripMenuItem.Text = "Select";
-            this.selectToolStripMenuItem.Click += new System.EventHandler(this.SelectToolStripMenuItem_Click);
+            this.txtVariable.Location = new System.Drawing.Point(99, 56);
+            this.txtVariable.Name = "txtVariable";
+            this.txtVariable.Size = new System.Drawing.Size(101, 20);
+            this.txtVariable.TabIndex = 24;
             // 
-            // insertToolStripMenuItem
+            // btnRemoveVar
             // 
-            this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            this.insertToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.insertToolStripMenuItem.Text = "Insert";
-            this.insertToolStripMenuItem.Click += new System.EventHandler(this.InsertToolStripMenuItem_Click);
-            // 
-            // updateToolStripMenuItem
-            // 
-            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.updateToolStripMenuItem.Text = "Update";
-            this.updateToolStripMenuItem.Click += new System.EventHandler(this.UpdateToolStripMenuItem_Click);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(330, 194);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 23);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(330, 167);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 23);
-            this.button2.TabIndex = 22;
-            this.button2.Text = "Remove item";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnRemoveVar.Location = new System.Drawing.Point(320, 178);
+            this.btnRemoveVar.Name = "btnRemoveVar";
+            this.btnRemoveVar.Size = new System.Drawing.Size(90, 23);
+            this.btnRemoveVar.TabIndex = 22;
+            this.btnRemoveVar.Text = "Remove item";
+            this.btnRemoveVar.UseVisualStyleBackColor = true;
+            this.btnRemoveVar.Click += new System.EventHandler(this.BtnRemoveVar_Click);
             // 
             // lblVariableHead
             // 
@@ -1316,39 +1313,33 @@
             this.lblVariableHead.TabIndex = 21;
             this.lblVariableHead.Text = "Variable Management";
             // 
-            // listBox1
+            // lstVarList
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(99, 156);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(215, 95);
-            this.listBox1.TabIndex = 20;
+            this.lstVarList.FormattingEnabled = true;
+            this.lstVarList.Location = new System.Drawing.Point(99, 156);
+            this.lstVarList.Name = "lstVarList";
+            this.lstVarList.Size = new System.Drawing.Size(215, 95);
+            this.lstVarList.TabIndex = 20;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(119, 128);
+            this.label5.Location = new System.Drawing.Point(153, 130);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(179, 13);
+            this.label5.Size = new System.Drawing.Size(104, 13);
             this.label5.TabIndex = 19;
-            this.label5.Text = "Current Items in Where Clause";
+            this.label5.Text = "Current Variables";
             // 
-            // button3
+            // btnAddVariable
             // 
-            this.button3.Location = new System.Drawing.Point(168, 87);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(71, 23);
-            this.button3.TabIndex = 18;
-            this.button3.Text = "Add";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(222, 60);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(101, 20);
-            this.textBox1.TabIndex = 17;
+            this.btnAddVariable.Location = new System.Drawing.Point(168, 87);
+            this.btnAddVariable.Name = "btnAddVariable";
+            this.btnAddVariable.Size = new System.Drawing.Size(71, 23);
+            this.btnAddVariable.TabIndex = 18;
+            this.btnAddVariable.Text = "Add";
+            this.btnAddVariable.UseVisualStyleBackColor = true;
+            this.btnAddVariable.Click += new System.EventHandler(this.BtnAddVariable_Click);
             // 
             // label9
             // 
@@ -1367,6 +1358,16 @@
             this.label11.Size = new System.Drawing.Size(76, 13);
             this.label11.TabIndex = 13;
             this.label11.Text = "Variable Name";
+            // 
+            // btnAddsSource
+            // 
+            this.btnAddsSource.Location = new System.Drawing.Point(195, 102);
+            this.btnAddsSource.Name = "btnAddsSource";
+            this.btnAddsSource.Size = new System.Drawing.Size(75, 39);
+            this.btnAddsSource.TabIndex = 18;
+            this.btnAddsSource.Text = "Add";
+            this.btnAddsSource.UseVisualStyleBackColor = true;
+            this.btnAddsSource.Click += new System.EventHandler(this.BtnAddsSource_Click);
             // 
             // frmMain
             // 
@@ -1388,7 +1389,7 @@
             this.Controls.Add(this.lblDatabase);
             this.Controls.Add(this.mnuMenu);
             this.MainMenuStrip = this.mnuMenu;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmMain";
             this.Text = "main";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -1531,14 +1532,14 @@
         private System.Windows.Forms.ToolStripMenuItem insertToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnRemoveVar;
         private System.Windows.Forms.Label lblVariableHead;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lstVarList;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnAddVariable;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cbxType;
+        private System.Windows.Forms.TextBox txtVariable;
     }
 }
