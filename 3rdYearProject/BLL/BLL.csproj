@@ -46,7 +46,6 @@
     <Compile Include="Accounts.cs" />
     <Compile Include="Columns.cs" />
     <Compile Include="Databases.cs" />
-    <Compile Include="Logs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryExceptionHandling.cs" />
     <Compile Include="SQLBuilder.cs" />
