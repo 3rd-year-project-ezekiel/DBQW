@@ -48,6 +48,21 @@ namespace _3rdYearProject
             tvEntities.CheckBoxes = true;
             Databases database = new Databases();
             databases = database.GetDatabases();
+
+            txtSize.Hide();
+            lblSize.Hide();
+            cmbDataTypes.Text = "Select DataType";
+            cmbDataTypes.Items.Add("Char");
+            cmbDataTypes.Items.Add("VarChar");
+            cmbDataTypes.Items.Add("Text");
+            cmbDataTypes.Items.Add("NChar");
+            cmbDataTypes.Items.Add("Int");
+            cmbDataTypes.Items.Add("Money");
+            cmbDataTypes.Items.Add("Time");
+            cmbDataTypes.Items.Add("Date");
+
+
+
             cmbDatabaseList.SelectedIndexChanged -= cmbDatabaseList_SelectedIndexChanged;
             cmbDatabaseList.DataSource = databases;
             cmbDatabaseList.DisplayMember = "NameOfDatabase";
@@ -341,10 +356,15 @@ namespace _3rdYearProject
         // View Menu Strip
         private void mnuViews_Click(object sender, EventArgs e)
         {
-            MenuStripColour(mnuViews);
+
+            if (mnuViews.BackColor == Color.Transparent)
+                mnuViews.BackColor = Color.LightSeaGreen;
+            else mnuViews.BackColor = Color.Transparent;
+            
             ClearDataLists();
             RemoveUnneccassary();
             AddTabsForSelect();
+            AddTabsForViews();
             EnableTreeAndButton();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.ViewBaseBuilder(cmbTables.SelectedText);
@@ -468,6 +488,7 @@ namespace _3rdYearProject
             tbcExstra.TabPages.Remove(tpWhere);
             tbcExstra.TabPages.Remove(tpSet);
             tbcExstra.TabPages.Remove(tpVariableManagement);
+            tbcExstra.TabPages.Remove(tpViews);
         }
 
         public void AddTabsForProcedures()
@@ -479,6 +500,18 @@ namespace _3rdYearProject
             else
             {
                 tbcExstra.TabPages.Remove(tpVariableManagement);
+            }
+        }
+
+        public void AddTabsForViews()
+        {
+            if (mnuViews.BackColor != Color.Transparent)
+            {
+                tbcExstra.TabPages.Add(tpViews);
+            }
+            else
+            {
+                tbcExstra.TabPages.Remove(tpViews);
             }
         }
 
@@ -935,6 +968,109 @@ namespace _3rdYearProject
         private void btnExecute_Click(object sender, EventArgs e)
         {
             sqlBuilderClass.ExecuteQuery();
+        }
+
+        private void BtnRemoveVariables_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedIndex = lstVarItems.SelectedIndex;
+
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.UpdateRemoveSet((string)lstSetitems.SelectedItem);
+
+                lstVarItems.Items.RemoveAt(selectedIndex);
+                MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (ArgumentException)
+            {
+
+                MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string name = txtVarName.Text;
+                string datatype = cmbDataTypes.SelectedItem.ToString();
+
+                if (name=="" || datatype== "Select DataType")
+                {
+                    throw new NullReferenceException();
+                }
+                string query = "";
+
+                if (txtSize.Text!="")
+                {
+                    int parsedValue;
+                    if (!int.TryParse(txtSize.Text, out parsedValue))
+                    {
+                        MessageBox.Show("This is a number only field");
+                        return;
+                    }
+
+                    int size = int.Parse(txtSize.Text);
+
+                    query = string.Format("@{0} {1}({2})", name, datatype, size);
+                }
+                else
+                {
+                    query = string.Format("@{0} {1}", name, datatype);
+                }
+                lstVarItems.Items.Add(query);
+
+                txtSize.Hide();
+                lblSize.Hide();
+                txtVarName.Clear();
+                cmbDataTypes.Text = "Select DataType";
+
+            }
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("Please complete all details for variable", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              
+            }
+        }
+
+        private void CmbDataTypes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string chosenDataType = cmbDataTypes.SelectedItem.ToString();
+                if (chosenDataType=="Char")
+                {
+                    lblSize.Show();
+                    txtSize.Show();
+                }
+                if (chosenDataType == "VarChar")
+                {
+                    lblSize.Show();
+                    txtSize.Show();
+                }
+                if (chosenDataType == "NChar")
+                {
+                    lblSize.Show();
+                    txtSize.Show();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            string procedureName = txtProcedureName.Text;
         }
     }
 }
