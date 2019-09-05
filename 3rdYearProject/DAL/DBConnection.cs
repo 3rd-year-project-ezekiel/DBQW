@@ -8,6 +8,11 @@ using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+
+//using Microsoft.Data.Schema.ScriptDom;
+//using Microsoft.Data.Schema.ScriptDom.Sql;
+
+
 namespace DAL
 {
     public class DBConnection
@@ -50,6 +55,22 @@ namespace DAL
 
         public void QueryExecution(string query)
         {
+
+            //TSql100Parser parser = new TSql100Parser(false);
+            //IScriptFragment fragment;
+            //IList<ParseError> errors;
+            //fragment = parser.Parse(new StringReader(sql), out errors);
+            //if (errors != null && errors.Count > 0)
+            //{
+            //    List<string> errorList = new List<string>();
+            //    foreach (var error in errors)
+            //    {
+            //        errorList.Add(error.Message);
+            //    }
+            //    return errorList;
+            //}
+            //return null;
+
             MessageBox.Show(query);
             try
             {
@@ -58,18 +79,19 @@ namespace DAL
                     connection.Open();
                 }
                 command = new SqlCommand(query, connection);
+                command.ExecuteReader();
+                //MessageBox.Show(query);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
-                MessageBox.Show("hey");
+                MessageBox.Show(e.ToString());
             }
             finally
             {
                 connection.Close();
             }
 
-            
+
         }
 
         // Method of creating a Database on SqlServer
