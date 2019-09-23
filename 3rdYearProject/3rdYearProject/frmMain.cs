@@ -1072,5 +1072,20 @@ namespace _3rdYearProject
         {
             string procedureName = txtProcedureName.Text;
         }
+
+
+
+
+// == Group To Do List == \\
+/*
+ - only one table can be displayed in the tree node at a time and only one should be able to be added
+  the other tables and their coloums should be added via the join table option
+- the coloumns need to display their data types and if they are a primary key or foreighn key.
+- Database select should be added on the table creation
+- select and view should have the option to only add certian columns
+- when varible is selected, it should be able to be selected accross all tabs
+- all value text boxes on tabs should be replaced with combo boxes to display the varibles of the procedurs
+*/
+
     }
 }
