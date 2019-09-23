@@ -1209,7 +1209,7 @@
             this.btnAddVar.TabIndex = 18;
             this.btnAddVar.Text = "Add";
             this.btnAddVar.UseVisualStyleBackColor = true;
-            this.btnAddVar.Click += new System.EventHandler(this.Button3_Click);
+            this.btnAddVar.Click += new System.EventHandler(this.btnAddVar_Click);
             // 
             // txtVarName
             // 

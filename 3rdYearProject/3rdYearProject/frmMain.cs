@@ -17,6 +17,7 @@ namespace _3rdYearProject
     {
 
         #region Form Constructor , Global Fields And Functunality
+
         #region Private Fields
         private const int TVIF_STATE = 0x8;
         private const int TVIS_STATEIMAGEMASK = 0xF000;
@@ -27,6 +28,7 @@ namespace _3rdYearProject
         private static extern IntPtr SendMessage(IntPtr hWnd, int Msg, IntPtr wParam,
                                                     ref TVITEM lParam);
         #endregion
+
         #region Global Fields
         SQLBuilder sqlBuilderClass = new SQLBuilder();
 
@@ -334,10 +336,15 @@ namespace _3rdYearProject
             cmbSetCol.DataSource = selectedListofColumns;
             cmbInsertColumns.DataSource = selectedListofColumns;
         }
+
+        private void btnExecute_Click(object sender, EventArgs e)
+        {
+            sqlBuilderClass.ExecuteQuery();
+        }
         #endregion
 
         #endregion
-        
+
         #region Menu Strip
 
         #region Base Menu Strips ( Insert, Update, Delete, Select, Programability)
@@ -959,15 +966,9 @@ namespace _3rdYearProject
             }
         }
 
-
-
-        #endregion
-
-        #endregion
-
-        private void btnExecute_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
-            sqlBuilderClass.ExecuteQuery();
+            string procedureName = txtProcedureName.Text;
         }
 
         private void BtnRemoveVariables_Click(object sender, EventArgs e)
@@ -995,20 +996,20 @@ namespace _3rdYearProject
             }
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        private void btnAddVar_Click(object sender, EventArgs e)
         {
             try
             {
                 string name = txtVarName.Text;
                 string datatype = cmbDataTypes.SelectedItem.ToString();
 
-                if (name=="" || datatype== "Select DataType")
+                if (name == "" || datatype == "Select DataType")
                 {
                     throw new NullReferenceException();
                 }
                 string query = "";
 
-                if (txtSize.Text!="")
+                if (txtSize.Text != "")
                 {
                     int parsedValue;
                     if (!int.TryParse(txtSize.Text, out parsedValue))
@@ -1036,7 +1037,7 @@ namespace _3rdYearProject
             catch (NullReferenceException)
             {
                 MessageBox.Show("Please complete all details for variable", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-              
+
             }
         }
 
@@ -1045,7 +1046,7 @@ namespace _3rdYearProject
             try
             {
                 string chosenDataType = cmbDataTypes.SelectedItem.ToString();
-                if (chosenDataType=="Char")
+                if (chosenDataType == "Char")
                 {
                     lblSize.Show();
                     txtSize.Show();
@@ -1068,10 +1069,19 @@ namespace _3rdYearProject
             }
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-            string procedureName = txtProcedureName.Text;
-        }
+
+        #endregion
+
+        #endregion
+
+      
+
+       
+
+        
+        
+
+        
 
 
 

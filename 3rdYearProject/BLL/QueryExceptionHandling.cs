@@ -21,8 +21,6 @@ namespace BLL
         // table creation when column selected check if the data types are the same.
 
 
-
-
         // == Jan == \\
         //Color selection from menu strip.
         // Data type checking all 
