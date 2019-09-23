@@ -832,9 +832,9 @@ namespace BLL
 }
 
 // Still to do
-// -Multiple Table names doesn't add to the SQLquery builder
+// - write tables query part
+// - in table combobox add a search for table
+// - varible table for procedure
 // - Fix form so that table name doesnt randomly dissapear
 // - finish comments and orginize all classes
-// - rework procedures so that when a procuder is unselected, but it has varibels that is bing used, that the whole query is reset(maybe error handling)
-// - finish other methods
 

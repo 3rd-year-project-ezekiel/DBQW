@@ -10,7 +10,7 @@ namespace BLL
     {
 
 
-
+        #region To do List
 
         // == JP == \\
         //Main form
@@ -34,6 +34,22 @@ namespace BLL
         //  -- for access dinied when creating database
         //  -- for when the querie is wrong somwhere
         //check if query will run or not run (using SQL built in function)
+
+
+
+        // rephrase
+        /*
+          == Group ==
+- if switch between queries, give the option(yes or no) if no, needs to show previos option again
+  + Database select
+  + table
+  + query
+- Data type checking
+  + main(values, where, set)
+  + database create( check if numbers)
+  + table create(foreign key, test that the two columns have the same datatype)
+         */
+        #endregion
 
 
 
