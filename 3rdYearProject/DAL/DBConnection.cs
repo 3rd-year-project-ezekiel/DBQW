@@ -108,9 +108,9 @@ namespace DAL
                 command = new SqlCommand(query, connection);
                 command.ExecuteNonQuery();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                MessageBox.Show(e.ToString());
             }
             finally
             {
@@ -150,9 +150,9 @@ namespace DAL
                 command = new SqlCommand(query.ToString(), connection);
                 command.ExecuteNonQuery();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                MessageBox.Show(e.ToString());
             }
             finally
             {
