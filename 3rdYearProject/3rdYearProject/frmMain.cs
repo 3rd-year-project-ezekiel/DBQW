@@ -27,6 +27,8 @@ namespace _3rdYearProject
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern IntPtr SendMessage(IntPtr hWnd, int Msg, IntPtr wParam,
                                                     ref TVITEM lParam);
+
+        private List<string> variables = new List<string>();
         #endregion
 
         #region Global Fields
@@ -50,7 +52,7 @@ namespace _3rdYearProject
             tvEntities.CheckBoxes = true;
             Databases database = new Databases();
             databases = database.GetDatabases();
-
+            RevertFromProgrammabillity();
             txtSize.Hide();
             lblSize.Hide();
             cmbDataTypes.Text = "Select DataType";
@@ -62,6 +64,23 @@ namespace _3rdYearProject
             cmbDataTypes.Items.Add("Money");
             cmbDataTypes.Items.Add("Time");
             cmbDataTypes.Items.Add("Date");
+
+            cmbProgrammingWhere.Text = "Please Select Variable";
+            cmbProgrammingHaving.Text = "Please Select Variable";
+            cmbProgrammingValues.Text = "Please Select Variable";
+            cmbProgrammingSet.Text = "Please Select Variable";
+
+            lblAggr.Hide();
+            lblColName.Hide();
+            txtColNames.Hide();
+            cmbAggrgateFunctions.Hide();
+
+            cmbAggrgateFunctions.Text = "Select Function";
+            cmbAggrgateFunctions.Items.Add("Count");
+            cmbAggrgateFunctions.Items.Add("Sum");
+            cmbAggrgateFunctions.Items.Add("Avg");
+            cmbAggrgateFunctions.Items.Add("Min");
+            cmbAggrgateFunctions.Items.Add("Max");
 
 
 
@@ -226,7 +245,7 @@ namespace _3rdYearProject
                 int count = 0; 
                 foreach (Columns dataItem in columns)
                 {
-                    tvEntities.Nodes[item].Nodes.Add(dataItem.ColumnName);
+                    tvEntities.Nodes[item].Nodes.Add(String.Format("{0} {1}",dataItem.ColumnName,dataItem.DataType));
                     HideCheckBox(tvEntities, tvEntities.Nodes[item].Nodes[count]);
                     count++;
                 }
@@ -296,16 +315,20 @@ namespace _3rdYearProject
                 {
                     foreach (TreeNode treeNode in item.Nodes)
                     {
+                        string itemString = treeNode.Text.ToString();
+                        string[] splittedString = itemString.Split(' ');
+                       
 
-                        
-                            if (!columnDictionary.ContainsKey(item.Text.ToString()))
+                        if (!columnDictionary.ContainsKey(item.Text.ToString()))
                             {
                                 columnDictionary.Add(item.Text.ToString(), new List<string>());
-                                columnDictionary[item.Text.ToString()].Add(treeNode.Text.ToString());
+                           
+                                columnDictionary[item.Text.ToString()].Add(splittedString[0]);
                             }
                             else
                             {
-                                columnDictionary[item.Text.ToString()].Add(treeNode.Text.ToString());
+                           
+                            columnDictionary[item.Text.ToString()].Add(splittedString[0]);
                             }
 
 
@@ -335,6 +358,7 @@ namespace _3rdYearProject
             cmbGroupByColum.DataSource = selectedListofColumns;
             cmbSetCol.DataSource = selectedListofColumns;
             cmbInsertColumns.DataSource = selectedListofColumns;
+            cmbColumnManagementList.DataSource = selectedListofColumns;
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
@@ -357,6 +381,7 @@ namespace _3rdYearProject
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.ProcedureBaseBuilder();
             AddTabsForProcedures();
+            ChangeToProgrammabillity();
 
         }
 
@@ -450,6 +475,49 @@ namespace _3rdYearProject
             login.Show();
         }
 
+        public void ChangeToProgrammabillity()
+        {
+            if (mnuProcedure.BackColor != Color.Transparent)
+            {
+                cmbProgrammingHaving.Show();
+                cmbProgrammingSet.Show();
+                cmbProgrammingValues.Show();
+                cmbProgrammingWhere.Show();
+                DisableProgrammibillity();
+            }
+            else
+            {
+                RevertFromProgrammabillity();
+            }
+           
+        }
+
+        public void RevertFromProgrammabillity()
+        {
+            cmbProgrammingHaving.Hide();
+            cmbProgrammingSet.Hide();
+            cmbProgrammingValues.Hide();
+            cmbProgrammingWhere.Hide();
+        }
+
+        public void EnableProgrammibillity()
+        {
+            cmbProgrammingHaving.Enabled = true;
+            cmbProgrammingSet.Enabled = true;
+            cmbProgrammingValues.Enabled = true;
+            cmbProgrammingWhere.Enabled = true;
+        }
+
+        public void DisableProgrammibillity()
+        {
+            cmbProgrammingHaving.Enabled = false;
+            cmbProgrammingSet.Enabled = false;
+            cmbProgrammingValues.Enabled = false;
+            cmbProgrammingWhere.Enabled = false;
+        }
+
+
+
         private void DatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDatabaseCreation databaseCreation = new frmDatabaseCreation();
@@ -487,6 +555,7 @@ namespace _3rdYearProject
 
         public void RemoveUnneccassary()
         {
+            tbcExstra.TabPages.Remove(tpColumns);
             tbcExstra.TabPages.Remove(tpOrderBy);
             tbcExstra.TabPages.Remove(tpGroupBy);
             tbcExstra.TabPages.Remove(tpJoins);
@@ -529,6 +598,7 @@ namespace _3rdYearProject
             tbcExstra.TabPages.Add(tpOrderBy);
             tbcExstra.TabPages.Add(tpGroupBy);
             tbcExstra.TabPages.Add(tpJoins);
+            tbcExstra.TabPages.Add(tpColumns);
             AddTabsForProcedures();
 
         }
@@ -624,13 +694,32 @@ namespace _3rdYearProject
         {
             try
             {
+                string value = "";
+                if (mnuProcedure.BackColor != Color.Transparent)
+                {
+
+                    if (cmbProgrammingWhere.Text == "Please Select Variable")
+                    {
+                        throw new NullReferenceException();
+                    }
+                    else
+                    {
+                        value = cmbProgrammingWhere.SelectedItem.ToString();
+                    }
+                }
+                else
+                {
+
+                    value = txtWhereValues.Text;
+                    if (value == "")
+                    {
+                        throw new NullReferenceException();
+                    }
+                }
                 string columnName = cmbWhereColName.SelectedItem.ToString();
                 string condition = cmbWhereCondition.SelectedItem.ToString();
-                string value = txtWhereValues.Text.ToString();
-                if (value=="")
-                {
-                    throw new NullReferenceException();
-                }
+                
+                
                 lstWhereItems.Items.Add(string.Format("{0} {1} {2}", columnName, condition, value));
 
                 lstDisplay.DataSource = null;
@@ -761,13 +850,31 @@ namespace _3rdYearProject
         {
             try
             {
+                string value = "";
+                if (mnuProcedure.BackColor != Color.Transparent)
+                {
+
+                    if (cmbProgrammingHaving.Text == "Please Select Variable")
+                    {
+                        throw new NullReferenceException();
+                    }
+                    else
+                    {
+                        value = cmbProgrammingHaving.SelectedItem.ToString();
+                    }
+                }
+                else
+                {
+
+                    value = txtHavingValue.Text.ToString();
+                    if (value == "")
+                    {
+                        throw new NullReferenceException();
+                    }
+                }
                 string columnName = cmbHavingCol.SelectedItem.ToString();
                 string condition = cmbHavingCondition.SelectedItem.ToString();
-                string value = txtHavingValue.Text.ToString();
-                if (value=="")
-                {
-                    throw new NullReferenceException();
-                }
+              
 
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.HavingClauseBuilder(columnName + " " + condition + " " + value);
@@ -864,13 +971,31 @@ namespace _3rdYearProject
         {
             try
             {
+                string value = "";
+                if (mnuProcedure.BackColor != Color.Transparent)
+            {
+                    
+                    if (cmbProgrammingValues.Text=="Please Select Variable")
+                    {
+                        throw new NullReferenceException();
+                    }
+                    else { 
+                    value = cmbProgrammingValues.SelectedItem.ToString();
+                    }
+                }
+            else
+            {
+                    
+                    value = txtInsertValues.Text.ToString();
+                    if (value == "")
+                    {
+                        throw new NullReferenceException();
+                    }
+                }
                 string columnName = cmbInsertColumns.SelectedItem.ToString();
                 
-                string value = txtInsertValues.Text.ToString();
-                if (value == "")
-                {
-                    throw new NullReferenceException();
-                }
+                
+                
 
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.InsertValue(columnName, value);
@@ -880,12 +1005,12 @@ namespace _3rdYearProject
             catch (NullReferenceException)
             {
 
-                MessageBox.Show("No value added.Please add a value", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No value added.Please add/select a value", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception)
             {
 
-                MessageBox.Show("No value added.Please add a value", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No value added.Please add/select a value", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -919,13 +1044,32 @@ namespace _3rdYearProject
         {
             try
             {
+                string value = "";
+                if (mnuProcedure.BackColor != Color.Transparent)
+                {
+
+                    if (cmbProgrammingSet.Text == "Please Select Variable")
+                    {
+                        throw new NullReferenceException();
+                    }
+                    else
+                    {
+                        value = cmbProgrammingSet.SelectedItem.ToString();
+                    }
+                }
+                else
+                {
+
+                    value = txtSetValues.Text.ToString();
+                    if (value == "")
+                    {
+                        throw new NullReferenceException();
+                    }
+                }
+
                 string columnName = cmbSetCol.SelectedItem.ToString();
                 string condition = "=";
-                string value = txtSetValues.Text.ToString();
-                if (value == "")
-                {
-                    throw new NullReferenceException();
-                }
+               
 
                 string tempValueHolder = string.Format("{0} {1} {2}", columnName, condition, value);
 
@@ -975,12 +1119,28 @@ namespace _3rdYearProject
         {
             try
             {
+
+                
+
                 int selectedIndex = lstVarItems.SelectedIndex;
 
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.UpdateRemoveSet((string)lstSetitems.SelectedItem);
 
                 lstVarItems.Items.RemoveAt(selectedIndex);
+                variables.RemoveAt(selectedIndex);
+                if (lstVarItems.Items.Count == 0)
+                {
+                    DisableProgrammibillity();
+                    cmbProgrammingSet.DataSource = null;
+                    cmbProgrammingHaving.DataSource = null;
+                    cmbProgrammingWhere.DataSource = null;
+                    cmbProgrammingValues.DataSource = null;
+                    cmbProgrammingWhere.Text = "Please Select Variable";
+                    cmbProgrammingHaving.Text = "Please Select Variable";
+                    cmbProgrammingValues.Text = "Please Select Variable";
+                    cmbProgrammingSet.Text = "Please Select Variable";
+                }
                 MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -1000,6 +1160,8 @@ namespace _3rdYearProject
         {
             try
             {
+                
+                
                 string name = txtVarName.Text;
                 string datatype = cmbDataTypes.SelectedItem.ToString();
 
@@ -1026,12 +1188,23 @@ namespace _3rdYearProject
                 {
                     query = string.Format("@{0} {1}", name, datatype);
                 }
+               
                 lstVarItems.Items.Add(query);
+                variables.Add("@"+name);
+
+                cmbProgrammingSet.DataSource = variables;
+                cmbProgrammingHaving.DataSource = variables;
+                cmbProgrammingWhere.DataSource = variables;
+                cmbProgrammingValues.DataSource = variables;
 
                 txtSize.Hide();
                 lblSize.Hide();
                 txtVarName.Clear();
                 cmbDataTypes.Text = "Select DataType";
+                if (lstVarItems.Items.Count >= 1)
+                {
+                    EnableProgrammibillity();
+                }
 
             }
             catch (NullReferenceException)
@@ -1069,33 +1242,99 @@ namespace _3rdYearProject
             }
         }
 
+        private void CbxAggregate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxAggregate.Checked==true)
+            {
+                lblAggr.Show();
+                cmbAggrgateFunctions.Show();
+            }
+            else
+            {
+                lblAggr.Hide();
+                cmbAggrgateFunctions.Hide();
+            }
+        }
+
+        private void CbxAs_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxAs.Checked == true)
+            {
+                lblColName.Show();
+                txtColNames.Show();
+            }
+            else
+            {
+                lblColName.Hide();
+                txtColNames.Hide();
+            }
+        }
+
+        private void BtnAddColumn_Click(object sender, EventArgs e)
+        {
+            string column = "";
+            if ((cbxAggregate.Checked== true)&&(cmbAggrgateFunctions.Text!= "Select Function"))
+            {
+                column += String.Format("{0}({1})",cmbAggrgateFunctions.SelectedItem.ToString(),cmbColumnManagementList.SelectedItem.ToString());
+                if ((cbxAs.Checked==true)&&(txtColNames.Text!=""))
+                {
+                    column +=  " As " + txtColNames.Text;
+                }
+                else if  (txtColNames.Text == "")
+                {
+                    MessageBox.Show("Please enter column name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else
+            if ((cmbAggrgateFunctions.Text == "Select Function"))
+            {
+                MessageBox.Show("Please select function", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                column += cmbColumnManagementList.SelectedItem.ToString();
+                if ((cbxAs.Checked == true) && (txtColNames.Text != ""))
+                {
+                    column += " As " + txtColNames.Text;
+                }
+                else if (txtColNames.Text == "")
+                {
+                    MessageBox.Show("Please enter column name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            lstColumnsManagement.Items.Add(column);
+        }
+
 
         #endregion
 
         #endregion
 
-      
-
-       
-
-        
-        
-
-        
 
 
 
 
-// == Group To Do List == \\
-/*
- - only one table can be displayed in the tree node at a time and only one should be able to be added
-  the other tables and their coloums should be added via the join table option
-- the coloumns need to display their data types and if they are a primary key or foreighn key.
-- Database select should be added on the table creation
-- select and view should have the option to only add certian columns
-- when varible is selected, it should be able to be selected accross all tabs
-- all value text boxes on tabs should be replaced with combo boxes to display the varibles of the procedurs
-*/
+
+
+
+
+
+
+
+
+        // == Group To Do List == \\
+        /*
+         - only one table can be displayed in the tree node at a time and only one should be able to be added
+          the other tables and their coloums should be added via the join table option
+        - the coloumns need to display their data types and if they are a primary key or foreighn key.
+        - Database select should be added on the table creation
+        - select and view should have the option to only add certian columns
+        - when varible is selected, it should be able to be selected accross all tabs
+        - all value text boxes on tabs should be replaced with combo boxes to display the varibles of the procedurs
+        */
 
     }
 }

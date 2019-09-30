@@ -231,11 +231,11 @@ namespace DAL
         }
 
         // Method of getting a list of Coloumns from specified Table from SqlServer
-        public List<string> GetColumns(string databaseName, string tableName)
+        public DataTable GetColumns(string databaseName, string tableName)
         {
-            List<string> tables = new List<string>();
-            string query = string.Format("use {0} SELECT column_name FROM information_schema.columns WHERE table_name = '{1}'", databaseName, tableName);
-            DataSet ds = new DataSet();
+            DataTable tables = new DataTable();
+            string query = string.Format("use {0} SELECT column_name as 'Column Name', data_type as 'Data Type' FROM information_schema.columns WHERE table_name = '{1}'", databaseName, tableName);
+    
             try
             {
                 if (connection.State != ConnectionState.Open)
@@ -243,13 +243,10 @@ namespace DAL
                     connection.Open();
                 }
                 command = new SqlCommand(query, connection);
-                using (IDataReader dr = command.ExecuteReader())
-                {
-                    while (dr.Read())
-                    {
-                        tables.Add(dr[0].ToString());
-                    }
-                }
+                adapter = new SqlDataAdapter(command);
+                adapter.Fill(tables);
+
+
             }
             catch (Exception)
             {
