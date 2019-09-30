@@ -108,6 +108,13 @@ namespace BLL
             sqlBuilderLIst[3] = "(" + ListToString(theList) + ")";                                           // adds whats left back to sql
             return sqlBuilderLIst;
         }
+
+        // Adds or changes the procedureName
+        public List<String> ProcedureNameChange(string varible)
+        {
+
+            return 
+        }
         #endregion
 
         #region Views
