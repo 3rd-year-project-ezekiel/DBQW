@@ -49,7 +49,7 @@ namespace _3rdYearProject
 
                 MessageBox.Show("Database have been created", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
              
-                frmTableCreation tableCreation = new frmTableCreation(databaseName);
+                frmTableCreation tableCreation = new frmTableCreation();
                 this.Hide();
                 tableCreation.Show();
             }
