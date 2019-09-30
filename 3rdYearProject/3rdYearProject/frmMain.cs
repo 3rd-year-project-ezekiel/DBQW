@@ -1308,6 +1308,30 @@ namespace _3rdYearProject
             lstColumnsManagement.Items.Add(column);
         }
 
+        private void BtnRemoveColumnMan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedIndex = lstColumnsManagement.SelectedIndex;
+
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.GroupByClauseRemover((string)lstGroupedItems.SelectedItem);
+
+                lstColumnsManagement.Items.RemoveAt(selectedIndex);
+                MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ArgumentException)
+            {
+
+                MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
         #endregion
 

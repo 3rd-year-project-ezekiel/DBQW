@@ -1412,6 +1412,7 @@
             this.btnRemoveColumnMan.TabIndex = 11;
             this.btnRemoveColumnMan.Text = "Remove";
             this.btnRemoveColumnMan.UseVisualStyleBackColor = true;
+            this.btnRemoveColumnMan.Click += new System.EventHandler(this.BtnRemoveColumnMan_Click);
             // 
             // btnAddColumn
             // 
