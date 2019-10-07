@@ -42,7 +42,11 @@ namespace BLL
         }
 
         #endregion
-       
+
+        #region Tables
+
+        #endregion
+
         #region Procedure
         // Procedure base add and remove
         public List<string> ProcedureBaseBuilder()
@@ -793,19 +797,22 @@ namespace BLL
         #region Transactions
 
         #endregion
-        // finish
+        
         #region Query Execute
         public void ExecuteQuery()
         {
+            
             StringBuilder stringBuilder = new StringBuilder();
 
             for (int i = 0; i < sqlBuilderLIst.Count(); i++)
             {
-                stringBuilder.Append(" " + sqlBuilderLIst[i]);
+                if(i != 1)  stringBuilder.Append(" " + sqlBuilderLIst[i]);
             }
 
             DBConnection dataLayer = new DBConnection();
             dataLayer.QueryExecution(stringBuilder.ToString());
+            
+
         }
         #endregion
 

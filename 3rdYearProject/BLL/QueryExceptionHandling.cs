@@ -22,7 +22,7 @@ namespace BLL
 
 
         // == Jan == \\
-        //Color selection from menu strip.
+        // Color selection from menu strip.
         // Data type checking all 
         // tab - values, where, Set, Having, Procedures.  make sure that the right datatype is filled in
 
