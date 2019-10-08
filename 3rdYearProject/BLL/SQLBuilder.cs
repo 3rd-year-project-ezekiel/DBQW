@@ -44,7 +44,19 @@ namespace BLL
         #endregion
 
         #region Tables
+        public List<string> TableBuilder(string tableName)
+        {
+            try
+            {
 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }   
+            return sqlBuilderLIst;
+        }
         #endregion
 
         #region Procedure

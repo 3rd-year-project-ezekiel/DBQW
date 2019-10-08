@@ -214,15 +214,16 @@ namespace _3rdYearProject
 
         }
 
-        int item = 0;
+        // select a table from the table combo box and display it in the treeview
+        int item = 0; // item trackes how many tables have been added to the treeview
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            
+            // selected tables is a list that holds all of the tables that have to be displayed in the treeview
             bool found = false;
 
-            Tables newTable = (Tables)cmbTables.SelectedItem;
-            if (item != 0)
+            Tables newTable = (Tables)cmbTables.SelectedItem; // the table selected in the combo box is stored as a new table
+            if (item != 0) // if there is an item in the treeview, then check if the table selected is already in the treeview
             {
                 foreach (Tables sItem in selectedTables)
                 {
@@ -236,17 +237,18 @@ namespace _3rdYearProject
                     MessageBox.Show("Cant add the same Table", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            if (found == false)
+            if (found == false)    // if the table is not found then it can be added to the treeview
             {
-                selectedTables.Add(new Tables(newTable.TableNames));
-                tvEntities.Nodes.Add(newTable.TableNames);
-                Columns column = new Columns();
-                columns = column.GetColumns(cmbDatabaseList.SelectedValue.ToString(), newTable.TableNames.ToString());
+                selectedTables.Add(new Tables(newTable.TableNames)); // adds the table to the table list of the treeview
+                tvEntities.Nodes.Add(newTable.TableNames);  // adds the table to the treeview
+                Columns column = new Columns();  
+                // columns is a list of columns
+                columns = column.GetColumns(cmbDatabaseList.SelectedValue.ToString(), newTable.TableNames.ToString()); // all the columns of the selected table are retrieved to add to the treeview
                 int count = 0; 
                 foreach (Columns dataItem in columns)
                 {
-                    tvEntities.Nodes[item].Nodes.Add(String.Format("{0} {1}",dataItem.ColumnName,dataItem.DataType));
-                    HideCheckBox(tvEntities, tvEntities.Nodes[item].Nodes[count]);
+                    tvEntities.Nodes[item].Nodes.Add(String.Format("{0} {1}",dataItem.ColumnName,dataItem.DataType)); // adds the column to the right table in the treeview
+                    HideCheckBox(tvEntities, tvEntities.Nodes[item].Nodes[count]); // hides the checkboxes for the columns in the treeview
                     count++;
                 }
                 item++;
