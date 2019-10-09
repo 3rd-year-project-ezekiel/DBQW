@@ -1819,6 +1819,7 @@
             this.cmbSelectQueryTable.Name = "cmbSelectQueryTable";
             this.cmbSelectQueryTable.Size = new System.Drawing.Size(121, 24);
             this.cmbSelectQueryTable.TabIndex = 2;
+            this.cmbSelectQueryTable.SelectedIndexChanged += new System.EventHandler(this.cmbSelectQueryTable_SelectedIndexChanged);
             // 
             // frmMain
             // 

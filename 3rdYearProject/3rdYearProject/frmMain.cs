@@ -29,9 +29,13 @@ namespace _3rdYearProject
                                                     ref TVITEM lParam);
 
         private List<string> variables = new List<string>();
+        private string currentSetTable;
+        private Dictionary<string, List<Columns>> tabTableColumnDict = new Dictionary<string, List<Columns>>();
+
         #endregion
 
         #region Global Fields
+
         SQLBuilder sqlBuilderClass = new SQLBuilder();
 
         List<Databases> databases;
@@ -1025,14 +1029,28 @@ namespace _3rdYearProject
                     }
                 }
                 string columnName = cmbInsertColumns.SelectedItem.ToString();
-                
-                
-                
 
-                lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.InsertValue(columnName, value);
+                QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
+                int index = 0;
+                while (index < tabTableColumnDict[currentSetTable].Count)
+                {
+                    if(columnName == tabTableColumnDict[currentSetTable][index].ColumnName)
+                    {
+                        break;
+                    }
+                    index++;
+                }
+
+                string newValue = queryExceptionHandling.CheckDataTypeMatch(tabTableColumnDict[currentSetTable][index].DataType, value);
+
+                if(newValue != "")
+                {
+                    lstDisplay.DataSource = null;
+                    lstDisplay.DataSource = sqlBuilderClass.InsertValue(columnName, newValue);
+
+                    lstInsertItems.Items.Add(string.Format("{0} {1}", columnName, newValue));
+                }
                 
-                lstInsertItems.Items.Add(string.Format("{0} {1}",columnName, value));
             }
             catch (NullReferenceException)
             {
@@ -1370,11 +1388,26 @@ namespace _3rdYearProject
         {
 
         }
+        // Not yet finished
+        private void cmbSelectQueryTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.TableBuilder(cmbSelectQueryTable.SelectedItem.ToString());
+            currentSetTable = cmbSelectQueryTable.SelectedItem.ToString();
+            Columns column = new Columns();
+            List<Columns> thelist = column.GetColumns(cmbDatabaseList.SelectedValue.ToString(), currentSetTable);
+            tabTableColumnDict.Add(currentSetTable, thelist );
+
+
+        }
 
 
         #endregion
 
         #endregion
+
+        
 
 
 
@@ -1399,6 +1432,8 @@ namespace _3rdYearProject
 
         - when varible is selected, it should be able to be selected accross all tabs
         - all value text boxes on tabs should be replaced with combo boxes to display the varibles of the procedurs
+        - when a new table is selected on the table tab, then the previos columns and items should be removed
+           + prompt the user if they are sure
         */
 
     }

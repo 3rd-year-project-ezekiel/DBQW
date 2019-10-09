@@ -959,4 +959,5 @@ namespace BLL
 // - Add a Tab to the tab page for keeping track what is the main table in use | if that table is change then the table in the query also changes
 // - finish comments and orginize all classes
 // - fix the View menu strip that it cant activate when select isnt selected
+// - hook up varible methods in procedure varible tab
 

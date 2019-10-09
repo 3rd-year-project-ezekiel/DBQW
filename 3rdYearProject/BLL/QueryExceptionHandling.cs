@@ -3,12 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BLL
 {
-    class QueryExceptionHandling
+    public class QueryExceptionHandling
     {
 
+        
+
+
+        // takes the given data and datatype, and verifies if they match, then makes sure that the output format is right
+        // varchar gets '' around the word | int gets tested 
+        public string CheckDataTypeMatch(string givenDataType, string givenData)
+        {
+            string newData = "";
+            switch (givenDataType.ToLower())
+            {
+                case "char": { } break;
+                case "varchar":
+                    {
+                        newData = "'" + givenData + "'";
+                    } break;
+                case "text": { } break;
+                case "nchar": { } break;
+                case "int":
+                    {
+                        try
+                        {
+                            int test = int.Parse(givenData);
+                            newData = givenData;
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Please Enter a Number");
+                        }
+                    } break;
+                case "money": { } break;
+                case "time": { } break;
+                case "date": { } break;
+                default:
+                    break;
+            }
+            return newData;
+        }
 
         #region To do List
 
