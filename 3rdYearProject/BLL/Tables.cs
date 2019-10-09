@@ -21,6 +21,11 @@ public class Tables
 
     public string TableNames { get => tableNames; set => tableNames = value; }
 
+    public override string ToString()
+    {
+        return tableNames;
+    }
+
     public List<Tables> GetTables(string databaseName)
     {
         List<Tables> tables = new List<Tables>();

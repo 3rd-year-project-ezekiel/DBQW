@@ -1707,6 +1707,7 @@
             this.btnRemoveColumns.TabIndex = 21;
             this.btnRemoveColumns.Text = "Remove item";
             this.btnRemoveColumns.UseVisualStyleBackColor = true;
+            this.btnRemoveColumns.Click += new System.EventHandler(this.btnRemoveColumns_Click);
             // 
             // lstColumnsItems
             // 
@@ -1738,6 +1739,7 @@
             this.btnAddColumns.TabIndex = 18;
             this.btnAddColumns.Text = "Add";
             this.btnAddColumns.UseVisualStyleBackColor = true;
+            this.btnAddColumns.Click += new System.EventHandler(this.btnAddColumns_Click);
             // 
             // lblColumnName
             // 
@@ -1795,7 +1797,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(71, 90);
+            this.label10.Location = new System.Drawing.Point(62, 51);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(102, 17);
             this.label10.TabIndex = 0;
@@ -1813,7 +1815,7 @@
             // cmbSelectQueryTable
             // 
             this.cmbSelectQueryTable.FormattingEnabled = true;
-            this.cmbSelectQueryTable.Location = new System.Drawing.Point(185, 90);
+            this.cmbSelectQueryTable.Location = new System.Drawing.Point(182, 48);
             this.cmbSelectQueryTable.Name = "cmbSelectQueryTable";
             this.cmbSelectQueryTable.Size = new System.Drawing.Size(121, 24);
             this.cmbSelectQueryTable.TabIndex = 2;

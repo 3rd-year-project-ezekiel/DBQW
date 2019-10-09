@@ -40,6 +40,7 @@ namespace _3rdYearProject
         List<Columns> columns;
         List<string> selectedColumns = new List<string>();
         List<string> selectedListofColumns = new List<string>();
+        List<string> selectedListofTables = new List<string>();
         List<string> conditionList = new List<string>();
         Dictionary<string, List<string>> columnDictionary = new Dictionary<string, List<string>>();
 
@@ -124,6 +125,9 @@ namespace _3rdYearProject
 
                         columnDictionary.Remove(item.Text.ToString());
                         selectedTables.RemoveAll(p => p.TableNames == item.Text);
+                        selectedListofTables.RemoveAll(p => p == item.Text);
+
+                        // add a column remover as well
                     }
                 }
 
@@ -145,6 +149,8 @@ namespace _3rdYearProject
             {
                 item = tvEntities.Nodes.Count;
             }
+
+            ComboBoxPopulationMethod();
         }
 
         public void DisableComponenets()
@@ -218,14 +224,12 @@ namespace _3rdYearProject
         int item = 0; // item trackes how many tables have been added to the treeview
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-           // MessageBox.Show(tableNameContains);
 
             // selected tables is a list that holds all of the tables that have to be displayed in the treeview
             bool found = false;
 
             Tables newTable = (Tables)cmbTables.SelectedItem; // the table selected in the combo box is stored as a new table
-            if (item != 0) // if there is an item in the treeview, then check if the table selected is already in the treeview
+            if (item != 0) // if there is an item in the treeview, then check if the table selected, is already in the treeview
             {
                 foreach (Tables sItem in selectedTables)
                 {
@@ -241,7 +245,8 @@ namespace _3rdYearProject
             }
             if (found == false)    // if the table is not found then it can be added to the treeview
             {
-                selectedTables.Add(new Tables(newTable.TableNames)); // adds the table to the table list of the treeview
+                selectedTables.Add(new Tables(newTable.TableNames)); // adds the table to the table list and the treeview
+                selectedListofTables.Add(newTable.TableNames);
                 tvEntities.Nodes.Add(newTable.TableNames);  // adds the table to the treeview
                 Columns column = new Columns();  
                 // columns is a list of columns
@@ -354,6 +359,21 @@ namespace _3rdYearProject
                 cmbSourceTableJoin.Items.Add(item.Key);
             }
 
+            // calls this method to populate all the comboboxes with data
+            ComboBoxPopulationMethod();
+            
+        }
+
+        private void btnExecute_Click(object sender, EventArgs e)
+        {
+            sqlBuilderClass.ExecuteQuery();
+        }
+
+        private void ComboBoxPopulationMethod()
+        {
+            // Located under Tab Mechanics
+            ClearDataSources();
+
             //for Column Names,(Basic SQL CODE ex.Select)
             // all combo boxes recieves the list
             cmbWhereColName.DataSource = selectedListofColumns;
@@ -364,11 +384,8 @@ namespace _3rdYearProject
             cmbInsertColumns.DataSource = selectedListofColumns;
             cmbColumnManagementList.DataSource = selectedListofColumns;
             cmbColumnsColumnName.DataSource = selectedListofColumns;
-        }
 
-        private void btnExecute_Click(object sender, EventArgs e)
-        {
-            sqlBuilderClass.ExecuteQuery();
+            cmbSelectQueryTable.DataSource = selectedListofTables;
         }
         #endregion
 
@@ -648,6 +665,7 @@ namespace _3rdYearProject
             cmbInsertColumns.DataSource = null;
             cmbColumnManagementList.DataSource = null;
             cmbColumnsColumnName.DataSource = null;
+            cmbSelectQueryTable.DataSource = null;
             cmbTableJoinTarget.Items.Clear();
             cmbSourceTableJoin.Items.Clear();
         }
@@ -664,6 +682,7 @@ namespace _3rdYearProject
             lstSetitems.Items.Clear();
             lstWhereItems.Items.Clear();
             lstColumnsItems.Items.Clear();
+            
         }
 
         public void AddConditions()
@@ -1132,9 +1151,6 @@ namespace _3rdYearProject
         {
             try
             {
-
-                
-
                 int selectedIndex = lstVarItems.SelectedIndex;
 
                 lstDisplay.DataSource = null;
@@ -1345,12 +1361,22 @@ namespace _3rdYearProject
             }
         }
 
+        private void btnAddColumns_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRemoveColumns_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         #endregion
 
         #endregion
 
-        
+
 
 
 
@@ -1361,6 +1387,8 @@ namespace _3rdYearProject
 
         // == Group To Do List == \\
         /*
+        - when a table is removed from the treeview, that table's columns should not be able to display in the tab control any more 
+         
         - only one table can be displayed in the tree node at a time and only one should be able to be added
           the other tables and their coloums should be added via the join table option
         - the coloumns need to display their data types and if they are a primary key or foreighn key.
