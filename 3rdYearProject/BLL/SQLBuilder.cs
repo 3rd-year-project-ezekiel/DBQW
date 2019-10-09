@@ -109,8 +109,7 @@ namespace BLL
                 }
 
                 // convert the list back to a string and store it in the sql builder
-                string line = ListToStringSpaceses(tableLineHolder);
-                sqlBuilderLIst[counter] = line;
+                sqlBuilderLIst[counter] = ListToStringSpaceses(tableLineHolder);
             }
             catch (Exception)
             {
@@ -953,8 +952,6 @@ namespace BLL
 }
 
 // Still to do
-// - write tables method in Sqlbuilder 
-//    + make sure that table names cant have spaces in them
 // - finish joins methods
 // - research the testing methods
 // - in the table combobox add a search function for table

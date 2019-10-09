@@ -13,8 +13,8 @@ namespace BLL
         #region To do List
 
         // == JP == \\
-        //Main form
-        //tussen switch query en combo gives you an option if you want to switch 
+        // Main form
+        // tussen switch query en combo gives you an option if you want to switch 
         //- if no selected show the previous options
 
         // Datatype checking 
@@ -22,11 +22,13 @@ namespace BLL
 
 
         // == Jan == \\
+        // make sure that table names on the table form cant have spaces in them
         // Data type checking all 
-        // tab - values, where, Set, Having, Procedures.  make sure that the right datatype is filled in
+        //  = tab - values, where, Set, Having, Procedures.  make sure that the right datatype is filled in
+        // create custom exceptions for certian events
 
 
-        // == Both Reseach and Wikus == \\
+        // == Both Reseach == \\
         //exception catcher but must not stop program. for everything
         //  -- for access dinied when creating database
         //  -- for when the querie is wrong somwhere
