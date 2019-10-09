@@ -218,8 +218,8 @@ namespace _3rdYearProject
         int item = 0; // item trackes how many tables have been added to the treeview
         private void cmbTables_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string tableNameContains = cmbTables.Text;
-            MessageBox.Show(tableNameContains);
+            
+           // MessageBox.Show(tableNameContains);
 
             // selected tables is a list that holds all of the tables that have to be displayed in the treeview
             bool found = false;
@@ -559,7 +559,7 @@ namespace _3rdYearProject
 
         public void RemoveUnneccassary()
         {
-            tbcExstra.TabPages.Remove(tpColumns);
+            tbcExstra.TabPages.Remove(tpAggregate);
             tbcExstra.TabPages.Remove(tpOrderBy);
             tbcExstra.TabPages.Remove(tpGroupBy);
             tbcExstra.TabPages.Remove(tpJoins);
@@ -602,7 +602,7 @@ namespace _3rdYearProject
             tbcExstra.TabPages.Add(tpOrderBy);
             tbcExstra.TabPages.Add(tpGroupBy);
             tbcExstra.TabPages.Add(tpJoins);
-            tbcExstra.TabPages.Add(tpColumns);
+            tbcExstra.TabPages.Add(tpAggregate);
             AddTabsForProcedures();
 
         }
