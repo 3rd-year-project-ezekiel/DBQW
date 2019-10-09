@@ -44,17 +44,86 @@ namespace BLL
         #endregion
 
         #region Tables
+        // Table base to add or change the tables
         public List<string> TableBuilder(string tableName)
         {
             try
             {
+                int counter = 0;
+                int splitPosition = 1;  // split position will be used to tell the program where to split to add in the table
+                while (counter < sqlBuilderLIst.Count)
+                {
+                    if (sqlBuilderLIst[counter][0] == 'U' && sqlBuilderLIst[counter][1] == 'P' && sqlBuilderLIst[counter][2] == 'D') // Update
+                    {
+                        break;
+                    }
+                    if (sqlBuilderLIst[counter][0] == 'D' && sqlBuilderLIst[counter][1] == 'E' && sqlBuilderLIst[counter][2] == 'L') // Delete
+                    {
+                        splitPosition = 2;
+                        break;
+                    }
+                    if (sqlBuilderLIst[counter][0] == 'I' && sqlBuilderLIst[counter][1] == 'N' && sqlBuilderLIst[counter][2] == 'S') // Insert
+                    {
+                        splitPosition = 2;
+                        break;
+                    }
+                    if (sqlBuilderLIst[counter][0] == 'S' && sqlBuilderLIst[counter][1] == 'E' && sqlBuilderLIst[counter][2] == 'L') // Select
+                    {
+                        counter++;
+                        break;
+                    }
 
+                    counter++;
+                }
+
+                List<string> tableLineHolder = sqlBuilderLIst[counter].Split(' ').ToList();
+                // if there is no table name at Update and Select, Add a nerw one
+                if (tableLineHolder.Count <= 1 && splitPosition == 1) 
+                {
+                    tableLineHolder.Add(tableName);
+                }
+
+                // if there is a table name in Update and select then replace it
+                if (tableLineHolder.Count > 1 && splitPosition == 1) 
+                {
+                    tableLineHolder[splitPosition] = tableName;
+                }
+
+                // if there is no table name at Insert and Delete, Add a nerw one
+                if (tableLineHolder.Count <= 2 && splitPosition == 2) 
+                {
+                    tableLineHolder.Add(tableName);
+                }
+
+                // if there is a table name in Delete or Insert then replace it
+                if (tableLineHolder.Count > 2 && splitPosition == 2 && !tableLineHolder[splitPosition].Contains("(")) 
+                {
+                    tableLineHolder[splitPosition] = tableName;
+                }
+
+                // if there is not a table name in Insert but there is already columns then add a new table name
+                if (tableLineHolder.Count > 2 && splitPosition == 2 && tableLineHolder[splitPosition].Contains("(")) 
+                {
+                    tableLineHolder.Add(tableLineHolder[splitPosition]);
+                    tableLineHolder[splitPosition] = tableName;
+                }
+
+                // convert the list back to a string and store it in the sql builder
+                string line = ListToStringSpaceses(tableLineHolder);
+                sqlBuilderLIst[counter] = line;
             }
             catch (Exception)
             {
 
-                throw;
-            }   
+                // if one of the table stuff is not found then the counter will be bigger then the list
+                // in this case when the counter is used again, it will throw a error to be catched
+
+                // most probably a option is not selected so the counter will run thourh the program and error out because of index out of bounds
+
+                // create a custom exception for the user saying index out of bounds, please select(insert, update ...)
+            }
+            
+                       
             return sqlBuilderLIst;
         }
         #endregion
@@ -66,7 +135,7 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')               // checks to see if procedure already exists
                 {
                     sqlBuilderLIst.RemoveRange(2, 4);
                     sqlBuilderLIst.RemoveRange(sqlBuilderLIst.Count - 1, 1);
@@ -126,8 +195,20 @@ namespace BLL
         }
 
         // Adds or changes the procedureName
-        public List<String> ProcedureNameChange(string varible)
+        public List<String> ProcedureNameBuilder(string procName)
         {
+            List<string> tempProcedureLineHolder = sqlBuilderLIst[2].Split(' ').ToList();
+            if (tempProcedureLineHolder.Count <= 2)
+            {
+                tempProcedureLineHolder.Add(procName);
+            }
+            else
+            {
+                tempProcedureLineHolder[2] = procName;
+            }
+
+            sqlBuilderLIst[2] = ListToStringSpaceses(tempProcedureLineHolder);
+
 
             return sqlBuilderLIst; 
         }
@@ -836,6 +917,7 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
+        // converts a list to a string with comma's between the entities
         private string ListToString(List<string> theList)
         {
             string line = "";
@@ -848,6 +930,19 @@ namespace BLL
             return line.Substring(0, line.LastIndexOf(','));
         }
 
+        // converts a list to a string with spaces between the entities
+        private string ListToStringSpaceses(List<string> theList)
+        {
+            string line = "";
+
+            foreach (string item in theList)
+            {
+                line += item + " ";
+            }
+
+            return line.Substring(0, line.LastIndexOf(' '));
+        }
+
 
 
         #endregion
@@ -858,9 +953,12 @@ namespace BLL
 }
 
 // Still to do
-// - write tables query part
-// - in table combobox add a search for table
-// - varible table for procedure
-// - Fix form so that table name doesnt randomly dissapear
+// - write tables method in Sqlbuilder 
+//    + make sure that table names cant have spaces in them
+// - finish joins methods
+// - research the testing methods
+// - in the table combobox add a search function for table
+// - varible Method in sqlbuilder for procedure
+// - Add a Tab to the tab page for keeping track what is the main table in use | if that table is change then the table in the query also changes
 // - finish comments and orginize all classes
 
