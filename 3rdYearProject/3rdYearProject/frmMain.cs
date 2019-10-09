@@ -363,6 +363,7 @@ namespace _3rdYearProject
             cmbSetCol.DataSource = selectedListofColumns;
             cmbInsertColumns.DataSource = selectedListofColumns;
             cmbColumnManagementList.DataSource = selectedListofColumns;
+            cmbColumnsColumnName.DataSource = selectedListofColumns;
         }
 
         private void btnExecute_Click(object sender, EventArgs e)
@@ -557,6 +558,7 @@ namespace _3rdYearProject
 
         #region Add/Remove Tabs
 
+        // Remove Unneccassary removes all of the tab pages
         public void RemoveUnneccassary()
         {
             tbcExstra.TabPages.Remove(tpAggregate);
@@ -569,8 +571,11 @@ namespace _3rdYearProject
             tbcExstra.TabPages.Remove(tpSet);
             tbcExstra.TabPages.Remove(tpVariableManagement);
             tbcExstra.TabPages.Remove(tpViews);
+            tbcExstra.TabPages.Remove(tpColumns);
+
         }
 
+        // here the tab pages needed for (procedure, select...) are all added
         public void AddTabsForProcedures()
         {
             if (mnuProcedure.BackColor != Color.Transparent)
@@ -597,6 +602,7 @@ namespace _3rdYearProject
 
         public void AddTabsForSelect()
         {
+            tbcExstra.TabPages.Add(tpColumns);
             tbcExstra.TabPages.Add(tpWhere);
             tbcExstra.TabPages.Add(tpHaving);
             tbcExstra.TabPages.Add(tpOrderBy);
@@ -640,6 +646,8 @@ namespace _3rdYearProject
             cmbGroupByColum.DataSource = null;
             cmbSetCol.DataSource = null;
             cmbInsertColumns.DataSource = null;
+            cmbColumnManagementList.DataSource = null;
+            cmbColumnsColumnName.DataSource = null;
             cmbTableJoinTarget.Items.Clear();
             cmbSourceTableJoin.Items.Clear();
         }
@@ -655,6 +663,7 @@ namespace _3rdYearProject
             lstOrderedItems.Items.Clear();
             lstSetitems.Items.Clear();
             lstWhereItems.Items.Clear();
+            lstColumnsItems.Items.Clear();
         }
 
         public void AddConditions()
