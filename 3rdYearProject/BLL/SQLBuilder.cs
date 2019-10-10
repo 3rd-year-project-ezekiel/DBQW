@@ -186,7 +186,7 @@ namespace BLL
             else
             {
                 // sqlBuilderLIst[3].Replace(')', ',');
-                sqlBuilderLIst[3] = sqlBuilderLIst[3].Substring(0, sqlBuilderLIst[3].Count() - 2) + "," + varible + ")";
+                sqlBuilderLIst[3] = sqlBuilderLIst[3].Substring(0, sqlBuilderLIst[3].Count() - 1) + "," + varible + ")";
             }
             return sqlBuilderLIst;
         }
@@ -902,11 +902,23 @@ namespace BLL
         {
             
             StringBuilder stringBuilder = new StringBuilder();
-
-            for (int i = 0; i < sqlBuilderLIst.Count(); i++)
+            string line = "";
+            if((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
             {
-                if(i != 1)  stringBuilder.Append(" " + sqlBuilderLIst[i]);
+                line = sqlBuilderLIst[0]+"\n";
+                for (int i = 2; i < sqlBuilderLIst.Count(); i++)
+                {
+                    stringBuilder.Append(" " + sqlBuilderLIst[i]);
+                }
             }
+            else
+            {
+                for (int i = 0; i < sqlBuilderLIst.Count(); i++)
+                {
+                    if (i != 1) stringBuilder.Append(" " + sqlBuilderLIst[i]);
+                }
+            }
+            
 
             DBConnection dataLayer = new DBConnection();
             dataLayer.QueryExecution(stringBuilder.ToString());

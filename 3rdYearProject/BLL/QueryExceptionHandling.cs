@@ -18,33 +18,44 @@ namespace BLL
         public string CheckDataTypeMatch(string givenDataType, string givenData)
         {
             string newData = "";
-            switch (givenDataType.ToLower())
+
+            if (givenData[0] != '@')
             {
-                case "char": { } break;
-                case "varchar":
-                    {
-                        newData = "'" + givenData + "'";
-                    } break;
-                case "text": { } break;
-                case "nchar": { } break;
-                case "int":
-                    {
-                        try
+                switch (givenDataType.ToLower())
+                {
+                    case "char": { } break;
+                    case "varchar":
                         {
-                            int test = int.Parse(givenData);
-                            newData = givenData;
+                            newData = "'" + givenData + "'";
                         }
-                        catch (Exception)
+                        break;
+                    case "text": { } break;
+                    case "nchar": { } break;
+                    case "int":
                         {
-                            MessageBox.Show("Please Enter a Number");
+                            try
+                            {
+                                int test = int.Parse(givenData);
+                                newData = givenData;
+                            }
+                            catch (Exception)
+                            {
+                                MessageBox.Show("Please Enter a Number");
+                            }
                         }
-                    } break;
-                case "money": { } break;
-                case "time": { } break;
-                case "date": { } break;
-                default:
-                    break;
+                        break;
+                    case "money": { } break;
+                    case "time": { } break;
+                    case "date": { } break;
+                    default:
+                        break;
+                }
             }
+            else
+            {
+                return givenData;
+            }
+
             return newData;
         }
 

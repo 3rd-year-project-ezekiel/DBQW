@@ -153,7 +153,7 @@ namespace _3rdYearProject
                             int size = int.Parse(txtSize.Text);
                             string chosenDataType = cbxType.SelectedItem.ToString();
                             string[] splitSize = chosenDataType.Split('(');
-                            type = splitSize[0] + txtSize.Text + splitSize[1];
+                            type = splitSize[0] + "(" + txtSize.Text + splitSize[1];
                         }
                        
                     }

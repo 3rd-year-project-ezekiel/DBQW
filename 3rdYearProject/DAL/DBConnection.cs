@@ -250,6 +250,7 @@ namespace DAL
                 adapter = new SqlDataAdapter(command);
                 adapter.Fill(tables);
 
+                
 
             }
             catch (Exception)

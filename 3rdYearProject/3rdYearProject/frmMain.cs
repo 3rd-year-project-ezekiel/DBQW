@@ -1403,7 +1403,7 @@ namespace _3rdYearProject
         // Not yet finished
         private void cmbSelectQueryTable_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            tabTableColumnDict.Clear();
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.TableBuilder(cmbSelectQueryTable.SelectedItem.ToString());
             currentSetTable = cmbSelectQueryTable.SelectedItem.ToString();
