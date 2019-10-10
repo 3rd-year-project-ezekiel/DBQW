@@ -45,13 +45,20 @@ namespace _3rdYearProject
             }
             else
             {
-                database.CreateDatabase(creationDetails);
+                
+                if (database.CreateDatabase(creationDetails))
+                {
+                    MessageBox.Show("Database have been created", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 
-                MessageBox.Show("Database have been created", "Success", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-             
-                frmTableCreation tableCreation = new frmTableCreation();
-                this.Hide();
-                tableCreation.Show();
+                    frmTableCreation tableCreation = new frmTableCreation();
+                    this.Hide();
+                    tableCreation.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to create Database", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
             }
 
             

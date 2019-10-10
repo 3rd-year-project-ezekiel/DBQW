@@ -179,8 +179,15 @@ namespace BLL
         // Add a varible to Procedure
         public List<string> ProcedureAddVaribles(string varible)
         {
-            sqlBuilderLIst[3].Replace(')', ',');
-            sqlBuilderLIst[3] += varible + ")";
+            if(sqlBuilderLIst[3][1] == ')')
+            {
+                sqlBuilderLIst[3] = "("+varible + ")";
+            }
+            else
+            {
+                // sqlBuilderLIst[3].Replace(')', ',');
+                sqlBuilderLIst[3] = sqlBuilderLIst[3].Substring(0, sqlBuilderLIst[3].Count() - 2) + "," + varible + ")";
+            }
             return sqlBuilderLIst;
         }
 

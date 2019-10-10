@@ -1163,6 +1163,9 @@ namespace _3rdYearProject
         private void BtnSave_Click(object sender, EventArgs e)
         {
             string procedureName = txtProcedureName.Text;
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.ProcedureNameBuilder(procedureName);
+
         }
 
         private void BtnRemoveVariables_Click(object sender, EventArgs e)
@@ -1172,7 +1175,7 @@ namespace _3rdYearProject
                 int selectedIndex = lstVarItems.SelectedIndex;
 
                 lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.UpdateRemoveSet((string)lstSetitems.SelectedItem);
+                lstDisplay.DataSource = sqlBuilderClass.ProcedureRemoveVarible((string)lstSetitems.SelectedItem);
 
                 lstVarItems.Items.RemoveAt(selectedIndex);
                 variables.RemoveAt(selectedIndex);
@@ -1230,12 +1233,21 @@ namespace _3rdYearProject
                     int size = int.Parse(txtSize.Text);
 
                     query = string.Format("@{0} {1}({2})", name, datatype, size);
+
+                    lstDisplay.DataSource = null;
+                    lstDisplay.DataSource = sqlBuilderClass.ProcedureAddVaribles("@"+name + " " + datatype+" "+size);
+                    txtSize.Text = "";
                 }
                 else
                 {
                     query = string.Format("@{0} {1}", name, datatype);
+
+                    lstDisplay.DataSource = null;
+                    lstDisplay.DataSource = sqlBuilderClass.ProcedureAddVaribles("@"+name + " " + datatype);
                 }
-               
+
+                
+
                 lstVarItems.Items.Add(query);
                 variables.Add("@"+name);
 

@@ -95,8 +95,9 @@ namespace DAL
         }
 
         // Method of creating a Database on SqlServer
-        public void CreateDatabase(List<string> details)
+        public bool CreateDatabase(List<string> details)
         {
+            bool flag = true;
             string query = "Create DataBase " + details[0].ToString() + " ON Primary(Name= " + details[0].ToString() + ", FileName  = '" + details[1].ToString() + @"\" + details[0].ToString() + ".mdf', Size = " + details[2].ToString() + @"mb,MaxSize = UNLIMITED,FileGrowth = 10 %)Log On(Name=" + details[3].ToString() + @",FileName = '" + details[1] + @"\" + details[3].ToString() + @".ldf')";
             try
             {
@@ -110,12 +111,15 @@ namespace DAL
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                MessageBox.Show("This filepath has been denied, please try a diffrent one.");
+                flag = false;
+                
             }
             finally
             {
                 connection.Close();
             }
+            return flag;
         }
 
         // Method of creating Tables on SqlServer

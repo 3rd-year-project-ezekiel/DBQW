@@ -56,10 +56,10 @@ public class Databases
         set { nameOfDatbase = value; }
     }
 
-    public void CreateDatabase(List<String> creationDetails)
+    public bool CreateDatabase(List<String> creationDetails)
     {
         DBConnection handler = new DBConnection();
-        handler.CreateDatabase(creationDetails);
+        return handler.CreateDatabase(creationDetails);
 
     }
 
