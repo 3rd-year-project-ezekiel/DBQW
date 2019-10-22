@@ -579,7 +579,7 @@ namespace _3rdYearProject
 
         #region Add/Remove Tabs
 
-        // Remove Unneccassary removes all of the tab pages
+        // Remove Unneccassary, removes all of the tab pages
         public void RemoveUnneccassary()
         {
             tbcExstra.TabPages.Remove(tpAggregate);
