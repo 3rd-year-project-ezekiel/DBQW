@@ -979,4 +979,5 @@ namespace BLL
 // - finish comments and orginize all classes
 // - fix the View menu strip that it cant activate when select isnt selected
 // - hook up varible methods in procedure varible tab
+// - fix select and add the coloums
 
