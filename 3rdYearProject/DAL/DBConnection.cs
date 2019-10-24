@@ -53,7 +53,7 @@ namespace DAL
 
         #region Push Data into Database
 
-        public void QueryExecution(string query)
+        public bool QueryExecution(string query)
         {
 
             //TSql100Parser parser = new TSql100Parser(false);
@@ -85,13 +85,14 @@ namespace DAL
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
+                return false;
             }
             finally
             {
                 connection.Close();
             }
 
-
+            return true;
         }
 
         // Method of creating a Database on SqlServer

@@ -370,7 +370,7 @@ namespace _3rdYearProject
 
         private void btnExecute_Click(object sender, EventArgs e)
         {
-            sqlBuilderClass.ExecuteQuery();
+            if (sqlBuilderClass.ExecuteQuery()) MessageBox.Show("Query successfully executed");
         }
 
         private void ComboBoxPopulationMethod()
@@ -1393,6 +1393,25 @@ namespace _3rdYearProject
 
         private void btnAddColumns_Click(object sender, EventArgs e)
         {
+            try
+            {
+                            
+
+                string columnName = cmbColumnsColumnName.SelectedItem.ToString();
+
+
+                lstColumnsItems.Items.Add(string.Format("{0}", columnName));
+
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.(columnName);
+                txtWhereValues.Clear();
+
+            }
+            catch (NullReferenceException)
+            {
+
+                MessageBox.Show("No value added.Please add a value", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 

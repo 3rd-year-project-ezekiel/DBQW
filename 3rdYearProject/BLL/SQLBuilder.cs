@@ -606,6 +606,45 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
+        // needs fixing
+        public List<string> SelectAddColumns(string columnName)
+        {/*
+            try
+            {
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
+                {
+                    sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
+                    if (sqlBuilderLIst.Count > 5)
+                        sqlBuilderLIst.RemoveRange(6, (sqlBuilderLIst.Count - 6));
+
+                    sqlBuilderLIst.Add("SELECT *");
+                    sqlBuilderLIst.Add("FROM ");
+                    if (tableName != "")
+                        sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
+                    sqlBuilderLIst.Add("END");
+
+                }
+                else
+                {
+                    sqlBuilderLIst[sqlBuilderLIst.Count] = "";
+                }
+            }
+            catch (Exception)
+            {
+                if (sqlBuilderLIst.Count > 2)
+                    sqlBuilderLIst.RemoveRange(2, (sqlBuilderLIst.Count - 2));
+
+                sqlBuilderLIst.Add("SELECT ");
+                sqlBuilderLIst.Add("FROM ");
+                if (tableName != "")
+                    sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
+
+            }
+            */
+            return sqlBuilderLIst;
+           
+        }
+
         #endregion
 
         #region Where
@@ -898,7 +937,7 @@ namespace BLL
         #endregion
         
         #region Query Execute
-        public void ExecuteQuery()
+        public bool ExecuteQuery()
         {
             
             StringBuilder stringBuilder = new StringBuilder();
@@ -921,7 +960,7 @@ namespace BLL
             
 
             DBConnection dataLayer = new DBConnection();
-            dataLayer.QueryExecution(stringBuilder.ToString());
+            return dataLayer.QueryExecution(stringBuilder.ToString());
             
 
         }
