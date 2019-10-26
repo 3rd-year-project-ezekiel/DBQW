@@ -615,12 +615,23 @@ namespace BLL
                     if ((sqlBuilderLIst[index])[0] == 'S' && (sqlBuilderLIst[index])[1] == 'E' && (sqlBuilderLIst[index])[2] == 'L')
                     {
                     string[] lines = sqlBuilderLIst[index].Split(' ');
-                    if (lines.Count() < 2)
+                    try
                     {
-
+                        if (lines.Count() < 2 && lines[1] == "")
+                        {
+                            sqlBuilderLIst[index] +=  columnName;
+                        }
+                        else
+                        {
+                            sqlBuilderLIst[index] += "," + columnName;
+                        }
+                    }
+                    catch (Exception)
+                    {
                     }
                         break;
                     }
+                index++;
                 }
             
             return sqlBuilderLIst;

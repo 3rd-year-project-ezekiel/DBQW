@@ -1394,16 +1394,14 @@ namespace _3rdYearProject
         private void btnAddColumns_Click(object sender, EventArgs e)
         {
             try
-            {
-                            
-
+            { 
                 string columnName = cmbColumnsColumnName.SelectedItem.ToString();
 
 
                 lstColumnsItems.Items.Add(string.Format("{0}", columnName));
 
                 lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.(columnName);
+                lstDisplay.DataSource = sqlBuilderClass.SelectAddColumns(columnName);
                 txtWhereValues.Clear();
 
             }
