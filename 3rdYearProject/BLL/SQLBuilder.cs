@@ -608,39 +608,21 @@ namespace BLL
 
         // needs fixing
         public List<string> SelectAddColumns(string columnName)
-        {/*
-            try
-            {
-                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
+        {
+                int index = 0;
+                while (sqlBuilderLIst.Count > index)
                 {
-                    sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
-                    if (sqlBuilderLIst.Count > 5)
-                        sqlBuilderLIst.RemoveRange(6, (sqlBuilderLIst.Count - 6));
+                    if ((sqlBuilderLIst[index])[0] == 'S' && (sqlBuilderLIst[index])[1] == 'E' && (sqlBuilderLIst[index])[2] == 'L')
+                    {
+                    string[] lines = sqlBuilderLIst[index].Split(' ');
+                    if (lines.Count() < 2)
+                    {
 
-                    sqlBuilderLIst.Add("SELECT *");
-                    sqlBuilderLIst.Add("FROM ");
-                    if (tableName != "")
-                        sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
-                    sqlBuilderLIst.Add("END");
-
+                    }
+                        break;
+                    }
                 }
-                else
-                {
-                    sqlBuilderLIst[sqlBuilderLIst.Count] = "";
-                }
-            }
-            catch (Exception)
-            {
-                if (sqlBuilderLIst.Count > 2)
-                    sqlBuilderLIst.RemoveRange(2, (sqlBuilderLIst.Count - 2));
-
-                sqlBuilderLIst.Add("SELECT ");
-                sqlBuilderLIst.Add("FROM ");
-                if (tableName != "")
-                    sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
-
-            }
-            */
+            
             return sqlBuilderLIst;
            
         }
