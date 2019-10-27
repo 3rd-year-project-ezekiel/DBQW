@@ -53,35 +53,40 @@ namespace BLL
             }
             else
             {
-                return givenData;
+                return givenData; 
             }
 
             return newData;
         }
 
+
+
         #region To do List
 
         // == JP == \\
-        // Main form
-        // tussen switch query en combo gives you an option if you want to switch 
-        //- if no selected show the previous options
-        // make sure that table names on the table form cant have spaces in them
+        // == Main form ==
+        //  - when a new thing is selected, while there is already data entered, a message box should display to inform the user that this action would cause that the query will reset
+        //       - the messagebox should keep the previos selection if no is selected, and reset the query is yes is selected
+        //       Examples
+        //         = selecting a sqlQAuery type from the menu strip(Delete -> update)
+        //         - unselecting stored procedure or views
+        //         - selecting a new table, database or removing tables
 
-        // Datatype checking 
-        // table creation when column selected check if the data types are the same.
+        // == Table creation form == 
+        // when a column is selected for foreign keys, check if the data types are the same.
+                // table 1 column 1 is string || Should equal || table 3 column 4 int
+
+        // make sure that table names on the table form cant have spaces in them
 
 
         // == Jan == \\
         // Data type checking all 
-        //  = tab - values, where, Set, Having, Procedures.  make sure that the right datatype is filled in
+        //  check that all text boxes have a datatype checking
+        //  check that all combo boxes and text boxes that are set or equal to somthing
         // create custom exceptions for certian events
 
 
-        // == Both Reseach == \\
-        // exception catcher but must not stop program. for everything
-        //  -- for access dinied when creating database
-        //  -- for when the querie is wrong somwhere
-        // check if query will run or not run (using SQL built in function)
+
 
 
 

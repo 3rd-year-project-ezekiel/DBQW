@@ -920,15 +920,22 @@ namespace BLL
         }
 
         #endregion
+
         // finish
         #region Joins
 
         #endregion
+
+        // finish
+        #region Aggregate
+
+        #endregion
+
         // finish
         #region Transactions
 
         #endregion
-        
+
         #region Query Execute
         public bool ExecuteQuery()
         {
@@ -1006,10 +1013,14 @@ namespace BLL
 // - finish joins methods
 // - research the testing methods
 // - in the table combobox add a search function for table
+
 // - varible Method in sqlbuilder for procedure
-// - Add a Tab to the tab page for keeping track what is the main table in use | if that table is change then the table in the query also changes
+
 // - finish comments and orginize all classes
-// - fix the View menu strip that it cant activate when select isnt selected
-// - hook up varible methods in procedure varible tab
-// - fix select and add the coloums
+
+// - make sure that procedurse can also be executed to Sql server
+
+// - if a select is executed then a dataGrid form should appear
+
+// - finish Aggregate functions and hook the tabs up
 

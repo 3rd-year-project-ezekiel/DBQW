@@ -1437,32 +1437,29 @@ namespace _3rdYearProject
         #endregion
 
         
-
-
-
-
-
-
-
+        
 
 
 
         // == Group To Do List == \\
         /*
-        - when a table is removed from the treeview, that table's columns should not be able to display in the tab control any more 
          
-        - only one table can be displayed in the tree node at a time and only one should be able to be added
-          the other tables and their coloums should be added via the join table option
-        - the coloumns need to display their data types and if they are a primary key or foreighn key.
+        - the main table tab should be reworked to look better, but the combo box stays
+          == potential other fixes that doesnt use a combo box
+            - using a list box with a filter text box
+            -
 
-        - Table creation failed to create a Table
+        - when a table is removed from the treeview, that table's columns should not be able to display in the tab control any more 
+           = currently it will also error when a table is removed
+       
 
-        - select and view should have the option to only add certian columns
+        - When procedures are selected, the user should have the option to either enter there own 
+            values in to a where(example) or select the varibles that they have create
 
-        - when varible is selected, it should be able to be selected accross all tabs
-        - all value text boxes on tabs should be replaced with combo boxes to display the varibles of the procedurs
+
         - when a new table is selected on the table tab, then the previos columns and items should be removed
            + prompt the user if they are sure
+
         */
 
     }
