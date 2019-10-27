@@ -939,7 +939,7 @@ namespace BLL
         #region Query Execute
         public bool ExecuteQuery()
         {
-            
+            /*
             StringBuilder stringBuilder = new StringBuilder();
             string line = "";
             if((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
@@ -957,7 +957,13 @@ namespace BLL
                     if (i != 1) stringBuilder.Append(" " + sqlBuilderLIst[i]);
                 }
             }
-            
+            */
+            string stringBuilder = "";
+            foreach (string item in sqlBuilderLIst)
+            {
+                if (item != "GO") stringBuilder += Environment.NewLine + item;
+                
+            }
 
             DBConnection dataLayer = new DBConnection();
             return dataLayer.QueryExecution(stringBuilder.ToString());
@@ -1024,3 +1030,11 @@ namespace BLL
 
 // - finish Aggregate functions and hook the tabs up
 
+
+
+
+
+    /////// New Ideas
+    // 
+    // because create must be the first thing in a batch of execution
+    //    the program will change the connection string to the database being used in order to spesifically execute the query on that database

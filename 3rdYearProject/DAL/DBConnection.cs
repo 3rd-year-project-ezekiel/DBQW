@@ -87,7 +87,7 @@ namespace DAL
                 MessageBox.Show(e.ToString());
                 return false;
             }
-            finally
+            finally 
             {
                 connection.Close();
             }
