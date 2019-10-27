@@ -1486,6 +1486,9 @@ namespace _3rdYearProject
         - when a new table is selected on the table tab, then the previos columns and items should be removed
            + prompt the user if they are sure
 
+
+        - when the program firsts starts and you click views, it doesnt work properly
+
         */
 
     }
