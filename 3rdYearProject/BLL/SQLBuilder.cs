@@ -221,6 +221,7 @@ namespace BLL
         #endregion
 
         #region Views
+        // view base add and remove
         public List<string> ViewBaseBuilder(string tableName = "")
         {
 
@@ -231,8 +232,8 @@ namespace BLL
                     sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
                     if (sqlBuilderLIst.Count > 5)
                         sqlBuilderLIst.RemoveRange(6, (sqlBuilderLIst.Count - 6));
-                    sqlBuilderLIst.Add("CREATE VIEW >Enter Name< AS");
-                    sqlBuilderLIst.Add("SELECT ");
+                    sqlBuilderLIst.Add("CREATE VIEW >Enter_Name< AS");
+                    sqlBuilderLIst.Add("SELECT");
                     sqlBuilderLIst.Add("FROM ");
                     if (tableName != "")
                         sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
@@ -248,12 +249,38 @@ namespace BLL
             {
                 if (sqlBuilderLIst.Count > 2)
                     sqlBuilderLIst.RemoveRange(2, (sqlBuilderLIst.Count - 2));
-                sqlBuilderLIst.Add("CREATE VIEW >Enter Name< AS");
-                sqlBuilderLIst.Add("SELECT ");
+                sqlBuilderLIst.Add("CREATE VIEW >Enter_Name< AS");
+                sqlBuilderLIst.Add("SELECT");
                 sqlBuilderLIst.Add("FROM ");
                 if (tableName != "")
                     sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
 
+            }
+
+            return sqlBuilderLIst;
+        }
+
+        public List<string> ViewNameBuilder(string viewName)
+        {
+            int index = 2;
+            while (index < sqlBuilderLIst.Count)
+            {
+                if ((sqlBuilderLIst[index])[0] == 'C' && (sqlBuilderLIst[index])[7] == 'V')
+                {
+                    List<string> tempViewLineHolder = sqlBuilderLIst[index].Split(' ').ToList();
+                    if (tempViewLineHolder.Count <= 3)
+                    {
+                        tempViewLineHolder[2] = viewName;
+                        tempViewLineHolder.Add("AS");
+                    }
+                    else
+                    {
+                        tempViewLineHolder[2] = viewName;
+                    }
+
+                    sqlBuilderLIst[index] = ListToStringSpaceses(tempViewLineHolder);
+                    break;
+                }
             }
 
             return sqlBuilderLIst;
@@ -579,7 +606,7 @@ namespace BLL
                     if (sqlBuilderLIst.Count > 5)
                         sqlBuilderLIst.RemoveRange(6, (sqlBuilderLIst.Count - 6));
 
-                    sqlBuilderLIst.Add("SELECT *");
+                    sqlBuilderLIst.Add("SELECT");
                     sqlBuilderLIst.Add("FROM ");
                     if (tableName != "")
                         sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
@@ -596,7 +623,7 @@ namespace BLL
                 if (sqlBuilderLIst.Count > 2)
                     sqlBuilderLIst.RemoveRange(2, (sqlBuilderLIst.Count - 2));
 
-                sqlBuilderLIst.Add("SELECT ");
+                sqlBuilderLIst.Add("SELECT");
                 sqlBuilderLIst.Add("FROM ");
                 if (tableName != "")
                     sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
@@ -609,7 +636,7 @@ namespace BLL
         // needs fixing
         public List<string> SelectAddColumns(string columnName)
         {
-                int index = 0;
+                int index = 2;
                 while (sqlBuilderLIst.Count > index)
                 {
                     if ((sqlBuilderLIst[index])[0] == 'S' && (sqlBuilderLIst[index])[1] == 'E' && (sqlBuilderLIst[index])[2] == 'L')
@@ -617,13 +644,13 @@ namespace BLL
                     string[] lines = sqlBuilderLIst[index].Split(' ');
                     try
                     {
-                        if (lines.Count() < 2 && lines[1] == "")
+                        if (lines.Count() < 2 )
                         {
-                            sqlBuilderLIst[index] +=  columnName;
+                            sqlBuilderLIst[index] += " "+ columnName;
                         }
                         else
                         {
-                            sqlBuilderLIst[index] += "," + columnName;
+                            sqlBuilderLIst[index] +=  ","+columnName ;
                         }
                     }
                     catch (Exception)
@@ -638,6 +665,31 @@ namespace BLL
            
         }
 
+        public List<string> SelectRemoveColumn(string columnName)
+        {
+            int index = 2;
+            while (sqlBuilderLIst.Count > index)
+            {
+                if ((sqlBuilderLIst[index])[0] == 'S' && (sqlBuilderLIst[index])[1] == 'E' && (sqlBuilderLIst[index])[2] == 'L')
+                {
+                    try
+                    {
+                        List<String> theList = (sqlBuilderLIst[index].Split(' '))[1].Split(',').ToList();
+                        theList.Remove(columnName);
+                        sqlBuilderLIst[index] = "SELECT " + ListToString(theList);
+                    }
+                    catch (Exception)
+                    {
+                        sqlBuilderLIst[index] = "SELECT";
+
+
+                    }
+                    break;
+                }
+            }
+
+            return sqlBuilderLIst;
+        }
         #endregion
 
         #region Where

@@ -1415,7 +1415,26 @@ namespace _3rdYearProject
 
         private void btnRemoveColumns_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int selectedIndex = lstColumnsItems.SelectedIndex;
 
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.SelectRemoveColumn(lstColumnsItems.SelectedItem.ToString());
+
+                lstColumnsItems.Items.RemoveAt(selectedIndex);
+                MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (ArgumentException )
+            {
+
+                MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (System.Exception)
+            {
+
+                MessageBox.Show(e.ToString(), "Contact your IT guy");
+            }
         }
         // Not yet finished
         private void cmbSelectQueryTable_SelectedIndexChanged(object sender, EventArgs e)
@@ -1431,13 +1450,20 @@ namespace _3rdYearProject
 
         }
 
+        private void btnSaveView_Click(object sender, EventArgs e)
+        {
+            string viewName = txtViewName.Text;
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.ViewNameBuilder(viewName);
+        }
+
 
         #endregion
 
         #endregion
 
-        
-        
+
+
 
 
 

@@ -983,6 +983,7 @@
             this.btnSaveView.TabIndex = 28;
             this.btnSaveView.Text = "Save";
             this.btnSaveView.UseVisualStyleBackColor = true;
+            this.btnSaveView.Click += new System.EventHandler(this.btnSaveView_Click);
             // 
             // txtViewName
             // 
