@@ -1470,7 +1470,7 @@ namespace _3rdYearProject
         // == Group To Do List == \\
         /*
          
-        - the main table tab should be reworked to look better, but the combo box stays
+        - the main table tab(the tab with just one combo box) should be reworked to look better, but the combo box stays
           == potential other fixes that doesnt use a combo box
             - using a list box with a filter text box
             -
