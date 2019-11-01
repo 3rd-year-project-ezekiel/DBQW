@@ -9,6 +9,7 @@ using System.Collections;
 using System.IO;
 using System.Xml;
 using System.Configuration;
+using System.Windows.Forms;
 using static System.Net.Mime.MediaTypeNames;
 
 public class Accounts
@@ -54,6 +55,7 @@ public class Accounts
         var connStrBldr = new System.Data.SqlClient.SqlConnectionStringBuilder();
         connStrBldr.DataSource = serverName;
         connStrBldr.InitialCatalog = "";
+        
 
         if (this.ConnectionType == "Windows Authentication")
         {
@@ -68,7 +70,8 @@ public class Accounts
 
         var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
         var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
-        connectionStringsSection.ConnectionStrings["default"].ConnectionString = connStrBldr.ToString(); ;
+        connectionStringsSection.ConnectionStrings["default"].ConnectionString = connStrBldr.ToString();
+
         config.Save();
         ConfigurationManager.RefreshSection("connectionStrings");
 

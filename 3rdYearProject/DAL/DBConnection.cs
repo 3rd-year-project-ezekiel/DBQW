@@ -32,7 +32,7 @@ namespace DAL
             this.connection = new SqlConnection(connectionString);
         }
 
-        // 
+        // Tests if the server name exists
         public bool UserLogin()
         {
             try

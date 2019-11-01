@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 using DAL;
 
 namespace BLL
@@ -991,33 +993,39 @@ namespace BLL
         #region Query Execute
         public bool ExecuteQuery()
         {
-            /*
-            StringBuilder stringBuilder = new StringBuilder();
-            string line = "";
-            if((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
+            SqlConnectionStringBuilder connStringBuilder = new SqlConnectionStringBuilder();
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
+
+            string[] lines = connectionStringsSection.ConnectionStrings["default"].ConnectionString.Split(';');
+
+            connStringBuilder.DataSource = (lines[0].Split('='))[1];
+            connStringBuilder.InitialCatalog = (sqlBuilderLIst[0].Split(' '))[1];
+            if((lines[2].Split('='))[1] == "True")
             {
-                line = sqlBuilderLIst[0]+"\n";
-                for (int i = 2; i < sqlBuilderLIst.Count(); i++)
-                {
-                    stringBuilder.Append(" " + sqlBuilderLIst[i]);
-                }
+                connStringBuilder.IntegratedSecurity = true;
             }
             else
             {
-                for (int i = 0; i < sqlBuilderLIst.Count(); i++)
-                {
-                    if (i != 1) stringBuilder.Append(" " + sqlBuilderLIst[i]);
-                }
+                connStringBuilder.IntegratedSecurity = false;
+                connStringBuilder.UserID = (lines[3].Split('='))[1];
+                connStringBuilder.Password = (lines[4].Split('='))[1];
             }
-            */
+
+            connectionStringsSection.ConnectionStrings["ExecuteQuery"].ConnectionString = connStringBuilder.ToString();
+
+            config.Save();
+            ConfigurationManager.RefreshSection("connectionStrings");
+            DBConnection dataLayer = new DBConnection("ExecuteQuery");
+
             string stringBuilder = "";
             foreach (string item in sqlBuilderLIst)
             {
-                if (item != "GO") stringBuilder += Environment.NewLine + item;
+                if (item == "GO" || (item.Split(' '))[0] == "USE") { } else { stringBuilder += item + " "; }
                 
             }
 
-            DBConnection dataLayer = new DBConnection();
+           
             return dataLayer.QueryExecution(stringBuilder.ToString());
             
 
@@ -1025,7 +1033,7 @@ namespace BLL
         #endregion
 
         #region Support Methods
-
+        // still to finish
         private List<String> SplitValuesOrColumns(string input)
         {
 
