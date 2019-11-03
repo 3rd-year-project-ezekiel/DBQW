@@ -1084,8 +1084,6 @@ namespace BLL
 
 // - finish comments and orginize all classes
 
-// - make sure that procedurse can also be executed to Sql server
-
 // - if a select is executed then a dataGrid form should appear
 
 // - finish Aggregate functions and hook the tabs up
