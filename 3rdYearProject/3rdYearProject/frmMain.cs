@@ -19,6 +19,7 @@ namespace _3rdYearProject
         #region Form Constructor , Global Fields And Functunality
 
         #region Private Fields
+        private Dictionary<Tables, List<Columns>> tableDetails = new Dictionary<Tables, List<Columns>>();
         private const int TVIF_STATE = 0x8;
         private const int TVIS_STATEIMAGEMASK = 0xF000;
         private const int TV_FIRST = 0x1100;
@@ -118,31 +119,28 @@ namespace _3rdYearProject
         #region Form Functionality
         private void btnRemove_Click(object sender, EventArgs e)
         {
-          
-            foreach (TreeNode item in tvEntities.Nodes)
+            int treeviewCount = tvEntities.Nodes.Count - 1;
+            for (int i = treeviewCount; i >= 0; i--)
             {
-                if (item != null)
+
+                if (tvEntities.Nodes[i] != null)
                 {
-                    if ( item.Checked == true)
+                    if ((tvEntities.Nodes[i].Checked == true))
                     {
-                        item.Remove();
+                        
+                        selectedTables.Remove(new Tables(tvEntities.Nodes[i].Text.ToString()));
+                        
+                        columnDictionary.Remove(tvEntities.Nodes[i].Text.ToString());
+                        tvEntities.Nodes[i].Remove();
+                     
 
-                        columnDictionary.Remove(item.Text.ToString());
-                        selectedTables.RemoveAll(p => p.TableNames == item.Text);
-                        selectedListofTables.RemoveAll(p => p == item.Text);
-
-                        // add a column remover as well
                     }
+
                 }
-
-                
-                
-
             }
-            DoubleCheckRemove();
 
-
-
+            
+           
 
             if (tvEntities.Nodes.Count == 0)
             {
@@ -155,6 +153,7 @@ namespace _3rdYearProject
             }
 
             ComboBoxPopulationMethod();
+            PopulateMainList();
         }
 
         public void DisableComponenets()
@@ -180,7 +179,9 @@ namespace _3rdYearProject
             {
                 if (MessageBox.Show("Are you sure you want to replace the Database, doing so will erase the Query", " warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
+                    selectedListofColumns.Clear();
                     item = 0;
+                    lstMainTable.Items.Clear();
                     tvEntities.Nodes.Clear();
                     Tables table = new Tables();
                     tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
@@ -193,6 +194,9 @@ namespace _3rdYearProject
                     cmbTables.Enabled = true;
                     lstDisplay.DataSource = null;
                     lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
+                    ClearDataLists();
+                    ClearDataSources();
+                    tbcExstra.Enabled = false;
                 }
                 else
                 {
@@ -299,23 +303,7 @@ namespace _3rdYearProject
             tvEntities.Enabled = true;
         }
 
-        public void DoubleCheckRemove()     // Checks tree view
-        {
-            foreach (TreeNode item in tvEntities.Nodes)
-            {
-                if (item != null)
-                {
-                    if (item.Checked == true)
-                    {
-                        item.Remove();
-
-                        columnDictionary.Remove(item.Text.ToString());
-
-                    }
-                }
-
-            }
-        }
+     
 
         private void BtnAddsSource_Click(object sender, EventArgs e)
         {
@@ -349,25 +337,23 @@ namespace _3rdYearProject
                     }
                 }
             }
+            lstMainTable.Items.Clear();
             ClearDataSources();
-            selectedListofColumns.Clear();
-            foreach (KeyValuePair<string, List<string>> item in columnDictionary)
-            {
 
-                foreach (string stringItem in item.Value)
-                {
-                    selectedListofColumns.Add(stringItem);
-                }
-
-                cmbTableJoinTarget.Items.Add(item.Key);
-                cmbSourceTableJoin.Items.Add(item.Key);
-            }
-
-            // calls this method to populate all the comboboxes with data
-            ComboBoxPopulationMethod();
             
+            PopulateMainList();
+            lstMainTable.SelectedIndex = 0;
         }
 
+        public void PopulateMainList()
+        {
+            lstMainTable.Items.Clear();
+            foreach (KeyValuePair<string, List<string>> item in columnDictionary)
+            {
+                lstMainTable.Items.Add(item.Key);
+            }
+        }
+        //ComboBoxPopulationMethod();
         private void btnExecute_Click(object sender, EventArgs e)
         {
             if (sqlBuilderClass.ExecuteQuery()) MessageBox.Show("Query successfully executed");
@@ -389,7 +375,7 @@ namespace _3rdYearProject
             cmbColumnManagementList.DataSource = selectedListofColumns;
             cmbColumnsColumnName.DataSource = selectedListofColumns;
 
-            cmbSelectQueryTable.DataSource = selectedListofTables;
+          
         }
         #endregion
 
@@ -669,7 +655,6 @@ namespace _3rdYearProject
             cmbInsertColumns.DataSource = null;
             cmbColumnManagementList.DataSource = null;
             cmbColumnsColumnName.DataSource = null;
-            cmbSelectQueryTable.DataSource = null;
             cmbTableJoinTarget.Items.Clear();
             cmbSourceTableJoin.Items.Clear();
         }
@@ -1437,24 +1422,40 @@ namespace _3rdYearProject
             }
         }
         // Not yet finished
-        private void cmbSelectQueryTable_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            tabTableColumnDict.Clear();
-            lstDisplay.DataSource = null;
-            lstDisplay.DataSource = sqlBuilderClass.TableBuilder(cmbSelectQueryTable.SelectedItem.ToString());
-            currentSetTable = cmbSelectQueryTable.SelectedItem.ToString();
-            Columns column = new Columns();
-            List<Columns> thelist = column.GetColumns(cmbDatabaseList.SelectedValue.ToString(), currentSetTable);
-            tabTableColumnDict.Add(currentSetTable, thelist );
 
-
-        }
 
         private void btnSaveView_Click(object sender, EventArgs e)
         {
             string viewName = txtViewName.Text;
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.ViewNameBuilder(viewName);
+        }
+
+        private void LstMainTable_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tabTableColumnDict.Clear();
+            lstDisplay.DataSource = null;
+
+
+            selectedListofColumns.Clear();
+            lstDisplay.DataSource = sqlBuilderClass.TableBuilder(lstMainTable.SelectedItem.ToString());
+            currentSetTable = lstMainTable.SelectedItem.ToString();
+            foreach (KeyValuePair<string,List<string>> tableDictionary in columnDictionary)
+            {
+                if (currentSetTable == tableDictionary.Key)
+                {
+                    foreach (string columns in tableDictionary.Value)
+                    {
+                        selectedListofColumns.Add(columns);
+                    }
+                }
+                
+            }
+            ClearDataSources();
+            ComboBoxPopulationMethod();
+            Columns column = new Columns();
+            List<Columns> thelist = column.GetColumns(cmbDatabaseList.SelectedValue.ToString(), currentSetTable);
+            tabTableColumnDict.Add(currentSetTable, thelist);
         }
 
 
@@ -1469,6 +1470,8 @@ namespace _3rdYearProject
 
         // == Group To Do List == \\
         /*
+          
+        
          
         - the main table tab(the tab with just one combo box) should be reworked to look better, but the combo box stays
           == potential other fixes that doesnt use a combo box
@@ -1490,6 +1493,14 @@ namespace _3rdYearProject
         - when the program firsts starts and you click views, it doesnt work properly
 
         */
+
+        
+        /*
+         Add back the stuff for the inner joins
+         
+        */
+          
+        
 
     }
 }
