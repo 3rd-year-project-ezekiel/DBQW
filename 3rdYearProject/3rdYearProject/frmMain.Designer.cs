@@ -77,6 +77,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.tpValues = new System.Windows.Forms.TabPage();
+            this.cbxValue = new System.Windows.Forms.CheckBox();
             this.cmbProgrammingValues = new System.Windows.Forms.ComboBox();
             this.lblEqualsUpdate = new System.Windows.Forms.Label();
             this.btnRemoveValues = new System.Windows.Forms.Button();
@@ -178,6 +179,9 @@
             this.lblColumnManagement = new System.Windows.Forms.Label();
             this.btnAddsSource = new System.Windows.Forms.Button();
             this.btnQueryOutPut = new System.Windows.Forms.Button();
+            this.cbxSetValue = new System.Windows.Forms.CheckBox();
+            this.cbxWhereValue = new System.Windows.Forms.CheckBox();
+            this.cbxHavingValue = new System.Windows.Forms.CheckBox();
             this.mnuMenu.SuspendLayout();
             this.tbcExstra.SuspendLayout();
             this.tpTableSelect.SuspendLayout();
@@ -667,6 +671,7 @@
             // 
             // tpValues
             // 
+            this.tpValues.Controls.Add(this.cbxValue);
             this.tpValues.Controls.Add(this.cmbProgrammingValues);
             this.tpValues.Controls.Add(this.lblEqualsUpdate);
             this.tpValues.Controls.Add(this.btnRemoveValues);
@@ -684,6 +689,17 @@
             this.tpValues.TabIndex = 5;
             this.tpValues.Text = "Values";
             this.tpValues.UseVisualStyleBackColor = true;
+            // 
+            // cbxValue
+            // 
+            this.cbxValue.AutoSize = true;
+            this.cbxValue.Location = new System.Drawing.Point(393, 67);
+            this.cbxValue.Name = "cbxValue";
+            this.cbxValue.Size = new System.Drawing.Size(53, 17);
+            this.cbxValue.TabIndex = 38;
+            this.cbxValue.Text = "Value";
+            this.cbxValue.UseVisualStyleBackColor = true;
+            this.cbxValue.CheckedChanged += new System.EventHandler(this.CbxValue_CheckedChanged);
             // 
             // cmbProgrammingValues
             // 
@@ -787,6 +803,7 @@
             // 
             // tpSet
             // 
+            this.tpSet.Controls.Add(this.cbxSetValue);
             this.tpSet.Controls.Add(this.cmbProgrammingSet);
             this.tpSet.Controls.Add(this.lblEquals);
             this.tpSet.Controls.Add(this.btnRemoveSetItems);
@@ -967,6 +984,7 @@
             // 
             // tpWhere
             // 
+            this.tpWhere.Controls.Add(this.cbxWhereValue);
             this.tpWhere.Controls.Add(this.cmbProgrammingWhere);
             this.tpWhere.Controls.Add(this.btnRemoveClauseFromWhere);
             this.tpWhere.Controls.Add(this.lblWhereHeading);
@@ -1282,6 +1300,7 @@
             // 
             // tpHaving
             // 
+            this.tpHaving.Controls.Add(this.cbxHavingValue);
             this.tpHaving.Controls.Add(this.cmbProgrammingHaving);
             this.tpHaving.Controls.Add(this.btnRemoveHavingItem);
             this.tpHaving.Controls.Add(this.lblHavingHead);
@@ -1696,6 +1715,39 @@
             this.btnQueryOutPut.Text = "Test Query Output";
             this.btnQueryOutPut.UseVisualStyleBackColor = true;
             // 
+            // cbxSetValue
+            // 
+            this.cbxSetValue.AutoSize = true;
+            this.cbxSetValue.Location = new System.Drawing.Point(426, 60);
+            this.cbxSetValue.Name = "cbxSetValue";
+            this.cbxSetValue.Size = new System.Drawing.Size(53, 17);
+            this.cbxSetValue.TabIndex = 39;
+            this.cbxSetValue.Text = "Value";
+            this.cbxSetValue.UseVisualStyleBackColor = true;
+            this.cbxSetValue.CheckedChanged += new System.EventHandler(this.CbxSetValue_CheckedChanged);
+            // 
+            // cbxWhereValue
+            // 
+            this.cbxWhereValue.AutoSize = true;
+            this.cbxWhereValue.Location = new System.Drawing.Point(344, 86);
+            this.cbxWhereValue.Name = "cbxWhereValue";
+            this.cbxWhereValue.Size = new System.Drawing.Size(53, 17);
+            this.cbxWhereValue.TabIndex = 40;
+            this.cbxWhereValue.Text = "Value";
+            this.cbxWhereValue.UseVisualStyleBackColor = true;
+            this.cbxWhereValue.CheckedChanged += new System.EventHandler(this.CbxWhereValue_CheckedChanged);
+            // 
+            // cbxHavingValue
+            // 
+            this.cbxHavingValue.AutoSize = true;
+            this.cbxHavingValue.Location = new System.Drawing.Point(432, 62);
+            this.cbxHavingValue.Name = "cbxHavingValue";
+            this.cbxHavingValue.Size = new System.Drawing.Size(53, 17);
+            this.cbxHavingValue.TabIndex = 40;
+            this.cbxHavingValue.Text = "Value";
+            this.cbxHavingValue.UseVisualStyleBackColor = true;
+            this.cbxHavingValue.CheckedChanged += new System.EventHandler(this.CbxHavingValue_CheckedChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1904,5 +1956,9 @@
         private System.Windows.Forms.Label lblTablesHeading;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ListBox lstMainTable;
+        private System.Windows.Forms.CheckBox cbxValue;
+        private System.Windows.Forms.CheckBox cbxSetValue;
+        private System.Windows.Forms.CheckBox cbxWhereValue;
+        private System.Windows.Forms.CheckBox cbxHavingValue;
     }
 }

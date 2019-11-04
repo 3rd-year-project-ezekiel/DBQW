@@ -61,6 +61,10 @@ namespace _3rdYearProject
             RevertFromProgrammabillity();
             txtSize.Hide();
             lblSize.Hide();
+            cbxValue.Hide();
+            cbxHavingValue.Hide();
+            cbxWhereValue.Hide();
+            cbxSetValue.Hide();
             cmbDataTypes.Text = "Select DataType";
             cmbDataTypes.Items.Add("Char");
             cmbDataTypes.Items.Add("VarChar");
@@ -491,6 +495,10 @@ namespace _3rdYearProject
         {
             if (mnuProcedure.BackColor != Color.Transparent)
             {
+                cbxHavingValue.Show();
+                cbxWhereValue.Show();
+                cbxSetValue.Show();
+                cbxValue.Show();
                 cmbProgrammingHaving.Show();
                 cmbProgrammingSet.Show();
                 cmbProgrammingValues.Show();
@@ -506,6 +514,14 @@ namespace _3rdYearProject
 
         public void RevertFromProgrammabillity()
         {
+            cbxHavingValue.Hide();
+            cbxWhereValue.Hide();
+            cbxSetValue.Hide();
+            cbxValue.Hide();
+            txtWhereValues.Show();
+            txtInsertValues.Show();
+            txtSetValues.Show();
+            txtHavingValue.Show();
             cmbProgrammingHaving.Hide();
             cmbProgrammingSet.Hide();
             cmbProgrammingValues.Hide();
@@ -1458,6 +1474,62 @@ namespace _3rdYearProject
             tabTableColumnDict.Add(currentSetTable, thelist);
         }
 
+        private void CbxHavingValue_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxHavingValue.Checked==true)
+            {
+                txtHavingValue.Show();
+                cmbProgrammingHaving.Hide();
+            }
+            else
+            {
+                txtHavingValue.Hide();
+                cmbProgrammingHaving.Show();
+            }
+        }
+
+        private void CbxSetValue_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxSetValue.Checked == true)
+            {
+                txtSetValues.Show();
+                cmbProgrammingSet.Hide();
+            }
+            else
+            {
+                txtSetValues.Hide();
+                cmbProgrammingSet.Show();
+            }
+        }
+
+        private void CbxValue_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxValue.Checked == true)
+            {
+                txtInsertValues.Show();
+                cmbProgrammingValues.Hide();
+            }
+            else
+            {
+                txtInsertValues.Hide();
+                cmbProgrammingValues.Show();
+            }
+        }
+
+        private void CbxWhereValue_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxWhereValue.Checked == true)
+            {
+                txtWhereValues.Show();
+                cmbProgrammingWhere.Hide();
+            }
+            else
+            {
+                txtWhereValues.Hide();
+                cmbProgrammingWhere.Show();
+            }
+        }
+
 
         #endregion
 
@@ -1494,13 +1566,13 @@ namespace _3rdYearProject
 
         */
 
-        
+
         /*
          Add back the stuff for the inner joins
          
         */
-          
-        
+
+
 
     }
 }
