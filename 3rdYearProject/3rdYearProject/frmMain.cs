@@ -239,7 +239,8 @@ namespace _3rdYearProject
 
             // selected tables is a list that holds all of the tables that have to be displayed in the treeview
             bool found = false;
-
+            cmbTableJoinTarget.Items.Clear();
+            cmbSourceTableJoin.Items.Clear();
             Tables newTable = (Tables)cmbTables.SelectedItem; // the table selected in the combo box is stored as a new table
             if (item != 0) // if there is an item in the treeview, then check if the table selected, is already in the treeview
             {
@@ -341,11 +342,17 @@ namespace _3rdYearProject
                     }
                 }
             }
+
             lstMainTable.Items.Clear();
             ClearDataSources();
 
-            
+           
             PopulateMainList();
+            foreach (KeyValuePair<string, List<string>> tables in columnDictionary)
+            {
+                cmbTableJoinTarget.Items.Add(tables.Key);
+                cmbSourceTableJoin.Items.Add(tables.Key);
+            }
             lstMainTable.SelectedIndex = 0;
         }
 
@@ -356,6 +363,7 @@ namespace _3rdYearProject
             {
                 lstMainTable.Items.Add(item.Key);
             }
+           
         }
         //ComboBoxPopulationMethod();
         private void btnExecute_Click(object sender, EventArgs e)
@@ -671,8 +679,7 @@ namespace _3rdYearProject
             cmbInsertColumns.DataSource = null;
             cmbColumnManagementList.DataSource = null;
             cmbColumnsColumnName.DataSource = null;
-            cmbTableJoinTarget.Items.Clear();
-            cmbSourceTableJoin.Items.Clear();
+            
         }
 
         // Clears all the clause lists on the tabs
@@ -1548,15 +1555,11 @@ namespace _3rdYearProject
         - the main table tab(the tab with just one combo box) should be reworked to look better, but the combo box stays
           == potential other fixes that doesnt use a combo box
             - using a list box with a filter text box
-            -
+            
 
         - when a table is removed from the treeview, that table's columns should not be able to display in the tab control any more 
            = currently it will also error when a table is removed
        
-
-        - When procedures are selected, the user should have the option to either enter there own 
-            values in to a where(example) or select the varibles that they have create
-
 
         - when a new table is selected on the table tab, then the previos columns and items should be removed
            + prompt the user if they are sure
