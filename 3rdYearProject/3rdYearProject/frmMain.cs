@@ -74,7 +74,7 @@ namespace _3rdYearProject
             cmbDataTypes.Items.Add("Money");
             cmbDataTypes.Items.Add("Time");
             cmbDataTypes.Items.Add("Date");
-
+            mnuViews.BackColor = Color.Transparent;
             cmbProgrammingWhere.Text = "Please Select Variable";
             cmbProgrammingHaving.Text = "Please Select Variable";
             cmbProgrammingValues.Text = "Please Select Variable";
