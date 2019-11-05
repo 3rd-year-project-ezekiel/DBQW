@@ -9,10 +9,7 @@ namespace BLL
 {
     public class QueryExceptionHandling
     {
-
-        
-
-
+        #region Methods
         // takes the given data and datatype, and verifies if they match, then makes sure that the output format is right
         // varchar gets '' around the word | int gets tested 
         public string CheckDataTypeMatch(string givenDataType, string givenData)
@@ -74,7 +71,7 @@ namespace BLL
 
         // == Table creation form == 
         // when a column is selected for foreign keys, check if the data types are the same.
-                // table 1 column 1 is string || Should equal || table 3 column 4 int
+        // table 1 column 1 is string || Should equal || table 3 column 4 int
 
         // make sure that table names on the table form cant have spaces in them
 
@@ -106,8 +103,6 @@ namespace BLL
 
 
 
-
+        #endregion
     }
-
-
 }

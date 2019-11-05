@@ -35,14 +35,14 @@ public class Accounts
 
     #endregion
 
-    #region properties
+    #region Properties
     public string UserName { get => userName; set => userName = value; }
     public string Password { get => password; set => password = value; }
     public string ConnectionType { get => connectionType; set => connectionType = value; }
 
     #endregion
 
-    #region override
+    #region Override
 
 
     #endregion

@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 public class Columns
 {
+    #region Fields
     private string columnName;
     private string dataType;
+    #endregion
 
-
-
-	public Columns(string columnNameParam)
+    #region Contructors
+    public Columns(string columnNameParam)
 	{
         this.ColumnName = columnNameParam;
 	}
@@ -28,10 +29,17 @@ public class Columns
     {
 
     }
+    #endregion
 
+    #region Properties
     public string ColumnName { get => columnName; set => columnName = value; }
     public string DataType { get => dataType; set => dataType = value; }
+    #endregion
 
+    #region Override    
+    #endregion
+
+    #region Methods
     public List<Columns> GetColumns(string databaseName, string tableName)
     {
         List<Columns> columns = new List<Columns>();
@@ -46,4 +54,5 @@ public class Columns
 
         return columns;
     }
+    #endregion
 }

@@ -7,8 +7,11 @@ using DAL;
 
 public class Tables
 {
+    #region Fields
     private string tableNames;
+    #endregion
 
+    #region Constructors
     public Tables(string tableNamesParam)
     {
         this.TableNames = tableNamesParam;
@@ -18,14 +21,20 @@ public class Tables
     {
 
     }
+    #endregion
 
+    #region Properties
     public string TableNames { get => tableNames; set => tableNames = value; }
+    #endregion
 
+    #region Override
     public override string ToString()
     {
         return tableNames;
     }
+    #endregion
 
+    #region Methods
     public List<Tables> GetTables(string databaseName)
     {
         List<Tables> tables = new List<Tables>();
@@ -49,4 +58,5 @@ public class Tables
         connection.CreateTable(tableDetails, databaseName, tableName);
 
     }
+    #endregion
 }

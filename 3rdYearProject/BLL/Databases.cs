@@ -7,11 +7,14 @@ using DAL;
 
 public class Databases
 {
+    #region Fields
     private string nameOfDatbase;
     private string filePath;
     private int initialSize;
     private string logName;
+    #endregion
 
+    #region Constructors
     public Databases()
     {
 
@@ -29,6 +32,9 @@ public class Databases
     {
         NameOfDatabase = dbNameParam;
     }
+    #endregion
+
+    #region Properties
 
     public string LogName
     {
@@ -55,6 +61,13 @@ public class Databases
         get { return nameOfDatbase; }
         set { nameOfDatbase = value; }
     }
+    #endregion
+
+    #region Override
+
+    #endregion
+
+    #region Methods
 
     public bool CreateDatabase(List<String> creationDetails)
     {
@@ -77,8 +90,5 @@ public class Databases
 
         return databases;
     }
-
+    #endregion
 }
-
-
-
