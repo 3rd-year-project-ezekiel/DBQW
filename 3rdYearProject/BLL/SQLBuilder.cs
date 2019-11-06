@@ -1077,7 +1077,7 @@ namespace BLL
 
 // Still to do
 // - finish joins methods
-// - research the testing methods
+
 // - in the table combobox add a search function for table
 
 // - varible Method in sqlbuilder for procedure

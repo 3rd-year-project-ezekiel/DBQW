@@ -638,7 +638,7 @@ namespace _3rdYearProject
             tbcExstra.TabPages.Add(tpHaving);
             tbcExstra.TabPages.Add(tpOrderBy);
             tbcExstra.TabPages.Add(tpGroupBy);
-            tbcExstra.TabPages.Add(tpJoins);
+            //tbcExstra.TabPages.Add(tpJoins);     Will be added back at a later stage
             tbcExstra.TabPages.Add(tpAggregate);
             AddTabsForProcedures();
 

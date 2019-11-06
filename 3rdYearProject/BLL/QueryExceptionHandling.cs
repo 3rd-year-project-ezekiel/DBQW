@@ -58,6 +58,9 @@ namespace BLL
 
 
 
+        #endregion
+
+
         #region To do List
 
         // == JP == \\
@@ -101,8 +104,5 @@ namespace BLL
          */
         #endregion
 
-
-
-        #endregion
     }
 }
