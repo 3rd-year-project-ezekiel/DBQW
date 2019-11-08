@@ -179,17 +179,27 @@ namespace BLL
         }
 
         // Add a varible to Procedure
-        public List<string> ProcedureAddVaribles(string varible)
+        public List<string> ProcedureAddVaribles(string varible,string length = null)
         {
             if(sqlBuilderLIst[3][1] == ')')
             {
-                sqlBuilderLIst[3] = "("+varible + ")";
+                sqlBuilderLIst[3] = "("+varible ;
             }
             else
             {
-                // sqlBuilderLIst[3].Replace(')', ',');
-                sqlBuilderLIst[3] = sqlBuilderLIst[3].Substring(0, sqlBuilderLIst[3].Count() - 1) + "," + varible + ")";
+                sqlBuilderLIst[3] = sqlBuilderLIst[3].Substring(0, sqlBuilderLIst[3].Count() - 1) + "," + varible ;
             }
+
+            if (length == null)
+            {
+                sqlBuilderLIst[3] += ")";
+            }
+            else
+            {
+                sqlBuilderLIst[3] += "(" + length + "))";
+            }
+
+
             return sqlBuilderLIst;
         }
 
@@ -1076,9 +1086,9 @@ namespace BLL
 }
 
 // Still to do
-// - finish joins methods
+// - finish joins methods   ## Not for Project
 
-// - in the table combobox add a search function for table
+// - in the table combobox add a search function for table    ## Nice to Have
 
 // - varible Method in sqlbuilder for procedure
 

@@ -1243,7 +1243,7 @@ namespace _3rdYearProject
                     query = string.Format("@{0} {1}({2})", name, datatype, size);
 
                     lstDisplay.DataSource = null;
-                    lstDisplay.DataSource = sqlBuilderClass.ProcedureAddVaribles("@"+name + " " + datatype+" "+size);
+                    lstDisplay.DataSource = sqlBuilderClass.ProcedureAddVaribles("@"+name + " " + datatype,size.ToString());
                     txtSize.Text = "";
                 }
                 else
