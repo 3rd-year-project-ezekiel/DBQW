@@ -166,7 +166,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnAddJoins = new System.Windows.Forms.Button();
             this.cmbJoinColumns = new System.Windows.Forms.ComboBox();
-            this.tpAggregate = new System.Windows.Forms.TabPage();
+            this.tpColumnManagement = new System.Windows.Forms.TabPage();
             this.cbxAggregate = new System.Windows.Forms.CheckBox();
             this.btnRemoveColumnMan = new System.Windows.Forms.Button();
             this.btnAddColumn = new System.Windows.Forms.Button();
@@ -195,7 +195,7 @@
             this.tpGroupBy.SuspendLayout();
             this.tpHaving.SuspendLayout();
             this.tpJoins.SuspendLayout();
-            this.tpAggregate.SuspendLayout();
+            this.tpColumnManagement.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnuMenu
@@ -377,8 +377,8 @@
             // tbcExstra
             // 
             this.tbcExstra.Controls.Add(this.tpTableSelect);
-            this.tbcExstra.Controls.Add(this.tpColumns);
             this.tbcExstra.Controls.Add(this.tpVariableManagement);
+            this.tbcExstra.Controls.Add(this.tpColumnManagement);
             this.tbcExstra.Controls.Add(this.tpValues);
             this.tbcExstra.Controls.Add(this.tpSet);
             this.tbcExstra.Controls.Add(this.tpViews);
@@ -387,9 +387,9 @@
             this.tbcExstra.Controls.Add(this.tpGroupBy);
             this.tbcExstra.Controls.Add(this.tpHaving);
             this.tbcExstra.Controls.Add(this.tpJoins);
-            this.tbcExstra.Controls.Add(this.tpAggregate);
+            this.tbcExstra.Controls.Add(this.tpColumns);
             this.tbcExstra.Location = new System.Drawing.Point(381, 42);
-            this.tbcExstra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbcExstra.Margin = new System.Windows.Forms.Padding(4);
             this.tbcExstra.Name = "tbcExstra";
             this.tbcExstra.SelectedIndex = 0;
             this.tbcExstra.Size = new System.Drawing.Size(665, 422);
@@ -413,7 +413,7 @@
             this.lstMainTable.FormattingEnabled = true;
             this.lstMainTable.ItemHeight = 16;
             this.lstMainTable.Location = new System.Drawing.Point(257, 76);
-            this.lstMainTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstMainTable.Margin = new System.Windows.Forms.Padding(4);
             this.lstMainTable.Name = "lstMainTable";
             this.lstMainTable.Size = new System.Drawing.Size(239, 244);
             this.lstMainTable.TabIndex = 2;
@@ -457,7 +457,7 @@
             // btnRemoveColumns
             // 
             this.btnRemoveColumns.Location = new System.Drawing.Point(480, 222);
-            this.btnRemoveColumns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveColumns.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveColumns.Name = "btnRemoveColumns";
             this.btnRemoveColumns.Size = new System.Drawing.Size(120, 28);
             this.btnRemoveColumns.TabIndex = 21;
@@ -470,7 +470,7 @@
             this.lstColumnsItems.FormattingEnabled = true;
             this.lstColumnsItems.ItemHeight = 16;
             this.lstColumnsItems.Location = new System.Drawing.Point(172, 208);
-            this.lstColumnsItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstColumnsItems.Margin = new System.Windows.Forms.Padding(4);
             this.lstColumnsItems.Name = "lstColumnsItems";
             this.lstColumnsItems.Size = new System.Drawing.Size(285, 116);
             this.lstColumnsItems.TabIndex = 20;
@@ -489,7 +489,7 @@
             // btnAddColumns
             // 
             this.btnAddColumns.Location = new System.Drawing.Point(264, 123);
-            this.btnAddColumns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddColumns.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddColumns.Name = "btnAddColumns";
             this.btnAddColumns.Size = new System.Drawing.Size(95, 28);
             this.btnAddColumns.TabIndex = 18;
@@ -511,7 +511,7 @@
             // 
             this.cmbColumnsColumnName.FormattingEnabled = true;
             this.cmbColumnsColumnName.Location = new System.Drawing.Point(231, 71);
-            this.cmbColumnsColumnName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbColumnsColumnName.Margin = new System.Windows.Forms.Padding(4);
             this.cmbColumnsColumnName.Name = "cmbColumnsColumnName";
             this.cmbColumnsColumnName.Size = new System.Drawing.Size(157, 24);
             this.cmbColumnsColumnName.TabIndex = 12;
@@ -535,9 +535,9 @@
             this.tpVariableManagement.Controls.Add(this.label9);
             this.tpVariableManagement.Controls.Add(this.label11);
             this.tpVariableManagement.Location = new System.Drawing.Point(4, 25);
-            this.tpVariableManagement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpVariableManagement.Margin = new System.Windows.Forms.Padding(4);
             this.tpVariableManagement.Name = "tpVariableManagement";
-            this.tpVariableManagement.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpVariableManagement.Padding = new System.Windows.Forms.Padding(4);
             this.tpVariableManagement.Size = new System.Drawing.Size(657, 393);
             this.tpVariableManagement.TabIndex = 7;
             this.tpVariableManagement.Text = "Variables";
@@ -556,7 +556,7 @@
             // txtSize
             // 
             this.txtSize.Location = new System.Drawing.Point(456, 164);
-            this.txtSize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSize.Margin = new System.Windows.Forms.Padding(4);
             this.txtSize.Name = "txtSize";
             this.txtSize.Size = new System.Drawing.Size(77, 22);
             this.txtSize.TabIndex = 28;
@@ -564,7 +564,7 @@
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(440, 42);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(95, 28);
             this.btnSave.TabIndex = 27;
@@ -586,7 +586,7 @@
             // txtProcedureName
             // 
             this.txtProcedureName.Location = new System.Drawing.Point(251, 46);
-            this.txtProcedureName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtProcedureName.Margin = new System.Windows.Forms.Padding(4);
             this.txtProcedureName.Name = "txtProcedureName";
             this.txtProcedureName.Size = new System.Drawing.Size(132, 22);
             this.txtProcedureName.TabIndex = 25;
@@ -605,7 +605,7 @@
             // 
             this.cmbDataTypes.FormattingEnabled = true;
             this.cmbDataTypes.Location = new System.Drawing.Point(232, 164);
-            this.cmbDataTypes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbDataTypes.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDataTypes.Name = "cmbDataTypes";
             this.cmbDataTypes.Size = new System.Drawing.Size(160, 24);
             this.cmbDataTypes.TabIndex = 23;
@@ -614,7 +614,7 @@
             // btnRemoveVariables
             // 
             this.btnRemoveVariables.Location = new System.Drawing.Point(448, 266);
-            this.btnRemoveVariables.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveVariables.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveVariables.Name = "btnRemoveVariables";
             this.btnRemoveVariables.Size = new System.Drawing.Size(120, 28);
             this.btnRemoveVariables.TabIndex = 22;
@@ -638,7 +638,7 @@
             this.lstVarItems.FormattingEnabled = true;
             this.lstVarItems.ItemHeight = 16;
             this.lstVarItems.Location = new System.Drawing.Point(145, 266);
-            this.lstVarItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstVarItems.Margin = new System.Windows.Forms.Padding(4);
             this.lstVarItems.Name = "lstVarItems";
             this.lstVarItems.Size = new System.Drawing.Size(285, 116);
             this.lstVarItems.TabIndex = 20;
@@ -657,7 +657,7 @@
             // btnAddVar
             // 
             this.btnAddVar.Location = new System.Drawing.Point(272, 197);
-            this.btnAddVar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddVar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddVar.Name = "btnAddVar";
             this.btnAddVar.Size = new System.Drawing.Size(95, 28);
             this.btnAddVar.TabIndex = 18;
@@ -668,7 +668,7 @@
             // txtVarName
             // 
             this.txtVarName.Location = new System.Drawing.Point(57, 164);
-            this.txtVarName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtVarName.Margin = new System.Windows.Forms.Padding(4);
             this.txtVarName.Name = "txtVarName";
             this.txtVarName.Size = new System.Drawing.Size(133, 22);
             this.txtVarName.TabIndex = 17;
@@ -708,7 +708,7 @@
             this.tpValues.Controls.Add(this.lblValuesCol);
             this.tpValues.Controls.Add(this.cmbInsertColumns);
             this.tpValues.Location = new System.Drawing.Point(4, 25);
-            this.tpValues.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpValues.Margin = new System.Windows.Forms.Padding(4);
             this.tpValues.Name = "tpValues";
             this.tpValues.Size = new System.Drawing.Size(657, 393);
             this.tpValues.TabIndex = 5;
@@ -719,7 +719,7 @@
             // 
             this.cbxValue.AutoSize = true;
             this.cbxValue.Location = new System.Drawing.Point(524, 82);
-            this.cbxValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxValue.Margin = new System.Windows.Forms.Padding(4);
             this.cbxValue.Name = "cbxValue";
             this.cbxValue.Size = new System.Drawing.Size(66, 21);
             this.cbxValue.TabIndex = 38;
@@ -731,7 +731,7 @@
             // 
             this.cmbProgrammingValues.FormattingEnabled = true;
             this.cmbProgrammingValues.Location = new System.Drawing.Point(339, 79);
-            this.cmbProgrammingValues.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProgrammingValues.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProgrammingValues.Name = "cmbProgrammingValues";
             this.cmbProgrammingValues.Size = new System.Drawing.Size(160, 24);
             this.cmbProgrammingValues.TabIndex = 37;
@@ -748,7 +748,7 @@
             // btnRemoveValues
             // 
             this.btnRemoveValues.Location = new System.Drawing.Point(441, 208);
-            this.btnRemoveValues.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveValues.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveValues.Name = "btnRemoveValues";
             this.btnRemoveValues.Size = new System.Drawing.Size(120, 28);
             this.btnRemoveValues.TabIndex = 34;
@@ -772,7 +772,7 @@
             this.lstInsertItems.FormattingEnabled = true;
             this.lstInsertItems.ItemHeight = 16;
             this.lstInsertItems.Location = new System.Drawing.Point(133, 194);
-            this.lstInsertItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstInsertItems.Margin = new System.Windows.Forms.Padding(4);
             this.lstInsertItems.Name = "lstInsertItems";
             this.lstInsertItems.Size = new System.Drawing.Size(285, 116);
             this.lstInsertItems.TabIndex = 32;
@@ -791,7 +791,7 @@
             // btnAddValues
             // 
             this.btnAddValues.Location = new System.Drawing.Point(241, 111);
-            this.btnAddValues.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddValues.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddValues.Name = "btnAddValues";
             this.btnAddValues.Size = new System.Drawing.Size(95, 28);
             this.btnAddValues.TabIndex = 30;
@@ -802,7 +802,7 @@
             // txtInsertValues
             // 
             this.txtInsertValues.Location = new System.Drawing.Point(339, 79);
-            this.txtInsertValues.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtInsertValues.Margin = new System.Windows.Forms.Padding(4);
             this.txtInsertValues.Name = "txtInsertValues";
             this.txtInsertValues.Size = new System.Drawing.Size(133, 22);
             this.txtInsertValues.TabIndex = 29;
@@ -831,7 +831,7 @@
             // 
             this.cmbInsertColumns.FormattingEnabled = true;
             this.cmbInsertColumns.Location = new System.Drawing.Point(83, 79);
-            this.cmbInsertColumns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbInsertColumns.Margin = new System.Windows.Forms.Padding(4);
             this.cmbInsertColumns.Name = "cmbInsertColumns";
             this.cmbInsertColumns.Size = new System.Drawing.Size(157, 24);
             this.cmbInsertColumns.TabIndex = 24;
@@ -853,9 +853,9 @@
             this.tpSet.Controls.Add(this.label8);
             this.tpSet.Controls.Add(this.cmbSetCol);
             this.tpSet.Location = new System.Drawing.Point(4, 25);
-            this.tpSet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpSet.Margin = new System.Windows.Forms.Padding(4);
             this.tpSet.Name = "tpSet";
-            this.tpSet.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpSet.Padding = new System.Windows.Forms.Padding(4);
             this.tpSet.Size = new System.Drawing.Size(657, 393);
             this.tpSet.TabIndex = 6;
             this.tpSet.Text = "Set";
@@ -865,7 +865,7 @@
             // 
             this.cbxSetValue.AutoSize = true;
             this.cbxSetValue.Location = new System.Drawing.Point(568, 74);
-            this.cbxSetValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxSetValue.Margin = new System.Windows.Forms.Padding(4);
             this.cbxSetValue.Name = "cbxSetValue";
             this.cbxSetValue.Size = new System.Drawing.Size(66, 21);
             this.cbxSetValue.TabIndex = 39;
@@ -877,7 +877,7 @@
             // 
             this.cmbProgrammingSet.FormattingEnabled = true;
             this.cmbProgrammingSet.Location = new System.Drawing.Point(399, 73);
-            this.cmbProgrammingSet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProgrammingSet.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProgrammingSet.Name = "cmbProgrammingSet";
             this.cmbProgrammingSet.Size = new System.Drawing.Size(160, 24);
             this.cmbProgrammingSet.TabIndex = 37;
@@ -895,7 +895,7 @@
             // btnRemoveSetItems
             // 
             this.btnRemoveSetItems.Location = new System.Drawing.Point(440, 206);
-            this.btnRemoveSetItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveSetItems.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveSetItems.Name = "btnRemoveSetItems";
             this.btnRemoveSetItems.Size = new System.Drawing.Size(120, 28);
             this.btnRemoveSetItems.TabIndex = 34;
@@ -919,7 +919,7 @@
             this.lstSetitems.FormattingEnabled = true;
             this.lstSetitems.ItemHeight = 16;
             this.lstSetitems.Location = new System.Drawing.Point(132, 192);
-            this.lstSetitems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstSetitems.Margin = new System.Windows.Forms.Padding(4);
             this.lstSetitems.Name = "lstSetitems";
             this.lstSetitems.Size = new System.Drawing.Size(285, 116);
             this.lstSetitems.TabIndex = 32;
@@ -938,7 +938,7 @@
             // btnAddSet
             // 
             this.btnAddSet.Location = new System.Drawing.Point(224, 107);
-            this.btnAddSet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddSet.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddSet.Name = "btnAddSet";
             this.btnAddSet.Size = new System.Drawing.Size(95, 28);
             this.btnAddSet.TabIndex = 30;
@@ -949,7 +949,7 @@
             // txtSetValues
             // 
             this.txtSetValues.Location = new System.Drawing.Point(407, 74);
-            this.txtSetValues.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSetValues.Margin = new System.Windows.Forms.Padding(4);
             this.txtSetValues.Name = "txtSetValues";
             this.txtSetValues.Size = new System.Drawing.Size(133, 22);
             this.txtSetValues.TabIndex = 29;
@@ -988,7 +988,7 @@
             // 
             this.cmbSetCol.FormattingEnabled = true;
             this.cmbSetCol.Location = new System.Drawing.Point(17, 74);
-            this.cmbSetCol.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbSetCol.Margin = new System.Windows.Forms.Padding(4);
             this.cmbSetCol.Name = "cmbSetCol";
             this.cmbSetCol.Size = new System.Drawing.Size(157, 24);
             this.cmbSetCol.TabIndex = 24;
@@ -1001,9 +1001,9 @@
             this.tpViews.Controls.Add(this.lblViewName);
             this.tpViews.Controls.Add(this.lblViewHead);
             this.tpViews.Location = new System.Drawing.Point(4, 25);
-            this.tpViews.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpViews.Margin = new System.Windows.Forms.Padding(4);
             this.tpViews.Name = "tpViews";
-            this.tpViews.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpViews.Padding = new System.Windows.Forms.Padding(4);
             this.tpViews.Size = new System.Drawing.Size(657, 393);
             this.tpViews.TabIndex = 8;
             this.tpViews.Text = "Views";
@@ -1012,7 +1012,7 @@
             // btnSaveView
             // 
             this.btnSaveView.Location = new System.Drawing.Point(237, 119);
-            this.btnSaveView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveView.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveView.Name = "btnSaveView";
             this.btnSaveView.Size = new System.Drawing.Size(95, 28);
             this.btnSaveView.TabIndex = 28;
@@ -1023,7 +1023,7 @@
             // txtViewName
             // 
             this.txtViewName.Location = new System.Drawing.Point(227, 87);
-            this.txtViewName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtViewName.Margin = new System.Windows.Forms.Padding(4);
             this.txtViewName.Name = "txtViewName";
             this.txtViewName.Size = new System.Drawing.Size(132, 22);
             this.txtViewName.TabIndex = 2;
@@ -1065,9 +1065,9 @@
             this.tpWhere.Controls.Add(this.lblColumnNameWhere);
             this.tpWhere.Controls.Add(this.cmbWhereColName);
             this.tpWhere.Location = new System.Drawing.Point(4, 25);
-            this.tpWhere.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpWhere.Margin = new System.Windows.Forms.Padding(4);
             this.tpWhere.Name = "tpWhere";
-            this.tpWhere.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpWhere.Padding = new System.Windows.Forms.Padding(4);
             this.tpWhere.Size = new System.Drawing.Size(657, 393);
             this.tpWhere.TabIndex = 0;
             this.tpWhere.Text = "Where";
@@ -1077,7 +1077,7 @@
             // 
             this.cbxWhereValue.AutoSize = true;
             this.cbxWhereValue.Location = new System.Drawing.Point(459, 106);
-            this.cbxWhereValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxWhereValue.Margin = new System.Windows.Forms.Padding(4);
             this.cbxWhereValue.Name = "cbxWhereValue";
             this.cbxWhereValue.Size = new System.Drawing.Size(66, 21);
             this.cbxWhereValue.TabIndex = 40;
@@ -1089,7 +1089,7 @@
             // 
             this.cmbProgrammingWhere.FormattingEnabled = true;
             this.cmbProgrammingWhere.Location = new System.Drawing.Point(407, 71);
-            this.cmbProgrammingWhere.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProgrammingWhere.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProgrammingWhere.Name = "cmbProgrammingWhere";
             this.cmbProgrammingWhere.Size = new System.Drawing.Size(160, 24);
             this.cmbProgrammingWhere.TabIndex = 11;
@@ -1097,7 +1097,7 @@
             // btnRemoveClauseFromWhere
             // 
             this.btnRemoveClauseFromWhere.Location = new System.Drawing.Point(448, 204);
-            this.btnRemoveClauseFromWhere.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveClauseFromWhere.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveClauseFromWhere.Name = "btnRemoveClauseFromWhere";
             this.btnRemoveClauseFromWhere.Size = new System.Drawing.Size(120, 28);
             this.btnRemoveClauseFromWhere.TabIndex = 10;
@@ -1121,7 +1121,7 @@
             this.lstWhereItems.FormattingEnabled = true;
             this.lstWhereItems.ItemHeight = 16;
             this.lstWhereItems.Location = new System.Drawing.Point(140, 191);
-            this.lstWhereItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstWhereItems.Margin = new System.Windows.Forms.Padding(4);
             this.lstWhereItems.Name = "lstWhereItems";
             this.lstWhereItems.Size = new System.Drawing.Size(285, 116);
             this.lstWhereItems.TabIndex = 8;
@@ -1140,7 +1140,7 @@
             // btnAddWhere
             // 
             this.btnAddWhere.Location = new System.Drawing.Point(232, 106);
-            this.btnAddWhere.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddWhere.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddWhere.Name = "btnAddWhere";
             this.btnAddWhere.Size = new System.Drawing.Size(95, 28);
             this.btnAddWhere.TabIndex = 6;
@@ -1151,7 +1151,7 @@
             // txtWhereValues
             // 
             this.txtWhereValues.Location = new System.Drawing.Point(415, 73);
-            this.txtWhereValues.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtWhereValues.Margin = new System.Windows.Forms.Padding(4);
             this.txtWhereValues.Name = "txtWhereValues";
             this.txtWhereValues.Size = new System.Drawing.Size(133, 22);
             this.txtWhereValues.TabIndex = 5;
@@ -1170,7 +1170,7 @@
             // 
             this.cmbWhereCondition.FormattingEnabled = true;
             this.cmbWhereCondition.Location = new System.Drawing.Point(220, 73);
-            this.cmbWhereCondition.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbWhereCondition.Margin = new System.Windows.Forms.Padding(4);
             this.cmbWhereCondition.Name = "cmbWhereCondition";
             this.cmbWhereCondition.Size = new System.Drawing.Size(135, 24);
             this.cmbWhereCondition.TabIndex = 3;
@@ -1200,7 +1200,7 @@
             // 
             this.cmbWhereColName.FormattingEnabled = true;
             this.cmbWhereColName.Location = new System.Drawing.Point(25, 73);
-            this.cmbWhereColName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbWhereColName.Margin = new System.Windows.Forms.Padding(4);
             this.cmbWhereColName.Name = "cmbWhereColName";
             this.cmbWhereColName.Size = new System.Drawing.Size(157, 24);
             this.cmbWhereColName.TabIndex = 0;
@@ -1218,9 +1218,9 @@
             this.tpOrderBy.Controls.Add(this.lblOrderColumnHead);
             this.tpOrderBy.Controls.Add(this.lblOrderHeading);
             this.tpOrderBy.Location = new System.Drawing.Point(4, 25);
-            this.tpOrderBy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpOrderBy.Margin = new System.Windows.Forms.Padding(4);
             this.tpOrderBy.Name = "tpOrderBy";
-            this.tpOrderBy.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpOrderBy.Padding = new System.Windows.Forms.Padding(4);
             this.tpOrderBy.Size = new System.Drawing.Size(657, 393);
             this.tpOrderBy.TabIndex = 1;
             this.tpOrderBy.Text = "Order By";
@@ -1229,7 +1229,7 @@
             // btnAddOrderType
             // 
             this.btnAddOrderType.Location = new System.Drawing.Point(239, 102);
-            this.btnAddOrderType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddOrderType.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddOrderType.Name = "btnAddOrderType";
             this.btnAddOrderType.Size = new System.Drawing.Size(95, 28);
             this.btnAddOrderType.TabIndex = 9;
@@ -1240,7 +1240,7 @@
             // btnRemoveOrderedItem
             // 
             this.btnRemoveOrderedItem.Location = new System.Drawing.Point(408, 185);
-            this.btnRemoveOrderedItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveOrderedItem.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveOrderedItem.Name = "btnRemoveOrderedItem";
             this.btnRemoveOrderedItem.Size = new System.Drawing.Size(133, 28);
             this.btnRemoveOrderedItem.TabIndex = 7;
@@ -1252,7 +1252,7 @@
             // 
             this.cmbOrderType.FormattingEnabled = true;
             this.cmbOrderType.Location = new System.Drawing.Point(324, 62);
-            this.cmbOrderType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbOrderType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbOrderType.Name = "cmbOrderType";
             this.cmbOrderType.Size = new System.Drawing.Size(160, 24);
             this.cmbOrderType.TabIndex = 6;
@@ -1262,7 +1262,7 @@
             // 
             this.cmbOrderColumns.FormattingEnabled = true;
             this.cmbOrderColumns.Location = new System.Drawing.Point(95, 62);
-            this.cmbOrderColumns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbOrderColumns.Margin = new System.Windows.Forms.Padding(4);
             this.cmbOrderColumns.Name = "cmbOrderColumns";
             this.cmbOrderColumns.Size = new System.Drawing.Size(160, 24);
             this.cmbOrderColumns.TabIndex = 5;
@@ -1273,7 +1273,7 @@
             this.lstOrderedItems.FormattingEnabled = true;
             this.lstOrderedItems.ItemHeight = 16;
             this.lstOrderedItems.Location = new System.Drawing.Point(213, 158);
-            this.lstOrderedItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstOrderedItems.Margin = new System.Windows.Forms.Padding(4);
             this.lstOrderedItems.Name = "lstOrderedItems";
             this.lstOrderedItems.Size = new System.Drawing.Size(159, 148);
             this.lstOrderedItems.TabIndex = 4;
@@ -1330,7 +1330,7 @@
             this.tpGroupBy.Controls.Add(this.lblGroupedItemsHead);
             this.tpGroupBy.Controls.Add(this.lblGroupByHead);
             this.tpGroupBy.Location = new System.Drawing.Point(4, 25);
-            this.tpGroupBy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpGroupBy.Margin = new System.Windows.Forms.Padding(4);
             this.tpGroupBy.Name = "tpGroupBy";
             this.tpGroupBy.Size = new System.Drawing.Size(657, 393);
             this.tpGroupBy.TabIndex = 2;
@@ -1350,7 +1350,7 @@
             // btnGroupBy
             // 
             this.btnGroupBy.Location = new System.Drawing.Point(219, 103);
-            this.btnGroupBy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGroupBy.Margin = new System.Windows.Forms.Padding(4);
             this.btnGroupBy.Name = "btnGroupBy";
             this.btnGroupBy.Size = new System.Drawing.Size(95, 28);
             this.btnGroupBy.TabIndex = 16;
@@ -1361,7 +1361,7 @@
             // btnRemoveGroupBy
             // 
             this.btnRemoveGroupBy.Location = new System.Drawing.Point(381, 186);
-            this.btnRemoveGroupBy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveGroupBy.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveGroupBy.Name = "btnRemoveGroupBy";
             this.btnRemoveGroupBy.Size = new System.Drawing.Size(133, 28);
             this.btnRemoveGroupBy.TabIndex = 14;
@@ -1373,7 +1373,7 @@
             // 
             this.cmbGroupByColum.FormattingEnabled = true;
             this.cmbGroupByColum.Location = new System.Drawing.Point(187, 69);
-            this.cmbGroupByColum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbGroupByColum.Margin = new System.Windows.Forms.Padding(4);
             this.cmbGroupByColum.Name = "cmbGroupByColum";
             this.cmbGroupByColum.Size = new System.Drawing.Size(160, 24);
             this.cmbGroupByColum.TabIndex = 12;
@@ -1384,7 +1384,7 @@
             this.lstGroupedItems.FormattingEnabled = true;
             this.lstGroupedItems.ItemHeight = 16;
             this.lstGroupedItems.Location = new System.Drawing.Point(187, 159);
-            this.lstGroupedItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstGroupedItems.Margin = new System.Windows.Forms.Padding(4);
             this.lstGroupedItems.Name = "lstGroupedItems";
             this.lstGroupedItems.Size = new System.Drawing.Size(159, 148);
             this.lstGroupedItems.TabIndex = 11;
@@ -1427,7 +1427,7 @@
             this.tpHaving.Controls.Add(this.lblHavingColHead);
             this.tpHaving.Controls.Add(this.cmbHavingCol);
             this.tpHaving.Location = new System.Drawing.Point(4, 25);
-            this.tpHaving.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpHaving.Margin = new System.Windows.Forms.Padding(4);
             this.tpHaving.Name = "tpHaving";
             this.tpHaving.Size = new System.Drawing.Size(657, 393);
             this.tpHaving.TabIndex = 3;
@@ -1438,7 +1438,7 @@
             // 
             this.cbxHavingValue.AutoSize = true;
             this.cbxHavingValue.Location = new System.Drawing.Point(576, 76);
-            this.cbxHavingValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxHavingValue.Margin = new System.Windows.Forms.Padding(4);
             this.cbxHavingValue.Name = "cbxHavingValue";
             this.cbxHavingValue.Size = new System.Drawing.Size(66, 21);
             this.cbxHavingValue.TabIndex = 40;
@@ -1450,7 +1450,7 @@
             // 
             this.cmbProgrammingHaving.FormattingEnabled = true;
             this.cmbProgrammingHaving.Location = new System.Drawing.Point(407, 74);
-            this.cmbProgrammingHaving.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbProgrammingHaving.Margin = new System.Windows.Forms.Padding(4);
             this.cmbProgrammingHaving.Name = "cmbProgrammingHaving";
             this.cmbProgrammingHaving.Size = new System.Drawing.Size(160, 24);
             this.cmbProgrammingHaving.TabIndex = 23;
@@ -1458,7 +1458,7 @@
             // btnRemoveHavingItem
             // 
             this.btnRemoveHavingItem.Location = new System.Drawing.Point(440, 206);
-            this.btnRemoveHavingItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveHavingItem.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveHavingItem.Name = "btnRemoveHavingItem";
             this.btnRemoveHavingItem.Size = new System.Drawing.Size(120, 28);
             this.btnRemoveHavingItem.TabIndex = 22;
@@ -1482,7 +1482,7 @@
             this.lstHavingItems.FormattingEnabled = true;
             this.lstHavingItems.ItemHeight = 16;
             this.lstHavingItems.Location = new System.Drawing.Point(132, 192);
-            this.lstHavingItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstHavingItems.Margin = new System.Windows.Forms.Padding(4);
             this.lstHavingItems.Name = "lstHavingItems";
             this.lstHavingItems.Size = new System.Drawing.Size(285, 116);
             this.lstHavingItems.TabIndex = 20;
@@ -1501,7 +1501,7 @@
             // btnAddHaving
             // 
             this.btnAddHaving.Location = new System.Drawing.Point(224, 107);
-            this.btnAddHaving.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddHaving.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddHaving.Name = "btnAddHaving";
             this.btnAddHaving.Size = new System.Drawing.Size(95, 28);
             this.btnAddHaving.TabIndex = 18;
@@ -1512,7 +1512,7 @@
             // txtHavingValue
             // 
             this.txtHavingValue.Location = new System.Drawing.Point(407, 74);
-            this.txtHavingValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtHavingValue.Margin = new System.Windows.Forms.Padding(4);
             this.txtHavingValue.Name = "txtHavingValue";
             this.txtHavingValue.Size = new System.Drawing.Size(133, 22);
             this.txtHavingValue.TabIndex = 17;
@@ -1531,7 +1531,7 @@
             // 
             this.cmbHavingCondition.FormattingEnabled = true;
             this.cmbHavingCondition.Location = new System.Drawing.Point(212, 74);
-            this.cmbHavingCondition.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbHavingCondition.Margin = new System.Windows.Forms.Padding(4);
             this.cmbHavingCondition.Name = "cmbHavingCondition";
             this.cmbHavingCondition.Size = new System.Drawing.Size(135, 24);
             this.cmbHavingCondition.TabIndex = 15;
@@ -1561,7 +1561,7 @@
             // 
             this.cmbHavingCol.FormattingEnabled = true;
             this.cmbHavingCol.Location = new System.Drawing.Point(17, 74);
-            this.cmbHavingCol.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbHavingCol.Margin = new System.Windows.Forms.Padding(4);
             this.cmbHavingCol.Name = "cmbHavingCol";
             this.cmbHavingCol.Size = new System.Drawing.Size(157, 24);
             this.cmbHavingCol.TabIndex = 12;
@@ -1581,7 +1581,7 @@
             this.tpJoins.Controls.Add(this.btnAddJoins);
             this.tpJoins.Controls.Add(this.cmbJoinColumns);
             this.tpJoins.Location = new System.Drawing.Point(4, 25);
-            this.tpJoins.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpJoins.Margin = new System.Windows.Forms.Padding(4);
             this.tpJoins.Name = "tpJoins";
             this.tpJoins.Size = new System.Drawing.Size(657, 393);
             this.tpJoins.TabIndex = 4;
@@ -1612,7 +1612,7 @@
             // 
             this.cmbTableJoinTarget.FormattingEnabled = true;
             this.cmbTableJoinTarget.Location = new System.Drawing.Point(105, 111);
-            this.cmbTableJoinTarget.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTableJoinTarget.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTableJoinTarget.Name = "cmbTableJoinTarget";
             this.cmbTableJoinTarget.Size = new System.Drawing.Size(157, 24);
             this.cmbTableJoinTarget.TabIndex = 40;
@@ -1623,7 +1623,7 @@
             // 
             this.cmbSourceTableJoin.FormattingEnabled = true;
             this.cmbSourceTableJoin.Location = new System.Drawing.Point(105, 57);
-            this.cmbSourceTableJoin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbSourceTableJoin.Margin = new System.Windows.Forms.Padding(4);
             this.cmbSourceTableJoin.Name = "cmbSourceTableJoin";
             this.cmbSourceTableJoin.Size = new System.Drawing.Size(157, 24);
             this.cmbSourceTableJoin.TabIndex = 37;
@@ -1634,7 +1634,7 @@
             // 
             this.cmbTargetColumn.FormattingEnabled = true;
             this.cmbTargetColumn.Location = new System.Drawing.Point(297, 111);
-            this.cmbTargetColumn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTargetColumn.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTargetColumn.Name = "cmbTargetColumn";
             this.cmbTargetColumn.Size = new System.Drawing.Size(157, 24);
             this.cmbTargetColumn.TabIndex = 36;
@@ -1643,7 +1643,7 @@
             // btnRemoveJoinItems
             // 
             this.btnRemoveJoinItems.Location = new System.Drawing.Point(440, 239);
-            this.btnRemoveJoinItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveJoinItems.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveJoinItems.Name = "btnRemoveJoinItems";
             this.btnRemoveJoinItems.Size = new System.Drawing.Size(120, 28);
             this.btnRemoveJoinItems.TabIndex = 34;
@@ -1667,7 +1667,7 @@
             this.lstJoinItems.FormattingEnabled = true;
             this.lstJoinItems.ItemHeight = 16;
             this.lstJoinItems.Location = new System.Drawing.Point(33, 192);
-            this.lstJoinItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstJoinItems.Margin = new System.Windows.Forms.Padding(4);
             this.lstJoinItems.Name = "lstJoinItems";
             this.lstJoinItems.Size = new System.Drawing.Size(384, 116);
             this.lstJoinItems.TabIndex = 32;
@@ -1686,7 +1686,7 @@
             // btnAddJoins
             // 
             this.btnAddJoins.Location = new System.Drawing.Point(477, 108);
-            this.btnAddJoins.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddJoins.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddJoins.Name = "btnAddJoins";
             this.btnAddJoins.Size = new System.Drawing.Size(95, 28);
             this.btnAddJoins.TabIndex = 30;
@@ -1698,41 +1698,41 @@
             // 
             this.cmbJoinColumns.FormattingEnabled = true;
             this.cmbJoinColumns.Location = new System.Drawing.Point(297, 57);
-            this.cmbJoinColumns.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbJoinColumns.Margin = new System.Windows.Forms.Padding(4);
             this.cmbJoinColumns.Name = "cmbJoinColumns";
             this.cmbJoinColumns.Size = new System.Drawing.Size(157, 24);
             this.cmbJoinColumns.TabIndex = 24;
             this.cmbJoinColumns.Text = "Select Column";
             // 
-            // tpAggregate
+            // tpColumnManagement
             // 
-            this.tpAggregate.Controls.Add(this.cbxAggregate);
-            this.tpAggregate.Controls.Add(this.btnRemoveColumnMan);
-            this.tpAggregate.Controls.Add(this.btnAddColumn);
-            this.tpAggregate.Controls.Add(this.lstColumnsManagement);
-            this.tpAggregate.Controls.Add(this.lblColName);
-            this.tpAggregate.Controls.Add(this.txtColNames);
-            this.tpAggregate.Controls.Add(this.cmbAggrgateFunctions);
-            this.tpAggregate.Controls.Add(this.cmbColumnManagementList);
-            this.tpAggregate.Controls.Add(this.lblListedColumns);
-            this.tpAggregate.Controls.Add(this.cbxAs);
-            this.tpAggregate.Controls.Add(this.lblAggr);
-            this.tpAggregate.Controls.Add(this.lblColumnManHead);
-            this.tpAggregate.Controls.Add(this.lblColumnManagement);
-            this.tpAggregate.Location = new System.Drawing.Point(4, 25);
-            this.tpAggregate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tpAggregate.Name = "tpAggregate";
-            this.tpAggregate.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tpAggregate.Size = new System.Drawing.Size(657, 393);
-            this.tpAggregate.TabIndex = 9;
-            this.tpAggregate.Text = "Aggregate";
-            this.tpAggregate.UseVisualStyleBackColor = true;
+            this.tpColumnManagement.Controls.Add(this.cbxAggregate);
+            this.tpColumnManagement.Controls.Add(this.btnRemoveColumnMan);
+            this.tpColumnManagement.Controls.Add(this.btnAddColumn);
+            this.tpColumnManagement.Controls.Add(this.lstColumnsManagement);
+            this.tpColumnManagement.Controls.Add(this.lblColName);
+            this.tpColumnManagement.Controls.Add(this.txtColNames);
+            this.tpColumnManagement.Controls.Add(this.cmbAggrgateFunctions);
+            this.tpColumnManagement.Controls.Add(this.cmbColumnManagementList);
+            this.tpColumnManagement.Controls.Add(this.lblListedColumns);
+            this.tpColumnManagement.Controls.Add(this.cbxAs);
+            this.tpColumnManagement.Controls.Add(this.lblAggr);
+            this.tpColumnManagement.Controls.Add(this.lblColumnManHead);
+            this.tpColumnManagement.Controls.Add(this.lblColumnManagement);
+            this.tpColumnManagement.Location = new System.Drawing.Point(4, 25);
+            this.tpColumnManagement.Margin = new System.Windows.Forms.Padding(4);
+            this.tpColumnManagement.Name = "tpColumnManagement";
+            this.tpColumnManagement.Padding = new System.Windows.Forms.Padding(4);
+            this.tpColumnManagement.Size = new System.Drawing.Size(657, 393);
+            this.tpColumnManagement.TabIndex = 9;
+            this.tpColumnManagement.Text = "Column Management";
+            this.tpColumnManagement.UseVisualStyleBackColor = true;
             // 
             // cbxAggregate
             // 
             this.cbxAggregate.AutoSize = true;
             this.cbxAggregate.Location = new System.Drawing.Point(123, 140);
-            this.cbxAggregate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxAggregate.Margin = new System.Windows.Forms.Padding(4);
             this.cbxAggregate.Name = "cbxAggregate";
             this.cbxAggregate.Size = new System.Drawing.Size(96, 21);
             this.cbxAggregate.TabIndex = 12;
@@ -1743,7 +1743,7 @@
             // btnRemoveColumnMan
             // 
             this.btnRemoveColumnMan.Location = new System.Drawing.Point(547, 234);
-            this.btnRemoveColumnMan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRemoveColumnMan.Margin = new System.Windows.Forms.Padding(4);
             this.btnRemoveColumnMan.Name = "btnRemoveColumnMan";
             this.btnRemoveColumnMan.Size = new System.Drawing.Size(100, 28);
             this.btnRemoveColumnMan.TabIndex = 11;
@@ -1754,7 +1754,7 @@
             // btnAddColumn
             // 
             this.btnAddColumn.Location = new System.Drawing.Point(547, 178);
-            this.btnAddColumn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddColumn.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddColumn.Name = "btnAddColumn";
             this.btnAddColumn.Size = new System.Drawing.Size(100, 28);
             this.btnAddColumn.TabIndex = 10;
@@ -1767,7 +1767,7 @@
             this.lstColumnsManagement.FormattingEnabled = true;
             this.lstColumnsManagement.ItemHeight = 16;
             this.lstColumnsManagement.Location = new System.Drawing.Point(135, 234);
-            this.lstColumnsManagement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstColumnsManagement.Margin = new System.Windows.Forms.Padding(4);
             this.lstColumnsManagement.Name = "lstColumnsManagement";
             this.lstColumnsManagement.Size = new System.Drawing.Size(405, 148);
             this.lstColumnsManagement.TabIndex = 9;
@@ -1785,7 +1785,7 @@
             // txtColNames
             // 
             this.txtColNames.Location = new System.Drawing.Point(333, 180);
-            this.txtColNames.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtColNames.Margin = new System.Windows.Forms.Padding(4);
             this.txtColNames.Name = "txtColNames";
             this.txtColNames.Size = new System.Drawing.Size(160, 22);
             this.txtColNames.TabIndex = 7;
@@ -1794,7 +1794,7 @@
             // 
             this.cmbAggrgateFunctions.FormattingEnabled = true;
             this.cmbAggrgateFunctions.Location = new System.Drawing.Point(333, 138);
-            this.cmbAggrgateFunctions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbAggrgateFunctions.Margin = new System.Windows.Forms.Padding(4);
             this.cmbAggrgateFunctions.Name = "cmbAggrgateFunctions";
             this.cmbAggrgateFunctions.Size = new System.Drawing.Size(160, 24);
             this.cmbAggrgateFunctions.TabIndex = 6;
@@ -1803,7 +1803,7 @@
             // 
             this.cmbColumnManagementList.FormattingEnabled = true;
             this.cmbColumnManagementList.Location = new System.Drawing.Point(240, 76);
-            this.cmbColumnManagementList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbColumnManagementList.Margin = new System.Windows.Forms.Padding(4);
             this.cmbColumnManagementList.Name = "cmbColumnManagementList";
             this.cmbColumnManagementList.Size = new System.Drawing.Size(160, 24);
             this.cmbColumnManagementList.TabIndex = 5;
@@ -1823,7 +1823,7 @@
             // 
             this.cbxAs.AutoSize = true;
             this.cbxAs.Location = new System.Drawing.Point(123, 183);
-            this.cbxAs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxAs.Margin = new System.Windows.Forms.Padding(4);
             this.cbxAs.Name = "cbxAs";
             this.cbxAs.Size = new System.Drawing.Size(82, 21);
             this.cbxAs.TabIndex = 3;
@@ -1865,7 +1865,7 @@
             // btnAddsSource
             // 
             this.btnAddsSource.Location = new System.Drawing.Point(260, 126);
-            this.btnAddsSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddsSource.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddsSource.Name = "btnAddsSource";
             this.btnAddsSource.Size = new System.Drawing.Size(100, 48);
             this.btnAddsSource.TabIndex = 18;
@@ -1933,8 +1933,8 @@
             this.tpHaving.PerformLayout();
             this.tpJoins.ResumeLayout(false);
             this.tpJoins.PerformLayout();
-            this.tpAggregate.ResumeLayout(false);
-            this.tpAggregate.PerformLayout();
+            this.tpColumnManagement.ResumeLayout(false);
+            this.tpColumnManagement.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2063,7 +2063,7 @@
         private System.Windows.Forms.TextBox txtViewName;
         private System.Windows.Forms.Label lblViewName;
         private System.Windows.Forms.Label lblViewHead;
-        private System.Windows.Forms.TabPage tpAggregate;
+        private System.Windows.Forms.TabPage tpColumnManagement;
         private System.Windows.Forms.CheckBox cbxAggregate;
         private System.Windows.Forms.Button btnRemoveColumnMan;
         private System.Windows.Forms.Button btnAddColumn;

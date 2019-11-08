@@ -636,7 +636,7 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
-        // needs fixing
+        // adds just the columns
         public List<string> SelectAddColumns(string columnName)
         {
                 int index = 2;
@@ -667,7 +667,7 @@ namespace BLL
             return sqlBuilderLIst;
            
         }
-
+        // removes the columns
         public List<string> SelectRemoveColumn(string columnName)
         {
             int index = 2;
@@ -677,7 +677,8 @@ namespace BLL
                 {
                     try
                     {
-                        List<String> theList = (sqlBuilderLIst[index].Split(' '))[1].Split(',').ToList();
+                        char[] splitTemp = new char[1] { ' ' };
+                        List<String> theList = (sqlBuilderLIst[index].Split(splitTemp,2))[1].Split(',').ToList();
                         theList.Remove(columnName);
                         sqlBuilderLIst[index] = "SELECT " + ListToString(theList);
                     }

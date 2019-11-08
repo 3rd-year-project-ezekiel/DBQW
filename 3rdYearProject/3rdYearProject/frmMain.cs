@@ -590,7 +590,7 @@ namespace _3rdYearProject
         // Remove Unneccassary, removes all of the tab pages
         public void RemoveUnneccassary()
         {
-            tbcExstra.TabPages.Remove(tpAggregate);
+            tbcExstra.TabPages.Remove(tpColumnManagement);
             tbcExstra.TabPages.Remove(tpOrderBy);
             tbcExstra.TabPages.Remove(tpGroupBy);
             tbcExstra.TabPages.Remove(tpJoins);
@@ -631,13 +631,13 @@ namespace _3rdYearProject
 
         public void AddTabsForSelect()
         {
-            tbcExstra.TabPages.Add(tpColumns);
+           // tbcExstra.TabPages.Add(tpColumns);
             tbcExstra.TabPages.Add(tpWhere);
             tbcExstra.TabPages.Add(tpHaving);
             tbcExstra.TabPages.Add(tpOrderBy);
             tbcExstra.TabPages.Add(tpGroupBy);
             //tbcExstra.TabPages.Add(tpJoins);     Will be added back at a later stage
-            tbcExstra.TabPages.Add(tpAggregate);
+            tbcExstra.TabPages.Add(tpColumnManagement);
             AddTabsForProcedures();
 
         }
@@ -1340,38 +1340,45 @@ namespace _3rdYearProject
         private void BtnAddColumn_Click(object sender, EventArgs e)
         {
             string column = "";
-            if ((cbxAggregate.Checked== true)&&(cmbAggrgateFunctions.Text!= "Select Function"))
-            {
-                column += String.Format("{0}({1})",cmbAggrgateFunctions.SelectedItem.ToString(),cmbColumnManagementList.SelectedItem.ToString());
-                if ((cbxAs.Checked==true)&&(txtColNames.Text!=""))
-                {
-                    column +=  " As " + txtColNames.Text;
-                }
-                else if  (txtColNames.Text == "")
-                {
-                    MessageBox.Show("Please enter column name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            else
-            if ((cmbAggrgateFunctions.Text == "Select Function"))
+            bool errorCheck = false;
+
+            if (cbxAggregate.Checked && cmbAggrgateFunctions.Text == "Select Function")
             {
                 MessageBox.Show("Please select function", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorCheck = true;
+            }
+            if (cbxAs.Checked && txtColNames.Text == "" )
+            {
+                MessageBox.Show("Please enter a name for the column", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorCheck = true;
+            }
+            if (!cbxAggregate.Checked && cbxAs.Checked)
+            {
+                MessageBox.Show("Please select the aggragte box", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorCheck = true;
+            }
+
+            if (errorCheck)
+            {
                 return;
             }
-            else
+
+            
+                column = cmbColumnManagementList.Items[cmbColumnManagementList.SelectedIndex].ToString();
+            
+            if (cbxAggregate.Checked)
             {
-                column += cmbColumnManagementList.SelectedItem.ToString();
-                if ((cbxAs.Checked == true) && (txtColNames.Text != ""))
-                {
-                    column += " As " + txtColNames.Text;
-                }
-                else if (txtColNames.Text == "")
-                {
-                    MessageBox.Show("Please enter column name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                column = cmbAggrgateFunctions.Items[cmbAggrgateFunctions.SelectedIndex] +"(" + column + ")";
             }
+
+            if (cbxAs.Checked)
+            {
+                column = column + " AS " + txtColNames.Text.Replace(' ', '_');
+            }
+
+
+            lstDisplay.DataSource = null;
+            lstDisplay.DataSource = sqlBuilderClass.SelectAddColumns(column);
             lstColumnsManagement.Items.Add(column);
         }
 
@@ -1382,7 +1389,7 @@ namespace _3rdYearProject
                 int selectedIndex = lstColumnsManagement.SelectedIndex;
 
                 lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.GroupByClauseRemover((string)lstGroupedItems.SelectedItem);
+                lstDisplay.DataSource = sqlBuilderClass.SelectRemoveColumn((string)lstColumnsManagement.SelectedItem);
 
                 lstColumnsManagement.Items.RemoveAt(selectedIndex);
                 MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1410,7 +1417,7 @@ namespace _3rdYearProject
 
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.SelectAddColumns(columnName);
-                txtWhereValues.Clear();
+                //txtWhereValues.Clear();
 
             }
             catch (NullReferenceException)
