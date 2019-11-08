@@ -1360,7 +1360,7 @@ namespace _3rdYearProject
         {
             string column = "";
             bool errorCheck = false;
-
+           
             if (cbxAggregate.Checked && cmbAggrgateFunctions.Text == "Select Function")
             {
                 MessageBox.Show("Please select function", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1377,8 +1377,15 @@ namespace _3rdYearProject
                 return;
             }
 
-            
+
+            if (cmbColumnManagementList.SelectedIndex == -1)
+            {
+                column = "*";
+            }
+            else
+            {
                 column = cmbColumnManagementList.Items[cmbColumnManagementList.SelectedIndex].ToString();
+            }
             
             if (cbxAggregate.Checked)
             {

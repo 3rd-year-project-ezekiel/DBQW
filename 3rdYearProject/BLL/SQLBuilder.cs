@@ -1114,7 +1114,4 @@ namespace BLL
 
 
 
-    /////// New Ideas
-    // 
-    // because create must be the first thing in a batch of execution
-    //    the program will change the connection string to the database being used in order to spesifically execute the query on that database
+ 
