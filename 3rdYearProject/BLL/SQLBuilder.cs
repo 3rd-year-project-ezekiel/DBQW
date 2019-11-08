@@ -1109,7 +1109,6 @@ namespace BLL
 
 // - finish comments and orginize all classes
 
-// - if a select is executed then a dataGrid form should appear
 
 
 
