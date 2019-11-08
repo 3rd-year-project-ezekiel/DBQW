@@ -1425,7 +1425,7 @@ namespace _3rdYearProject
 
             if (cbxAs.Checked)
             {
-                column = column + " AS " + txtColNames.Text.Replace(' ', '_').Replace('\'','`');
+                column = column + " AS " + txtColNames.Text.Replace(' ', '_').Replace('\'','*');
             }
 
 
