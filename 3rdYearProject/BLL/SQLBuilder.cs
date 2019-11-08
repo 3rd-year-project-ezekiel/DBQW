@@ -206,9 +206,9 @@ namespace BLL
         // Remove a Varible From Procedure
         public List<string> ProcedureRemoveVarible(string varible)
         {
-            List<string> theList = sqlBuilderLIst[3].Replace(')', ',').Replace('(', ',').Split(',').ToList(); // replaces the brackets with colons then splited on the colons
-            theList.Remove(varible);                                                                          // if there is somthing to remove, the first sighting of the will be removed
-            sqlBuilderLIst[3] = "(" + ListToString(theList) + ")";                                           // adds whats left back to sql
+            List<string> theList = sqlBuilderLIst[3].Substring(1,sqlBuilderLIst[3].Length - 2).Split(',').ToList();   // replaces the brackets with colons then splited on the colons
+            theList.Remove(varible);                                                                                 // if there is somthing to remove, the first sighting of the will be removed
+            sqlBuilderLIst[3] = "(" + ListToString(theList) + ")";                                                  // adds whats left back to sql
             return sqlBuilderLIst;
         }
 

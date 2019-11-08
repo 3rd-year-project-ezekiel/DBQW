@@ -1181,7 +1181,7 @@ namespace _3rdYearProject
                 int selectedIndex = lstVarItems.SelectedIndex;
 
                 lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.ProcedureRemoveVarible((string)lstSetitems.SelectedItem);
+                lstDisplay.DataSource = sqlBuilderClass.ProcedureRemoveVarible((string)lstVarItems.SelectedItem);
 
                 lstVarItems.Items.RemoveAt(selectedIndex);
                 variables.RemoveAt(selectedIndex);
@@ -1197,6 +1197,8 @@ namespace _3rdYearProject
                     cmbProgrammingValues.Text = "Please Select Variable";
                     cmbProgrammingSet.Text = "Please Select Variable";
                 }
+               
+
                 MessageBox.Show("Item has been removed", "Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
