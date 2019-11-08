@@ -1109,6 +1109,16 @@ namespace BLL
 
 // - finish comments and orginize all classes
 
+// - Data menu strip needs to lead to a form where you can view what is inside each tables
+
+// - Re- order query structure from where
+// order
+// 
+// Where
+// Group by
+// Having
+// Order by
+
 
 
 
