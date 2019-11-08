@@ -367,7 +367,17 @@ namespace _3rdYearProject
         //ComboBoxPopulationMethod();
         private void btnExecute_Click(object sender, EventArgs e)
         {
-            if (sqlBuilderClass.ExecuteQuery()) MessageBox.Show("Query successfully executed");
+            if (sqlBuilderClass.ExecuteQuery())
+            {
+                MessageBox.Show("Query successfully executed");
+                if (((string)lstDisplay.Items[2])[0] == 'S' && ((string)lstDisplay.Items[2])[1] == 'E')
+                {
+                    frmSelectDataDisplay frmDisplaySelectData = new frmSelectDataDisplay();
+                    frmDisplaySelectData.Show();
+                    frmDisplaySelectData.DisplayOnDataGrid(sqlBuilderClass.GetSelectDataExecute());
+                }
+
+            }
         }
 
         private void ComboBoxPopulationMethod()
@@ -388,6 +398,15 @@ namespace _3rdYearProject
 
           
         }
+
+
+        private void btnQueryCopy_Click(object sender, EventArgs e)
+        {
+            sqlBuilderClass.CopyQueryToClipboard();
+        }
+        
+
+
         #endregion
 
         #endregion
@@ -1352,11 +1371,6 @@ namespace _3rdYearProject
                 MessageBox.Show("Please enter a name for the column", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 errorCheck = true;
             }
-            if (!cbxAggregate.Checked && cbxAs.Checked)
-            {
-                MessageBox.Show("Please select the aggragte box", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                errorCheck = true;
-            }
 
             if (errorCheck)
             {
@@ -1373,7 +1387,7 @@ namespace _3rdYearProject
 
             if (cbxAs.Checked)
             {
-                column = column + " AS " + txtColNames.Text.Replace(' ', '_');
+                column = column + " AS " + txtColNames.Text.Replace(' ', '_').Replace('\'','`');
             }
 
 
@@ -1451,9 +1465,7 @@ namespace _3rdYearProject
                 MessageBox.Show(e.ToString(), "Contact your IT guy");
             }
         }
-        // Not yet finished
-
-
+       
         private void btnSaveView_Click(object sender, EventArgs e)
         {
             string viewName = txtViewName.Text;
@@ -1544,6 +1556,8 @@ namespace _3rdYearProject
             }
         }
 
+        
+
 
         #endregion
 
@@ -1557,29 +1571,14 @@ namespace _3rdYearProject
         // == Group To Do List == \\
         /*
           
-        
-         
-        - the main table tab(the tab with just one combo box) should be reworked to look better, but the combo box stays
-          == potential other fixes that doesnt use a combo box
-            - using a list box with a filter text box
-            
-
-        - when a table is removed from the treeview, that table's columns should not be able to display in the tab control any more 
-           = currently it will also error when a table is removed
+   
+        - when a table is removed from the treeview, that table's columns should not be shown in the combo boxes anymore
        
 
         - when a new table is selected on the table tab, then the previos columns and items should be removed
            + prompt the user if they are sure
+           
 
-
-        - when the program firsts starts and you click views, it doesnt work properly
-
-        */
-
-
-        /*
-         Add back the stuff for the inner joins
-         
         */
 
 

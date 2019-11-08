@@ -56,22 +56,7 @@ namespace DAL
         public bool QueryExecution(string query)
         {
 
-            //TSql100Parser parser = new TSql100Parser(false);
-            //IScriptFragment fragment;
-            //IList<ParseError> errors;
-            //fragment = parser.Parse(new StringReader(sql), out errors);
-            //if (errors != null && errors.Count > 0)
-            //{
-            //    List<string> errorList = new List<string>();
-            //    foreach (var error in errors)
-            //    {
-            //        errorList.Add(error.Message);
-            //    }
-            //    return errorList;
-            //}
-            //return null;
-
-            MessageBox.Show(query);
+           // MessageBox.Show(query);
             try
             {
                 if (connection.State != ConnectionState.Open)
@@ -80,7 +65,6 @@ namespace DAL
                 }
                 command = new SqlCommand(query, connection);
                 command.ExecuteReader();
-                //MessageBox.Show(query);
             }
             catch (Exception e)
             {
@@ -264,6 +248,33 @@ namespace DAL
             }
 
             return tables;
+        }
+
+        public DataTable GetSelectData(string query)
+        {
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+                command = new SqlCommand(query, connection);
+                //command.ExecuteReader();
+
+                adapter = new SqlDataAdapter(command);
+                table = new DataTable();
+                adapter.Fill(table);
+            }
+            catch (Exception)
+            {
+               
+            }
+            finally
+            {
+                connection.Close();
+            }
+            
+            return table;
         }
 
         #endregion

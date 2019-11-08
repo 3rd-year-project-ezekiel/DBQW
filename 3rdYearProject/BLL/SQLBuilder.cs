@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Data;
 using DAL;
 
 namespace BLL
@@ -22,6 +23,21 @@ namespace BLL
         public SQLBuilder()
         { sqlBuilderLIst = new List<string>(); }
         // When the class is first called, a new list will be created to hold the new Query
+        #endregion
+
+        #region Methods
+        public void CopyQueryToClipboard()
+        {
+            string queryBuilder = "";
+            foreach (string item in sqlBuilderLIst)
+            {
+                queryBuilder += item + Environment.NewLine; 
+
+            }
+            Clipboard.SetText(queryBuilder);
+            MessageBox.Show("Query is copied to your clipboard");
+        }
+
         #endregion
 
         #region Algorithm
@@ -982,12 +998,7 @@ namespace BLL
 
         #endregion
 
-        // finish
-        #region Aggregate
-
-        #endregion
-
-        // finish
+        // Nice to have for the query test
         #region Transactions
 
         #endregion
@@ -1020,17 +1031,31 @@ namespace BLL
             ConfigurationManager.RefreshSection("connectionStrings");
             DBConnection dataLayer = new DBConnection("ExecuteQuery");
 
-            string stringBuilder = "";
+            string queryBuilder = "";
             foreach (string item in sqlBuilderLIst)
             {
-                if (item == "GO" || (item.Split(' '))[0] == "USE") { } else { stringBuilder += item + " "; }
+                if (item == "GO" || (item.Split(' '))[0] == "USE") { } else { queryBuilder += item + " "; }
                 
             }
 
            
-            return dataLayer.QueryExecution(stringBuilder.ToString());
+            return dataLayer.QueryExecution(queryBuilder.ToString());
             
 
+        }
+
+        public DataTable GetSelectDataExecute()
+        {
+            DataTable table = new DataTable();
+            DBConnection dataLayer = new DBConnection("ExecuteQuery");
+
+            string queryBuilder = "";
+            foreach (string item in sqlBuilderLIst)
+            {
+                if (item == "GO" || (item.Split(' '))[0] == "USE") { } else { queryBuilder += item + " "; }
+            }
+
+            return dataLayer.GetSelectData(queryBuilder);
         }
         #endregion
 
@@ -1085,8 +1110,6 @@ namespace BLL
 // - finish comments and orginize all classes
 
 // - if a select is executed then a dataGrid form should appear
-
-// - finish Aggregate functions and hook the tabs up
 
 
 
