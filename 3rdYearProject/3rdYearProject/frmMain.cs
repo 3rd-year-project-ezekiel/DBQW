@@ -106,7 +106,7 @@ namespace _3rdYearProject
             cmbOrderType.Items.Add("Asc");
             cmbOrderType.Items.Add("Desc");
             RemoveUnneccassary();
-            AddTabsForSelect();
+            //AddTabsForSelect();
             DisableComponenets();
             //MenuStripColour(mnuSelect);
             mnuProcedure.BackColor = Color.Transparent;
@@ -399,8 +399,7 @@ namespace _3rdYearProject
         // Procedure Menu Strip
         private void mnuProcedure_Click(object sender, EventArgs e)
         {
-            if (mnuProcedure.BackColor == Color.Transparent)
-                mnuProcedure.BackColor = Color.LightSeaGreen;
+            if (mnuProcedure.BackColor == Color.Transparent) mnuProcedure.BackColor = Color.LightSeaGreen;
             else mnuProcedure.BackColor = Color.Transparent;
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.ProcedureBaseBuilder();
