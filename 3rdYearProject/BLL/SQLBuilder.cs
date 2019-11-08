@@ -239,18 +239,9 @@ namespace BLL
 
             try
             {
-                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'P')
+                if ((sqlBuilderLIst[2])[0] == 'C' && (sqlBuilderLIst[2])[7] == 'V')
                 {
-                    sqlBuilderLIst.RemoveAt(sqlBuilderLIst.Count - 1);
-                    if (sqlBuilderLIst.Count > 5)
-                        sqlBuilderLIst.RemoveRange(6, (sqlBuilderLIst.Count - 6));
-                    sqlBuilderLIst.Add("CREATE VIEW >Enter_Name< AS");
-                    sqlBuilderLIst.Add("SELECT");
-                    sqlBuilderLIst.Add("FROM ");
-                    if (tableName != "")
-                        sqlBuilderLIst[sqlBuilderLIst.Count - 1] += tableName;
-                    sqlBuilderLIst.Add("END");
-
+                    sqlBuilderLIst.RemoveAt(2);
                 }
                 else
                 {

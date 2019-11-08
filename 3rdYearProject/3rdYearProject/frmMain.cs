@@ -106,7 +106,6 @@ namespace _3rdYearProject
             cmbOrderType.Items.Add("Asc");
             cmbOrderType.Items.Add("Desc");
             RemoveUnneccassary();
-            //AddTabsForSelect();
             DisableComponenets();
             //MenuStripColour(mnuSelect);
             mnuProcedure.BackColor = Color.Transparent;
@@ -414,7 +413,7 @@ namespace _3rdYearProject
 
             if (mnuViews.BackColor == Color.Transparent)
                 mnuViews.BackColor = Color.LightSeaGreen;
-            else mnuViews.BackColor = Color.Transparent;
+            else { mnuViews.BackColor = Color.Transparent; mnuSelect.BackColor = Color.LightBlue; }
             
             ClearDataLists();
             RemoveUnneccassary();
@@ -428,14 +427,23 @@ namespace _3rdYearProject
         // Select Menu strip
         private void mnuSelect_Click(object sender, EventArgs e)
         {
-            MenuStripColour(mnuSelect);
-            ClearDataLists();
-            RemoveUnneccassary();
-            AddTabsForSelect();
-            ClearDataLists();
-            EnableTreeAndButton();
-            lstDisplay.DataSource = null;
-            lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
+            if (mnuSelect.BackColor != Color.Transparent && mnuViews.BackColor != Color.Transparent)
+            {
+                
+            }
+            else
+            {
+                MenuStripColour(mnuSelect);
+                ClearDataLists();
+                RemoveUnneccassary();
+                AddTabsForSelect();
+                ClearDataLists();
+                EnableTreeAndButton();
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
+            }
+
+            
         }
 
         // Delete Menu Strip
@@ -562,19 +570,10 @@ namespace _3rdYearProject
 
         private void TableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // remeber to fix
-
-            //if (cmbDatabaseList.SelectedItem.ToString()=="")
-            //{
-            //    MessageBox.Show("Please select an database","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            //}
-            //else
-            //{
-            //    string databaseName = cmbDatabaseList.SelectedItem.ToString();
+           
             frmTableCreation tableCreation = new frmTableCreation();
             this.Hide();
             tableCreation.Show();
-            // }
         }
 
         #endregion
