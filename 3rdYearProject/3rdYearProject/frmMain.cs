@@ -311,48 +311,56 @@ namespace _3rdYearProject
 
         private void BtnAddsSource_Click(object sender, EventArgs e)
         {
-            tbcExstra.Enabled = true;
-            columnDictionary.Clear();
-            selectedColumns.Clear();
-            foreach (TreeNode item in tvEntities.Nodes)
+            try
             {
-                if (item.Checked==true)
+                tbcExstra.Enabled = true;
+                columnDictionary.Clear();
+                selectedColumns.Clear();
+                foreach (TreeNode item in tvEntities.Nodes)
                 {
-                    foreach (TreeNode treeNode in item.Nodes)
+                    if (item.Checked == true)
                     {
-                        string itemString = treeNode.Text.ToString();
-                        string[] splittedString = itemString.Split(' ');
-                       
+                        foreach (TreeNode treeNode in item.Nodes)
+                        {
+                            string itemString = treeNode.Text.ToString();
+                            string[] splittedString = itemString.Split(' ');
 
-                        if (!columnDictionary.ContainsKey(item.Text.ToString()))
+
+                            if (!columnDictionary.ContainsKey(item.Text.ToString()))
                             {
                                 columnDictionary.Add(item.Text.ToString(), new List<string>());
-                           
+
                                 columnDictionary[item.Text.ToString()].Add(splittedString[0]);
                             }
                             else
                             {
-                           
-                            columnDictionary[item.Text.ToString()].Add(splittedString[0]);
+
+                                columnDictionary[item.Text.ToString()].Add(splittedString[0]);
                             }
 
 
-                        
+
+                        }
                     }
                 }
+
+                lstMainTable.Items.Clear();
+                ClearDataSources();
+
+
+                PopulateMainList();
+                foreach (KeyValuePair<string, List<string>> tables in columnDictionary)
+                {
+                    cmbTableJoinTarget.Items.Add(tables.Key);
+                    cmbSourceTableJoin.Items.Add(tables.Key);
+                }
+                lstMainTable.SelectedIndex = 0;
             }
-
-            lstMainTable.Items.Clear();
-            ClearDataSources();
-
-           
-            PopulateMainList();
-            foreach (KeyValuePair<string, List<string>> tables in columnDictionary)
+            catch (Exception)
             {
-                cmbTableJoinTarget.Items.Add(tables.Key);
-                cmbSourceTableJoin.Items.Add(tables.Key);
+                MessageBox.Show("Please Select a table", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
-            lstMainTable.SelectedIndex = 0;
         }
 
         public void PopulateMainList()
@@ -417,8 +425,27 @@ namespace _3rdYearProject
         // Procedure Menu Strip
         private void mnuProcedure_Click(object sender, EventArgs e)
         {
-            if (mnuProcedure.BackColor == Color.Transparent) mnuProcedure.BackColor = Color.LightSeaGreen;
-            else mnuProcedure.BackColor = Color.Transparent;
+            if (mnuProcedure.BackColor == Color.Transparent)
+            {
+                if (mnuViews.BackColor != Color.Transparent)
+                {
+                    MenuStripColour(mnuSelect);
+                    ClearDataLists();
+                    RemoveUnneccassary();
+                    AddTabsForSelect();
+                    ClearDataLists();
+                    EnableTreeAndButton();
+                    lstDisplay.DataSource = null;
+                    lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
+                }
+                mnuProcedure.BackColor = Color.LightSeaGreen;
+                
+            }
+            else
+            {
+                mnuProcedure.BackColor = Color.Transparent;
+               
+            }
             lstDisplay.DataSource = null;
             lstDisplay.DataSource = sqlBuilderClass.ProcedureBaseBuilder();
             AddTabsForProcedures();
@@ -429,14 +456,14 @@ namespace _3rdYearProject
         // View Menu Strip
         private void mnuViews_Click(object sender, EventArgs e)
         {
-
-            if (mnuViews.BackColor == Color.Transparent)
-                mnuViews.BackColor = Color.LightSeaGreen;
-            else { mnuViews.BackColor = Color.Transparent; mnuSelect.BackColor = Color.LightBlue; }
+           
+            if (mnuProcedure.BackColor != Color.Transparent)
+                mnuProcedure.BackColor = Color.Transparent;
             
+
+            MenuStripColour(mnuViews);
             ClearDataLists();
             RemoveUnneccassary();
-            AddTabsForSelect();
             AddTabsForViews();
             EnableTreeAndButton();
             lstDisplay.DataSource = null;
@@ -446,12 +473,12 @@ namespace _3rdYearProject
         // Select Menu strip
         private void mnuSelect_Click(object sender, EventArgs e)
         {
-            if (mnuSelect.BackColor != Color.Transparent && mnuViews.BackColor != Color.Transparent)
-            {
+           // if (mnuSelect.BackColor != Color.Transparent && mnuViews.BackColor != Color.Transparent)
+          //  {
                 
-            }
-            else
-            {
+          //  }
+         //   else
+         //   {
                 MenuStripColour(mnuSelect);
                 ClearDataLists();
                 RemoveUnneccassary();
@@ -460,7 +487,7 @@ namespace _3rdYearProject
                 EnableTreeAndButton();
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
-            }
+          //  }
 
             
         }
@@ -634,29 +661,33 @@ namespace _3rdYearProject
             {
                 tbcExstra.TabPages.Remove(tpVariableManagement);
             }
+
+            if (mnuViews.BackColor != Color.Transparent)
+            {
+                tbcExstra.TabPages.Remove(tpVariableManagement);
+                mnuProcedure.BackColor = Color.Transparent;
+            }
         }
 
         public void AddTabsForViews()
         {
-            if (mnuViews.BackColor != Color.Transparent)
-            {
-                tbcExstra.TabPages.Add(tpViews);
-            }
-            else
-            {
-                tbcExstra.TabPages.Remove(tpViews);
-            }
+            tbcExstra.TabPages.Add(tpViews);
+            tbcExstra.TabPages.Add(tpColumnManagement);
+            tbcExstra.TabPages.Add(tpWhere);
+            tbcExstra.TabPages.Add(tpHaving);
+            tbcExstra.TabPages.Add(tpOrderBy);
+            tbcExstra.TabPages.Add(tpGroupBy);
+
         }
 
         public void AddTabsForSelect()
         {
-           // tbcExstra.TabPages.Add(tpColumns);
+            tbcExstra.TabPages.Add(tpColumnManagement);
             tbcExstra.TabPages.Add(tpWhere);
             tbcExstra.TabPages.Add(tpHaving);
             tbcExstra.TabPages.Add(tpOrderBy);
             tbcExstra.TabPages.Add(tpGroupBy);
             //tbcExstra.TabPages.Add(tpJoins);     Will be added back at a later stage
-            tbcExstra.TabPages.Add(tpColumnManagement);
             AddTabsForProcedures();
 
         }
