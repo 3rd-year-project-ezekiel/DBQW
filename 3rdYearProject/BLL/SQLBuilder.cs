@@ -1081,8 +1081,6 @@ namespace BLL
 
 // - in the table combobox add a search function for table    ## Nice to Have
 
-// - varible Method in sqlbuilder for procedure
-
 // - finish comments and orginize all classes
 
 // - if a select is executed then a dataGrid form should appear

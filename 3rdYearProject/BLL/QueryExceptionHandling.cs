@@ -79,15 +79,16 @@ namespace BLL
         // make sure that table names on the table form cant have spaces in them
 
 
-        // == Jan == \\
+        // == Pieter == \\
         // Data type checking all 
         //  check that all text boxes have a datatype checking
         //  check that all combo boxes and text boxes that are set or equal to somthing
+       
+        
+        
+        
+        
         // create custom exceptions for certian events
-
-
-
-
 
 
         // rephrase
