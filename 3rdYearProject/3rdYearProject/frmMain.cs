@@ -742,6 +742,7 @@ namespace _3rdYearProject
             lstSetitems.Items.Clear();
             lstWhereItems.Items.Clear();
             lstColumnsItems.Items.Clear();
+            lstColumnsManagement.Items.Clear();
             
         }
 

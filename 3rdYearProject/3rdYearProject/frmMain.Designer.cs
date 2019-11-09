@@ -861,12 +861,12 @@
             // 
             this.lblItemsnsert.AutoSize = true;
             this.lblItemsnsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblItemsnsert.Location = new System.Drawing.Point(160, 160);
+            this.lblItemsnsert.Location = new System.Drawing.Point(203, 161);
             this.lblItemsnsert.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblItemsnsert.Name = "lblItemsnsert";
-            this.lblItemsnsert.Size = new System.Drawing.Size(232, 17);
+            this.lblItemsnsert.Size = new System.Drawing.Size(177, 17);
             this.lblItemsnsert.TabIndex = 31;
-            this.lblItemsnsert.Text = "Current Items in Having Clause";
+            this.lblItemsnsert.Text = "Current Items in Values";
             // 
             // btnAddValues
             // 
@@ -1008,12 +1008,12 @@
             // 
             this.lblSetItems.AutoSize = true;
             this.lblSetItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSetItems.Location = new System.Drawing.Point(159, 158);
+            this.lblSetItems.Location = new System.Drawing.Point(188, 159);
             this.lblSetItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSetItems.Name = "lblSetItems";
-            this.lblSetItems.Size = new System.Drawing.Size(232, 17);
+            this.lblSetItems.Size = new System.Drawing.Size(183, 17);
             this.lblSetItems.TabIndex = 31;
-            this.lblSetItems.Text = "Current Items in Having Clause";
+            this.lblSetItems.Text = "Current Items in Set List";
             // 
             // btnAddSet
             // 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlDatabase = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnFilePath = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.txtLogName = new System.Windows.Forms.TextBox();
@@ -40,13 +41,14 @@
             this.lblFilePath = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblHead = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnlDatabase.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlDatabase
             // 
             this.pnlDatabase.BackColor = System.Drawing.Color.Crimson;
+            this.pnlDatabase.Controls.Add(this.label1);
             this.pnlDatabase.Controls.Add(this.button1);
             this.pnlDatabase.Controls.Add(this.btnFilePath);
             this.pnlDatabase.Controls.Add(this.btnCreate);
@@ -60,15 +62,25 @@
             this.pnlDatabase.Controls.Add(this.lblName);
             this.pnlDatabase.Controls.Add(this.lblHead);
             this.pnlDatabase.Location = new System.Drawing.Point(299, 89);
-            this.pnlDatabase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlDatabase.Margin = new System.Windows.Forms.Padding(4);
             this.pnlDatabase.Name = "pnlDatabase";
             this.pnlDatabase.Size = new System.Drawing.Size(680, 443);
             this.pnlDatabase.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(561, 398);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(116, 42);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Back";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // btnFilePath
             // 
             this.btnFilePath.Location = new System.Drawing.Point(377, 165);
-            this.btnFilePath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFilePath.Margin = new System.Windows.Forms.Padding(4);
             this.btnFilePath.Name = "btnFilePath";
             this.btnFilePath.Size = new System.Drawing.Size(100, 28);
             this.btnFilePath.TabIndex = 10;
@@ -81,7 +93,7 @@
             this.btnCreate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCreate.ForeColor = System.Drawing.Color.Black;
             this.btnCreate.Location = new System.Drawing.Point(287, 398);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(100, 28);
             this.btnCreate.TabIndex = 9;
@@ -92,7 +104,7 @@
             // txtLogName
             // 
             this.txtLogName.Location = new System.Drawing.Point(220, 321);
-            this.txtLogName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLogName.Margin = new System.Windows.Forms.Padding(4);
             this.txtLogName.Name = "txtLogName";
             this.txtLogName.Size = new System.Drawing.Size(132, 22);
             this.txtLogName.TabIndex = 8;
@@ -100,7 +112,7 @@
             // txtSize
             // 
             this.txtSize.Location = new System.Drawing.Point(220, 247);
-            this.txtSize.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSize.Margin = new System.Windows.Forms.Padding(4);
             this.txtSize.Name = "txtSize";
             this.txtSize.Size = new System.Drawing.Size(132, 22);
             this.txtSize.TabIndex = 7;
@@ -108,7 +120,7 @@
             // txtFile
             // 
             this.txtFile.Location = new System.Drawing.Point(220, 169);
-            this.txtFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFile.Margin = new System.Windows.Forms.Padding(4);
             this.txtFile.Name = "txtFile";
             this.txtFile.ReadOnly = true;
             this.txtFile.Size = new System.Drawing.Size(132, 22);
@@ -117,7 +129,7 @@
             // txtDBName
             // 
             this.txtDBName.Location = new System.Drawing.Point(220, 110);
-            this.txtDBName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDBName.Margin = new System.Windows.Forms.Padding(4);
             this.txtDBName.Name = "txtDBName";
             this.txtDBName.Size = new System.Drawing.Size(132, 22);
             this.txtDBName.TabIndex = 5;
@@ -173,15 +185,14 @@
             this.lblHead.TabIndex = 0;
             this.lblHead.Text = "Create Your Database";
             // 
-            // button1
+            // label1
             // 
-            this.button1.Location = new System.Drawing.Point(561, 398);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 42);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Back";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(359, 250);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 17);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "MB";
             // 
             // frmDatabaseCreation
             // 
@@ -191,7 +202,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1211, 619);
             this.Controls.Add(this.pnlDatabase);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDatabaseCreation";
             this.Text = "DatabaseCreation";
             this.Load += new System.EventHandler(this.FrmDatabaseCreation_Load);
@@ -216,5 +227,6 @@
         private System.Windows.Forms.Label lblHead;
         private System.Windows.Forms.Button btnFilePath;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
     }
 }
