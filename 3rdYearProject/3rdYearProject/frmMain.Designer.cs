@@ -289,6 +289,7 @@
             this.mnuData.Name = "mnuData";
             this.mnuData.Size = new System.Drawing.Size(53, 24);
             this.mnuData.Text = "Data";
+            this.mnuData.Click += new System.EventHandler(this.mnuData_Click);
             // 
             // mnuLogout
             // 

@@ -551,6 +551,11 @@ namespace _3rdYearProject
             this.Hide();
             login.Show();
         }
+        // button on the Menu strip, takes you to a form where you can see what is in your tabels
+        private void mnuData_Click(object sender, EventArgs e)
+        {
+
+        }
 
         public void ChangeToProgrammabillity()
         {
@@ -1594,10 +1599,7 @@ namespace _3rdYearProject
                 cmbProgrammingWhere.Show();
             }
         }
-
         
-
-
         #endregion
 
         #endregion
