@@ -858,7 +858,7 @@ namespace BLL
 
         public List<string> OrderByClauseBuilder(string orderByClause)
         {
-            // Checks to see if there is a where already
+            // Checks to see if there is a Order by already
             for (int index = 3; index < sqlBuilderLIst.Count; index++)
             {
                 if ((sqlBuilderLIst[index])[0] == 'O')
