@@ -892,14 +892,26 @@ namespace _3rdYearProject
                 if (mnuProcedure.BackColor != Color.Transparent)
                 {
 
-                    if (cmbProgrammingWhere.Text == "Please Select Variable")
+                    if (cbxWhereValue.Checked == false)
                     {
-                        throw new NullReferenceException();
+                        if (cmbProgrammingWhere.SelectedItem.ToString() == "Please Select Variable")
+                        {
+                            throw new NullReferenceException();
+                        }
+                        else
+                        {
+                            value = cmbProgrammingWhere.SelectedItem.ToString();
+                        }
                     }
                     else
                     {
-                        value = cmbProgrammingWhere.SelectedItem.ToString();
+                        value = txtWhereValues.Text.ToString();
+                        if (value == "")
+                        {
+                            throw new NullReferenceException();
+                        }
                     }
+
                 }
                 else
                 {
@@ -1047,15 +1059,26 @@ namespace _3rdYearProject
                 string value = "";
                 if (mnuProcedure.BackColor != Color.Transparent)
                 {
-
-                    if (cmbProgrammingHaving.Text == "Please Select Variable")
+                    if (cbxHavingValue.Checked == false)
                     {
-                        throw new NullReferenceException();
+                        if (cmbProgrammingHaving.SelectedItem.ToString() == "Please Select Variable")
+                        {
+                            throw new NullReferenceException();
+                        }
+                        else
+                        {
+                            value = cmbProgrammingHaving.SelectedItem.ToString();
+                        }
                     }
                     else
                     {
-                        value = cmbProgrammingHaving.SelectedItem.ToString();
+                        value = txtHavingValue.Text.ToString();
+                        if (value == "")
+                        {
+                            throw new NullReferenceException();
+                        }
                     }
+                   
                 }
                 else
                 {
@@ -1269,14 +1292,24 @@ namespace _3rdYearProject
                 string value = "";
                 if (mnuProcedure.BackColor != Color.Transparent)
                 {
-
-                    if (cmbProgrammingSet.Text == "Please Select Variable")
+                    if (cbxSetValue.Checked == false)
                     {
-                        throw new NullReferenceException();
+                        if (cmbProgrammingSet.SelectedItem.ToString() == "Please Select Variable")
+                        {
+                            throw new NullReferenceException();
+                        }
+                        else
+                        {
+                            value = cmbProgrammingSet.SelectedItem.ToString();
+                        }
                     }
                     else
                     {
-                        value = cmbProgrammingSet.SelectedItem.ToString();
+                        value = txtSetValues.Text.ToString();
+                        if (value == "")
+                        {
+                            throw new NullReferenceException();
+                        }
                     }
                 }
                 else
