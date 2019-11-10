@@ -134,6 +134,24 @@ namespace _3rdYearProject
             string colName = txtColName.Text;
             string type = "";
             string constraints = "";
+            
+            string datatype1 = cbxType.Text;
+            string datatype2 = " ";
+            Columns columns = new Columns();
+            List<Columns> temp = new List<Columns>();
+            temp = columns.GetColumns(cbxDatabaseList.Text, cbxTable.Text);
+            foreach (Columns item in temp)
+            {
+                if (item.ColumnName == cbxColumn.Text)
+                {
+                    datatype2 = item.DataType.ToString();
+                }
+            }
+            if (!columns.CheckDataType(datatype1,datatype2))
+            {
+                MessageBox.Show("Datatypes of the 2 columns doesnt match. Unable to create foreign key");
+                return;
+            }
            
             if (colName != "")
             {
