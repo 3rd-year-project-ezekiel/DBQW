@@ -57,7 +57,7 @@ public class Columns
 	
 	public bool CheckDataType(string dataType1, string dataType2)
     {
-        if (dataType1 == dataType2)
+        if (dataType1.ToLower() == dataType2.ToLower())
         {
             return true;
         }
