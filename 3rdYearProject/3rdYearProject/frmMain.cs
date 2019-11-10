@@ -426,45 +426,41 @@ namespace _3rdYearProject
         private void mnuProcedure_Click(object sender, EventArgs e)
         {
 
-            if (lstDisplay.Items.Count <= 2)
+            if (MessageBox.Show("All current script data will be changed if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-            }
-            else
-            {
-                if (MessageBox.Show("All current script data will be lost if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.No)
-                {
-                    return;
-                }
-            }
-
                 if (mnuProcedure.BackColor == Color.Transparent)
-            {
-                if (mnuViews.BackColor != Color.Transparent)
                 {
+                    if (mnuViews.BackColor != Color.Transparent)
+                    {
 
-                    MenuStripColour(mnuSelect);
-                    ClearDataLists();
-                    RemoveUnneccassary();
-                    AddTabsForSelect();
-                    ClearDataLists();
-                    EnableTreeAndButton();
-                    lstDisplay.DataSource = null;
-                    lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
+                        MenuStripColour(mnuSelect);
+                        ClearDataLists();
+                        RemoveUnneccassary();
+                        AddTabsForSelect();
+                        ClearDataLists();
+                        EnableTreeAndButton();
+                        lstDisplay.DataSource = null;
+                        lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
+
+                    }
+                    mnuProcedure.BackColor = Color.LightSeaGreen;
 
                 }
-                mnuProcedure.BackColor = Color.LightSeaGreen;
-                
-            }
-            else
-            {
-                mnuProcedure.BackColor = Color.Transparent;
-               
-            }
+                else
+                {
+                    mnuProcedure.BackColor = Color.Transparent;
+
+                }
 
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.ProcedureBaseBuilder();
                 AddTabsForProcedures();
                 ChangeToProgrammabillity();
+            }
+            else
+            {
+                return;
+            }
 
         }
 
