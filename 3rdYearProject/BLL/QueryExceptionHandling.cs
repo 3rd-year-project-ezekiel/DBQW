@@ -56,7 +56,27 @@ namespace BLL
             return newData;
         }
 
-
+        public string CheckVariableCompatibility(string colType, string varType)
+        {
+            string compatible = "No";
+            if (varType[0].ToString().ToLower() == "c")
+            {
+                varType = varType.Remove(4);
+            }
+            else if (varType[0].ToString().ToLower() == "v")
+            {
+                varType = varType.Remove(7);
+            }
+            else if (varType[0].ToString().ToLower() == "n")
+            {
+                varType = varType.Remove(5);
+            }
+            if (colType.ToLower() == varType.ToLower())
+            {
+                compatible = "Yes";
+            }
+            return compatible;
+        }
 
         #endregion
 

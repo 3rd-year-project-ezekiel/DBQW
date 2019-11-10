@@ -889,6 +889,10 @@ namespace _3rdYearProject
             try
             {
                 string value = "";
+                string compatible = "";
+                string columnName = cmbWhereColName.SelectedItem.ToString();
+                string condition = cmbWhereCondition.SelectedItem.ToString();
+
                 if (mnuProcedure.BackColor != Color.Transparent)
                 {
 
@@ -901,15 +905,38 @@ namespace _3rdYearProject
                         else
                         {
                             value = cmbProgrammingWhere.SelectedItem.ToString();
+                            string varType = "";
+                            string colType = "";
+                            foreach (string item in lstVarItems.Items)
+                            {
+                                string[] splitted = item.Split(' ');
+                                if (splitted[0] == cmbProgrammingWhere.Text)
+                                {
+                                    varType = splitted[1];
+                                }
+                            }
+
+                            foreach (Columns item in columns)
+                            {
+                                if (item.ColumnName == columnName)
+                                {
+                                    colType = item.DataType;
+                                }
+                            }
+
+                            QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
+                            compatible = queryExceptionHandling.CheckVariableCompatibility(colType, varType);
                         }
                     }
                     else
                     {
+                        compatible = "Yes";
                         value = txtWhereValues.Text.ToString();
                         if (value == "")
                         {
                             throw new NullReferenceException();
                         }
+                        
                     }
 
                 }
@@ -922,16 +949,19 @@ namespace _3rdYearProject
                         throw new NullReferenceException();
                     }
                 }
-                string columnName = cmbWhereColName.SelectedItem.ToString();
-                string condition = cmbWhereCondition.SelectedItem.ToString();
                 
-                
-                lstWhereItems.Items.Add(string.Format("{0} {1} {2}", columnName, condition, value));
+                if(compatible == "Yes")
+                {
+                    lstWhereItems.Items.Add(string.Format("{0} {1} {2}", columnName, condition, value));
 
-                lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.WhereClauseBuilder(columnName + " " + condition + " " + value);
-                txtWhereValues.Clear();
-                
+                    lstDisplay.DataSource = null;
+                    lstDisplay.DataSource = sqlBuilderClass.WhereClauseBuilder(columnName + " " + condition + " " + value);
+                    txtWhereValues.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("The variable type does not match the column type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (NullReferenceException)
             {
@@ -1057,6 +1087,10 @@ namespace _3rdYearProject
             try
             {
                 string value = "";
+                string compatible = "";
+                string columnName = cmbHavingCol.SelectedItem.ToString();
+                string condition = cmbHavingCondition.SelectedItem.ToString();
+
                 if (mnuProcedure.BackColor != Color.Transparent)
                 {
                     if (cbxHavingValue.Checked == false)
@@ -1068,10 +1102,32 @@ namespace _3rdYearProject
                         else
                         {
                             value = cmbProgrammingHaving.SelectedItem.ToString();
+                            string varType = "";
+                            string colType = "";
+                            foreach (string item in lstVarItems.Items)
+                            {
+                                string[] splitted = item.Split(' ');
+                                if (splitted[0] == cmbProgrammingWhere.Text)
+                                {
+                                    varType = splitted[1];
+                                }
+                            }
+
+                            foreach (Columns item in columns)
+                            {
+                                if (item.ColumnName == columnName)
+                                {
+                                    colType = item.DataType;
+                                }
+                            }
+
+                            QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
+                            compatible = queryExceptionHandling.CheckVariableCompatibility(colType, varType);
                         }
                     }
                     else
                     {
+                        compatible = "Yes";
                         value = txtHavingValue.Text.ToString();
                         if (value == "")
                         {
@@ -1089,15 +1145,15 @@ namespace _3rdYearProject
                         throw new NullReferenceException();
                     }
                 }
-                string columnName = cmbHavingCol.SelectedItem.ToString();
-                string condition = cmbHavingCondition.SelectedItem.ToString();
-              
 
-                lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.HavingClauseBuilder(columnName + " " + condition + " " + value);
 
-                lstHavingItems.Items.Add(string.Format("{0} {1} {2}", columnName, condition, value));
+                if (compatible == "Yes")
+                {
+                    lstDisplay.DataSource = null;
+                    lstDisplay.DataSource = sqlBuilderClass.HavingClauseBuilder(columnName + " " + condition + " " + value);
 
+                    lstHavingItems.Items.Add(string.Format("{0} {1} {2}", columnName, condition, value));
+                }
             }
             catch (NullReferenceException)
             {
