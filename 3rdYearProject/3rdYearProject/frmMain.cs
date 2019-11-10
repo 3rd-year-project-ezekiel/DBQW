@@ -32,7 +32,7 @@ namespace _3rdYearProject
         private List<string> variables = new List<string>();
         private string currentSetTable;
         private Dictionary<string, List<Columns>> tabTableColumnDict = new Dictionary<string, List<Columns>>();
-
+        private List<string> varList = new List<string>();
         #endregion
 
         #region Global Fields
@@ -122,6 +122,7 @@ namespace _3rdYearProject
         #region Form Functionality
         private void btnRemove_Click(object sender, EventArgs e)
         {
+           
             int treeviewCount = tvEntities.Nodes.Count - 1;
             for (int i = treeviewCount; i >= 0; i--)
             {
@@ -157,6 +158,15 @@ namespace _3rdYearProject
 
             ComboBoxPopulationMethod();
             PopulateMainList();
+
+            if (lstMainTable.Items.Count>0)
+            {
+                lstMainTable.SelectedIndex = 0;
+            }
+            else
+            {
+                ClearDataSources();
+            }
         }
 
         public void DisableComponenets()
@@ -1072,14 +1082,26 @@ namespace _3rdYearProject
                 string value = "";
                 if (mnuProcedure.BackColor != Color.Transparent)
             {
-                    
-                    if (cmbProgrammingValues.Text=="Please Select Variable")
+                    if (cbxValue.Checked==false)
                     {
-                        throw new NullReferenceException();
+                        if (cmbProgrammingValues.SelectedItem.ToString() == "Please Select Variable")
+                        {
+                            throw new NullReferenceException();
+                        }
+                        else
+                        {
+                            value = cmbProgrammingValues.SelectedItem.ToString();
+                        }
                     }
-                    else { 
-                    value = cmbProgrammingValues.SelectedItem.ToString();
+                    else
+                    {
+                        value = txtInsertValues.Text.ToString();
+                        if (value == "")
+                        {
+                            throw new NullReferenceException();
+                        }
                     }
+                    
                 }
             else
             {
@@ -1090,6 +1112,7 @@ namespace _3rdYearProject
                         throw new NullReferenceException();
                     }
                 }
+             
                 string columnName = cmbInsertColumns.SelectedItem.ToString();
 
                 QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
@@ -1103,6 +1126,7 @@ namespace _3rdYearProject
                     index++;
                 }
 
+             
                 string newValue = queryExceptionHandling.CheckDataTypeMatch(tabTableColumnDict[currentSetTable][index].DataType, value);
 
                 if(newValue != "")
@@ -1133,7 +1157,7 @@ namespace _3rdYearProject
                 int selectedIndex = lstInsertItems.SelectedIndex;
 
                 string[] values = ((string)lstInsertItems.SelectedItem).Split(' ');
-                lstDisplay.DataSource = null;
+                
                 lstDisplay.DataSource = sqlBuilderClass.InsertRemoveValue(values[0], values[1]);
 
                 lstInsertItems.Items.RemoveAt(selectedIndex);
@@ -1314,6 +1338,12 @@ namespace _3rdYearProject
 
                 lstVarItems.Items.Add(query);
                 variables.Add("@"+name);
+
+                cmbProgrammingSet.DataSource = null;
+                cmbProgrammingHaving.DataSource = null;
+                cmbProgrammingWhere.DataSource = null;
+                cmbProgrammingValues.DataSource = null;
+
 
                 cmbProgrammingSet.DataSource = variables;
                 cmbProgrammingHaving.DataSource = variables;
