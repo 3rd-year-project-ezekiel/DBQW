@@ -425,10 +425,23 @@ namespace _3rdYearProject
         // Procedure Menu Strip
         private void mnuProcedure_Click(object sender, EventArgs e)
         {
-            if (mnuProcedure.BackColor == Color.Transparent)
+
+            if (lstDisplay.Items.Count <= 2)
+            {
+            }
+            else
+            {
+                if (MessageBox.Show("All current script data will be lost if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
+                if (mnuProcedure.BackColor == Color.Transparent)
             {
                 if (mnuViews.BackColor != Color.Transparent)
                 {
+
                     MenuStripColour(mnuSelect);
                     ClearDataLists();
                     RemoveUnneccassary();
@@ -437,6 +450,7 @@ namespace _3rdYearProject
                     EnableTreeAndButton();
                     lstDisplay.DataSource = null;
                     lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
+
                 }
                 mnuProcedure.BackColor = Color.LightSeaGreen;
                 
@@ -446,39 +460,56 @@ namespace _3rdYearProject
                 mnuProcedure.BackColor = Color.Transparent;
                
             }
-            lstDisplay.DataSource = null;
-            lstDisplay.DataSource = sqlBuilderClass.ProcedureBaseBuilder();
-            AddTabsForProcedures();
-            ChangeToProgrammabillity();
+
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.ProcedureBaseBuilder();
+                AddTabsForProcedures();
+                ChangeToProgrammabillity();
 
         }
 
         // View Menu Strip
         private void mnuViews_Click(object sender, EventArgs e)
         {
-           
             if (mnuProcedure.BackColor != Color.Transparent)
                 mnuProcedure.BackColor = Color.Transparent;
-            
 
-            MenuStripColour(mnuViews);
-            ClearDataLists();
-            RemoveUnneccassary();
-            AddTabsForViews();
-            EnableTreeAndButton();
-            lstDisplay.DataSource = null;
-            lstDisplay.DataSource = sqlBuilderClass.ViewBaseBuilder(cmbTables.SelectedText);
+            if (lstDisplay.Items.Count <= 2)
+            {
+                MenuStripColour(mnuViews);
+                ClearDataLists();
+                RemoveUnneccassary();
+                AddTabsForViews();
+                EnableTreeAndButton();
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.ViewBaseBuilder(cmbTables.SelectedText);
+                return;
+            }
+
+            if (MessageBox.Show("All current script data will be lost if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MenuStripColour(mnuViews);
+                ClearDataLists();
+                RemoveUnneccassary();
+                AddTabsForViews();
+                EnableTreeAndButton();
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.ViewBaseBuilder(cmbTables.SelectedText);
+            }
+
         }
         
         // Select Menu strip
         private void mnuSelect_Click(object sender, EventArgs e)
         {
-           // if (mnuSelect.BackColor != Color.Transparent && mnuViews.BackColor != Color.Transparent)
-          //  {
-                
-          //  }
-         //   else
-         //   {
+            // if (mnuSelect.BackColor != Color.Transparent && mnuViews.BackColor != Color.Transparent)
+            //  {
+
+            //  }
+            //   else
+            //   {
+            if (lstDisplay.Items.Count <= 2)
+            {
                 MenuStripColour(mnuSelect);
                 ClearDataLists();
                 RemoveUnneccassary();
@@ -487,6 +518,21 @@ namespace _3rdYearProject
                 EnableTreeAndButton();
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
+                return;
+            }
+
+
+            if (MessageBox.Show("All current script data will be lost if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MenuStripColour(mnuSelect);
+                ClearDataLists();
+                RemoveUnneccassary();
+                AddTabsForSelect();
+                ClearDataLists();
+                EnableTreeAndButton();
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
+            }
           //  }
 
             
@@ -495,40 +541,84 @@ namespace _3rdYearProject
         // Delete Menu Strip
         private void mnuDelete_Click(object sender, EventArgs e)
         {
-            MenuStripColour(mnuDelete);
-            ClearDataLists();
-            RemoveUnneccassary();
-            AddTabsForDelete();
-            ClearDataLists();
-            EnableTreeAndButton();
-            lstDisplay.DataSource = null;
-            lstDisplay.DataSource = sqlBuilderClass.DeleteBaseBuilder(cmbTables.SelectedText);
+            if (lstDisplay.Items.Count <= 2)
+            {
+                MenuStripColour(mnuDelete);
+                ClearDataLists();
+                RemoveUnneccassary();
+                AddTabsForDelete();
+                ClearDataLists();
+                EnableTreeAndButton();
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.DeleteBaseBuilder(cmbTables.SelectedText);
+                return;
+            }
 
+            if (MessageBox.Show("All current script data will be lost if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MenuStripColour(mnuDelete);
+                ClearDataLists();
+                RemoveUnneccassary();
+                AddTabsForDelete();
+                ClearDataLists();
+                EnableTreeAndButton();
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.DeleteBaseBuilder(cmbTables.SelectedText);
+            }
         }
 
         // Update Menu Strip
         private void mnuUpdate_Click(object sender, EventArgs e)
         {
-            MenuStripColour(mnuUpdate);
-            ClearDataLists();
-            RemoveUnneccassary();
-            AddTabsForUpdate();
-            ClearDataLists();
-            EnableTreeAndButton();
-            lstDisplay.DataSource = null;
-            lstDisplay.DataSource = sqlBuilderClass.UpdateBaseBuilder(cmbTables.SelectedText);
+            if (lstDisplay.Items.Count <= 2)
+            {
+                MenuStripColour(mnuUpdate);
+                ClearDataLists();
+                RemoveUnneccassary();
+                AddTabsForUpdate();
+                ClearDataLists();
+                EnableTreeAndButton();
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.UpdateBaseBuilder(cmbTables.SelectedText);
+                return;
+            }
+            if (MessageBox.Show("All current script data will be lost if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MenuStripColour(mnuUpdate);
+                ClearDataLists();
+                RemoveUnneccassary();
+                AddTabsForUpdate();
+                ClearDataLists();
+                EnableTreeAndButton();
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.UpdateBaseBuilder(cmbTables.SelectedText);
+            }
         }
 
         // Insert Menu
         private void mnuInsert_Click(object sender, EventArgs e)
         {
-            MenuStripColour(mnuInsert);
-            ClearDataLists();
-            RemoveUnneccassary();
-            AddTabsForInsert();
-            EnableTreeAndButton();
-            lstDisplay.DataSource = null;
-            lstDisplay.DataSource = sqlBuilderClass.InsertBaseBuilder(cmbTables.SelectedText);
+            if (lstDisplay.Items.Count <= 2)
+            {
+                MenuStripColour(mnuInsert);
+                ClearDataLists();
+                RemoveUnneccassary();
+                AddTabsForInsert();
+                EnableTreeAndButton();
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.InsertBaseBuilder(cmbTables.SelectedText);
+                return;
+            }
+            if (MessageBox.Show("All current script data will be lost if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MenuStripColour(mnuInsert);
+                ClearDataLists();
+                RemoveUnneccassary();
+                AddTabsForInsert();
+                EnableTreeAndButton();
+                lstDisplay.DataSource = null;
+                lstDisplay.DataSource = sqlBuilderClass.InsertBaseBuilder(cmbTables.SelectedText);
+            }
         }
 
         // Colour changes of the Sql Menu Strip( Select , Delete , Update , Insert )
