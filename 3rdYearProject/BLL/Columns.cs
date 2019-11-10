@@ -54,5 +54,17 @@ public class Columns
 
         return columns;
     }
+	
+	public bool CheckDataType(string dataType1, string dataType2)
+    {
+        if (dataType1 == dataType2)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     #endregion
 }
