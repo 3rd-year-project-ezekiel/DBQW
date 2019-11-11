@@ -131,7 +131,7 @@ namespace _3rdYearProject
         
         private void BtnAAddColumn_Click(object sender, EventArgs e)
         {
-            string colName = txtColName.Text;
+            string colName = txtColName.Text.Replace(" ","_");
             string type = "";
             string constraints = "";
             
@@ -339,7 +339,7 @@ namespace _3rdYearProject
 
         private void BtnCreateTable_Click(object sender, EventArgs e)
         {
-            string tableName = txtTableName.Text;
+            string tableName = txtTableName.Text.Replace(" ", "_");
             if (tableName=="")
             {
                 MessageBox.Show("Please enter the table name","Error",MessageBoxButtons.OK,MessageBoxIcon.Information);

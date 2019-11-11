@@ -93,10 +93,7 @@ namespace BLL
         //         - selecting a new table, database or removing tables
 
 
-        // == Wikus == \\
-        // == Table creation form == 
-        // when a column is selected for foreign keys, check if the data types are the same.
-        // table 1 column 1 is string || Should equal || table 3 column 4 int
+        
 
         // make sure that table names on the table form cant have spaces in them
 
