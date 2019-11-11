@@ -92,10 +92,7 @@ namespace BLL
         //         - unselecting stored procedure or views
         //         - selecting a new table, database or removing tables
 
-
         
-
-        // make sure that table names on the table form cant have spaces in them
 
 
         // == Pieter == \\

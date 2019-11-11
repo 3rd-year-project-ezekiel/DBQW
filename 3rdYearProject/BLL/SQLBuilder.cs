@@ -737,6 +737,7 @@ namespace BLL
                 sqlBuilderLIst.Add("WHERE" + whereClause);
             }
 
+            ReOrderClauses();
 
             return sqlBuilderLIst;
 
@@ -779,6 +780,7 @@ namespace BLL
                 }
             }
 
+            ReOrderClauses();
             return sqlBuilderLIst;
         }
         #endregion
@@ -808,6 +810,7 @@ namespace BLL
                 sqlBuilderLIst.Add("HAVING" + havingClause);
             }
 
+            ReOrderClauses();
 
             return sqlBuilderLIst;
 
@@ -850,6 +853,8 @@ namespace BLL
                 }
             }
 
+            ReOrderClauses();
+
             return sqlBuilderLIst;
         }
         #endregion
@@ -878,6 +883,8 @@ namespace BLL
             {
                 sqlBuilderLIst.Add("ORDER BY " + orderByClause);
             }
+
+            ReOrderClauses();
 
             return sqlBuilderLIst;
         }
@@ -913,6 +920,8 @@ namespace BLL
                                 sqlBuilderLIst.RemoveAt(index);
                             }
 
+                            ReOrderClauses();
+
                             return sqlBuilderLIst;
                         }
                     }
@@ -947,6 +956,8 @@ namespace BLL
             {
                 sqlBuilderLIst.Add("GROUP BY " + groupByClause);
             }
+
+            ReOrderClauses();
 
             return sqlBuilderLIst;
         }
@@ -987,6 +998,8 @@ namespace BLL
                     }
                 }
             }
+
+            ReOrderClauses();
 
             return sqlBuilderLIst;
         }
@@ -1093,7 +1106,13 @@ namespace BLL
             return line.Substring(0, line.LastIndexOf(' '));
         }
 
+        private void ReOrderClauses()
+        {
+            for (int i = 3; i < sqlBuilderLIst.Count; i++)
+            {
 
+            }
+        }
 
         #endregion
 
