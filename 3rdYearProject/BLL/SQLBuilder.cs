@@ -1090,7 +1090,15 @@ namespace BLL
                 line += item + ",";
             }
 
-            return line.Substring(0, line.LastIndexOf(','));
+            try
+            {
+                return line.Substring(0, line.LastIndexOf(','));
+            }
+            catch (Exception)
+            {
+
+                return "";
+            }
         }
 
         // converts a list to a string with spaces between the entities
