@@ -1154,6 +1154,10 @@ namespace _3rdYearProject
 
                     lstHavingItems.Items.Add(string.Format("{0} {1} {2}", columnName, condition, value));
                 }
+                else
+                {
+                    MessageBox.Show("The variable type does not match the column type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (NullReferenceException)
             {
@@ -1245,73 +1249,84 @@ namespace _3rdYearProject
             try
             {
                 string value = "";
+                string compatible = "";
+                string columnName = cmbInsertColumns.SelectedItem.ToString();
+
                 if (mnuProcedure.BackColor != Color.Transparent)
-            {
-                    if (cbxValue.Checked==false)
+                {
+                    if (cbxValue.Checked == false)
                     {
-                        if (cmbProgrammingValues.SelectedItem.ToString() == "Please Select Variable")
+                        if (cmbInsertColumns.SelectedItem.ToString() == "Please Select Variable")
                         {
                             throw new NullReferenceException();
                         }
                         else
                         {
-                            value = cmbProgrammingValues.SelectedItem.ToString();
+                            value = cmbInsertColumns.SelectedItem.ToString();
+                            string varType = "";
+                            string colType = "";
+                            foreach (string item in lstVarItems.Items)
+                            {
+                                string[] splitted = item.Split(' ');
+                                if (splitted[0] == cmbProgrammingValues.Text)
+                                {
+                                    varType = splitted[1];
+                                }
+                            }
+
+                            foreach (Columns item in columns)
+                            {
+                                if (item.ColumnName == columnName)
+                                {
+                                    colType = item.DataType;
+                                }
+                            }
+
+                            QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
+                            compatible = queryExceptionHandling.CheckVariableCompatibility(colType, varType);
                         }
                     }
                     else
                     {
                         value = txtInsertValues.Text.ToString();
+                        compatible = "Yes";
                         if (value == "")
                         {
                             throw new NullReferenceException();
                         }
                     }
-                    
+
                 }
-            else
-            {
-                    
+                else
+                {
+
                     value = txtInsertValues.Text.ToString();
                     if (value == "")
                     {
                         throw new NullReferenceException();
                     }
                 }
-             
-                string columnName = cmbInsertColumns.SelectedItem.ToString();
-
-                QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
-                int index = 0;
-                while (index < tabTableColumnDict[currentSetTable].Count)
-                {
-                    if(columnName == tabTableColumnDict[currentSetTable][index].ColumnName)
-                    {
-                        break;
-                    }
-                    index++;
-                }
-
-             
-                string newValue = queryExceptionHandling.CheckDataTypeMatch(tabTableColumnDict[currentSetTable][index].DataType, value);
-
-                if(newValue != "")
+                if (compatible == "Yes")
                 {
                     lstDisplay.DataSource = null;
-                    lstDisplay.DataSource = sqlBuilderClass.InsertValue(columnName, newValue);
+                    lstDisplay.DataSource = sqlBuilderClass.InsertValue(columnName, cmbProgrammingValues.Text);
 
-                    lstInsertItems.Items.Add(string.Format("{0} {1}", columnName, newValue));
+                    lstInsertItems.Items.Add(string.Format("{0} {1}", columnName, cmbProgrammingValues.Text));
                 }
-                
+                else
+                {
+                    MessageBox.Show("The variable type does not match the column type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (NullReferenceException)
             {
 
                 MessageBox.Show("No value added.Please add/select a value", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                MessageBox.Show("No value added.Please add/select a value", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString());
+                //MessageBox.Show("No value added.Please add/select a value", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1346,6 +1361,9 @@ namespace _3rdYearProject
             try
             {
                 string value = "";
+                string compatible = "";
+                string columnName = cmbProgrammingSet.SelectedItem.ToString();
+
                 if (mnuProcedure.BackColor != Color.Transparent)
                 {
                     if (cbxSetValue.Checked == false)
@@ -1357,37 +1375,62 @@ namespace _3rdYearProject
                         else
                         {
                             value = cmbProgrammingSet.SelectedItem.ToString();
+                            if (value == "")
+                            {
+                                throw new NullReferenceException();
+                            }
+                            string varType = "";
+                            string colType = "";
+                            foreach (string item in lstVarItems.Items)
+                            {
+                                string[] splitted = item.Split(' ');
+                                if (splitted[0] == cmbProgrammingSet.Text)
+                                {
+                                    varType = splitted[1];
+                                }
+                            }
+
+                            foreach (Columns item in columns)
+                            {
+                                if (item.ColumnName == cmbSetCol.Text)
+                                {
+                                    colType = item.DataType;
+                                }
+                            }
+
+                            QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
+                            compatible = queryExceptionHandling.CheckVariableCompatibility(colType, varType);
                         }
                     }
                     else
                     {
                         value = txtSetValues.Text.ToString();
-                        if (value == "")
-                        {
-                            throw new NullReferenceException();
-                        }
+                        compatible = "Yes";
                     }
                 }
                 else
                 {
-
                     value = txtSetValues.Text.ToString();
                     if (value == "")
                     {
                         throw new NullReferenceException();
                     }
                 }
+                if (compatible == "Yes")
+                {
+                    string condition = "=";
+                    
+                    string tempValueHolder = string.Format("{0} {1} {2}", cmbSetCol.Text, condition, value);
 
-                string columnName = cmbSetCol.SelectedItem.ToString();
-                string condition = "=";
-               
+                    lstDisplay.DataSource = null;
+                    lstDisplay.DataSource = sqlBuilderClass.UpdateSet(tempValueHolder);
 
-                string tempValueHolder = string.Format("{0} {1} {2}", columnName, condition, value);
-
-                lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.UpdateSet(tempValueHolder);
-
-                lstSetitems.Items.Add(tempValueHolder);
+                    lstSetitems.Items.Add(tempValueHolder);
+                }
+                else
+                {
+                    MessageBox.Show("The variable type does not match the column type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (NullReferenceException)
             {

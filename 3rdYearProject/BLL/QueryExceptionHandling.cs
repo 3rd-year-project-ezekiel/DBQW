@@ -61,15 +61,24 @@ namespace BLL
             string compatible = "No";
             if (varType[0].ToString().ToLower() == "c")
             {
-                varType = varType.Remove(4);
+                if (varType.Length > 4)
+                {
+                    varType = varType.Remove(4);
+                }
             }
             else if (varType[0].ToString().ToLower() == "v")
             {
-                varType = varType.Remove(7);
+                if (varType.Length > 7)
+                {
+                    varType = varType.Remove(7);
+                }
             }
             else if (varType[0].ToString().ToLower() == "n")
             {
-                varType = varType.Remove(5);
+                if (varType.Length > 5)
+                {
+                    varType = varType.Remove(5);
+                }
             }
             if (colType.ToLower() == varType.ToLower())
             {
