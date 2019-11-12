@@ -436,8 +436,7 @@ namespace _3rdYearProject
         private void mnuProcedure_Click(object sender, EventArgs e)
         {
 
-            if (MessageBox.Show("All current script data will be changed if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
+            
                 if (mnuProcedure.BackColor == Color.Transparent)
                 {
                     if (mnuViews.BackColor != Color.Transparent)
@@ -458,19 +457,23 @@ namespace _3rdYearProject
                 }
                 else
                 {
-                    mnuProcedure.BackColor = Color.Transparent;
 
+                if (MessageBox.Show("All current script data will be changed if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    mnuProcedure.BackColor = Color.Transparent;
                 }
+                else
+                {
+                    return;
+                }
+
+            }
 
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.ProcedureBaseBuilder();
                 AddTabsForProcedures();
                 ChangeToProgrammabillity();
-            }
-            else
-            {
-                return;
-            }
+
 
         }
 
