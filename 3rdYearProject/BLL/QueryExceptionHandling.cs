@@ -91,19 +91,7 @@ namespace BLL
 
 
         #region To do List
-
-        // == JP == \\
-        // == Main form ==
-        //  - when a new thing is selected, while there is already data entered, a message box should display to inform the user that this action would cause that the query will reset
-        //       - the messagebox should keep the previos selection if no is selected, and reset the query is yes is selected
-        //       Examples
-        //         = selecting a sqlQAuery type from the menu strip(Delete -> update)
-        //         - unselecting stored procedure or views
-        //         - selecting a new table, database or removing tables
-
         
-
-
         // == Pieter == \\
         // Data type checking all 
         //  check that all text boxes have a datatype checking
@@ -112,17 +100,14 @@ namespace BLL
         
         
         
-        
+        // == Jan == \\
         // create custom exceptions for certian events
 
 
         // rephrase
         /*
           == Group ==
-- if switch between queries, give the option(yes or no) if no, needs to show previos option again
-  + Database select
-  + table
-  + query
+
 - Data type checking
   + main(values, where, set)
   + database create( check if numbers)

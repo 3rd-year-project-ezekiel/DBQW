@@ -1116,10 +1116,49 @@ namespace BLL
 
         private void ReOrderClauses()
         {
+            List<string> theTempList = new List<string>();
+            theTempList.Add("E");
+            theTempList.Add("E");
+            theTempList.Add("E");
+            theTempList.Add("E");
+            int Lowest = 900;
+
             for (int i = 3; i < sqlBuilderLIst.Count; i++)
             {
-
+                if (sqlBuilderLIst[i][0] == 'W')
+                {
+                    theTempList[0] = sqlBuilderLIst[i];
+                    if (i < Lowest) Lowest = i;
+                }
+                if (sqlBuilderLIst[i][0] == 'G')
+                {
+                    theTempList[1] = sqlBuilderLIst[i];
+                    if (i < Lowest) Lowest = i;
+                }
+                if (sqlBuilderLIst[i][0] == 'H')
+                {
+                    theTempList[2] = sqlBuilderLIst[i];
+                    if (i < Lowest) Lowest = i;
+                }
+                if (sqlBuilderLIst[i][0] == 'O')
+                {
+                    theTempList[3] = sqlBuilderLIst[i];
+                    if (i < Lowest) Lowest = i;
+                }
+               
             }
+
+            foreach (string item in theTempList)
+            {
+                if (item != "E")
+                {
+                    sqlBuilderLIst[Lowest] = item;
+                    Lowest++;
+                }
+            }
+
+
+
         }
 
         #endregion
@@ -1138,13 +1177,6 @@ namespace BLL
 
 // - Data menu strip needs to lead to a form where you can view what is inside each tables
 
-// - Re- order query structure from where
-// order
-// 
-// Where
-// Group by
-// Having
-// Order by
 
 
 

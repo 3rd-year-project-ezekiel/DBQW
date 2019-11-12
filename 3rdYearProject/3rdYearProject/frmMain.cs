@@ -511,13 +511,8 @@ namespace _3rdYearProject
         // Select Menu strip
         private void mnuSelect_Click(object sender, EventArgs e)
         {
-            // if (mnuSelect.BackColor != Color.Transparent && mnuViews.BackColor != Color.Transparent)
-            //  {
-
-            //  }
-            //   else
-            //   {
-            if (lstDisplay.Items.Count <= 2)
+          
+            if (lstDisplay.Items.Count <= 3)
             {
                 MenuStripColour(mnuSelect);
                 ClearDataLists();
@@ -550,7 +545,7 @@ namespace _3rdYearProject
         // Delete Menu Strip
         private void mnuDelete_Click(object sender, EventArgs e)
         {
-            if (lstDisplay.Items.Count <= 2)
+            if (lstDisplay.Items.Count <= 3)
             {
                 MenuStripColour(mnuDelete);
                 ClearDataLists();
@@ -579,7 +574,7 @@ namespace _3rdYearProject
         // Update Menu Strip
         private void mnuUpdate_Click(object sender, EventArgs e)
         {
-            if (lstDisplay.Items.Count <= 2)
+            if (lstDisplay.Items.Count <= 3)
             {
                 MenuStripColour(mnuUpdate);
                 ClearDataLists();
@@ -607,7 +602,7 @@ namespace _3rdYearProject
         // Insert Menu
         private void mnuInsert_Click(object sender, EventArgs e)
         {
-            if (lstDisplay.Items.Count <= 2)
+            if (lstDisplay.Items.Count <= 3)
             {
                 MenuStripColour(mnuInsert);
                 ClearDataLists();
@@ -1863,14 +1858,6 @@ namespace _3rdYearProject
         // == Group To Do List == \\
         /*
           
-   
-        - when a table is removed from the treeview, that table's columns should not be shown in the combo boxes anymore
-       
-
-        - when a new table is selected on the table tab, then the previos columns and items should be removed
-           + prompt the user if they are sure
-           
-
         */
 
 
