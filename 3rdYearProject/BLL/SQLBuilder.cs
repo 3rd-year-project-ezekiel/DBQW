@@ -697,15 +697,16 @@ namespace BLL
                         List<String> theList = (sqlBuilderLIst[index].Split(splitTemp,2))[1].Split(',').ToList();
                         theList.Remove(columnName);
                         sqlBuilderLIst[index] = "SELECT " + ListToString(theList);
+
+                        if (theList.Count == 0) sqlBuilderLIst[index] = "SELECT";
                     }
                     catch (Exception)
                     {
                         sqlBuilderLIst[index] = "SELECT";
-
-
                     }
                     break;
                 }
+                index++;
             }
 
             return sqlBuilderLIst;

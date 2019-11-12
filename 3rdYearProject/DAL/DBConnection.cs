@@ -52,11 +52,10 @@ namespace DAL
         #endregion
 
         #region Push Data into Database
-
+        // Method to execute the query
         public bool QueryExecution(string query)
         {
-
-           // MessageBox.Show(query);
+            
             try
             {
                 if (connection.State != ConnectionState.Open)
@@ -68,7 +67,9 @@ namespace DAL
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                char colon = '.';
+                MessageBox.Show((e.ToString().Split(colon)[3]));
+
                 return false;
             }
             finally 
@@ -141,7 +142,8 @@ namespace DAL
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                char colon = '.';
+                MessageBox.Show((e.ToString().Split(colon)[3]));
             }
             finally
             {
@@ -174,9 +176,9 @@ namespace DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                MessageBox.Show(e.ToString());
             }
             finally
             {
@@ -207,9 +209,9 @@ namespace DAL
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                MessageBox.Show(e.ToString());
             }
             finally
             {
@@ -238,9 +240,9 @@ namespace DAL
                 
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                MessageBox.Show(e.ToString());
             }
             finally
             {
@@ -269,9 +271,9 @@ namespace DAL
 
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                MessageBox.Show(e.ToString());
             }
             finally
             {
@@ -281,6 +283,7 @@ namespace DAL
             return tables;
         }
 
+        // if a select was run, then this method will retrive the data
         public DataTable GetSelectData(string query)
         {
             try

@@ -87,6 +87,8 @@ namespace BLL
             return compatible;
         }
 
+        
+
         #endregion
 
 
