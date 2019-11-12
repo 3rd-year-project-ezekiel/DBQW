@@ -92,30 +92,11 @@ namespace BLL
         #endregion
 
 
-        #region To do List
-        
         // == Pieter == \\
         // Data type checking all 
         //  check that all text boxes have a datatype checking
         //  check that all combo boxes and text boxes that are set or equal to somthing
        
-        
-        
-        
-        // == Jan == \\
-        // create custom exceptions for certian events
-
-
-        // rephrase
-        /*
-          == Group ==
-
-- Data type checking
-  + main(values, where, set)
-  + database create( check if numbers)
-  + table create(foreign key, test that the two columns have the same datatype)
-         */
-        #endregion
 
     }
 }

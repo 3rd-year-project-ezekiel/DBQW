@@ -184,7 +184,7 @@
             this.btnConnect.TabIndex = 28;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click_1);
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // btnCancel
             // 
@@ -195,7 +195,7 @@
             this.btnCancel.TabIndex = 29;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // textBox1
             // 

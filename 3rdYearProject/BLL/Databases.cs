@@ -64,10 +64,7 @@ public class Databases
     #endregion
 
     #region Override
-    //public override string ToString()
-    //{
-    //    return nameOfDatbase;
-    //}
+   
     #endregion
 
     #region Methods

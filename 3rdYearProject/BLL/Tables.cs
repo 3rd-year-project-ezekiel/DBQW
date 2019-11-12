@@ -50,8 +50,7 @@ public class Tables
 
         return tables;
     }
-
-
+    
     public void AddTable(List<string> tableDetails,string databaseName,string tableName)
     {
         DBConnection connection = new DBConnection();
@@ -59,6 +58,8 @@ public class Tables
         connection.CreateTable(tableDetails, databaseName, tableName);
 
     }
+
+    // gets the data in a table for the Data Form
     public DataTable GetTableContents(string databaseName , string tableName)
     {
         DataTable tables = new DataTable();

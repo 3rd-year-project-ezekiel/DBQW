@@ -12,9 +12,11 @@ namespace _3rdYearProject
 {
     public partial class frmDatabaseCreation : Form
     {
-        Databases database = new Databases();
+        #region Form Properties and Constructor
+        private Databases database = new Databases();
         private List<string> creationDetails = new List<string>();
-        string filePath = string.Empty;
+        private string filePath = string.Empty;
+
         public frmDatabaseCreation()
         {
             InitializeComponent();
@@ -24,6 +26,11 @@ namespace _3rdYearProject
         {
 
         }
+
+
+        #endregion
+
+        #region Functionality
 
         private void BtnCreate_Click(object sender, EventArgs e)
         {
@@ -60,10 +67,6 @@ namespace _3rdYearProject
                 }
 
             }
-
-            
-
-
         }
 
         public bool Validation(List<string> checkList)
@@ -95,11 +98,12 @@ namespace _3rdYearProject
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
             frmMain frmMain = new frmMain();
             frmMain.Show();
             this.Hide();
         }
+        #endregion
     }
 }

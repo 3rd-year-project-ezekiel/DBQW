@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.pnlDatabase = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnBack = new System.Windows.Forms.Button();
             this.btnFilePath = new System.Windows.Forms.Button();
             this.btnCreate = new System.Windows.Forms.Button();
             this.txtLogName = new System.Windows.Forms.TextBox();
@@ -41,7 +42,6 @@
             this.lblFilePath = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.lblHead = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.pnlDatabase.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +49,7 @@
             // 
             this.pnlDatabase.BackColor = System.Drawing.Color.Crimson;
             this.pnlDatabase.Controls.Add(this.label1);
-            this.pnlDatabase.Controls.Add(this.button1);
+            this.pnlDatabase.Controls.Add(this.btnBack);
             this.pnlDatabase.Controls.Add(this.btnFilePath);
             this.pnlDatabase.Controls.Add(this.btnCreate);
             this.pnlDatabase.Controls.Add(this.txtLogName);
@@ -67,15 +67,24 @@
             this.pnlDatabase.Size = new System.Drawing.Size(680, 443);
             this.pnlDatabase.TabIndex = 0;
             // 
-            // button1
+            // label1
             // 
-            this.button1.Location = new System.Drawing.Point(561, 398);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(116, 42);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Back";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(359, 250);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(28, 17);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "MB";
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(561, 398);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(116, 42);
+            this.btnBack.TabIndex = 11;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // btnFilePath
             // 
@@ -185,15 +194,6 @@
             this.lblHead.TabIndex = 0;
             this.lblHead.Text = "Create Your Database";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(359, 250);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 17);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "MB";
-            // 
             // frmDatabaseCreation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -226,7 +226,7 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblHead;
         private System.Windows.Forms.Button btnFilePath;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label label1;
     }
 }

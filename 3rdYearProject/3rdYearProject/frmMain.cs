@@ -990,10 +990,10 @@ namespace _3rdYearProject
 
                 MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception f)
             {
 
-                throw;
+                MessageBox.Show(f.ToString());
             }
         }
 
@@ -1042,10 +1042,10 @@ namespace _3rdYearProject
 
                 MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception f)
             {
 
-                throw;
+                MessageBox.Show(f.ToString());
             }
         }
 
@@ -1076,10 +1076,11 @@ namespace _3rdYearProject
 
                 MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception f)
             {
 
-                throw;
+                MessageBox.Show(false.ToString());
+
             }
         }
 
@@ -1187,10 +1188,10 @@ namespace _3rdYearProject
 
                 MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception f)
             {
 
-                throw;
+                MessageBox.Show(false.ToString());
             }
         }
 
@@ -1215,10 +1216,10 @@ namespace _3rdYearProject
 
                 MessageBox.Show("Please select all relevant items", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception f)
             {
 
-                throw;
+                MessageBox.Show(false.ToString());
             }
             
         }
@@ -1238,10 +1239,10 @@ namespace _3rdYearProject
 
                 MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception f)
             {
 
-                throw;
+                MessageBox.Show(false.ToString());
             }
         }
 
@@ -1350,10 +1351,10 @@ namespace _3rdYearProject
 
                 MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception f)
             {
 
-                throw;
+                MessageBox.Show(false.ToString());
             }
         }
 
@@ -1458,10 +1459,10 @@ namespace _3rdYearProject
 
                 MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception f)
             {
 
-                throw;
+                MessageBox.Show(false.ToString());
             }
         }
 
@@ -1506,10 +1507,10 @@ namespace _3rdYearProject
 
                 MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception f)
             {
 
-                throw;
+                MessageBox.Show(false.ToString());
             }
         }
 
@@ -1607,10 +1608,10 @@ namespace _3rdYearProject
                     txtSize.Show();
                 }
             }
-            catch (Exception)
+            catch (Exception f)
             {
 
-                throw;
+                MessageBox.Show(false.ToString());
             }
         }
 
@@ -1706,10 +1707,10 @@ namespace _3rdYearProject
 
                 MessageBox.Show("Please Select Item", "Error: No Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception)
+            catch (Exception f)
             {
 
-                throw;
+                MessageBox.Show(false.ToString());
             }
         }
 
@@ -1853,17 +1854,6 @@ namespace _3rdYearProject
 
         #endregion
 
-
-
-
-
-
-        // == Group To Do List == \\
-        /*
-          
-        */
-
-
-
+        
     }
 }

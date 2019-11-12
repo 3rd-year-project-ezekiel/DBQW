@@ -26,6 +26,7 @@ namespace BLL
         #endregion
 
         #region Methods
+        // this method copies the current Query to the Systems Clipboard
         public void CopyQueryToClipboard()
         {
             string queryBuilder = "";
@@ -137,7 +138,7 @@ namespace BLL
 
                 // most probably a option is not selected so the counter will run thourh the program and error out because of index out of bounds
 
-                // create a custom exception for the user saying index out of bounds, please select(insert, update ...)
+                MessageBox.Show("Please Select a query type");
             }
             
                        
@@ -279,6 +280,7 @@ namespace BLL
             return sqlBuilderLIst;
         }
 
+        // View Name changer
         public List<string> ViewNameBuilder(string viewName)
         {
             int index = 2;
@@ -346,7 +348,7 @@ namespace BLL
            
             return sqlBuilderLIst;
         }
-
+        // Adds a Value to the Insert Query
         public List<string> InsertValue(string Column, string value)
         {
 
@@ -402,7 +404,7 @@ namespace BLL
 
             return sqlBuilderLIst;
         }
-
+        // Removes a value from the Insert Query
         public List<string> InsertRemoveValue(string Column, string value)
         {
             int insertLine = 0;
@@ -529,7 +531,7 @@ namespace BLL
 
             return sqlBuilderLIst;
         }
-
+        // Sets a Value to be updated
         public List<string> UpdateSet(string ColumnAndValue)
         {
 
@@ -573,7 +575,7 @@ namespace BLL
 
             return sqlBuilderLIst;
         }
-
+        // Removes a Set value so it cant be Updated
         public List<string> UpdateRemoveSet(string ColumnAndValue)
         {
             int setLine = 0;
@@ -714,6 +716,7 @@ namespace BLL
         #endregion
 
         #region Where
+        // Builds the where clause, Adds
         public List<string> WhereClauseBuilder(string whereClause)
         {
             whereClause = "(" + whereClause + ")";
@@ -743,7 +746,7 @@ namespace BLL
             return sqlBuilderLIst;
 
         }
-
+        // Builds the where clause, Removes
         public List<string> WhereClauseRemover(string whereClause)
         {
             // Finds Where's position
@@ -787,6 +790,7 @@ namespace BLL
         #endregion
 
         #region Having
+        // Builds the Having clause, Adds
         public List<string> HavingClauseBuilder(string havingClause)
         {
             havingClause = "(" + havingClause + ")";
@@ -816,7 +820,7 @@ namespace BLL
             return sqlBuilderLIst;
 
         }
-
+        // Builds the Having clause, Removes
         public List<string> HavingClauseRemover(string havingClause)
         {
             // Finds Where's position
@@ -861,7 +865,7 @@ namespace BLL
         #endregion
 
         #region Order By
-
+        // Builds the Order By clause, Adds
         public List<string> OrderByClauseBuilder(string orderByClause)
         {
             // Checks to see if there is a Order by already
@@ -889,7 +893,7 @@ namespace BLL
 
             return sqlBuilderLIst;
         }
-
+        // Builds the Order By clause, Removes
         public List<string> OrderByClauseRemover(string orderByClause)
         {
             for (int index = 3; index < sqlBuilderLIst.Count; index++)
@@ -935,6 +939,7 @@ namespace BLL
         #endregion
 
         #region Group By
+        // Builds the Group By clause, Adds
         public List<string> GroupByClauseBuilder(string groupByClause)
         {
             // Checks to see if there is a group by already
@@ -962,7 +967,7 @@ namespace BLL
 
             return sqlBuilderLIst;
         }
-
+        // Builds the Group By clause, Removes
         public List<string> GroupByClauseRemover(string groupByClause)
         {
             for (int index = 3; index < sqlBuilderLIst.Count; index++)
@@ -1018,8 +1023,11 @@ namespace BLL
         #endregion
 
         #region Query Execute
+         // This method is responsible for executing the Query to the Database
         public bool ExecuteQuery()
         {
+            // The connectionstring is called and modified to access the chosen database
+
             SqlConnectionStringBuilder connStringBuilder = new SqlConnectionStringBuilder();
             var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
@@ -1057,7 +1065,7 @@ namespace BLL
             
 
         }
-
+        // This method is responsible for retriving Any data from a select statement that was executed
         public DataTable GetSelectDataExecute()
         {
             DataTable table = new DataTable();
@@ -1074,13 +1082,7 @@ namespace BLL
         #endregion
 
         #region Support Methods
-        // still to finish
-        private List<String> SplitValuesOrColumns(string input)
-        {
-
-            return sqlBuilderLIst;
-        }
-
+        
         // converts a list to a string with comma's between the entities
         private string ListToString(List<string> theList)
         {
@@ -1115,6 +1117,7 @@ namespace BLL
             return line.Substring(0, line.LastIndexOf(' '));
         }
 
+        // Changes the order of clauses(Where, orderby..) inorder to avoid errors from the database
         private void ReOrderClauses()
         {
             List<string> theTempList = new List<string>();
@@ -1175,8 +1178,6 @@ namespace BLL
 // - in the table combobox add a search function for table    ## Nice to Have
 
 // - finish comments and orginize all classes
-
-// - Data menu strip needs to lead to a form where you can view what is inside each tables
 
 
 

@@ -15,10 +15,11 @@ namespace _3rdYearProject
     public partial class frmTableCreation : Form
     {
 
-        string databaseName;
-        Databases database = new Databases();
-        List<String> tableDetails= new List<string>();
-        List<String> tableColumns = new List<string>();
+        #region Form Fields and Constructor
+        private string databaseName;
+        private Databases database = new Databases();
+        private List<String> tableDetails= new List<string>();
+        private List<String> tableColumns = new List<string>();
         private Tables table = new Tables();
 
         public frmTableCreation()
@@ -26,12 +27,113 @@ namespace _3rdYearProject
             InitializeComponent();
 
         }
-      
-        
 
+        private void FrmTableCreation_Load(object sender, EventArgs e)
+        {
+            pnlColumnDetails.Enabled = false;
+            pnlColumns.Enabled = false;
+            cbxDatabaseList.Text = "Please Select Database";
 
-        
+            List<Databases> databaseList = database.GetDatabases();
+            foreach (Databases item in databaseList)
+            {
+                cbxDatabaseList.Items.Add(item.NameOfDatabase);
+            }
+            lblForeignHeading.Hide();
+            lblRef.Hide();
+            lblForeignTable.Hide();
+            cbxTable.Hide();
+            cbxColumn.Hide();
+            cbxColumn.Enabled = false;
+            txtSize.Hide();
+            lblSize.Hide();
+            cbxType.Text = "Select DataType";
+            cbxType.Items.Add("Char()");
+            cbxType.Items.Add("VarChar()");
+            cbxType.Items.Add("Text");
+            cbxType.Items.Add("NChar()");
+            cbxType.Items.Add("Int");
+            cbxType.Items.Add("Money");
+            cbxType.Items.Add("Time");
+            cbxType.Items.Add("Date");
+            lblStartValue.Hide();
+            lblIncrement.Hide();
+            txtIncrementStartValue.Hide();
+            txtIncrementValue.Hide();
+            lblIndeityHeading.Hide();
+            pnlForeign.Hide();
+            pnlIdentity.Hide();
+        }
 
+        public void ResetFormForColumns()
+        {
+            pnlForeign.Hide();
+            pnlIdentity.Hide();
+
+            cbxColumn.Enabled = false;
+            txtSize.Hide();
+            lblSize.Hide();
+            txtSize.Clear();
+            txtColName.Clear();
+
+            cbPrimaryKey.Checked = false;
+            cbForeignKey.Checked = false;
+            cbNotNull.Checked = false;
+            cbUnique.Checked = false;
+            cbIdentity.Checked = false;
+
+            cbPrimaryKey.Enabled = true;
+            cbForeignKey.Enabled = true;
+            cbNotNull.Enabled = true;
+            cbUnique.Enabled = true;
+            cbIdentity.Enabled = true;
+
+            lblStartValue.Hide();
+            lblIncrement.Hide();
+            txtIncrementStartValue.Hide();
+            txtIncrementValue.Hide();
+            lblIndeityHeading.Hide();
+
+            lblForeignHeading.Hide();
+            lblRef.Hide();
+            lblForeignTable.Hide();
+            cbxColumn.Hide();
+            cbxTable.Hide();
+
+            cbxType.Text = "Select DataType";
+
+        }
+
+        private void CbxDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbxTable.Items.Clear();
+            pnlColumnDetails.Enabled = true;
+            pnlColumns.Enabled = true;
+            List<Tables> tableList = table.GetTables(cbxDatabaseList.SelectedItem.ToString());
+            foreach (Tables item in tableList)
+            {
+                cbxTable.Items.Add(item.TableNames);
+            }
+        }
+
+        public void ClearTable()
+        {
+            txtTableName.Clear();
+            lstColumns.Items.Clear();
+        }
+
+        // Back to menu Button
+        private void BtnProceed_Click(object sender, EventArgs e)
+        {
+            frmMain frmMain = new frmMain();
+            frmMain.Show();
+            this.Hide();
+        }
+
+        #endregion
+
+        #region Column Mechanics
+        // Primary Key Check Box
         private void CbPrimaryKey_CheckedChanged(object sender, EventArgs e)
         {
             if (cbPrimaryKey.Checked)
@@ -51,9 +153,10 @@ namespace _3rdYearProject
             }
         }
 
+        // Foreign Key Check Box
         private void CbForeignKey_CheckedChanged(object sender, EventArgs e)
         {
-            
+
             if (cbForeignKey.Checked)
             {
                 MessageBox.Show("Note:Try to create Columns with foreign keys after you already created the referenced table", "Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -71,8 +174,8 @@ namespace _3rdYearProject
                 cbIdentity.Checked = false;
                 cbNotNull.Enabled = false;
                 cbNotNull.Checked = false;
-                
-                
+
+
             }
             else
             {
@@ -89,52 +192,73 @@ namespace _3rdYearProject
             }
         }
 
-        private void FrmTableCreation_Load(object sender, EventArgs e)
+        // Identity Check Box
+        private void CbIdentity_CheckedChanged(object sender, EventArgs e)
         {
-            pnlColumnDetails.Enabled = false;
-            pnlColumns.Enabled = false;
-            cbxDatabaseList.Text = "Please Select Database";
-
-            List<Databases> databaseList = database.GetDatabases();
-            foreach (Databases item in databaseList)
+            if (cbIdentity.Checked)
             {
-                cbxDatabaseList.Items.Add(item.NameOfDatabase);
+                pnlIdentity.Show();
+                lblStartValue.Show();
+                lblIncrement.Show();
+                txtIncrementStartValue.Show();
+                txtIncrementValue.Show();
+                lblIndeityHeading.Show();
             }
-            lblForeignHeading.Hide();
-            lblRef.Hide();
-            lblForeignTable.Hide();
-            cbxTable.Hide();
-            cbxColumn.Hide();
-            cbxColumn.Enabled=false;
-            txtSize.Hide();
-            lblSize.Hide();
-            cbxType.Text = "Select DataType";
-            cbxType.Items.Add("Char()");
-            cbxType.Items.Add("VarChar()");
-            cbxType.Items.Add("Text");
-            cbxType.Items.Add("NChar()");
-            cbxType.Items.Add("Int");
-            cbxType.Items.Add("Money");
-            cbxType.Items.Add("Time");
-            cbxType.Items.Add("Date");
-            lblStartValue.Hide();
-            lblIncrement.Hide();
-            txtIncrementStartValue.Hide();
-            txtIncrementValue.Hide();
-            lblIndeityHeading.Hide();
-            pnlForeign.Hide();
-            pnlIdentity.Hide();
-
+            else if (!cbIdentity.Checked)
+            {
+                pnlIdentity.Hide();
+                lblStartValue.Hide();
+                lblIncrement.Hide();
+                txtIncrementStartValue.Hide();
+                txtIncrementValue.Hide();
+                lblIndeityHeading.Hide();
+            }
 
 
         }
-        
+
+        private void CbxType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxType.Text == "Select DataType")
+            {
+                txtSize.Hide();
+                lblSize.Hide();
+                return;
+            }
+            if ((cbxType.SelectedItem.ToString() == "Char()") || (cbxType.SelectedItem.ToString() == "VarChar()") || (cbxType.SelectedItem.ToString() == "NChar()"))
+            {
+                txtSize.Show();
+                lblSize.Show();
+            }
+            else
+            {
+                txtSize.Hide();
+                lblSize.Hide();
+            }
+
+
+
+            if (cbxType.SelectedItem.ToString() != "Int")
+            {
+                cbIdentity.Checked = false;
+                cbIdentity.Enabled = false;
+
+            }
+            if (cbxType.SelectedItem.ToString() == "Int")
+            {
+                cbIdentity.Checked = false;
+                cbIdentity.Enabled = true;
+
+            }
+
+        }
+
         private void BtnAAddColumn_Click(object sender, EventArgs e)
         {
-            string colName = txtColName.Text.Replace(" ","_");
+            string colName = txtColName.Text.Replace(" ", "_");
             string type = "";
             string constraints = "";
-            
+
             if (cbForeignKey.Checked)
             {
                 string datatype1 = cbxType.Text;
@@ -155,12 +279,12 @@ namespace _3rdYearProject
                     return;
                 }
             }
-           
+
             if (colName != "")
             {
-                if (cbxType.SelectedIndex!=-1)
+                if (cbxType.SelectedIndex != -1)
                 {
-                    if((cbxType.SelectedItem.ToString()== "Char()")||(cbxType.SelectedItem.ToString()== "VarChar()")||(cbxType.SelectedItem.ToString()== "NChar()"))
+                    if ((cbxType.SelectedItem.ToString() == "Char()") || (cbxType.SelectedItem.ToString() == "VarChar()") || (cbxType.SelectedItem.ToString() == "NChar()"))
                     {
                         if (txtSize.Text != "")
                         {
@@ -176,7 +300,7 @@ namespace _3rdYearProject
                             string[] splitSize = chosenDataType.Split('(');
                             type = splitSize[0] + "(" + txtSize.Text + splitSize[1];
                         }
-                       
+
                     }
                     else
                     {
@@ -216,7 +340,7 @@ namespace _3rdYearProject
                 {
                     MessageBox.Show("Please select a Type!", "Empty Type");
                     return;
-                }                
+                }
             }
             else
             {
@@ -224,159 +348,14 @@ namespace _3rdYearProject
                 return;
             }
 
-            
+
 
             tableDetails.Clear();
-            
+
             ResetFormForColumns();
         }
 
-        public void ResetFormForColumns()
-        {
-            pnlForeign.Hide();
-            pnlIdentity.Hide();
-            
-            cbxColumn.Enabled = false;
-            txtSize.Hide();
-            lblSize.Hide();
-            txtSize.Clear();
-            txtColName.Clear();
-            
-            cbPrimaryKey.Checked = false;
-            cbForeignKey.Checked = false;
-            cbNotNull.Checked = false;
-            cbUnique.Checked = false;
-            cbIdentity.Checked = false;
-
-            cbPrimaryKey.Enabled = true;
-            cbForeignKey.Enabled = true;
-            cbNotNull.Enabled = true;
-            cbUnique.Enabled = true;
-            cbIdentity.Enabled = true;
-
-            lblStartValue.Hide();
-            lblIncrement.Hide();
-            txtIncrementStartValue.Hide();
-            txtIncrementValue.Hide();
-            lblIndeityHeading.Hide();
-
-            lblForeignHeading.Hide();
-            lblRef.Hide();
-            lblForeignTable.Hide();
-            cbxColumn.Hide();
-            cbxTable.Hide();
-           
-            cbxType.Text = "Select DataType";
-          
-        }
-
-        private void CbIdentity_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbIdentity.Checked)
-            {
-                pnlIdentity.Show();
-                lblStartValue.Show();
-                lblIncrement.Show();
-                txtIncrementStartValue.Show();
-                txtIncrementValue.Show();
-                lblIndeityHeading.Show();
-            }
-            else if(!cbIdentity.Checked)
-            {
-                pnlIdentity.Hide();
-                lblStartValue.Hide();
-                lblIncrement.Hide();
-                txtIncrementStartValue.Hide();
-                txtIncrementValue.Hide();
-                lblIndeityHeading.Hide();
-            }
-            
-      
-        }
-
-        private void CbxType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbxType.Text== "Select DataType")
-            {
-                txtSize.Hide();
-                lblSize.Hide();
-                return;
-            }
-                if ((cbxType.SelectedItem.ToString() == "Char()") || (cbxType.SelectedItem.ToString() == "VarChar()") || (cbxType.SelectedItem.ToString() == "NChar()"))
-                {
-                    txtSize.Show();
-                    lblSize.Show();
-                }
-                else
-                {
-                txtSize.Hide();
-                lblSize.Hide();
-            }
-           
-           
-
-                if (cbxType.SelectedItem.ToString() != "Int")
-            {
-                cbIdentity.Checked = false;
-                cbIdentity.Enabled = false;
-              
-            }
-            if (cbxType.SelectedItem.ToString() == "Int")
-            {
-                cbIdentity.Checked = false;
-                cbIdentity.Enabled = true;
-                
-            }
-            
-        }
-
-        private void BtnRemoveColumn_Click(object sender, EventArgs e)
-        {
-            int selectedIndex = lstColumns.SelectedIndex;
-            tableColumns.RemoveAt(selectedIndex);
-            lstColumns.Items.RemoveAt(selectedIndex);
-        }
-
-        private void BtnCreateTable_Click(object sender, EventArgs e)
-        {
-            string tableName = txtTableName.Text.Replace(" ", "_");
-            if (tableName=="")
-            {
-                MessageBox.Show("Please enter the table name","Error",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                return;
-            }
-
-            if (lstColumns.Items.Count==0)
-            {
-                MessageBox.Show("Please create columns for your table", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            databaseName = cbxDatabaseList.SelectedItem.ToString();
-            table.AddTable(tableColumns, databaseName, tableName);
-
-            MessageBox.Show("Table Created", "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ClearTable();
-            ResetFormForColumns();
-        }
-
-        public void ClearTable()
-        {
-            txtTableName.Clear();
-            lstColumns.Items.Clear();
-        }
-
-        private void BtnProceed_Click(object sender, EventArgs e)
-        {
-            frmMain frmMain = new frmMain();
-            frmMain.Show();
-            this.Hide();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+        // Foreign Key Table Combo box
         private void CbxTable_SelectedIndexChanged(object sender, EventArgs e)
         {
             Columns col = new Columns();
@@ -390,16 +369,60 @@ namespace _3rdYearProject
             }
         }
 
-        private void CbxDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
+      
+
+        #endregion
+
+        #region Table Mechanics
+
+        private void BtnRemoveColumn_Click(object sender, EventArgs e)
         {
-            cbxTable.Items.Clear();
-            pnlColumnDetails.Enabled = true;
-            pnlColumns.Enabled = true;
-            List<Tables> tableList = table.GetTables(cbxDatabaseList.SelectedItem.ToString());
-            foreach (Tables item in tableList)
-            {
-                cbxTable.Items.Add(item.TableNames);
-            }
+            int selectedIndex = lstColumns.SelectedIndex;
+            tableColumns.RemoveAt(selectedIndex);
+            lstColumns.Items.RemoveAt(selectedIndex);
         }
+
+
+        private void BtnCreateTable_Click(object sender, EventArgs e)
+        {
+            string tableName = txtTableName.Text.Replace(" ", "_");
+            if (tableName == "")
+            {
+                MessageBox.Show("Please enter the table name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (lstColumns.Items.Count == 0)
+            {
+                MessageBox.Show("Please create columns for your table", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            databaseName = cbxDatabaseList.SelectedItem.ToString();
+            table.AddTable(tableColumns, databaseName, tableName);
+
+            MessageBox.Show("Table Created", "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ClearTable();
+            ResetFormForColumns();
+        }
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

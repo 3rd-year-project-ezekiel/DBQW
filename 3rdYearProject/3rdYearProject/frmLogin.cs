@@ -14,8 +14,20 @@ namespace _3rdYearProject
 {
     public partial class frmLogin : Form
     {
-        string[] authentication = new string[2];
-        
+
+        #region Form Properties and Constructor
+        // private
+        private string[] authentication = new string[2];
+
+        // public
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        // Constructor
         public frmLogin()
         {
             InitializeComponent();
@@ -26,36 +38,17 @@ namespace _3rdYearProject
             dropAuthentication.SelectedIndex = 0;
         }
 
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-        [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
+        #endregion
+        
+        #region Form Functionality
 
-        private void btnNavClose_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnNavMin_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void TopNavPnl_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-        }
-
-        private void btnConnect_Click_1(object sender, EventArgs e)
+        private void btnConnect_Click(object sender, EventArgs e)
         {
             string username = "";
             string password = "";
             string conType = "";
 
-            
+
             if (dropAuthentication.SelectedIndex == 1)
             {
                 username = txtLogin.Text;
@@ -91,10 +84,10 @@ namespace _3rdYearProject
             {
                 MessageBox.Show("Login failed!");
             }
-            
+
         }
 
-        private void btnCancel_Click_1(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
@@ -118,5 +111,26 @@ namespace _3rdYearProject
                 txtPassword.BackColor = Color.White;
             }
         }
+
+        #endregion
+
+        #region Nav Bar
+        private void btnNavClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnNavMin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void TopNavPnl_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+        }
+        #endregion
+
     }
 }

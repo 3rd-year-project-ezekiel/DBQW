@@ -13,6 +13,7 @@ namespace _3rdYearProject
 {
     public partial class frmSelectDataDisplay : Form
     {
+        #region Form and mechanics
         public frmSelectDataDisplay()
         {
             InitializeComponent();
@@ -22,5 +23,6 @@ namespace _3rdYearProject
         {
             dgvDataDisplay.DataSource = tabel;
         }
+        #endregion
     }
 }
