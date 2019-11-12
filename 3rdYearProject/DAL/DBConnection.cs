@@ -250,6 +250,37 @@ namespace DAL
             return tables;
         }
 
+        // Method of getting all data from a table in sql server
+        public DataTable GetTableContents(string databaseName, string tableName)
+        {
+            DataTable tables = new DataTable();
+            string query = string.Format("use {0} SELECT * FROM {1}", databaseName, tableName);
+
+            try
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+                command = new SqlCommand(query, connection);
+                adapter = new SqlDataAdapter(command);
+                adapter.Fill(tables);
+
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return tables;
+        }
+
         public DataTable GetSelectData(string query)
         {
             try

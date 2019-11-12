@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 using DAL;
 
 public class Tables
@@ -57,6 +58,14 @@ public class Tables
 
         connection.CreateTable(tableDetails, databaseName, tableName);
 
+    }
+    public DataTable GetTableContents(string databaseName , string tableName)
+    {
+        DataTable tables = new DataTable();
+        DBConnection handler = new DBConnection();
+        tables = handler.GetTableContents(databaseName,tableName);
+
+        return tables;
     }
     #endregion
 }

@@ -648,7 +648,10 @@ namespace _3rdYearProject
         // button on the Menu strip, takes you to a form where you can see what is in your tabels
         private void mnuData_Click(object sender, EventArgs e)
         {
-
+            frmData dataForm = new frmData();
+            dataForm.mainForm = (frmMain)Form.ActiveForm;
+            dataForm.Show();
+            this.Hide();
         }
 
         public void ChangeToProgrammabillity()
