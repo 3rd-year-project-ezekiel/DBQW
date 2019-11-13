@@ -398,30 +398,23 @@ namespace _3rdYearProject
                 return;
             }
             databaseName = cbxDatabaseList.SelectedItem.ToString();
-            table.AddTable(tableColumns, databaseName, tableName);
+            if (table.AddTable(tableColumns, databaseName, tableName))
+            {
+                MessageBox.Show("Table Created", "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearTable();
+                ResetFormForColumns();
+            }
+            else
+            {
+                MessageBox.Show("Table Failed to Created", "Created", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
-            MessageBox.Show("Table Created", "Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ClearTable();
-            ResetFormForColumns();
+            
         }
 
 
         #endregion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
     }

@@ -109,8 +109,9 @@ namespace DAL
         }
 
         // Method of creating Tables on SqlServer
-        public void CreateTable(List<String> tableDetails, string databaseName, string tableName)
+        public bool CreateTable(List<String> tableDetails, string databaseName, string tableName)
         {
+            bool flag = true;
             int count = 0;
             int listLength = tableDetails.Count;
             StringBuilder query = new StringBuilder();
@@ -144,12 +145,14 @@ namespace DAL
             {
                 char colon = '.';
                 MessageBox.Show((e.ToString().Split(colon)[3]));
+                flag =  false;
             }
             finally
             {
                 connection.Close();
             }
 
+            return flag;
         }
 
 

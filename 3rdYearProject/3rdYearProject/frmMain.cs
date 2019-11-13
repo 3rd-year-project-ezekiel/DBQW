@@ -472,6 +472,7 @@ namespace _3rdYearProject
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.ProcedureBaseBuilder();
                 AddTabsForProcedures();
+                lstVarItems.Items.Clear();
                 ChangeToProgrammabillity();
 
 
@@ -835,6 +836,7 @@ namespace _3rdYearProject
         // Clears all the clause lists on the tabs
         public void ClearDataLists()
         {
+            lstVarItems.Items.Clear();
             lstGroupedItems.Items.Clear();
             lstHavingItems.Items.Clear();
             lstInsertItems.Items.Clear();
@@ -845,6 +847,7 @@ namespace _3rdYearProject
             lstWhereItems.Items.Clear();
             lstColumnsItems.Items.Clear();
             lstColumnsManagement.Items.Clear();
+            lstVarItems.Items.Clear();
             
         }
 

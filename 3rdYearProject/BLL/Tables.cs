@@ -51,11 +51,16 @@ public class Tables
         return tables;
     }
     
-    public void AddTable(List<string> tableDetails,string databaseName,string tableName)
+    public bool AddTable(List<string> tableDetails,string databaseName,string tableName)
     {
         DBConnection connection = new DBConnection();
 
-        connection.CreateTable(tableDetails, databaseName, tableName);
+        if (connection.CreateTable(tableDetails, databaseName, tableName))
+        {
+            return true;
+        }
+
+        return false;
 
     }
 
