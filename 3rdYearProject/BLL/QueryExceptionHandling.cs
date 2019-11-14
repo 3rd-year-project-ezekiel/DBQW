@@ -16,49 +16,49 @@ namespace BLL
         {
             string newData = "";
 
-            if (givenData[0] != '@')
+            switch (givenDataType.ToLower())
             {
-                switch (givenDataType.ToLower())
-                {
-                    case "char": { } break;
-                    case "varchar":
+                case "char": { newData = "'" + givenData + "'"; } break;
+                case "varchar": { newData = "'" + givenData + "'"; } break;
+                case "text": { newData = "'" + givenData + "'"; } break;
+                case "nchar": { newData = "'" + givenData + "'"; } break;
+                case "int":
+                    {
+                        try
                         {
-                            newData = "'" + givenData + "'";
+                            int test = int.Parse(givenData);
+                            newData = givenData;
                         }
-                        break;
-                    case "text": { } break;
-                    case "nchar": { } break;
-                    case "int":
+                        catch (Exception)
                         {
-                            try
-                            {
-                                int test = int.Parse(givenData);
-                                newData = givenData;
-                            }
-                            catch (Exception)
-                            {
-                                MessageBox.Show("Please Enter a Number");
-                            }
+                            MessageBox.Show("Please Enter a Number");
                         }
-                        break;
-                    case "money": { } break;
-                    case "time": { } break;
-                    case "date": { } break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                return givenData; 
+                    }
+                    break;
+                case "money":
+                    {
+                        try
+                        {
+                            int test = int.Parse(givenData);
+                            newData = givenData;
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show("Please Enter a Number");
+                        }
+                    } break;
+                case "time": { newData = "'" + givenData + "'"; } break;
+                case "date": { newData = "'" + givenData + "'"; } break;
+                default:
+                    break;
             }
 
             return newData;
         }
 
-        public string CheckVariableCompatibility(string colType, string varType)
+        public bool CheckVariableCompatibility(string colType, string varType)
         {
-            string compatible = "No";
+            bool compatible = false;
             if (varType[0].ToString().ToLower() == "c")
             {
                 if (varType.Length > 4)
@@ -82,21 +82,12 @@ namespace BLL
             }
             if (colType.ToLower() == varType.ToLower())
             {
-                compatible = "Yes";
+                compatible = true;
             }
             return compatible;
         }
-
         
-
         #endregion
-
-
-        // == Pieter == \\
-        // Data type checking all 
-        //  check that all text boxes have a datatype checking
-        //  check that all combo boxes and text boxes that are set or equal to somthing
-       
-
+        
     }
 }

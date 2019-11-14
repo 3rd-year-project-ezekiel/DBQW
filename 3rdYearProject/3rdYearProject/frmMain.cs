@@ -448,8 +448,8 @@ namespace _3rdYearProject
                         AddTabsForSelect();
                         ClearDataLists();
                         EnableTreeAndButton();
-                        lstDisplay.DataSource = null;
-                        lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
+                      //  lstDisplay.DataSource = null;
+                       // lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
 
                     }
                     mnuProcedure.BackColor = Color.LightSeaGreen;
@@ -458,21 +458,22 @@ namespace _3rdYearProject
                 else
                 {
 
-                if (MessageBox.Show("All current script data will be changed if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    mnuProcedure.BackColor = Color.Transparent;
-                }
-                else
-                {
-                    return;
-                }
+                   if (MessageBox.Show("All current script data will be changed if continued!", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                   {
+                       mnuProcedure.BackColor = Color.Transparent;
+                   }
+                   else
+                   {
+                       return;
+                   }
 
-            }
+                }  
 
                 lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.ProcedureBaseBuilder();
                 AddTabsForProcedures();
                 lstVarItems.Items.Clear();
+                variables.Clear();
                 ChangeToProgrammabillity();
 
 
@@ -889,13 +890,24 @@ namespace _3rdYearProject
 
         #region Tab Button Functionality
         private void BtnAddWhere_Click(object sender, EventArgs e)
-        {
+        { //FindWhere
             try
             {
+
+                QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
+                string colType = "";
                 string value = "";
-                string compatible = "";
+                bool compatible = false;
                 string columnName = cmbWhereColName.SelectedItem.ToString();
                 string condition = cmbWhereCondition.SelectedItem.ToString();
+
+                foreach (Columns item in columns)
+                {
+                    if (item.ColumnName == columnName)
+                    {
+                        colType = item.DataType;
+                    }
+                }
 
                 if (mnuProcedure.BackColor != Color.Transparent)
                 {
@@ -910,7 +922,6 @@ namespace _3rdYearProject
                         {
                             value = cmbProgrammingWhere.SelectedItem.ToString();
                             string varType = "";
-                            string colType = "";
                             foreach (string item in lstVarItems.Items)
                             {
                                 string[] splitted = item.Split(' ');
@@ -919,27 +930,18 @@ namespace _3rdYearProject
                                     varType = splitted[1];
                                 }
                             }
-
-                            foreach (Columns item in columns)
-                            {
-                                if (item.ColumnName == columnName)
-                                {
-                                    colType = item.DataType;
-                                }
-                            }
-
-                            QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
                             compatible = queryExceptionHandling.CheckVariableCompatibility(colType, varType);
                         }
                     }
                     else
                     {
-                        compatible = "Yes";
+                        
                         value = txtWhereValues.Text.ToString();
                         if (value == "")
                         {
                             throw new NullReferenceException();
                         }
+                        value = queryExceptionHandling.CheckDataTypeMatch(colType, value);
                         
                     }
 
@@ -952,9 +954,15 @@ namespace _3rdYearProject
                     {
                         throw new NullReferenceException();
                     }
+                    value = queryExceptionHandling.CheckDataTypeMatch(colType, value);
                 }
-                
-                if(compatible == "Yes")
+
+                if (value != "" && value[0] != '@')
+                {
+                    compatible = true;
+                }
+
+                if(compatible)
                 {
                     lstWhereItems.Items.Add(string.Format("{0} {1} {2}", columnName, condition, value));
 
@@ -974,7 +982,7 @@ namespace _3rdYearProject
             }
             
             
-        }
+        } 
 
         private void BtnRemoveClauseFromWhere_Click(object sender, EventArgs e)
         {
@@ -1088,16 +1096,25 @@ namespace _3rdYearProject
         }
 
         private void BtnAddHaving_Click(object sender, EventArgs e)
-        {
+        {//FindHaving
             try
             {
+                QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
+                string colType = "";
                 string value = "";
-                string compatible = "";
+                bool compatible = false;
                 string columnName = cmbHavingCol.SelectedItem.ToString();
                 string condition = cmbHavingCondition.SelectedItem.ToString();
-
-                if (mnuProcedure.BackColor != Color.Transparent)
+                foreach (Columns item in columns)
                 {
+                    if (item.ColumnName == columnName)
+                    {
+                        colType = item.DataType;
+                    }
+                }
+
+                    if (mnuProcedure.BackColor != Color.Transparent)
+                    {
                     if (cbxHavingValue.Checked == false)
                     {
                         if (cmbProgrammingHaving.SelectedItem.ToString() == "Please Select Variable")
@@ -1108,7 +1125,6 @@ namespace _3rdYearProject
                         {
                             value = cmbProgrammingHaving.SelectedItem.ToString();
                             string varType = "";
-                            string colType = "";
                             foreach (string item in lstVarItems.Items)
                             {
                                 string[] splitted = item.Split(' ');
@@ -1117,29 +1133,19 @@ namespace _3rdYearProject
                                     varType = splitted[1];
                                 }
                             }
-
-                            foreach (Columns item in columns)
-                            {
-                                if (item.ColumnName == columnName)
-                                {
-                                    colType = item.DataType;
-                                }
-                            }
-
-                            QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
+                            
                             compatible = queryExceptionHandling.CheckVariableCompatibility(colType, varType);
                         }
                     }
                     else
                     {
-                        compatible = "Yes";
                         value = txtHavingValue.Text.ToString();
                         if (value == "")
                         {
                             throw new NullReferenceException();
                         }
+                        value = queryExceptionHandling.CheckDataTypeMatch(colType, value);
                     }
-                   
                 }
                 else
                 {
@@ -1149,10 +1155,15 @@ namespace _3rdYearProject
                     {
                         throw new NullReferenceException();
                     }
+                    value = queryExceptionHandling.CheckDataTypeMatch(colType, value);
                 }
 
+                if (value != "" && value[0] != '@')
+                {
+                    compatible = true;
+                }
 
-                if (compatible == "Yes")
+                if (compatible)
                 {
                     lstDisplay.DataSource = null;
                     lstDisplay.DataSource = sqlBuilderClass.HavingClauseBuilder(columnName + " " + condition + " " + value);
@@ -1170,7 +1181,7 @@ namespace _3rdYearProject
                 MessageBox.Show("No value added.Please add a value", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
            
-        }
+        }  
 
         private void BtnRemoveHavingItem_Click(object sender, EventArgs e)
         {
@@ -1250,12 +1261,21 @@ namespace _3rdYearProject
         }
 
         private void BtnAddValues_Click(object sender, EventArgs e)
-        {
+        { // FindValue
             try
             {
+                QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
+                string colType = "";
                 string value = "";
-                string compatible = "";
+                bool compatible = false;
                 string columnName = cmbInsertColumns.SelectedItem.ToString();
+                foreach (Columns item in columns)
+                {
+                    if (item.ColumnName == columnName)
+                    {
+                        colType = item.DataType;
+                    }
+                }
 
                 if (mnuProcedure.BackColor != Color.Transparent)
                 {
@@ -1267,9 +1287,8 @@ namespace _3rdYearProject
                         }
                         else
                         {
-                            value = cmbInsertColumns.SelectedItem.ToString();
+                            value = cmbProgrammingValues.SelectedItem.ToString();
                             string varType = "";
-                            string colType = "";
                             foreach (string item in lstVarItems.Items)
                             {
                                 string[] splitted = item.Split(' ');
@@ -1278,45 +1297,45 @@ namespace _3rdYearProject
                                     varType = splitted[1];
                                 }
                             }
-
-                            foreach (Columns item in columns)
-                            {
-                                if (item.ColumnName == columnName)
-                                {
-                                    colType = item.DataType;
-                                }
-                            }
-
-                            QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
+                            
                             compatible = queryExceptionHandling.CheckVariableCompatibility(colType, varType);
                         }
                     }
                     else
                     {
                         value = txtInsertValues.Text.ToString();
-                        compatible = "Yes";
                         if (value == "")
                         {
                             throw new NullReferenceException();
                         }
+                        value = queryExceptionHandling.CheckDataTypeMatch(colType, value);
                     }
 
                 }
                 else
                 {
 
-                    value = txtInsertValues.Text.ToString();
+                    value = txtInsertValues.Text;
                     if (value == "")
                     {
                         throw new NullReferenceException();
                     }
+                    value = queryExceptionHandling.CheckDataTypeMatch(colType, value);
                 }
-                if (compatible == "Yes")
+
+                if (value != "" && value[0] != '@')
+                {
+                    compatible = true;
+                }
+                
+                if (compatible)
                 {
                     lstDisplay.DataSource = null;
-                    lstDisplay.DataSource = sqlBuilderClass.InsertValue(columnName, cmbProgrammingValues.Text);
 
-                    lstInsertItems.Items.Add(string.Format("{0} {1}", columnName, cmbProgrammingValues.Text));
+
+                    lstDisplay.DataSource = sqlBuilderClass.InsertValue(columnName, value);
+
+                    lstInsertItems.Items.Add(string.Format("{0} {1}", columnName, value));
                 }
                 else
                 {
@@ -1330,8 +1349,7 @@ namespace _3rdYearProject
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                //MessageBox.Show("No value added.Please add/select a value", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.ToString()); 
             }
         }
 
@@ -1342,7 +1360,8 @@ namespace _3rdYearProject
                 int selectedIndex = lstInsertItems.SelectedIndex;
 
                 string[] values = ((string)lstInsertItems.SelectedItem).Split(' ');
-                
+
+                lstDisplay.DataSource = null;
                 lstDisplay.DataSource = sqlBuilderClass.InsertRemoveValue(values[0], values[1]);
 
                 lstInsertItems.Items.RemoveAt(selectedIndex);
@@ -1362,12 +1381,21 @@ namespace _3rdYearProject
         }
 
         private void BtnAddSet_Click(object sender, EventArgs e)
-        {
+        { //FindSet
             try
             {
+                QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
+                string colType = "";
                 string value = "";
-                string compatible = "";
-                string columnName = cmbProgrammingSet.SelectedItem.ToString();
+                bool compatible = false;
+                string columnName = cmbSetCol.SelectedItem.ToString();
+                foreach (Columns item in columns)
+                {
+                    if (item.ColumnName == columnName)
+                    {
+                        colType = item.DataType;
+                    }
+                }
 
                 if (mnuProcedure.BackColor != Color.Transparent)
                 {
@@ -1385,7 +1413,6 @@ namespace _3rdYearProject
                                 throw new NullReferenceException();
                             }
                             string varType = "";
-                            string colType = "";
                             foreach (string item in lstVarItems.Items)
                             {
                                 string[] splitted = item.Split(' ');
@@ -1394,23 +1421,17 @@ namespace _3rdYearProject
                                     varType = splitted[1];
                                 }
                             }
-
-                            foreach (Columns item in columns)
-                            {
-                                if (item.ColumnName == cmbSetCol.Text)
-                                {
-                                    colType = item.DataType;
-                                }
-                            }
-
-                            QueryExceptionHandling queryExceptionHandling = new QueryExceptionHandling();
                             compatible = queryExceptionHandling.CheckVariableCompatibility(colType, varType);
                         }
                     }
                     else
                     {
                         value = txtSetValues.Text.ToString();
-                        compatible = "Yes";
+                        if (value == "")
+                        {
+                            throw new NullReferenceException();
+                        }
+                        value = queryExceptionHandling.CheckDataTypeMatch(colType, value);
                     }
                 }
                 else
@@ -1420,8 +1441,17 @@ namespace _3rdYearProject
                     {
                         throw new NullReferenceException();
                     }
+                    value = queryExceptionHandling.CheckDataTypeMatch(colType, value);
+
                 }
-                if (compatible == "Yes")
+
+                if (value != "" && value[0] != '@')
+                {
+                    compatible = true;
+                }
+
+
+                if (compatible)
                 {
                     string condition = "=";
                     
@@ -1521,8 +1551,6 @@ namespace _3rdYearProject
         {
             try
             {
-                
-                
                 string name = txtVarName.Text;
                 string datatype = cmbDataTypes.SelectedItem.ToString();
 
