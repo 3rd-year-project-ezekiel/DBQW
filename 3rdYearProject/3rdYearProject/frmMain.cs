@@ -31,6 +31,8 @@ namespace _3rdYearProject
 
         private List<string> variables = new List<string>();
         private string currentSetTable;
+        private string currentSetDatabase;
+        private int currentDatabaseIndex;
         private Dictionary<string, List<Columns>> tabTableColumnDict = new Dictionary<string, List<Columns>>();
         private List<string> varList = new List<string>();
         #endregion
@@ -144,7 +146,6 @@ namespace _3rdYearProject
             }
 
             
-           
 
             if (tvEntities.Nodes.Count == 0)
             {
@@ -188,13 +189,40 @@ namespace _3rdYearProject
 
         private void cmbDatabaseList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstDisplay.DataSource != null)
+            if (currentSetDatabase != ((Databases)cmbDatabaseList.SelectedItem).NameOfDatabase)
             {
-                if (MessageBox.Show("Are you sure you want to replace the Database, doing so will erase the Query", " warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (lstDisplay.DataSource != null)
                 {
-                    selectedListofColumns.Clear();
-                    item = 0;
-                    lstMainTable.Items.Clear();
+                    if (MessageBox.Show("Are you sure you want to replace the Database, doing so will erase the Query", " warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        selectedListofColumns.Clear();
+                        item = 0;
+                        lstMainTable.Items.Clear();
+                        tvEntities.Nodes.Clear();
+                        Tables table = new Tables();
+                        tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
+                        cmbTables.SelectedIndexChanged -= cmbTables_SelectedIndexChanged;
+                        cmbTables.DataSource = tables;
+                        cmbTables.DisplayMember = "tableNames";
+                        cmbTables.ValueMember = "tableNames";
+                        cmbTables.SelectedIndex = -1;
+                        cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
+                        cmbTables.Enabled = true;
+                        lstDisplay.DataSource = null;
+                        lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
+                        ClearDataLists();
+                        ClearDataSources();
+                        tbcExstra.Enabled = false;
+                    }
+                    else
+                    {
+                        cmbDatabaseList.SelectedIndex = currentDatabaseIndex;
+                    }
+                }
+                else
+                {
+                    currentSetDatabase = ((Databases)cmbDatabaseList.SelectedItem).NameOfDatabase;
+                    currentDatabaseIndex = cmbDatabaseList.SelectedIndex;
                     tvEntities.Nodes.Clear();
                     Tables table = new Tables();
                     tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
@@ -207,38 +235,15 @@ namespace _3rdYearProject
                     cmbTables.Enabled = true;
                     lstDisplay.DataSource = null;
                     lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
-                    ClearDataLists();
-                    ClearDataSources();
-                    tbcExstra.Enabled = false;
                 }
-                else
-                {
-                    // enter previos database name
-                }
-            }
-            else
-            {
-                tvEntities.Nodes.Clear();
-                Tables table = new Tables();
-                tables = table.GetTables(cmbDatabaseList.SelectedValue.ToString());
-                cmbTables.SelectedIndexChanged -= cmbTables_SelectedIndexChanged;
-                cmbTables.DataSource = tables;
-                cmbTables.DisplayMember = "tableNames";
-                cmbTables.ValueMember = "tableNames";
-                cmbTables.SelectedIndex = -1;
-                cmbTables.SelectedIndexChanged += cmbTables_SelectedIndexChanged;
-                cmbTables.Enabled = true;
-                lstDisplay.DataSource = null;
-                lstDisplay.DataSource = sqlBuilderClass.DatabaseBaseBuilder(cmbDatabaseList.SelectedValue.ToString());
-            }
 
-            mnuProcedure.Enabled = true;
-            mnuViews.Enabled = true;
-            mnuInsert.Enabled = true;
-            mnuSelect.Enabled = true;
-            mnuDelete.Enabled = true;
-            mnuUpdate.Enabled = true;
-
+                mnuProcedure.Enabled = true;
+                mnuViews.Enabled = true;
+                mnuInsert.Enabled = true;
+                mnuSelect.Enabled = true;
+                mnuDelete.Enabled = true;
+                mnuUpdate.Enabled = true;
+            }
         }
 
         // select a table from the table combo box and display it in the treeview
