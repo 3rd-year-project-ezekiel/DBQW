@@ -243,6 +243,12 @@ namespace _3rdYearProject
                 mnuSelect.Enabled = true;
                 mnuDelete.Enabled = true;
                 mnuUpdate.Enabled = true;
+                mnuSelect.BackColor = Color.Transparent;
+                mnuInsert.BackColor = Color.Transparent;
+                mnuDelete.BackColor = Color.Transparent;
+                mnuUpdate.BackColor = Color.Transparent;
+                mnuViews.BackColor = Color.Transparent;
+                mnuProcedure.BackColor = Color.Transparent;
             }
         }
 
@@ -321,9 +327,7 @@ namespace _3rdYearProject
             btnRemove.Enabled = true;
             tvEntities.Enabled = true;
         }
-
-     
-
+        
         private void BtnAddsSource_Click(object sender, EventArgs e)
         {
             try
@@ -421,8 +425,7 @@ namespace _3rdYearProject
 
           
         }
-
-
+        
         private void btnQueryCopy_Click(object sender, EventArgs e)
         {
             sqlBuilderClass.CopyQueryToClipboard();
@@ -453,8 +456,6 @@ namespace _3rdYearProject
                         AddTabsForSelect();
                         ClearDataLists();
                         EnableTreeAndButton();
-                      //  lstDisplay.DataSource = null;
-                       // lstDisplay.DataSource = sqlBuilderClass.SelectBaseBuilder(cmbTables.SelectedText);
 
                     }
                     mnuProcedure.BackColor = Color.LightSeaGreen;
@@ -713,9 +714,7 @@ namespace _3rdYearProject
             cmbProgrammingValues.Enabled = false;
             cmbProgrammingWhere.Enabled = false;
         }
-
-
-
+        
         private void DatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDatabaseCreation databaseCreation = new frmDatabaseCreation();
@@ -780,45 +779,78 @@ namespace _3rdYearProject
 
         public void AddTabsForViews()
         {
-            tbcExstra.TabPages.Add(tpViews);
-            tbcExstra.TabPages.Add(tpColumnManagement);
-            tbcExstra.TabPages.Add(tpWhere);
-            tbcExstra.TabPages.Add(tpHaving);
-            tbcExstra.TabPages.Add(tpOrderBy);
-            tbcExstra.TabPages.Add(tpGroupBy);
-
+            
+            try
+            {
+                tbcExstra.TabPages.Add(tpViews);
+                tbcExstra.TabPages.Add(tpColumnManagement);
+                tbcExstra.TabPages.Add(tpWhere);
+                tbcExstra.TabPages.Add(tpHaving);
+                tbcExstra.TabPages.Add(tpOrderBy);
+                tbcExstra.TabPages.Add(tpGroupBy);
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public void AddTabsForSelect()
         {
-            tbcExstra.TabPages.Add(tpColumnManagement);
-            tbcExstra.TabPages.Add(tpWhere);
-            tbcExstra.TabPages.Add(tpHaving);
-            tbcExstra.TabPages.Add(tpOrderBy);
-            tbcExstra.TabPages.Add(tpGroupBy);
-            //tbcExstra.TabPages.Add(tpJoins);     Will be added back at a later stage
-            AddTabsForProcedures();
-
+            
+            try
+            {
+                tbcExstra.TabPages.Add(tpColumnManagement);
+                tbcExstra.TabPages.Add(tpWhere);
+                tbcExstra.TabPages.Add(tpHaving);
+                tbcExstra.TabPages.Add(tpOrderBy);
+                tbcExstra.TabPages.Add(tpGroupBy);
+                //tbcExstra.TabPages.Add(tpJoins);     Will be added back at a later stage
+                AddTabsForProcedures();
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public void AddTabsForInsert()
         {
-            tbcExstra.TabPages.Add(tpValues);
-            tbcExstra.TabPages.Remove(tpWhere);
-            AddTabsForProcedures();
+           
+            try
+            {
+                tbcExstra.TabPages.Add(tpValues);
+                tbcExstra.TabPages.Remove(tpWhere);
+                AddTabsForProcedures();
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public void AddTabsForUpdate()
         {
-            tbcExstra.TabPages.Add(tpSet);
-            tbcExstra.TabPages.Add(tpWhere);
-            AddTabsForProcedures();
+           
+            try
+            {
+                tbcExstra.TabPages.Add(tpSet);
+                tbcExstra.TabPages.Add(tpWhere);
+                AddTabsForProcedures();
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public void AddTabsForDelete()
         {
-            tbcExstra.TabPages.Add(tpWhere);
-            AddTabsForProcedures();
+            try
+            {
+
+                tbcExstra.TabPages.Add(tpWhere);
+                AddTabsForProcedures();
+            }
+            catch (Exception)
+            {
+            }
         }
 
 
@@ -842,7 +874,7 @@ namespace _3rdYearProject
         // Clears all the clause lists on the tabs
         public void ClearDataLists()
         {
-            lstVarItems.Items.Clear();
+           // lstVarItems.Items.Clear();
             lstGroupedItems.Items.Clear();
             lstHavingItems.Items.Clear();
             lstInsertItems.Items.Clear();
@@ -853,7 +885,6 @@ namespace _3rdYearProject
             lstWhereItems.Items.Clear();
             lstColumnsItems.Items.Clear();
             lstColumnsManagement.Items.Clear();
-            lstVarItems.Items.Clear();
             
         }
 

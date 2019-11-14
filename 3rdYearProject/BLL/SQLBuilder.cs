@@ -29,14 +29,22 @@ namespace BLL
         // this method copies the current Query to the Systems Clipboard
         public void CopyQueryToClipboard()
         {
-            string queryBuilder = "";
-            foreach (string item in sqlBuilderLIst)
+            try
             {
-                queryBuilder += item + Environment.NewLine; 
+                string queryBuilder = "";
+                foreach (string item in sqlBuilderLIst)
+                {
+                    queryBuilder += item + Environment.NewLine;
 
+                }
+                Clipboard.SetText(queryBuilder);
+                MessageBox.Show("Query is copied to your clipboard");
             }
-            Clipboard.SetText(queryBuilder);
-            MessageBox.Show("Query is copied to your clipboard");
+            catch (Exception)
+            {
+
+                MessageBox.Show("The Query Cannot be copied at this time");
+            }
         }
 
         #endregion
@@ -1026,44 +1034,52 @@ namespace BLL
          // This method is responsible for executing the Query to the Database
         public bool ExecuteQuery()
         {
-            // The connectionstring is called and modified to access the chosen database
-
-            SqlConnectionStringBuilder connStringBuilder = new SqlConnectionStringBuilder();
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
-
-            string[] lines = connectionStringsSection.ConnectionStrings["default"].ConnectionString.Split(';');
-
-            connStringBuilder.DataSource = (lines[0].Split('='))[1];
-            connStringBuilder.InitialCatalog = (sqlBuilderLIst[0].Split(' '))[1];
-            if((lines[2].Split('='))[1] == "True")
+            try
             {
-                connStringBuilder.IntegratedSecurity = true;
+                // The connectionstring is called and modified to access the chosen database
+
+                SqlConnectionStringBuilder connStringBuilder = new SqlConnectionStringBuilder();
+                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
+
+                string[] lines = connectionStringsSection.ConnectionStrings["default"].ConnectionString.Split(';');
+
+                connStringBuilder.DataSource = (lines[0].Split('='))[1];
+                connStringBuilder.InitialCatalog = (sqlBuilderLIst[0].Split(' '))[1];
+                if ((lines[2].Split('='))[1] == "True")
+                {
+                    connStringBuilder.IntegratedSecurity = true;
+                }
+                else
+                {
+                    connStringBuilder.IntegratedSecurity = false;
+                    connStringBuilder.UserID = (lines[3].Split('='))[1];
+                    connStringBuilder.Password = (lines[4].Split('='))[1];
+                }
+
+                connectionStringsSection.ConnectionStrings["ExecuteQuery"].ConnectionString = connStringBuilder.ToString();
+
+                config.Save();
+                ConfigurationManager.RefreshSection("connectionStrings");
+                DBConnection dataLayer = new DBConnection("ExecuteQuery");
+
+                string queryBuilder = "";
+                foreach (string item in sqlBuilderLIst)
+                {
+                    if (item == "GO" || (item.Split(' '))[0] == "USE") { } else { queryBuilder += item + " "; }
+
+                }
+
+
+                return dataLayer.QueryExecution(queryBuilder.ToString());
+
+
             }
-            else
+            catch (Exception)
             {
-                connStringBuilder.IntegratedSecurity = false;
-                connStringBuilder.UserID = (lines[3].Split('='))[1];
-                connStringBuilder.Password = (lines[4].Split('='))[1];
+                MessageBox.Show("Query couls not be executed at this time");
             }
-
-            connectionStringsSection.ConnectionStrings["ExecuteQuery"].ConnectionString = connStringBuilder.ToString();
-
-            config.Save();
-            ConfigurationManager.RefreshSection("connectionStrings");
-            DBConnection dataLayer = new DBConnection("ExecuteQuery");
-
-            string queryBuilder = "";
-            foreach (string item in sqlBuilderLIst)
-            {
-                if (item == "GO" || (item.Split(' '))[0] == "USE") { } else { queryBuilder += item + " "; }
-                
-            }
-
-           
-            return dataLayer.QueryExecution(queryBuilder.ToString());
-            
-
+            return false;
         }
         // This method is responsible for retriving Any data from a select statement that was executed
         public DataTable GetSelectDataExecute()
@@ -1176,8 +1192,6 @@ namespace BLL
 // - finish joins methods   ## Not for Project
 
 // - in the table combobox add a search function for table    ## Nice to Have
-
-// - finish comments and orginize all classes
 
 
 

@@ -204,6 +204,7 @@
             this.textBox1.Size = new System.Drawing.Size(222, 22);
             this.textBox1.TabIndex = 30;
             this.textBox1.Text = "LAPTOP-Q6DPUL5L";
+            this.textBox1.Visible = false;
             // 
             // frmLogin
             // 
